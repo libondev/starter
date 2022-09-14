@@ -1,0 +1,57 @@
+{
+  "name": "pkg-name",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "unbuild",
+    "prepack": "unbuild",
+    "dev": "unbuild --stub",
+    "release": "bumpp && npm publish",
+    "fix": "eslint src/** --ext .js,.ts,.mjs,.cjs --fix"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./*": "./dist/*"
+  },
+  "author": "[author] <[email]>",
+  "bugs": "https://github.com/[author]/pkg-name/issues",
+  "homepage": "https://github.com/[author]/pkg-name#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/[author]/pkg-name.git"
+  },
+  "packageManager": "pnpm@7.9.3",
+  "volta": {
+    "node": "16.17.0"
+  },
+  "devDependencies": {
+    "@antfu/ni": "^0.17.2",
+    "@types/node": "^18.7.9",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "esno": "^0.16.3",
+    "pnpm": "^7.9.3",
+    "typescript": "^4.7.4",
+    "unbuild": "^0.8.9"
+  }
+}
