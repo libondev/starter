@@ -1,0 +1,21 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "vetur.grammar.customBlocks": {
+    "route": "yaml"
+  },
+  "cSpell.words": [
+    "Attributify",
+    "composables",
+    "intlify",
+    "nprogress",
+    "pinia",
+    "rushstack",
+    "unocss",
+    "unplugin",
+    "VITE",
+    "vitepress",
+    "vueuse"
+  ]
+}

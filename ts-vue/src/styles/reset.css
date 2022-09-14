@@ -1,0 +1,184 @@
+/* 让所有盒子的宽高不再受 padding/border 影响 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  /*
+    基于 calc() 计算 em 的基础行高，
+    较大的行高用于较小的字体大小，
+    较小的行高用于较大的字体大小
+    https://kittygiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
+  */
+  line-height: calc(0.25rem + 1em + 0.25rem);
+}
+
+/* 移除所有默认的外边距 */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+*:not(fieldset, progress, meter) {
+  border-width: 0;
+  border-style: solid;
+  background-origin: border-box;
+  background-repeat: no-repeat;
+}
+
+html {
+  --color-theme: #00c483;
+  --color-danger: #ff5656;
+  /* 在应用程序中允许基于百分比的高度 */
+  block-size: 100%;
+  /* 确保文本大小仅由字体大小控制 */
+  -webkit-text-size-adjust: none;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* 只有在设置了 roll="list" 的时候才显示符号，防止在想要的时候但渲染不出来 */
+ul[role="list"], ol[role="list"] {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  /* 提高文本渲染 */
+  -webkit-font-smoothing: antialiased;
+  /* https://marco.org/2012/11/15/text-rendering-optimize-legibility */
+  text-rendering: optimizeSpeed;
+  /* 允许通过百分比设置高度 */
+  min-block-size: 100%;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter#example_2 */
+  /* scrollbar-gutter: stable both-edges; Removed until this bug is fixed: https://bugs.chromium.org/p/chromium/issues/detail?id=1318404#c2 */
+}
+
+/* 如果没有设置减少动画选项 */
+@media (prefers-reduced-motion: no-preference) {
+  /* 如果当前页面获取到了焦点，则使得滚动变得平滑 */
+  /* 如果在页面中使用 ctrl + f 搜索内容则不启用平滑滚动 */
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+/* 如果在偏好设置里设置了减少动画，则将所有的动画、过渡加快 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+}
+img, svg, video {
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+/* 使所有表单、按钮的字体于项目设置一致 */
+:where(input,button,textarea,select) {
+  font: inherit;
+}
+
+/* 没有设置类名的 a 元素恢复成默认样式 */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* 移除描边并设置填充颜色为继承的字体颜色 */
+:where(svg):where(:not([fill])) {
+  /* Remove fill and set stroke colour to the inherited font colour */
+  stroke: currentColor;
+  fill: none;
+  /* 让填充的线条边顶端变圆角 */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 如果没有携带 width 则设置默认值 */
+:where(svg):where(:not([width])) {
+  inline-size: 5rem;
+}
+
+/* 删除内置的表单排版样式 */
+:where(input, button, textarea, select),
+:where(input[type="file"])::-webkit-file-upload-button {
+  color: inherit;
+  font: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  caret-color: var(--color-theme, #00c483);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 更改文本区域的大小调整为仅垂直和仅当浏览器支持块 */
+textarea {
+  resize: vertical;
+}
+@supports (resize: block) {
+  textarea {
+    resize: block;
+  }
+}
+
+/* 避免文本溢出 */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 明确表示这些元素是可交互的 */
+:where(a[href], area, button, input, label[for], select, summary, textarea, [tabindex]:not([tabindex*="-"])) {
+  cursor: pointer;
+  touch-action: manipulation;
+  accent-color: var(--color-theme, #00c483);
+}
+:where(input[type="file"]) {
+  cursor: auto;
+}
+:where(input[type="file"])::-webkit-file-upload-button,
+:where(input[type="file"])::file-selector-button {
+  cursor: pointer;
+}
+
+/* 确保用户不能选择按钮文本 */
+::placeholder,
+button,
+button[type],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="file"]::-webkit-file-upload-button,
+input[type="file"]::file-selector-button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  text-align: center;
+}
+
+/* 禁用按钮 */
+:where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"])[disabled] {
+  cursor: not-allowed;
+}
