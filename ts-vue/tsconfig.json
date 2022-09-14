@@ -5,6 +5,7 @@
     "baseUrl": ".",
     "module": "ESNext",
     "target": "ESNext",
+    "jsx": "preserve",
     "lib": ["ES2019", "DOM", "DOM.Iterable"],
     "paths": {
       "@/*": ["./src/*"]
