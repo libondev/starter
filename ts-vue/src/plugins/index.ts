@@ -5,7 +5,7 @@ import { installRouter } from './router';
 import { installPinia } from './pinia';
 import { installI18n } from './i18n';
 
-export function createPlugins(app: App) {
+export function installPlugins(app: App) {
   const plugins = [
     installI18n,
     installPinia,
