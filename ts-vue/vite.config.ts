@@ -10,12 +10,14 @@ import VueJSX from '@vitejs/plugin-vue-jsx';
 import AutoImport from 'unplugin-auto-import/vite';
 import VueI18n from '@intlify/vite-plugin-vue-i18n';
 import Components from 'unplugin-vue-components/vite';
+// import { __Resolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@/': fileURLToPath(new URL('./src/', import.meta.url)),
+      '#/': fileURLToPath(new URL('./src/types/', import.meta.url)),
     },
   },
 
@@ -51,6 +53,9 @@ export default defineConfig({
         'vue/macros',
         '@vueuse/head',
         '@vueuse/core',
+      ],
+      resolvers: [
+        // __Resolver
       ],
     }),
 

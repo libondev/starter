@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getWords } from '@/apis/sdf';
+import { getWords } from '@/api/sdf';
 
 const { data } = getWords();
 

@@ -8,7 +8,8 @@
     "jsx": "preserve",
     "lib": ["ES2016", "DOM", "DOM.Iterable"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#/*": ["./src/types/*"]
     }
   },
 
