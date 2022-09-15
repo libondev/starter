@@ -28,6 +28,7 @@ module.exports = {
     'public',
     'examples',
     'playground',
+    'unocss.config.ts',
     'packages-lock.json',
     'pnpm-lock.yaml',
     'yarn.lock',
