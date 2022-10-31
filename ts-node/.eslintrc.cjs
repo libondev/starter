@@ -6,23 +6,40 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  plugins: ['@typescript-eslint', "simple-import-sort", 'sort-destructure-keys', 'import'],
+
+  plugins: [
+    '@typescript-eslint',
+    "simple-import-sort",
+    'sort-destructure-keys',
+    'import'
+  ],
+
   globals: {
     window: true,
     document: true,
     globalThis: true,
   },
+
   extends: [
     'plugin:eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'standard',
+    'standard-with-typescript'
   ],
+
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+
+  settings: {
+    'import/resolver': {
+      node: { extensions: ['.js', '.mjs'] },
+    },
+  },
+
   rules: {
+    semi: ['error', 'never'],
     'no-param-reassign': 'off',
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
@@ -36,11 +53,7 @@ module.exports = {
     "import/newline-after-import": "error",
     "import/no-duplicates": "error"
   },
-  settings: {
-    'import/resolver': {
-      node: { extensions: ['.js', '.mjs'] },
-    },
-  },
+
   ignorePatterns: [
     '*.min.*',
     '*.d.ts',

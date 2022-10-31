@@ -21,7 +21,7 @@
     "preserveWatchOutput": true,
     "strictBindCallApply": false,
     "strict": true,
-    "types": ["node"],
+    "types": ["node", "browser"],
     "target": "es6",
     "module": "esnext",
   }
