@@ -6,16 +6,17 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', "simple-import-sort", 'sort-destructure-keys', 'import'],
   globals: {
     window: true,
     document: true,
     globalThis: true,
   },
   extends: [
+    'plugin:eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'airbnb-base',
+    'standard',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -29,6 +30,11 @@ module.exports = {
       ignorePackages: true,
       typescript: 'never',
     }],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error"
   },
   settings: {
     'import/resolver': {
@@ -54,4 +60,4 @@ module.exports = {
     '!.vscode',
     '!.vitepress',
   ],
-};
+}
