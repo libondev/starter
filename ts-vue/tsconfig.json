@@ -6,6 +6,7 @@
     "module": "ESNext",
     "target": "ESNext",
     "jsx": "preserve",
+    "esModuleInterop": true,
     "lib": ["ES2016", "DOM", "DOM.Iterable"],
     "paths": {
       "@/*": ["./src/*"],

@@ -8,23 +8,23 @@
     "dist"
   ],
   "sideEffects": false,
-  "scripts": {
-    "build": "unbuild",
-    "prepack": "unbuild",
-    "dev": "unbuild --stub",
-    "release": "bumpp && npm publish",
-    "fix": "eslint src/** --ext .js,.ts,.mjs,.cjs --fix"
-  },
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "import": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
     "./*": "./dist/*"
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "prepack": "npm run build",
+    "release": "bumpp && npm publish",
+    "fix": "eslint src/** --ext .js,.ts,.cjs --fix"
   },
   "author": "[author] <[email]>",
   "bugs": "https://github.com/[author]/pkg-name/issues",
@@ -34,25 +34,25 @@
     "url": "git+https://github.com/[author]/pkg-name.git"
   },
   "volta": {
-    "node": "16.17.0"
+    "node": "16.18.0"
   },
   "devDependencies": {
-    "@antfu/ni": "^0.17.2",
     "@types/node": "^18.7.18",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
     "bumpp": "^8.2.1",
     "eslint": "^8.23.1",
+    "eslint-config-import": "^0.13.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-sort-destructure-keys": "^1.4.0",
-    "eslint-plugin-vue": "^9.4.0",
     "esno": "^0.16.3",
-    "typescript": "*",
-    "vite": "^3.2.1"
+    "typescript": "^4.8.4",
+    "vite": "^3.2.1",
+    "vite-plugin-dts": "^1.6.1"
   }
 }

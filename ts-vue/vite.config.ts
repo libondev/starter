@@ -16,8 +16,8 @@ import Components from 'unplugin-vue-components/vite';
 export default defineConfig({
   resolve: {
     alias: {
-      '@/': fileURLToPath(new URL('./src/', import.meta.url)),
-      '#/': fileURLToPath(new URL('./src/types/', import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '#': fileURLToPath(new URL('./src/types', import.meta.url)),
     },
   },
 
@@ -54,9 +54,6 @@ export default defineConfig({
         '@vueuse/head',
         '@vueuse/core',
       ],
-      resolvers: [
-        // __Resolver
-      ],
     }),
 
     // https://github.com/antfu/unplugin-vue-components
@@ -66,13 +63,16 @@ export default defineConfig({
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/types/components.d.ts',
+      resolvers: [
+        // __Resolver()
+      ],
     }),
 
     // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
-      include: [path.resolve(__dirname, 'locales/**')],
+      include: [path.resolve(import.meta.url, 'locales/**')],
     }),
 
     // https://github.com/antfu/unocss
