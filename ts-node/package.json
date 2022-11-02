@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",
-    "prepack": "npm run build",
+    "prepublishOnly": "npm run build",
     "release": "bumpp && npm publish",
     "fix": "eslint src/** --ext .js,.ts,.cjs --fix"
   },
