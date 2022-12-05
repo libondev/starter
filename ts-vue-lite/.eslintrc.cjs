@@ -7,6 +7,7 @@ module.exports = {
 
   ignorePatterns: [
     'index.html',
+    '*.d.ts',
     'dist'
   ],
 

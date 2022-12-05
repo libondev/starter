@@ -1,12 +1,13 @@
 import 'uno.css'
-import './assets/main.css'
 
-import App from './App.vue'
+import { RouterView } from 'vue-router'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import router from './router'
+import router from './router/index'
 
-const app = createApp(App)
+const app = createApp({
+  setup: () => () => <RouterView />
+})
 
 app.use(createPinia())
 app.use(router)
