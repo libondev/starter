@@ -1,19 +1,6 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "reportUnusedDisableDirectives": true,
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
-  },
-
-  "globals": {
-    "window": true,
-    "document": true,
-    "globalThis": true
-  },
-
   "parserOptions": {
     "project": "./tsconfig.json",
     "ecmaVersion": "latest",
@@ -22,8 +9,6 @@
 
   "plugins": [
     "@typescript-eslint",
-    "sort-destructure-keys",
-    "simple-import-sort",
     "import"
   ],
 
@@ -32,26 +17,18 @@
     "plugin:import/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:n/recommended",
     "standard-with-typescript"
   ],
-
-  "settings": {
-    "import/resolver": {
-      "node": { "extensions": [".js", ".mjs"] }
-    }
-  },
 
   "rules": {
     "indent": "off",
     "import/first": "error",
-    "no-multi-spaces": "error",
-    "no-throw-literal": "error",
-    "n/no-extraneous-import": "off",
     "import/no-duplicates": "error",
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
+    "import/no-unresolved": "off",
     "import/newline-after-import": "error",
+    "no-multi-spaces": "error",
+    "n/no-extraneous-import": "off",
+    "no-throw-literal": "error",
     "object-curly-spacing": ["error", "always"],
     "max-len": ["error", { "code": 120, "tabWidth": 2 }],
     "padding-line-between-statements": [      "error",
