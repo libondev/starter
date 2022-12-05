@@ -23,7 +23,7 @@ export default defineConfig({
       dts: './shims/components.d.ts'
     }),
     router({
-      dts: './shims/router.d.ts',
+      dts: './shims/routers.d.ts',
       routesFolder: ['src/views']
     }),
     unimport.vite({
