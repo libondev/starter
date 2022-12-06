@@ -3,7 +3,7 @@
   "include": [
     "src/**/*",
     "src/**/*.vue",
-    "shims/**/*.ts"
+    "shims/**/*.d.ts"
   ],
 
   "compilerOptions": {

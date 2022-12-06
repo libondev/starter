@@ -1,4 +1,5 @@
 import 'uno.css'
+import './styles/reset.css'
 
 import { RouterView } from 'vue-router'
 import { createApp } from 'vue'
