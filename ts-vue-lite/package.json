@@ -11,27 +11,27 @@
     "lint": "eslint . --ext .vue,.ts,.tsx --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "pinia": "^2.0.26",
+    "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@types/node": "^18.11.9",
-    "@unocss/preset-mini": "^0.47.5",
-    "@unocss/vite": "^0.47.5",
-    "@vitejs/plugin-vue": "^3.2.0",
-    "@vitejs/plugin-vue-jsx": "^2.1.1",
+    "@types/node": "^18.11.14",
+    "@unocss/preset-mini": "^0.47.6",
+    "@unocss/vite": "^0.47.6",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-standard-with-typescript": "^8.0.0",
     "@vue/tsconfig": "^0.1.3",
-    "eslint": "^8.22.0",
-    "eslint-plugin-vue": "^9.3.0",
+    "eslint": "^8.29.0",
+    "eslint-plugin-vue": "^9.8.0",
     "npm-run-all": "^4.1.5",
-    "sass": "^1.56.1",
-    "typescript": "~4.7.4",
-    "unimport": "^1.0.1",
-    "unplugin-vue-components": "^0.22.11",
+    "sass": "^1.56.2",
+    "typescript": "~4.9.4",
+    "unimport": "^1.0.2",
+    "unplugin-vue-components": "^0.22.12",
     "unplugin-vue-router": "^0.2.3",
-    "vite": "^3.2.4",
-    "vue-tsc": "^1.0.9"
+    "vite": "^4.0.1",
+    "vue-tsc": "^1.0.13"
   }
 }
