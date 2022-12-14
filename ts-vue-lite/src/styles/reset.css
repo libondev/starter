@@ -2,17 +2,31 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+html, body, #app {
+  height: 100%
+}
+
+body, ul {
+  margin: 0
+}
+
+body, .leading {
   line-height: 1.5715;
+}
+
+body {
+  --color-1: #4997f0;
+  --color-2: #8e9eec;
+  --color-3: #ec8ebf;
+  --color-4: #f74e63;
+  --color-5: #f8b85c;
+  --color-6: #6acab5;
+  --color-7: #10b981;
+
+  font-family: system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-html,
-body,
-#app {
-  height: 100%
-}
 
 img, picture, video, canvas, svg {
   display: block;
@@ -27,6 +41,15 @@ p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 #app {
   isolation: isolate;
+}
+
+.list-none {
+  list-style: none;
 }
