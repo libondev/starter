@@ -1,11 +1,13 @@
 <template>
-  <div>
-    {{ count }}
+  <div class="h-full flex items-center justify-center text-center">
+    <div>
+      <p> {{ count }} </p>
 
-    <button @click="count++">+</button>
+      <button @click="accretion">Plus</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const count = ref(0)
+const { accretion, count } = useCounter()
 </script>

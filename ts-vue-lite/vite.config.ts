@@ -31,7 +31,11 @@ export default defineConfig({
     unimport.vite({
       dts: './shims/unimport.d.ts',
       presets: ['vue', 'pinia'],
-      dirs: ['./src/composables/**/*']
+      dirs: ['./src/composables/**/*'],
+      imports: [
+        { name: 'useRoute', from: 'vue-router/auto' },
+        { name: 'useRouter', from: 'vue-router/auto' }
+      ]
     })
   ],
   resolve: {
