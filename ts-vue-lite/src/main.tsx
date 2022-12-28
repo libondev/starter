@@ -1,9 +1,10 @@
 import 'uno.css'
 import './styles/reset.css'
 
-import { RouterView } from 'vue-router'
-import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createApp } from 'vue'
+import { RouterView } from 'vue-router'
+
 import router from './router/index'
 
 const app = createApp({

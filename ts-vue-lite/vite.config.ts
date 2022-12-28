@@ -1,13 +1,13 @@
-import { URL, fileURLToPath } from 'node:url'
+import { fileURLToPath, URL } from 'node:url'
 
-import components from 'unplugin-vue-components/vite'
-import { defineConfig } from 'vite'
 import presetUno from '@unocss/preset-mini'
-import router from 'unplugin-vue-router/vite'
-import unimport from 'unimport/unplugin'
 import unocss from '@unocss/vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import unimport from 'unimport/unplugin'
+import components from 'unplugin-vue-components/vite'
+import router from 'unplugin-vue-router/vite'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
