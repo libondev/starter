@@ -27,7 +27,8 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
     'padding-line-between-statements': ['error',
-      { blankLine: 'always', next: ['block', 'block-like'], prev: ['block', 'block-like'] }, { blankLine: 'any', next: ['case', 'default'], prev: 'case' },
+      { blankLine: 'always', next: ['block', 'block-like'], prev: ['block', 'block-like'] },
+      { blankLine: 'any', next: ['case', 'default'], prev: 'case' },
       { blankLine: 'always', next: 'return', prev: '*' },
       { blankLine: 'always', next: '*', prev: 'directive' },
       { blankLine: 'any', next: 'directive', prev: 'directive' },
@@ -36,6 +37,7 @@ module.exports = {
       { blankLine: 'always', next: ['export', 'cjs-export'], prev: '*' },
       { blankLine: 'any', next: ['export', 'cjs-export'], prev: ['export', 'cjs-export'] },
       { blankLine: 'always', next: '*', prev: ['import', 'cjs-import'] },
-      { blankLine: 'any', next: ['import', 'cjs-import'], prev: ['import', 'cjs-import'] }]
+      { blankLine: 'any', next: ['import', 'cjs-import'], prev: ['import', 'cjs-import'] }
+    ]
   }
 }
