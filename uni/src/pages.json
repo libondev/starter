@@ -1,0 +1,28 @@
+{
+	//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				// "navigationBarTitleText": "uni-app"
+			}
+		}
+	],
+	"globalStyle": {
+		// 关闭全局导航栏
+		"app-plus": {"titleNView": false},
+
+		// 默认的导航栏文字颜色
+		"navigationBarTextStyle": "black",
+		// 默认的导航栏文字标题
+		"navigationBarTitleText": "flow",
+		// 默认的导航栏背景颜色
+		"navigationBarBackgroundColor": "#F8F8F8",
+		// 下拉显示出来的窗口的背景样式, dark | light
+		"backgroundTextStyle": "dark",
+		// 下拉显示出来的窗口的背景色
+		"backgroundColor": "#f00",
+		// 是否开启下拉刷新
+		"enablePullDownRefresh": false
+	}
+}
