@@ -15,6 +15,8 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
+  const isProxy: typeof import('vue')['isProxy']
+  const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const mapActions: typeof import('pinia')['mapActions']
@@ -54,6 +56,7 @@ declare global {
   const triggerRef: typeof import('vue')['triggerRef']
   const unref: typeof import('vue')['unref']
   const useAttrs: typeof import('vue')['useAttrs']
+  const useCounter: typeof import('C:/Users/pradmin/Desktop/demo/starter/vue/src/composables/use-counter')['default']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useRoute: typeof import('vue-router/auto')['useRoute']
@@ -61,4 +64,11 @@ declare global {
   const useSlots: typeof import('vue')['useSlots']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
+  const watchPostEffect: typeof import('vue')['watchPostEffect']
+  const watchSyncEffect: typeof import('vue')['watchSyncEffect']
+}
+// for type re-export
+declare global {
+  // @ts-ignore
+  export type { Component,ComponentPublicInstance,ComputedRef,InjectionKey,PropType,Ref,VNode } from 'vue'
 }

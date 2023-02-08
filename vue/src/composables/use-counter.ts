@@ -6,14 +6,14 @@ interface CounterApp {
 }
 
 export default (): CounterApp => {
-  let count = $ref(0)
+  const count = ref(0)
 
   function accretion (): void {
-    count++
+    count.value++
   }
 
   return {
-    count: $$(count),
+    count,
     accretion
   }
 }

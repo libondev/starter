@@ -1,23 +1,26 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
+
   "include": [
-    "src/**/*",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "src/**/*.vue",
     "shims/**/*.d.ts"
   ],
 
   "compilerOptions": {
-    "jsx": "preserve",
     "baseUrl": ".",
-    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "moduleResolution": "nodenext",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@composable/*": ["./src/composable/*"],
+    },
+    "types": ["unplugin-vue-define-options/macros-global"]
   },
 
   "references": [
-    {
-      "path": "./tsconfig.config.json"
-    }
+    { "path": "./tsconfig.config.json" }
   ]
 }

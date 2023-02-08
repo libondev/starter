@@ -3,7 +3,7 @@
     <div>
       <p> {{ count }} </p>
 
-      <button @click="accretion">Plus</button>
+      <button class="px-4 py-1 bg-#fff rounded b-1 cursor-pointer active:bg-#ccc" @click="accretion">Plus</button>
     </div>
   </div>
 </template>

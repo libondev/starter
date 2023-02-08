@@ -6,23 +6,29 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import unimport from 'unimport/unplugin'
 import components from 'unplugin-vue-components/vite'
+import defineOptions from 'unplugin-vue-define-options'
 import router from 'unplugin-vue-router/vite'
 import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+
   plugins: [
-    vue({
-      reactivityTransform: true
-    }),
+    defineOptions.vite(),
+    vue(/* { reactivityTransform: true } */),
     vueJsx(),
+    components({
+      dts: './shims/components.d.ts'
+    }),
     unocss({
       presets: [
         presetUno()
       ]
-    }),
-    components({
-      dts: './shims/components.d.ts'
     }),
     router({
       dts: './shims/routers.d.ts',
@@ -38,9 +44,8 @@ export default defineConfig({
       ]
     })
   ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+
+  optimizeDeps: {
+    include: ['vue', 'pinia', 'vue-router']
   }
 })
