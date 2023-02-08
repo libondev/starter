@@ -26,6 +26,8 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
+    // 必须显式 return 函数的返回值类型
+    '@typescript-eslint/explicit-function-return-type': 'off',
     'padding-line-between-statements': ['error',
       { blankLine: 'always', next: ['block', 'block-like'], prev: ['block', 'block-like'] },
       { blankLine: 'any', next: ['case', 'default'], prev: 'case' },
