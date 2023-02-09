@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-const route = useRoute('/[id]')
+const route = useRoute()
 </script>
 
 <style>

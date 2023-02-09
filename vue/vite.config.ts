@@ -8,8 +8,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import unimport from 'unimport/unplugin'
 import components from 'unplugin-vue-components/vite'
 import defineOptions from 'unplugin-vue-define-options'
-import router from 'unplugin-vue-router/vite'
 import { defineConfig } from 'vite'
+import routerPages from 'vite-plugin-pages'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,9 +24,10 @@ export default defineConfig({
   },
 
   plugins: [
-    router({
-      dts: './shims/routers.d.ts',
-      routesFolder: ['src/views']
+    routerPages({
+      dirs: ['src/views'],
+      extensions: ['vue'],
+      exclude: ['**/components/**/*']
     }),
     defineOptions.vite(),
     vue(/* { reactivityTransform: true } */),
@@ -37,10 +38,9 @@ export default defineConfig({
     unimport.vite({
       dts: './shims/unimport.d.ts',
       dirs: ['./src/composables/**/*'],
-      presets: ['vue', 'pinia', '@vueuse/core'],
+      presets: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
       imports: [
-        { name: 'useRoute', from: 'vue-router/auto' },
-        { name: 'useRouter', from: 'vue-router/auto' }
+        // { name: 'useRoute', from: 'vue-router/auto' }
       ]
     }),
 
