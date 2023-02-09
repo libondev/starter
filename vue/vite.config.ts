@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 
+import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-mini'
 import unocss from '@unocss/vite'
 import vue from '@vitejs/plugin-vue'
@@ -18,6 +19,10 @@ export default defineConfig({
     }
   },
 
+  optimizeDeps: {
+    include: ['vue', 'pinia', 'vue-router']
+  },
+
   plugins: [
     defineOptions.vite(),
     vue(/* { reactivityTransform: true } */),
@@ -25,27 +30,30 @@ export default defineConfig({
     components({
       dts: './shims/components.d.ts'
     }),
-    unocss({
-      presets: [
-        presetUno()
-      ]
-    }),
     router({
       dts: './shims/routers.d.ts',
       routesFolder: ['src/views']
     }),
     unimport.vite({
       dts: './shims/unimport.d.ts',
-      presets: ['vue', 'pinia'],
       dirs: ['./src/composables/**/*'],
+      presets: ['vue', 'pinia', '@vueuse/core'],
       imports: [
         { name: 'useRoute', from: 'vue-router/auto' },
         { name: 'useRouter', from: 'vue-router/auto' }
       ]
-    })
-  ],
+    }),
 
-  optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router']
-  }
+    unocss({
+      rules: [
+        // vrt--2px => vertical-align: -2px
+        [/^vrt-(.+)$/, ([, v]: string[]) => ({ 'vertical-align': v })]
+      ],
+
+      presets: [
+        presetUno(),
+        presetIcons() as ReturnType<typeof presetUno>
+      ]
+    })
+  ]
 })

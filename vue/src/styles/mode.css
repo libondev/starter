@@ -1,0 +1,8 @@
+html.dark {
+  --body-bg: #121212;
+  --scrollbar: #242424;
+  --scrollbar-hover: #424242;
+  --text-color: #fff;
+
+  color-scheme: dark;
+}

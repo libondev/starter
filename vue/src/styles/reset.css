@@ -1,6 +1,6 @@
 *, *::before, *::after {
   box-sizing: border-box;
-  scrollbar-color: var(--scrollbar) var(--body-bg);
+  scrollbar-color: var(--scrollbar, #ddd) var(--body-bg, #fff);
 }
 
 ::-webkit-scrollbar {
@@ -10,15 +10,15 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
-  background: var(--body-bg);
+  background: var(--body-bg, #fff);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar);
+  background: var(--scrollbar, #ddd);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-hover);
+  background: var(--scrollbar-hover, #bbb);
 }
 
 html, body, #app {
@@ -42,11 +42,11 @@ body {
   --color-6: #6acab5;
   --color-7: #00c488;
 
-  background-color: var(--body-bg);
-  font-family: system-ui, sans-serif;
+  background-color: var(--body-bg, #fff);
   -webkit-font-smoothing: antialiased;
+  font-family: system-ui, sans-serif;
+  color: var(--text-color, #242424);
   overflow: overlay;
-  color: var(--text-color);
 }
 
 
@@ -55,13 +55,21 @@ img, picture, video, canvas, svg {
   max-width: 100%;
 }
 
-input, button, textarea, select {
+input, button, textarea, select, code {
   appearance: none;
   font: inherit;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 500;
+}
+
+table {
+  table-layout: fixed;
 }
 
 a {
@@ -74,8 +82,22 @@ a {
   isolation: isolate;
 }
 
+.text-nowrap {
+  display: inline-block;
+  text-decoration: inherit;
+  white-space: nowrap;
+}
+
 .list-none {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/* 以 i- 开头的图标样式全部会应用这些属性 */
+[class~="i-"] {
+  display: 'inline-block';
+  height: '1.2em';
+  width: '1.2em';
+  vertical-align: text-bottom
 }
