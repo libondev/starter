@@ -5,5 +5,5 @@ defineOptions({
 </script>
 
 <template>
-  <Counter />
+  <Computer />
 </template>

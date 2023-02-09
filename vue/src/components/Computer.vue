@@ -4,10 +4,11 @@
       <p> {{ count }} </p>
 
       <button class="px-4 py-1 bg-#fff rounded b-1 cursor-pointer active:bg-#ccc" @click="accretion">Plus</button>
+      <button class="px-4 py-1 bg-#fff rounded b-1 cursor-pointer active:bg-#ccc ml-2" @click="reduction">Minus</button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const { accretion, count } = useCounter()
+const { accretion, count, reduction } = useComputer()
 </script>
