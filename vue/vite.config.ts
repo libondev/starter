@@ -24,15 +24,15 @@ export default defineConfig({
   },
 
   plugins: [
+    router({
+      dts: './shims/routers.d.ts',
+      routesFolder: ['src/views']
+    }),
     defineOptions.vite(),
     vue(/* { reactivityTransform: true } */),
     vueJsx(),
     components({
       dts: './shims/components.d.ts'
-    }),
-    router({
-      dts: './shims/routers.d.ts',
-      routesFolder: ['src/views']
     }),
     unimport.vite({
       dts: './shims/unimport.d.ts',

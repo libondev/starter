@@ -11,6 +11,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "preserve",
+    "isolatedModules": true,
     "moduleResolution": "nodenext",
     "paths": {
       "@/*": ["./src/*"],
