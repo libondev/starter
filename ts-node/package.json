@@ -26,12 +26,12 @@
     "release": "bumpp && npm publish",
     "fix": "eslint src/** --ext .js,.ts,.cjs --fix"
   },
-  "author": "[author] <[email]>",
-  "bugs": "https://github.com/[author]/pkg-name/issues",
-  "homepage": "https://github.com/[author]/pkg-name#readme",
+  "author": "banlify <banlify@163.com>",
+  "bugs": "https://github.com/banlify/pkg-name/issues",
+  "homepage": "https://github.com/banlify/pkg-name#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/[author]/pkg-name.git"
+    "url": "git+https://github.com/banlify/pkg-name.git"
   },
   "volta": {
     "node": "16.18.0"

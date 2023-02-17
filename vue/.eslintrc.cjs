@@ -1,7 +1,11 @@
 module.exports = {
   root: true,
   extends: [
+    'eslint:recommended',
+    'plugin:vue/essential',
+    'plugin:vue/recommended',
     'plugin:vue/vue3-essential',
+    './shims/.eslintrc-global.json',
     '@vue/eslint-config-standard-with-typescript'
   ],
 
@@ -28,6 +32,8 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 'off',
     // 必须显式 return 函数的返回值类型
     '@typescript-eslint/explicit-function-return-type': 'off',
+    // 每行最多设置多少个属性
+    'vue/max-attributes-per-line': ['error', { singleline: 6, multiline: 1 }],
     'padding-line-between-statements': ['error',
       { blankLine: 'always', next: ['block', 'block-like'], prev: ['block', 'block-like'] },
       { blankLine: 'any', next: ['case', 'default'], prev: 'case' },

@@ -1,1 +1,1 @@
-# Design Tokens Kit
+# pkg-name

@@ -49,10 +49,17 @@ body {
   overflow: overlay;
 }
 
-
-img, picture, video, canvas, svg {
+img, picture, video, canvas {
   display: block;
   max-width: 100%;
+}
+
+svg {
+  display: inline-block;
+  max-width: 100%;
+  width: 1em;
+  height: 1em;
+  vertical-align: -2px;
 }
 
 input, button, textarea, select, code {
@@ -78,8 +85,17 @@ a {
   color: inherit;
 }
 
+code {
+  /* 对齐数字的宽度, 保证 1 和 0 宽 */
+  font-variant-numeric: tabular-nums;
+}
+
 #app {
   isolation: isolate;
+}
+
+.overflow-overlay {
+  overflow: overlay;
 }
 
 .text-nowrap {
