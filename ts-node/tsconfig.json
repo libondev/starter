@@ -1,5 +1,10 @@
 {
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
+    "strict": true,
+    "types": ["node"],
+    "target": "ESNext",
+    "module": "ESNext",
     "sourceMap": false,
     "declaration": true,
     "alwaysStrict": true,
@@ -8,7 +13,7 @@
     "importHelpers": true,
     "inlineSources": false,
     "isolatedModules": true,
-    "lib": ["es6", "dom"],
+    "lib": ["ES2016", "DOM", "DOM.Iterable"],
     "moduleResolution": "node",
     "noEmitHelpers": true,
     "noErrorTruncation": true,
@@ -21,10 +26,6 @@
     "strictNullChecks": true,
     "noImplicitAny": true,
     // 不包含任何错误的时候才能进行打包
-    "noEmitOnError": true,
-    "strict": true,
-    "types": ["node"],
-    "target": "es6",
-    "module": "esnext",
+    "noEmitOnError": true
   }
 }
