@@ -27,13 +27,15 @@ export default defineConfig({
     routerPages({
       dirs: ['src/views'],
       extensions: ['vue'],
+      routeBlockLang: 'yaml',
       exclude: ['**/components/**/*']
     }),
     defineOptions.vite(),
     vue(/* { reactivityTransform: true } */),
     vueJsx(),
     components({
-      dts: './shims/components.d.ts'
+      dts: './shims/components.d.ts',
+      globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
     unimport.vite({
       dts: './shims/unimport.d.ts',
