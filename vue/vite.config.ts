@@ -31,7 +31,7 @@ export default defineConfig({
       exclude: ['**/components/**/*']
     }),
     defineOptions.vite(),
-    vue(/* { reactivityTransform: true } */),
+    vue(),
     vueJsx(),
     components({
       dts: './shims/components.d.ts',

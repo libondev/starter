@@ -48,6 +48,7 @@
     "import/first": "error",
     "no-multi-spaces": "error",
     "no-throw-literal": "error",
+    // "n/no-missing-import": "off",
     "n/no-extraneous-import": "off",
     "import/no-duplicates": "error",
     "simple-import-sort/imports": "error",
@@ -68,6 +69,7 @@
       { "blankLine": "always", "next": "*", "prev": ["import", "cjs-import"] },
       { "blankLine": "any", "next": ["import", "cjs-import"], "prev": ["import", "cjs-import"] }
     ],
+    "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/indent": ["error", 2, {
       "SwitchCase": 1,
       "VariableDeclarator": 1,
@@ -107,6 +109,16 @@
       "offsetTernaryExpressions": true
     }]
   },
+
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "n/no-missing-import": "off",
+        "import/no-unresolved": "off"
+      }
+    }
+  ],
 
   "ignorePatterns": [
     "*.min.*",
