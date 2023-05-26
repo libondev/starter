@@ -6,7 +6,7 @@ export function useViewTransition (router: Router) {
   let finishTransition: undefined | (() => void)
   let abortTransition: undefined | (() => void)
 
-  router.beforeResolve(async () => {
+  router.beforeResolve(() => {
     const promise = new Promise<void>((resolve, reject) => {
       finishTransition = resolve
       abortTransition = reject
@@ -15,10 +15,10 @@ export function useViewTransition (router: Router) {
     let changeRoute: () => void
     const ready = new Promise<void>(resolve => (changeRoute = resolve))
 
-    const transition = document.startViewTransition!(async () => {
+    const transition = document.startViewTransition!(() => {
       changeRoute()
 
-      return await promise
+      return promise
     })
 
     transition.finished.then(() => {
@@ -26,7 +26,7 @@ export function useViewTransition (router: Router) {
       finishTransition = undefined
     })
 
-    return await ready
+    return ready
   })
 
   router.afterEach(() => {

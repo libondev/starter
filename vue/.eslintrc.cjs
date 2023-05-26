@@ -43,6 +43,7 @@ module.exports = {
     '@typescript-eslint/key-spacing': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/prefer-function-type': 'off',
+    '@typescript-eslint/promise-function-async': 'off',
     '@typescript-eslint/consistent-type-assertions': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off'
@@ -54,6 +55,7 @@ module.exports = {
       extends: ['plugin:vue/vue3-recommended'],
       plugins: ['vue'],
       rules: {
+        'vue/no-multiple-template-root': 'off',
         'vue/multi-word-component-names': 'off',
         // 每行最多设置多少个属性
         'vue/max-attributes-per-line': ['error', { singleline: 6, multiline: 1 }]
