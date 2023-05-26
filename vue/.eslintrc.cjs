@@ -5,7 +5,7 @@ module.exports = {
     'plugin:vue/essential',
     'plugin:vue/recommended',
     'plugin:vue/vue3-essential',
-    './shims/.eslintrc-global.json',
+    // './shims/.eslintrc-global.json',
     '@vue/eslint-config-standard-with-typescript'
   ],
 
@@ -24,16 +24,8 @@ module.exports = {
     'no-duplicate-imports': ['error', { includeExports: true }],
     'object-curly-newline': ['error', { consistent: true }],
     'object-curly-spacing': ['error', 'always', { objectsInObjects: true }],
-    'vue/multi-word-component-names': 'off',
-    '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/prefer-function-type': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/strict-boolean-expressions': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
     // 必须显式 return 函数的返回值类型
     '@typescript-eslint/explicit-function-return-type': 'off',
-    // 每行最多设置多少个属性
-    'vue/max-attributes-per-line': ['error', { singleline: 6, multiline: 1 }],
     'padding-line-between-statements': ['error',
       { blankLine: 'always', next: ['block', 'block-like'], prev: ['block', 'block-like'] },
       { blankLine: 'any', next: ['case', 'default'], prev: 'case' },
@@ -46,6 +38,42 @@ module.exports = {
       { blankLine: 'any', next: ['export', 'cjs-export'], prev: ['export', 'cjs-export'] },
       { blankLine: 'always', next: '*', prev: ['import', 'cjs-import'] },
       { blankLine: 'any', next: ['import', 'cjs-import'], prev: ['import', 'cjs-import'] }
-    ]
-  }
+    ],
+
+    '@typescript-eslint/key-spacing': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/prefer-function-type': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off'
+  },
+
+  overrides: [
+    {
+      files: ['*.vue'],
+      extends: ['plugin:vue/vue3-recommended'],
+      plugins: ['vue'],
+      rules: {
+        'vue/multi-word-component-names': 'off',
+        // 每行最多设置多少个属性
+        'vue/max-attributes-per-line': ['error', { singleline: 6, multiline: 1 }]
+      }
+    },
+
+    {
+      files: ['*.ts', '*.tsx'],
+      plugins: ['@typescript-eslint'],
+      extends: [
+        'plugin:@typescript-eslint/recommended'
+      ],
+
+      parserOptions: {
+        project: ['./tsconfig.json']
+      },
+
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off'
+      }
+    }
+  ]
 }

@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 
+import presetAttributify from '@unocss/preset-attributify'
 import presetIcons from '@unocss/preset-icons'
 import presetUno from '@unocss/preset-mini'
 import unocss from '@unocss/vite'
@@ -7,7 +8,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import unimport from 'unimport/unplugin'
 import components from 'unplugin-vue-components/vite'
-import defineOptions from 'unplugin-vue-define-options'
 import { defineConfig } from 'vite'
 import routerPages from 'vite-plugin-pages'
 
@@ -23,6 +23,10 @@ export default defineConfig({
     include: ['vue', 'pinia', 'vue-router']
   },
 
+  esbuild: {
+    target: 'esnext'
+  },
+
   plugins: [
     routerPages({
       dirs: ['src/views'],
@@ -30,12 +34,11 @@ export default defineConfig({
       routeBlockLang: 'yaml',
       exclude: ['**/components/**/*']
     }),
-    defineOptions.vite(),
     vue(),
     vueJsx(),
     components({
-      dts: './shims/components.d.ts',
-      globs: ['src/components/**/index.{vue,tsx,ts}']
+      dts: './shims/components.d.ts'
+      // globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
     unimport.vite({
       dts: './shims/unimport.d.ts',
@@ -54,7 +57,12 @@ export default defineConfig({
 
       presets: [
         presetUno(),
-        presetIcons() as ReturnType<typeof presetUno>
+        presetIcons({
+          extraProperties: {
+            display: 'inline-block'
+          }
+        }) as ReturnType<typeof presetUno>,
+        presetAttributify() as ReturnType<typeof presetUno>
       ]
     })
   ]
