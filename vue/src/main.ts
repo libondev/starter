@@ -1,6 +1,6 @@
 import 'uno.css'
 // global styles
-import './styles/index'
+import './styles'
 
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'

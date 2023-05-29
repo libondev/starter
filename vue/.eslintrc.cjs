@@ -24,8 +24,6 @@ module.exports = {
     'no-duplicate-imports': ['error', { includeExports: true }],
     'object-curly-newline': ['error', { consistent: true }],
     'object-curly-spacing': ['error', 'always', { objectsInObjects: true }],
-    // 必须显式 return 函数的返回值类型
-    '@typescript-eslint/explicit-function-return-type': 'off',
     'padding-line-between-statements': ['error',
       { blankLine: 'always', next: ['block', 'block-like'], prev: ['block', 'block-like'] },
       { blankLine: 'any', next: ['case', 'default'], prev: 'case' },
@@ -40,41 +38,38 @@ module.exports = {
       { blankLine: 'any', next: ['import', 'cjs-import'], prev: ['import', 'cjs-import'] }
     ],
 
+    // *.vue,*.ts common rules
     '@typescript-eslint/key-spacing': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/prefer-function-type': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/promise-function-async': 'off',
     '@typescript-eslint/consistent-type-assertions': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off'
   },
 
   overrides: [
     {
       files: ['*.vue'],
-      extends: ['plugin:vue/vue3-recommended'],
       plugins: ['vue'],
+      extends: ['plugin:vue/vue3-recommended'],
       rules: {
         'vue/no-multiple-template-root': 'off',
         'vue/multi-word-component-names': 'off',
-        // 每行最多设置多少个属性
-        'vue/max-attributes-per-line': ['error', { singleline: 6, multiline: 1 }]
+        'vue/no-setup-props-destructure': 'off',
+        'vue/max-attributes-per-line': ['error', { singleline: 6, multiline: 1 }],
+        'vue/v-on-event-hyphenation': ['error', 'always', { ignore: ['modelValue'] }]
       }
     },
 
     {
       files: ['*.ts', '*.tsx'],
       plugins: ['@typescript-eslint'],
-      extends: [
-        'plugin:@typescript-eslint/recommended'
-      ],
-
+      extends: ['plugin:@typescript-eslint/recommended'],
       parserOptions: {
         project: ['./tsconfig.json']
-      },
-
-      rules: {
-        '@typescript-eslint/no-non-null-assertion': 'off'
       }
     }
   ]

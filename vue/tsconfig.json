@@ -6,32 +6,27 @@
     "shims/**/*.d.ts",
     "vite.config.*",
     "vitest.config.*",
-    "cypress.config.*",
+    "unocss.config.*",
     "playwright.config.*"
   ],
 
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
-    "moduleResolution": "Node",
     "strict": true,
-    "resolveJsonModule": true,
+    "noEmit": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "resolveJsonModule": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "Node",
+    "useDefineForClassFields": true,
+    "lib": ["ESNext", "DOM"],
     "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@composable/*": ["./src/composable/*"],
+      "@/*": ["./src/*"]
     }
   },
 }
