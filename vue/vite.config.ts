@@ -1,8 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import presetAttributify from '@unocss/preset-attributify'
-import presetIcons from '@unocss/preset-icons'
-import presetUno from '@unocss/preset-mini'
 import unocss from '@unocss/vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -20,7 +17,7 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router']
+    include: ['vue', 'pinia', 'vue-router', 'date-fns', '@headlessui/vue']
   },
 
   esbuild: {
@@ -28,13 +25,18 @@ export default defineConfig({
   },
 
   plugins: [
+    unocss(),
     routerPages({
       dirs: ['src/views'],
       extensions: ['vue'],
       routeBlockLang: 'yaml',
       exclude: ['**/components/**/*']
     }),
-    vue(),
+    vue({
+      script: {
+        defineModel: true
+      }
+    }),
     vueJsx(),
     components({
       dts: './shims/components.d.ts'
@@ -47,23 +49,7 @@ export default defineConfig({
       // imports: [
       //   { name: 'useRoute', from: 'vue-router/auto' }
       // ]
-    }),
-
-    unocss({
-      rules: [
-        // vrt--2px => vertical-align: -2px
-        [/^vrt-(.+)$/, ([, v]: string[]) => ({ 'vertical-align': v })]
-      ],
-
-      presets: [
-        presetUno(),
-        presetIcons({
-          extraProperties: {
-            display: 'inline-block'
-          }
-        }) as ReturnType<typeof presetUno>,
-        presetAttributify() as ReturnType<typeof presetUno>
-      ]
     })
+
   ]
 })
