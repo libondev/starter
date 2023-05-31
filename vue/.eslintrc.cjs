@@ -70,6 +70,10 @@ module.exports = {
       extends: ['plugin:@typescript-eslint/recommended'],
       parserOptions: {
         project: ['./tsconfig.json']
+      },
+
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off'
       }
     }
   ]
