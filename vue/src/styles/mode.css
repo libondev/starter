@@ -1,8 +1,17 @@
+html {
+  --bc: #fff;
+  --tc: #424242;
+  --sc: #ddd;
+  --sh: #bbb;
+  --brc: rgba(188, 188, 188, .1);
+}
+
 html.dark {
-  --body-bg: #121212;
-  --scrollbar: #242424;
-  --scrollbar-hover: #424242;
-  --text-color: #fff;
+  --bc: #121212;
+  --tc: #f0eee9;
+  --sc: #242424;
+  --sh: #424242;
+  --brc: rgba(250, 250, 250, .1);
 
   color-scheme: dark;
 }

@@ -17,7 +17,7 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router', 'date-fns', '@headlessui/vue']
+    include: ['vue', 'pinia', 'vue-router', 'date-fns']
   },
 
   esbuild: {

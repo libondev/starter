@@ -1,129 +1,191 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  scrollbar-color: var(--scrollbar, #ddd) var(--body-bg, #fff);
+  scrollbar-color: var(--sc) var(--bc);
 }
 
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar:horizontal {
   height: 6px;
 }
-::-webkit-scrollbar-track, ::-webkit-scrollbar-corner {
-  background: var(--body-bg, #fff);
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: var(--bc);
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar, #ddd);
+  background: var(--sc);
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-hover, #bbb);
+  background: var(--sh);
 }
 
-html, body, #app {
-  height: 100%
+html {
+  scroll-padding-top: 50px;
+  scroll-behavior: smooth;
+  background-color: var(--bc);
+  color: var(--tc);
 }
 
-body {
+body,
+ul {
   margin: 0
 }
 
-body, .leading {
-  line-height: 1.5715;
+html,
+body,
+#app {
+  height: 100%;
 }
 
+/* --spacing-60: clamp(3.75rem, 10vw, 7rem);
+--spacing-70: clamp(5rem, 5.25rem + ((1vw - 0.48rem) * 9.096), 8rem);
+--spacing-80: clamp(7rem, 14vw, 11rem);
+--color-1: #4997f0;
+--color-2: #8e9eec;
+--color-3: #ec8ebf; */
+/* --c7: #42b883; */
 body {
-  --color-1: #4997f0;
-  --color-2: #8e9eec;
-  --color-3: #ec8ebf;
-  --color-4: #f74e63;
-  --color-5: #f8b85c;
-  --color-6: #6acab5;
-  --color-7: #00c488;
+  --c4: #f74e63;
+  --c5: #f8b85c;
+  --c6: #6acab5;
+  --c7: #00c488;
 
-  background-color: var(--body-bg, #fff);
+  --spacing-30: clamp(1.5rem, 5vw, 2rem);
+  --spacing-40: clamp(1.8rem, 1.8rem + ((1vw - 0.48rem) * 2.885), 3rem);
+  --spacing-50: clamp(2.5rem, 8vw, 4.5rem);
+
   -webkit-font-smoothing: antialiased;
-  font-family: system-ui, sans-serif;
-  color: var(--text-color, #242424);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: clamp(1rem, 1rem + ((1vw - 0.48rem) * 0.24), 1.125rem);
   overflow: overlay;
 }
 
-img, picture, video, canvas {
+body,
+.leading {
+  line-height: 1.5715;
+}
+
+img {
   display: block;
   max-width: 100%;
   object-fit: cover;
-  background-color: #808080;
+  background-color: #8080802f;
 }
 
-svg {
-  display: inline-block;
-  max-width: 100%;
-  width: 1em;
-  height: 1em;
-  vertical-align: -2px;
-}
-
-input, button, textarea, select, code {
+/* input, button {
   appearance: none;
   font: inherit;
-}
+} */
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4 {
   overflow-wrap: break-word;
 }
 
-h1, h2, h3, h4, h5 {
+/* h1, h2, h3, h4 {
   font-weight: 500;
+} */
+
+h1 {
+  font-size: clamp(2.719rem, 2.719rem + ((1vw - 0.48rem) * 1.742), 3.625rem);
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 外部链接并且不是以 # 开头的链接加上图标 */
+/* .external-link::after, */
+/* a[target="_blank"]:not([href^="#"], [role="icon"], .no-icon) {
+  content: '';
+  display: inline-block;
+  height: 1em;
+  padding-right: 1em;
+  vertical-align: -3.5px;
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjEgMjEiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xOC41IDguNXYtNWgtNW01IDBsLTcgN20tMS03aC01YTIgMiAwIDAgMC0yIDJ2MTBhMiAyIDAgMCAwIDIgMmgxMWEyIDIgMCAwIDAgMi0ydi00Ii8+PC9zdmc+);
+  background-size: .85em .85em;
+} */
+
+/* code {
+  font-family: inherit
+} */
+
+/* kbd {
+  padding: 0.22rem .55rem;
+  border: 2px solid #7d7d7d4d;
+  border-radius: 4px;
+  box-shadow: 0 -1.5px 0 0 #7d7d7d4d inset;
+  font-size: .825rem;
+  pointer-events: none;
+} */
 
 table {
   table-layout: fixed;
 }
 
-a {
-  -webkit-tap-highlight-color: transparent;
-  text-decoration: none;
-  color: inherit;
+hr {
+  margin: 30px 5%;
+  border-width: 0;
+  border-bottom: 1px dashed #9ca3af80;
 }
 
-a[target="_blank"]:not([href^="#"]) {
-  padding-right: 16px;
-  background-position: right center;
-  background-repeat: no-repeat;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjEgMjEiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xOC41IDguNXYtNWgtNW01IDBsLTcgN20tMS03aC01YTIgMiAwIDAgMC0yIDJ2MTBhMiAyIDAgMCAwIDIgMmgxMWEyIDIgMCAwIDAgMi0ydi00Ii8+PC9zdmc+);
-  background-size: 14px 14px;
-}
-
-code {
-  /* 对齐数字的宽度, 保证 1 和 0 宽 */
-  font-variant-numeric: tabular-nums;
+ul {
+  padding-left: 0;
+  list-style: none;
 }
 
 #app {
+  display: flex;
   isolation: isolate;
+  overflow: hidden;
 }
 
-.overflow-overlay {
-  overflow: overlay;
+.select-none {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .text-nowrap {
   display: inline-block;
   text-decoration: inherit;
   white-space: nowrap;
+  text-indent: 0;
 }
 
-.list-none {
-  list-style: none;
-  margin-block: 0;
-  padding-inline-start: 0;
+.overflow-y-overlay {
+  overflow-y: overlay;
 }
 
-/* 以 i- 开头的图标样式全部会应用这些属性 */
-[class~="i-"] {
-  display: 'inline-block';
-  height: '1.2em';
-  width: '1.2em';
-  vertical-align: text-bottom
+@supports (-webkit-tap-highlight-color: transparent) {
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  img[loading="lazy"] {
+    clip-path: inset(0.6px)
+  }
+}
+
+.font-tabular {
+  font-variant: common-ligatures tabular-nums;
 }
