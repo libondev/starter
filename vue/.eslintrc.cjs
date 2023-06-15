@@ -11,12 +11,6 @@ module.exports = {
 
   plugins: ['simple-import-sort', 'sort-destructure-keys'],
 
-  ignorePatterns: [
-    'index.html',
-    '*.d.ts',
-    'dist'
-  ],
-
   rules: {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
