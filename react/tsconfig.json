@@ -1,0 +1,34 @@
+{
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "shims/**/*.d.ts",
+    "uno.config.*",
+    "vite.config.*",
+    "vitest.config.*",
+    "playwright.config.*"
+  ],
+
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "Node",
+    "useDefineForClassFields": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowImportingTsExtensions": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+}

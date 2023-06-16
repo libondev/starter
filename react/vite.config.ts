@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 import unimport from 'unimport/unplugin'
 import { defineConfig } from 'vite'
 import pages from 'vite-plugin-pages'
+import unocss from '@unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,15 +14,17 @@ export default defineConfig({
     }
   },
 
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'date-fns']
-  },
-
   esbuild: {
     target: 'esnext'
   },
 
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'date-fns']
+  },
+
   plugins: [
+    unocss(),
+
     react(),
 
     // https://github.com/hannoeru/vite-plugin-pages#react-1
