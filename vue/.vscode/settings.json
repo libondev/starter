@@ -5,7 +5,8 @@
     // "source.organizeImports": true
   },
   "cSpell.words": [
-    "nodenext"
+    "nodenext",
+    "lucide"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
 }
