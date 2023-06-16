@@ -1,25 +1,25 @@
 import { fileURLToPath, URL } from 'node:url'
 
+import unocss from '@unocss/vite'
 import react from '@vitejs/plugin-react-swc'
 import unimport from 'unimport/unplugin'
 import { defineConfig } from 'vite'
 import pages from 'vite-plugin-pages'
-import unocss from '@unocss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
   },
 
   esbuild: {
-    target: 'esnext'
+    target: 'esnext',
   },
 
   optimizeDeps: {
-    include: ['react', 'react-dom', 'date-fns']
+    include: ['react', 'react-dom', 'date-fns'],
   },
 
   plugins: [
@@ -31,17 +31,17 @@ export default defineConfig({
     pages({
       dirs: ['src/pages'],
       extensions: ['tsx'],
-      exclude: ['**/components/**/*']
+      exclude: ['**/components/**/*'],
     }),
 
     // https://github.com/unjs/unimport
     unimport.vite({
       dts: './shims/unimport.d.ts',
       dirs: ['./src/hooks/**/*'],
-      presets: ['react', 'react-router-dom']
+      presets: ['react'],
       // imports: [
       //   { name: 'useRoute', from: 'vue-router/auto' }
       // ]
-    })
-  ]
+    }),
+  ],
 })
