@@ -62,7 +62,6 @@ body {
 
   -webkit-font-smoothing: antialiased;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-size: clamp(1rem, 1rem + ((1vw - 0.48rem) * 0.24), 1.125rem);
   overflow: overlay;
 }
 
@@ -94,10 +93,6 @@ h4 {
 /* h1, h2, h3, h4 {
   font-weight: 500;
 } */
-
-h1 {
-  font-size: clamp(2.719rem, 2.719rem + ((1vw - 0.48rem) * 1.742), 3.625rem);
-}
 
 a {
   text-decoration: none;

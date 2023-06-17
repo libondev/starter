@@ -10,18 +10,15 @@
     "eslint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "devDependencies": {
-    "@fontsource/inter": "^5.0.3",
     "@types/node": "^20.3.1",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
-    "@unocss/preset-icons": "^0.53.1",
-    "@unocss/preset-mini": "^0.53.1",
     "@unocss/transformer-directives": "^0.53.1",
     "@unocss/transformer-variant-group": "^0.53.1",
-    "@unocss/vite": "^0.53.1",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "ahooks": "^3.7.7",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
     "eslint": "^8.42.0",
@@ -33,13 +30,15 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-sort-destructure-keys": "^1.5.0",
-    "lucide-react": "^0.244.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.13.0",
     "typescript": "~5.0.4",
-    "unimport": "^3.0.8",
+    "unocss": "^0.51.12",
+    "unplugin-auto-import": "^0.15.3",
     "vite": "^4.3.9",
+    "vite-plugin-checker": "^0.5.6",
+    "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-pages": "^0.31.0"
   }
 }
