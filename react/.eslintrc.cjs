@@ -7,13 +7,13 @@ module.exports = {
   },
 
   extends: [
-    'plugin:import/warnings',
-    'plugin:react-hooks/recommended',
+    'react-app/base',
     'standard-with-typescript'
   ],
 
   plugins: [
     'import',
+    'react-hooks',
     'simple-import-sort',
     'sort-destructure-keys'
   ],
@@ -39,7 +39,6 @@ module.exports = {
     'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: true }],
     'simple-import-sort/imports': ['error', { groups: [['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']] }],
 
-    // 'space-before-function-paren': ['error', { anonymous: 'always', named: 'never', asyncArrow: 'always' }],
     'no-duplicate-imports': ['error', { includeExports: true }],
     'object-curly-newline': ['error', { consistent: true }],
     'object-curly-spacing': ['error', 'always', { objectsInObjects: true }],
