@@ -1,11 +1,11 @@
-import './styles/index'
-
 import { Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
 
 import routes from '~react-pages'
 
-export default function App() {
+import './styles/index'
+
+export default function App () {
   return (
     <Suspense fallback={<p>Loading...</p>}>
       {useRoutes(routes)}

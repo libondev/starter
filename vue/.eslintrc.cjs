@@ -1,7 +1,9 @@
 module.exports = {
   root: true,
+
   extends: [
     'eslint:recommended',
+    'plugin:import/warnings',
     'plugin:vue/essential',
     'plugin:vue/recommended',
     'plugin:vue/vue3-essential',
@@ -9,12 +11,23 @@ module.exports = {
     '@vue/eslint-config-standard-with-typescript'
   ],
 
-  plugins: ['simple-import-sort', 'sort-destructure-keys'],
+  plugins: [
+    'import',
+    'simple-import-sort',
+    'sort-destructure-keys'
+  ],
 
   rules: {
-    'simple-import-sort/imports': 'error',
+    'import/first': 'error',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'import/no-duplicates': 'error',
     'simple-import-sort/exports': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-extraneous-dependencies': 'off',
     'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: true }],
+    'simple-import-sort/imports': ['error', { groups: [['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']] }],
+
     'no-duplicate-imports': ['error', { includeExports: true }],
     'object-curly-newline': ['error', { consistent: true }],
     'object-curly-spacing': ['error', 'always', { objectsInObjects: true }],

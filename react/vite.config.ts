@@ -2,7 +2,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // import analyze from 'rollup-plugin-visualizer'
 import unocss from '@unocss/vite'
-import react from '@vitejs/plugin-react-swc'
+import react from '@vitejs/plugin-react'
 import autoImport from 'unplugin-auto-import/vite'
 import { defineConfig } from 'vite'
 import checker from 'vite-plugin-checker'

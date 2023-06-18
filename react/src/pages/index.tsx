@@ -1,4 +1,4 @@
-export default function Home() {
+export default function Home () {
   return (
     <div className='text-3xl m-1 m'>
       <h1>1231321</h1>

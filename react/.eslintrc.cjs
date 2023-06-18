@@ -1,31 +1,45 @@
 module.exports = {
   root: true,
 
+  env: {
+    es2021: true,
+    browser: true
+  },
+
   extends: [
-    // 'airbnb',
-    'airbnb/hooks',
-    'airbnb/whitespace',
-    'airbnb-typescript',
+    'plugin:import/warnings',
+    'plugin:react-hooks/recommended',
+    'standard-with-typescript'
   ],
 
   plugins: [
+    'import',
     'simple-import-sort',
-    'sort-destructure-keys',
+    'sort-destructure-keys'
   ],
 
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
+    ecmaVersion: 2021,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
 
   rules: {
+    'import/first': 'error',
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
-    'simple-import-sort/imports': 'error',
+    'import/no-duplicates': 'error',
     'simple-import-sort/exports': 'error',
+    'import/newline-after-import': 'error',
     'import/no-extraneous-dependencies': 'off',
-
     'sort-destructure-keys/sort-destructure-keys': ['error', { caseSensitive: true }],
+    'simple-import-sort/imports': ['error', { groups: [['^@?\\w'], ['^'], ['^\\.'], ['^\\u0000']] }],
+
+    // 'space-before-function-paren': ['error', { anonymous: 'always', named: 'never', asyncArrow: 'always' }],
     'no-duplicate-imports': ['error', { includeExports: true }],
     'object-curly-newline': ['error', { consistent: true }],
     'object-curly-spacing': ['error', 'always', { objectsInObjects: true }],
@@ -40,10 +54,9 @@ module.exports = {
       { blankLine: 'always', next: ['export', 'cjs-export'], prev: '*' },
       { blankLine: 'any', next: ['export', 'cjs-export'], prev: ['export', 'cjs-export'] },
       { blankLine: 'always', next: '*', prev: ['import', 'cjs-import'] },
-      { blankLine: 'any', next: ['import', 'cjs-import'], prev: ['import', 'cjs-import'] },
+      { blankLine: 'any', next: ['import', 'cjs-import'], prev: ['import', 'cjs-import'] }
     ],
 
-    '@typescript-eslint/semi': ['error', 'never'],
     '@typescript-eslint/key-spacing': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/prefer-function-type': 'off',
@@ -52,62 +65,18 @@ module.exports = {
     '@typescript-eslint/consistent-type-assertions': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off'
   },
 
   overrides: [
     {
       files: ['*.tsx'],
       rules: {
-        'react/prop-types': 'off',
-        'react/react-in-jsx-scope': 'off',
-        // don't ...props
-        'react/jsx-props-no-spreading': 'off',
-        'react/jsx-filename-extension': 'off',
-        'jsx-quotes': ['error', 'prefer-single'],
-
-        // a11y https://www.npmjs.com/package/eslint-plugin-jsx-a11y
-        'react/button-has-type': 'off',
-        'jsx-ally/accessible-emoji': 'off',
-        'jsx-ally/alt-text': 'off',
-        'jsx-ally/aria-props': 'off',
-        'jsx-ally/aria-role': 'off',
-        'jsx-ally/aria-proptypes': 'off',
-        'jsx-ally/anchor-has-content': 'off',
-        'jsx-ally/aria-unsupported-elements': 'off',
-        'jsx-ally/anchor-ambiguous-text': 'off',
-        'jsx-ally/autocomplete-valid': 'off',
-        'jsx-ally/click-events-have-key-events': 'off',
-        'jsx-ally/aria-activedescendant-has-tabindex': 'off',
-        'jsx-ally/anchor-is-valid': 'off',
-        'jsx-ally/control-has-associated-label': 'off',
-        'jsx-ally/heading-has-content': 'off',
-        'jsx-ally/html-has-lang': 'off',
-        'jsx-a11y/iframe-has-title': 'off',
-        'jsx-a11y/img-redundant-alt': 'off',
-        'jsx-a11y/interactive-supports-focus': 'off',
-        'jsx-a11y/label-has-associated-control': 'off',
-        'jsx-a11y/label-has-for': 'off',
-        'jsx-a11y/lang': 'off',
-        'jsx-a11y/no-noninteractive-element-interactions': 'off',
-        'jsx-a11y/no-noninteractive-tabindex': 'off',
-        'jsx-a11y/no-interactive-element-to-noninteractive-role': 'off',
-        'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
-        'jsx-a11y/no-access-key': 'off',
-        'jsx-a11y/no-aria-hidden-on-focusable': 'off',
-        'jsx-a11y/no-autofocus': 'off',
-        'jsx-a11y/no-distracting-elements': 'off',
-        'jsx-a11y/no-onchange': 'off',
-        'jsx-a11y/no-redundant-roles': 'off',
-        'jsx-a11y/no-static-element-interactions': 'off',
-        'jsx-a11y/media-has-caption': 'off',
-        'jsx-a11y/mouse-events-have-key-events': 'off',
-        'jsx-a11y/prefer-tag-over-role': 'off',
-        'jsx-a11y/role-has-required-aria-props': 'off',
-        'jsx-a11y/role-supports-aria-props': 'off',
-        'jsx-a11y/scope': 'off',
-        'jsx-a11y/tabindex-no-positive': 'off',
-      },
-    },
-  ],
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'error',
+        // suppress errors for missing 'import React' in files
+        'react/react-in-jsx-scope': 'off'
+      }
+    }
+  ]
 }
