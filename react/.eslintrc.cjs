@@ -7,25 +7,20 @@ module.exports = {
   },
 
   extends: [
-    'react-app/base',
+    'airbnb/base',
+    'airbnb/hooks',
+    'airbnb/whitespace',
     'standard-with-typescript'
   ],
 
   plugins: [
-    'import',
-    'react-hooks',
     'simple-import-sort',
     'sort-destructure-keys'
   ],
 
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
-    ecmaVersion: 2021,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true
-    }
+    project: './tsconfig.json'
   },
 
   rules: {
@@ -63,6 +58,7 @@ module.exports = {
     '@typescript-eslint/promise-function-async': 'off',
     '@typescript-eslint/consistent-type-assertions': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/space-before-function-paren': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off'
   },
@@ -71,10 +67,14 @@ module.exports = {
     {
       files: ['*.tsx'],
       rules: {
+        'jsx-quotes': ['error', 'prefer-single'],
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
+
         // suppress errors for missing 'import React' in files
-        'react/react-in-jsx-scope': 'off'
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-filename-extension': 'off',
+        'react/jsx-one-expression-per-line': 'off'
       }
     }
   ]
