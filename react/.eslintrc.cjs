@@ -8,8 +8,7 @@ module.exports = {
 
   extends: [
     'airbnb/base',
-    'airbnb/hooks',
-    'airbnb/whitespace',
+    // 'airbnb/whitespace',
     'standard-with-typescript'
   ],
 
@@ -66,8 +65,12 @@ module.exports = {
   overrides: [
     {
       files: ['*.tsx'],
+      extends: [
+        'airbnb/hooks',
+        'airbnb/rules/react'
+        // 'airbnb/rules/react-a11y'
+      ],
       rules: {
-        'jsx-quotes': ['error', 'prefer-single'],
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
 
