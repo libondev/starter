@@ -25,10 +25,15 @@ export default defineConfig({
     }),
     // https://github.com/antfu/unplugin-auto-import
     autoImport({
-      imports: ['react'],
       include: [/\.[tj]sx?$/],
       dirs: ['./src/hooks/**/*'],
-      dts: './shims/imports.d.ts'
+      dts: './shims/imports.d.ts',
+      imports: [
+        'react',
+        {
+          'use-immer': ['useImmer', 'useImmerReducer'],
+        }
+      ],
       // resolvers: [
       //   IconsResolver({
       //     componentPrefix: 'Icon',
