@@ -1,7 +1,13 @@
 {
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    // "source.fixAll.stylelint": true
   },
+  // 忽略未知属性的提示, 可能是新的特性, 但是编辑器不知道
+  "css.lint.unknownProperties": "ignore",
+  "less.lint.unknownProperties": "ignore",
+  "scss.lint.unknownProperties": "ignore",
   "cSpell.words": [
     "clsx",
     "lucide",

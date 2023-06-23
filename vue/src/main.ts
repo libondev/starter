@@ -1,12 +1,11 @@
-import 'uno.css'
-// global styles
-import './styles'
-
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
 import App from './App.vue'
 import router from './router/index'
+
+// global styles
+import './styles'
 
 const app = createApp(App)
 

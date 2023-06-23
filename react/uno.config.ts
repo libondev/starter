@@ -16,7 +16,8 @@ export default defineConfig({
   shortcuts: [
     {
       'flex-center': 'flex justify-center items-center',
-      'flex-col-center': 'flex flex-col justify-center items-center'
+      'flex-col-center': 'flex flex-col justify-center items-center',
+      'absolute-center': 'absolute inset-0 m-auto'
     }
   ],
 

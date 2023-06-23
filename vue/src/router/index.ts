@@ -1,5 +1,5 @@
-import routes from 'virtual:generated-pages'
-import { createRouter, createWebHistory } from 'vue-router'
+import { routes } from 'vue-router/auto/routes'
+import { createRouter, createWebHistory } from 'vue-router/auto'
 
 import { useViewTransition } from './view-transition'
 

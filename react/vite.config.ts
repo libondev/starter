@@ -1,7 +1,7 @@
 // import analyze from 'rollup-plugin-visualizer'
-import unocss from '@unocss/vite'
 import react from '@vitejs/plugin-react-swc'
 import { fileURLToPath, URL } from 'node:url'
+import unocss from 'unocss/vite'
 import autoImport from 'unplugin-auto-import/vite'
 import { defineConfig } from 'vite'
 import eslint from 'vite-plugin-eslint'
@@ -9,6 +9,32 @@ import pages from 'vite-plugin-pages'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
+
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-router-dom', 'react-dom']
+          // 'ui-vendor': ['antd'],
+        }
+      }
+    }
+  },
+
+  css: {
+    devSourcemap: true
+  },
+
+  esbuild: {
+    target: 'esnext',
+    drop: ['console', 'debugger']
+  },
+
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'use-immer', 'date-fns']
+  },
+
   plugins: [
     react(),
     // https://github.com/unocss/unocss
@@ -31,9 +57,11 @@ export default defineConfig({
       imports: [
         'react',
         {
-          'use-immer': ['useImmer', 'useImmerReducer'],
+          // 额外从 react 中导入 API
+          react: ['createContext'],
+          'use-immer': ['useImmer', 'useImmerReducer']
         }
-      ],
+      ]
       // resolvers: [
       //   IconsResolver({
       //     componentPrefix: 'Icon',
@@ -46,24 +74,16 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  },
-
-  esbuild: {
-    target: 'esnext'
-  },
-
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'date-fns']
-  },
-
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-router-dom', 'react-dom']
-          // 'ui-vendor': ['antd'],
-        }
-      }
-    }
   }
+
+  // server: {
+  //   open: true,
+  //   proxy: {
+  //     '/api': {
+  //       changeOrigin: true,
+  //       target: 'http://localhost:3000',
+  //       rewrite: (path) => path.replace(/^\/api/, '')
+  //     }
+  //   }
+  // },
 })

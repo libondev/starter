@@ -84,7 +84,7 @@ devDependencies:
     version: 5.0.4
   unocss:
     specifier: ^0.51.13
-    version: 0.51.13(postcss@8.4.23)(vite@4.3.9)
+    version: 0.51.13(postcss@8.4.24)(vite@4.3.9)
   unplugin-auto-import:
     specifier: ^0.15.3
     version: 0.15.3
@@ -858,7 +858,7 @@ packages:
       sirv: 2.0.3
     dev: true
 
-  /@unocss/postcss@0.51.13(postcss@8.4.23):
+  /@unocss/postcss@0.51.13(postcss@8.4.24):
     resolution: {integrity: sha512-V1QJ7md9jYtBwRc6NGep1Atc+QhaR3115B1wCo8CNM+v+ZOQzpxNsAshvOfyPzfzTj+KLtp4u4zqqaTbYGX2cw==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -869,7 +869,7 @@ packages:
       css-tree: 2.3.1
       fast-glob: 3.2.12
       magic-string: 0.30.0
-      postcss: 8.4.23
+      postcss: 8.4.24
     dev: true
 
   /@unocss/preset-attributify@0.51.13:
@@ -2787,15 +2787,6 @@ packages:
       pathe: 1.1.1
     dev: true
 
-  /postcss@8.4.23:
-    resolution: {integrity: sha512-bQ3qMcpF6A/YjR55xtoTr0jGOlnPOKAIMdOWiv0EIT6HVPEaJiJB4NLljSbiHoC2RX7DN5Uvjtpbg1NPdwv1oA==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.6
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
-
   /postcss@8.4.24:
     resolution: {integrity: sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -3229,7 +3220,7 @@ packages:
       - rollup
     dev: true
 
-  /unocss@0.51.13(postcss@8.4.23)(vite@4.3.9):
+  /unocss@0.51.13(postcss@8.4.24)(vite@4.3.9):
     resolution: {integrity: sha512-EAhuQ97D7E+EsTdlCL+xoWEsvz46Se9ZAtHhJ+1W+DzMky9qrDLRyR8Caf2TPbz8dw/z0qYhoPr6/aJARG4r0g==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -3242,7 +3233,7 @@ packages:
       '@unocss/cli': 0.51.13
       '@unocss/core': 0.51.13
       '@unocss/extractor-arbitrary-variants': 0.51.13
-      '@unocss/postcss': 0.51.13(postcss@8.4.23)
+      '@unocss/postcss': 0.51.13(postcss@8.4.24)
       '@unocss/preset-attributify': 0.51.13
       '@unocss/preset-icons': 0.51.13
       '@unocss/preset-mini': 0.51.13

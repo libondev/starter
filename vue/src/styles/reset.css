@@ -2,7 +2,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  scrollbar-color: var(--sc) var(--bc);
 }
 
 ::-webkit-scrollbar {
@@ -25,11 +24,31 @@
   background: var(--sh);
 }
 
+/*
+--spacing-30: clamp(1.5rem, 5vw, 2rem);
+--spacing-40: clamp(1.8rem, 1.8rem + ((1vw - 0.48rem) * 2.885), 3rem);
+--spacing-50: clamp(2.5rem, 8vw, 4.5rem);
+--spacing-60: clamp(3.75rem, 10vw, 7rem);
+--spacing-70: clamp(5rem, 5.25rem + ((1vw - 0.48rem) * 9.096), 8rem);
+--spacing-80: clamp(7rem, 14vw, 11rem);
+*/
+
 html {
-  scroll-padding-top: 50px;
+  --c1: #4997f0;
+  --c2: #8e9eec;
+  --c3: #7f4eea;
+  --c4: #ec8ebf;
+  --c5: #f74e63;
+  --c6: #f8b85c;
+  --cp: #42b883;
+
   scroll-behavior: smooth;
+  scroll-padding-top: 50px;
   background-color: var(--bc);
+  -webkit-font-smoothing: antialiased;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   color: var(--tc);
+  overflow: overlay;
 }
 
 body,
@@ -41,28 +60,6 @@ html,
 body,
 #app {
   height: 100%;
-}
-
-/* --spacing-60: clamp(3.75rem, 10vw, 7rem);
---spacing-70: clamp(5rem, 5.25rem + ((1vw - 0.48rem) * 9.096), 8rem);
---spacing-80: clamp(7rem, 14vw, 11rem);
---c1: #4997f0;
---c2: #8e9eec;
---c3: #ec8ebf; */
-/* --c7: #42b883; */
-body {
-  --c4: #f74e63;
-  --c5: #f8b85c;
-  --c6: #6acab5;
-  --cp: #0659FF;
-
-  --spacing-30: clamp(1.5rem, 5vw, 2rem);
-  --spacing-40: clamp(1.8rem, 1.8rem + ((1vw - 0.48rem) * 2.885), 3rem);
-  --spacing-50: clamp(2.5rem, 8vw, 4.5rem);
-
-  -webkit-font-smoothing: antialiased;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  overflow: overlay;
 }
 
 body,
@@ -79,7 +76,6 @@ img {
 
 /* input, button {
   appearance: none;
-  font: inherit;
 } */
 
 p,
@@ -90,13 +86,24 @@ h4 {
   overflow-wrap: break-word;
 }
 
-/* h1, h2, h3, h4 {
-  font-weight: 500;
-} */
+h1, h2, h3, h4, h5 {
+  width: fit-content;
+  text-wrap: balance
+}
+
+input, button, code, kbd {
+  font-family: inherit
+}
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: inherit
+}
+
+a:hover {
+  text-decoration: underline dashed;
+  text-decoration-thickness: 1px;
+  color: var(--cp)
 }
 
 /* 外部链接并且不是以 # 开头的链接加上图标 */
@@ -111,10 +118,6 @@ a {
   background-repeat: no-repeat;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjEgMjEiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xOC41IDguNXYtNWgtNW01IDBsLTcgN20tMS03aC01YTIgMiAwIDAgMC0yIDJ2MTBhMiAyIDAgMCAwIDIgMmgxMWEyIDIgMCAwIDAgMi0ydi00Ii8+PC9zdmc+);
   background-size: .85em .85em;
-} */
-
-/* code {
-  font-family: inherit
 } */
 
 /* kbd {
@@ -142,15 +145,7 @@ ul {
 }
 
 #app {
-  display: flex;
   isolation: isolate;
-  overflow: hidden;
-}
-
-.select-none {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 .text-nowrap {
@@ -160,8 +155,8 @@ ul {
   text-indent: 0;
 }
 
-.overflow-y-overlay {
-  overflow-y: overlay;
+.font-tabular {
+  font-variant: common-ligatures tabular-nums;
 }
 
 @supports (-webkit-tap-highlight-color: transparent) {
@@ -174,10 +169,7 @@ ul {
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
   img[loading="lazy"] {
+    /* 裁剪掉图片加载失败时的边框 */
     clip-path: inset(0.6px)
   }
-}
-
-.font-tabular {
-  font-variant: common-ligatures tabular-nums;
 }
