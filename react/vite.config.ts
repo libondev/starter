@@ -15,7 +15,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-router-dom', 'react-dom']
+          'react-vendor': ['react', 'react-dom', 'react-router-dom']
           // 'ui-vendor': ['antd'],
         }
       }
@@ -57,8 +57,8 @@ export default defineConfig({
       imports: [
         'react',
         {
-          // 额外从 react 中导入 API
-          react: ['createContext'],
+          clsx: [['default', 'cls']],
+          // react: ['createContext'],
           'use-immer': ['useImmer', 'useImmerReducer']
         }
       ]
