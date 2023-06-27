@@ -13,6 +13,9 @@ export default defineConfig({
   base: './',
 
   build: {
+    cssMinify: 'lightningcss',
+    // 是否输出 gzip 压缩大小的报告，设置 false 可以提高构建速度
+    reportCompressedSize: false,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -24,7 +27,11 @@ export default defineConfig({
   },
 
   css: {
-    devSourcemap: true
+    devSourcemap: true,
+    transformer: 'lightningcss',
+    // https://main.vitejs.dev/config/shared-options.html#css-lightningcss
+    // https://github.com/parcel-bundler/lightningcss/blob/master/node/index.d.ts
+    // lightningcss: {}
   },
 
   esbuild: {
@@ -33,7 +40,7 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router', 'date-fns']
+    include: ['vue', 'pinia', 'vue-router']
   },
 
   plugins: [
