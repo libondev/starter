@@ -155,10 +155,6 @@ ul {
   text-indent: 0;
 }
 
-.font-tabular {
-  font-variant: common-ligatures tabular-nums;
-}
-
 @supports (-webkit-tap-highlight-color: transparent) {
   a,
   button,
