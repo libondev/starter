@@ -16,8 +16,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--sc);
   border-radius: 10px;
+  background: var(--sc);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -44,11 +44,12 @@ html {
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
+  overflow: overlay;
   background-color: var(--bc);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   color: var(--tc);
-  overflow: overlay;
 }
 
 body,
