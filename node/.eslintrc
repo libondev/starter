@@ -11,7 +11,8 @@
   "globals": {
     "window": true,
     "document": true,
-    "globalThis": true
+    "globalThis": true,
+    "__DEV__": true
   },
 
   "parserOptions": {
@@ -38,6 +39,9 @@
   ],
 
   "settings": {
+    "node": {
+      "version": ">=16.0.0"
+    },
     "import/resolver": {
       "node": { "extensions": [".js", ".mjs"] }
     }
@@ -72,6 +76,7 @@
 
     "@typescript-eslint/key-spacing": "off",
     "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
     "@typescript-eslint/prefer-function-type": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/promise-function-async": "off",

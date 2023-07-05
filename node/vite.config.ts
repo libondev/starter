@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import replace from '@rollup/plugin-replace'
 
 export default defineConfig(({ mode }) => {
   return {
@@ -26,6 +27,10 @@ export default defineConfig(({ mode }) => {
         staticImport: true,
         entryRoot: './src',
         outputDir: './dist'
+      }),
+      replace({
+        preventAssignment: true,
+        __DEV__: mode === 'development'
       })
     ]
   }
