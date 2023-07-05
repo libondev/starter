@@ -27,7 +27,7 @@ export default defineConfig({
 
   css: {
     devSourcemap: true,
-    transformer: 'lightningcss',
+    transformer: 'lightningcss'
     // https://main.vitejs.dev/config/shared-options.html#css-lightningcss
     // https://github.com/parcel-bundler/lightningcss/blob/master/node/index.d.ts
     // lightningcss: {}
@@ -39,7 +39,7 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    include: ['react', 'react-dom', 'use-immer']
+    include: ['react', 'react-dom', 'react-router-dom', 'use-immer']
   },
 
   plugins: [
@@ -63,6 +63,7 @@ export default defineConfig({
       dts: './shims/imports.d.ts',
       imports: [
         'react',
+        'react-router-dom',
         {
           clsx: [['default', 'cls']],
           // react: ['createContext'],

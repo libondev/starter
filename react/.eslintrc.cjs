@@ -74,6 +74,8 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
 
+        // Link/NavLink not working
+        'react/jsx-no-undef': 'off',
         // suppress errors for missing 'import React' in files
         'react/react-in-jsx-scope': 'off',
         'react/jsx-filename-extension': 'off',
