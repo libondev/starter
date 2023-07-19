@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 import unocss from 'unocss/vite'
 import autoImport from 'unplugin-auto-import/vite'
 import { defineConfig } from 'vite'
-import eslint from 'vite-plugin-eslint'
+// import eslint from 'vite-plugin-eslint'
 import pages from 'vite-plugin-pages'
 
 // https://vitejs.dev/config/
@@ -47,7 +47,7 @@ export default defineConfig({
     // https://github.com/unocss/unocss
     unocss(),
     // https://github.com/gxmari007/vite-plugin-eslint
-    eslint(),
+    // eslint(),
     // https://github.com/btd/rollup-plugin-visualizer
     // analyze(),
     // https://github.com/hannoeru/vite-plugin-pages#react-1

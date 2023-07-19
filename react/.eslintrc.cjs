@@ -50,6 +50,8 @@ module.exports = {
       { blankLine: 'any', next: ['import', 'cjs-import'], prev: ['import', 'cjs-import'] }
     ],
 
+    'no-callback-literal': 'off',
+
     '@typescript-eslint/key-spacing': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/prefer-function-type': 'off',
@@ -75,7 +77,8 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
 
         // Link/NavLink not working
-        'react/jsx-no-undef': 'off',
+        // 'react/jsx-no-undef': 'off',
+        'react/button-has-type': 'off',
         // suppress errors for missing 'import React' in files
         'react/react-in-jsx-scope': 'off',
         'react/jsx-filename-extension': 'off',

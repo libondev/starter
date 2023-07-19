@@ -1,6 +1,8 @@
 /// <reference types="vite/client" />
 /// <reference types="unplugin-vue-define-options/macros-global" />
 
+export { }
+
 interface ModeSwitcher<T> {
   readonly value: T
   toggle: () => void

@@ -4,13 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>react-project</title>
 </head>
 
-<body>
+<!-- (如果有其他问题可选择性移除该属性)在 IOS 上因为事件非常快, 所以可能会导致无法触发 :active 伪类, 重置这个属性即可, 更多信息可查看下方链接 -->
+<!-- https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari/33681490#33681490 -->
+<body ontouchstart="">
   <div id="app"></div>
-  <script type="module" src="/src/main.tsx"></script>
+  <script type="module" src="/src/main.ts"></script>
 </body>
 
 </html>

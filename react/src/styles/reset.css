@@ -42,8 +42,8 @@ html {
   --c6: #f8b85c;
   --cp: #42b883;
 
-  scroll-padding-top: 50px;
   scroll-behavior: smooth;
+  scroll-padding-top: 50px;
   overflow: overlay;
   background-color: var(--bc);
   -webkit-font-smoothing: antialiased;
@@ -104,7 +104,7 @@ a {
 a:hover {
   text-decoration: underline dashed;
   text-decoration-thickness: 1px;
-  color: var(--c7)
+  color: var(--cp)
 }
 
 /* 外部链接并且不是以 # 开头的链接加上图标 */
@@ -165,8 +165,16 @@ ul {
 }
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  /* 裁剪掉图片加载失败时的边框 */
   img[loading="lazy"] {
-    /* 裁剪掉图片加载失败时的边框 */
     clip-path: inset(0.6px)
+  }
+}
+
+/* 苹果全面屏的底部安全区域, 因为这两个属性的声明是必要的, 所以可以忽略属性重复的错误 */
+@supports (bottom: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
