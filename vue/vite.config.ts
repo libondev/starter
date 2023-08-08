@@ -8,6 +8,12 @@ import { defineConfig } from 'vite'
 import routerPages from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 
+// 代码体积分析
+// import { visualizer } from 'rollup-plugin-visualizer'
+
+// import tailwindcss from 'tailwindcss'
+// import autoprefixer from 'autoprefixer'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
@@ -31,7 +37,19 @@ export default defineConfig({
     transformer: 'lightningcss',
     // https://main.vitejs.dev/config/shared-options.html#css-lightningcss
     // https://github.com/parcel-bundler/lightningcss/blob/master/node/index.d.ts
-    // lightningcss: {}
+    // lightningcss: {},
+
+    // postcss: {
+    //   plugins: [tailwindcss, autoprefixer]
+    // },
+
+    // 预处理器选项, scss/less/stylus...
+    // preprocessorOptions: {
+    //   less: {
+    //     additionalData: '@import "./src/styles/variables.less";',
+    //     javascriptEnabled: true
+    //   }
+    // }
   },
 
   esbuild: {
@@ -46,6 +64,8 @@ export default defineConfig({
   plugins: [
     unocss(),
     vueJsx(),
+    //
+    // visualizer(),
     // https://github.com/posva/unplugin-vue-router#named-routes
     routerPages({
       extensions: ['.vue'],
