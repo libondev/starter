@@ -1,0 +1,38 @@
+{
+  "name": "astro-website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "astro": "astro",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint --ext .js,.astro src"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^0.18.0",
+    "@astrojs/rss": "^2.4.4",
+    "@astrojs/sitemap": "^2.0.1",
+    "@astrojs/vue": "^2.2.1",
+    "@types/node": "^18.17.4",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^6.3.0",
+    "@unocss/reset": "^0.54.2",
+    "astro": "^2.10.3",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-plugin-astro": "^0.28.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-sort-destructure-keys": "^1.5.0",
+    "typescript": "*",
+    "unocss": "^0.54.2",
+    "vite-plugin-pwa": "^0.16.4",
+    "vue": "^3.3.4",
+    "workbox-window": "^7.0.0"
+  }
+}

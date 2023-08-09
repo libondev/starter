@@ -1,0 +1,12 @@
+{
+  "cSpell.words": [
+    "tsconfigs"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "astro",
+    "typescript",
+    "typescriptreact"
+  ]
+}

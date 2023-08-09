@@ -1,0 +1,69 @@
+.prose :where(:not(pre) > code):not(:where(.not-prose,.not-prose *))::before,
+.prose :where(:not(pre) > code):not(:where(.not-prose,.not-prose *))::after {
+  opacity: .5;
+}
+
+.prose a:hover {
+  color: var(--c7);
+  border-color: var(--c7);
+}
+
+blockquote > :first-child {
+  margin-top: 0;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.prose blockquote {
+  --un-prose-borders: var(--c7);
+
+  padding-block: 1em;
+  quotes: "\201C""\201D""\2018""\2019";
+  font-size: .8715em;
+  font-style: normal;
+  background-color: #0e0e0e10;
+}
+
+blockquote p:first-of-type::before {
+  content: open-quote;
+}
+blockquote p:last-of-type::after {
+  content: close-quote;
+}
+
+.prose pre {
+  font-size: 0.875em;
+  padding-block: 1em;
+  padding-left: 3.5em;
+  padding-right: 1em;
+  background-color: #0e0e0e;
+  font-family: 'MonoLisa', 'DM Mono', 'Input Mono', 'Fira Code', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+pre code {
+  counter-reset: section;
+}
+
+pre code .line {
+  position: relative;
+  white-space: pre-wrap;
+}
+
+pre code .line:before {
+  position: absolute;
+  top: 0;
+  left: -3em;
+  width: 25px;
+  user-select: none;
+  text-align: right;
+  pointer-events: none;
+  color: #a9a9a990;
+  content: counter(section);
+  counter-increment: section;
+}
+
+strong {
+  font-weight: 500;
+}
