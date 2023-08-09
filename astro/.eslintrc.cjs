@@ -1,45 +1,54 @@
 module.exports = {
   root: true,
 
-  reportUnusedDisableDirectives: true,
-
   env: {
     node: true,
     es2022: true,
-    browser: true,
+    browser: true
   },
+
+  parser: '@typescript-eslint/parser',
+  reportUnusedDisableDirectives: true,
 
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module'
   },
 
-  extends: [
-    "eslint:recommended",
-    "standard-with-typescript",
-    "plugin:astro/recommended",
+  plugins: [
+    '@typescript-eslint',
+    'import',
+    'simple-import-sort',
+    'sort-destructure-keys'
   ],
 
-  plugins: ['simple-import-sort', 'sort-destructure-keys'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:astro/recommended',
+    'standard-with-typescript'
+  ],
 
   overrides: [
     {
-      files: ["*.astro"],
-      plugins: ["astro"],
-      parser: "astro-eslint-parser",
+      files: ['*.astro'],
+      parser: 'astro-eslint-parser',
       parserOptions: {
-        parser: "@typescript-eslint/parser",
-        extraFileExtensions: [".astro"],
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['.astro'],
+        sourceType: 'module'
       },
-      rules: {},
-    },
-
-    {
-      files: ["*.ts"],
-      parser: "@typescript-eslint/parser",
-      parserOptions: {
-        project: './tsconfig.json'
-      },
+      extends: [
+        'plugin:astro/recommended',
+        'plugin:astro/jsx-a11y-strict'
+      ],
+      rules: {
+        'astro/no-set-text-directive': 'error',
+        'astro/no-unused-css-selector': 'error',
+        'astro/prefer-class-list-directive': 'error'
+      }
     }
   ]
 }
