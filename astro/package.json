@@ -19,21 +19,21 @@
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^6.3.0",
     "@unocss/reset": "^0.54.2",
+    "@vite-pwa/astro": "^0.1.1",
     "astro": "^2.10.3",
+    "astro-compress": "^2.0.2",
     "eslint": "^8.0.1",
     "eslint-config-standard": "^17.0.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-astro": "^0.28.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-sort-destructure-keys": "^1.5.0",
     "typescript": "*",
     "unocss": "^0.54.2",
-    "vite-plugin-pwa": "^0.16.4",
+    "vite-plugin-pwa": "^0.15.0",
     "vue": "^3.3.4",
     "workbox-window": "^7.0.0"
-  },
-  "dependencies": {
-    "eslint-plugin-import": "^2.27.5"
   }
 }

@@ -52,7 +52,8 @@
     "import/first": "error",
     "no-multi-spaces": "error",
     "no-throw-literal": "error",
-    // "n/no-missing-import": "off",
+    "n/no-missing-import": "off",
+    "import/no-unresolved": "off",
     "n/no-extraneous-import": "off",
     "import/no-duplicates": "error",
     "simple-import-sort/imports": "error",
@@ -123,16 +124,6 @@
       "offsetTernaryExpressions": true
     }]
   },
-
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "n/no-missing-import": "off",
-        "import/no-unresolved": "off"
-      }
-    }
-  ],
 
   "ignorePatterns": [
     "*.min.*",
