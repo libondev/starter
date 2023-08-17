@@ -4,11 +4,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:import/warnings',
-    'plugin:vue/essential',
-    'plugin:vue/recommended',
-    'plugin:vue/vue3-essential',
-    // './shims/.eslintrc-global.json',
     '@vue/eslint-config-standard-with-typescript'
+    // './shims/.eslintrc-global.json',
   ],
 
   plugins: [
@@ -62,7 +59,12 @@ module.exports = {
     {
       files: ['*.vue'],
       plugins: ['vue'],
-      extends: ['plugin:vue/vue3-recommended'],
+      extends: [
+        'plugin:vue/essential',
+        'plugin:vue/recommended',
+        'plugin:vue/vue3-essential',
+        'plugin:vue/vue3-recommended'
+      ],
       rules: {
         'vue/no-multiple-template-root': 'off',
         'vue/multi-word-component-names': 'off',
