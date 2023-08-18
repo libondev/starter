@@ -15,6 +15,9 @@ https://placehold.co/
 虚拟接口:
 https://jsonplaceholder.typicode.com/
 
+虚拟键盘API virtual-keyboard-api:
+https://ishadeed.com/article/virtual-keyboard-api/
+
 * ESLint 扁平配置系统背景及历程
 * 1. https://eslint.org/blog/2022/08/new-config-system-part-1/
 * 2. https://eslint.org/blog/2022/08/new-config-system-part-2/

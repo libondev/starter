@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual" />
   <title>react-project</title>
 </head>
 
@@ -13,6 +13,7 @@
 <body ontouchstart="">
   <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
+  <script>if(typeof window !== 'undefined' && 'virtualKeyboard' in window.navigator){window.navigator.virtualKeyboard.overlaysContent=true}</script>
 </body>
 
 </html>
