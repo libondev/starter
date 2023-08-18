@@ -44,9 +44,16 @@ module.exports = {
         'plugin:astro/jsx-a11y-strict'
       ],
       rules: {
+        'max-len': 'off',
         'astro/no-set-text-directive': 'error',
         'astro/no-unused-css-selector': 'error',
         'astro/prefer-class-list-directive': 'error'
+      }
+    },
+    {
+      files: ['*.ts'],
+      parserOptions: {
+        project: './tsconfig.json'
       }
     }
   ],
