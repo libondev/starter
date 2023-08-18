@@ -1,12 +1,12 @@
-import unocss from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { fileURLToPath, URL } from 'node:url'
+import unocss from 'unocss/vite'
 import autoImport from 'unplugin-auto-import/vite'
 import components from 'unplugin-vue-components/vite'
-import { defineConfig } from 'vite'
-import routerPages from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import routerPages from 'unplugin-vue-router/vite'
+import { defineConfig } from 'vite'
 
 // 代码体积分析
 // import { visualizer } from 'rollup-plugin-visualizer'
@@ -34,7 +34,7 @@ export default defineConfig({
 
   css: {
     devSourcemap: true,
-    transformer: 'lightningcss',
+    transformer: 'lightningcss'
     // https://main.vitejs.dev/config/shared-options.html#css-lightningcss
     // https://github.com/parcel-bundler/lightningcss/blob/master/node/index.d.ts
     // lightningcss: {},
@@ -92,7 +92,7 @@ export default defineConfig({
         'vue',
         'pinia',
         '@vueuse/core',
-        VueRouterAutoImports,
+        VueRouterAutoImports
         // { 'vue-router/auto': ['useLink'] },
       ]
     })
