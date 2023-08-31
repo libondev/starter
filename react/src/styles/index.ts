@@ -1,3 +1,3 @@
-import 'uno.css'
+import 'virtual:uno.css'
 import './mode.css'
 import './reset.css'
