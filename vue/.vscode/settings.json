@@ -7,9 +7,10 @@
   },
   "cSpell.words": [
     "lightningcss",
-    "nodenext",
     "lucide",
-    "nums"
+    "nodenext",
+    "nums",
+    "vite"
   ],
   // 忽略未知属性的提示, 可能是新的特性, 但是编辑器不知道
   "css.lint.unknownProperties": "ignore",

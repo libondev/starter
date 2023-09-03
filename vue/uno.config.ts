@@ -1,10 +1,9 @@
 import transformerDirectives from '@unocss/transformer-directives'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
-import { defineConfig, presetIcons, presetMini, presetUno } from 'unocss'
+import { defineConfig, presetIcons, presetMini } from 'unocss'
 
 export default defineConfig({
   presets: [
-    presetUno(),
     presetMini(),
     presetIcons({
       extraProperties: {

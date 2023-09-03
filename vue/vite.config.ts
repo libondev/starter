@@ -7,6 +7,7 @@ import components from 'unplugin-vue-components/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import routerPages from 'unplugin-vue-router/vite'
 import { defineConfig } from 'vite'
+import pageLayouts from 'vite-plugin-vue-layouts'
 
 // 代码体积分析
 // import { visualizer } from 'rollup-plugin-visualizer'
@@ -64,7 +65,12 @@ export default defineConfig({
   plugins: [
     unocss(),
     vueJsx(),
-    //
+
+    pageLayouts({
+      layoutsDirs: 'src/layouts',
+      defaultLayout: 'default'
+    }),
+
     // visualizer(),
     // https://github.com/posva/unplugin-vue-router#named-routes
     routerPages({
