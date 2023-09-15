@@ -39,7 +39,7 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'use-immer']
+    include: ['react', 'react-dom', 'react-router-dom', 'react-dom/client', 'use-immer']
   },
 
   plugins: [
