@@ -11,6 +11,6 @@ module.exports = {
   plugins: ['react-refresh'],
 
   rules: {
-    'curly': ['error', 'all'],
+    curly: ['error', 'all'],
   },
 }
