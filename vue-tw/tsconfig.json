@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
     "target": "ESNext",
     "lib": [
       "ESNext",
@@ -10,6 +9,7 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "moduleResolution": "Node",
+    "baseUrl": "./",
     "paths": {
       "@/*": [
         "./src/*"
@@ -24,10 +24,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true
   },
   "include": [

@@ -1,5 +1,6 @@
 {
   "name": "ext-name",
+  "type": "module",
   "displayName": "ext-name",
   "description": "",
   "publisher": "libon",
