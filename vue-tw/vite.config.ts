@@ -58,11 +58,13 @@ export default defineConfig({
     vueJsx(),
 
     components({
+      extensions: ['vue'],
       dts: './shims/components.d.ts',
       // globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
 
     pageLayouts({
+      extensions: ['vue'],
       layoutsDirs: 'src/layouts',
       defaultLayout: 'default',
     }),
