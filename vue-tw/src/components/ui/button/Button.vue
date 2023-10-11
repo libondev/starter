@@ -22,23 +22,7 @@ withDefaults(
     :class="[VARIANTS[variant], SIZES[size]]"
     :disabled="Boolean(loading || disabled)"
   >
-    <i v-if="loading" class="i-solar-refresh-broken animate-loading mr-1.5" />
+    <i v-if="loading" class="i-solar-refresh-broken animate-spin text-[1.275em] mr-1.5" />
     <slot />
   </button>
 </template>
-
-<style scoped>
-@keyframes rotate-loading {
-  0% {
-    transform: rotate(0)
-  }
-  100% {
-    transform: rotate(-1turn)
-  }
-}
-
-.animate-loading {
-  font-size: 1.275em;
-  animation: rotate-loading 1s infinite
-}
-</style>
