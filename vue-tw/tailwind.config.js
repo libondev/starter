@@ -1,3 +1,7 @@
+import scrollbar from 'tailwind-scrollbar'
+import animations from 'tailwindcss-animate'
+import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
@@ -28,6 +32,7 @@ export default {
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
+          primary: 'hsl(var(--secondary-primary))',
           foreground: 'hsl(var(--secondary-foreground))',
         },
         destructive: {
@@ -74,6 +79,10 @@ export default {
   },
 
   plugins: [
-    require('tailwindcss-animate'),
+    animations,
+    scrollbar({ nocompatible: true }),
+    iconsPlugin({
+      collections: getIconCollections(['solar', 'carbon']),
+    }),
   ],
 }

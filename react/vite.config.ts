@@ -8,7 +8,7 @@ import { defineConfig } from 'vite'
 import pages from 'vite-plugin-pages'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   base: './',
 
   build: {
@@ -35,7 +35,8 @@ export default defineConfig({
 
   esbuild: {
     target: 'esnext',
-    drop: ['console', 'debugger']
+    // 在生产环境下去掉 console/debugger
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
   },
 
   optimizeDeps: {
@@ -94,4 +95,4 @@ export default defineConfig({
   //     }
   //   }
   // },
-})
+}))

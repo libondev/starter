@@ -16,7 +16,7 @@ import pageLayouts from 'vite-plugin-vue-layouts'
 // import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   base: './',
 
   build: {
@@ -26,7 +26,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vueuse: ['vueuse'],
+          vueuse: ['@vueuse/core'],
           'vue-vendor': ['vue', 'vue-router']
         }
       }
@@ -55,7 +55,8 @@ export default defineConfig({
 
   esbuild: {
     target: 'esnext',
-    drop: ['console', 'debugger']
+    // 在生产环境下去掉 console/debugger
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
   },
 
   optimizeDeps: {
@@ -120,4 +121,4 @@ export default defineConfig({
   //     }
   //   }
   // }
-})
+}))

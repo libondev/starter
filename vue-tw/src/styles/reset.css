@@ -34,20 +34,21 @@
 */
 
 html {
-  --c1: #4997f0;
+  /* --c1: #4997f0;
   --c2: #8e9eec;
   --c3: #7f4eea;
   --c4: #ec8ebf;
   --c5: #f74e63;
   --c6: #f8b85c;
-  --cp: #42b883;
+  --cp: #42b883; */
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
   overflow: overlay;
   background-color: var(--bc);
-  -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* 非标准属性, 目前仅在 macos 上生效 */
+  -webkit-font-smoothing: antialiased;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   color: var(--tc);
 }
@@ -61,11 +62,6 @@ html,
 body,
 #app {
   height: 100%;
-}
-
-body,
-.leading {
-  line-height: 1.5715;
 }
 
 img {
@@ -96,23 +92,17 @@ h5 {
   text-wrap: balance
 }
 
-input,
-button,
-code,
-kbd {
-  font-family: inherit
-}
-
 a {
   text-decoration: none;
   color: inherit
 }
 
-a:hover {
+/* a:not(.no-underline, .underline):hover {
   text-decoration: underline dashed;
-  text-decoration-thickness: 1px;
-  color: var(--cp)
-}
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 1.5px;
+  color: hsl(var(--primary))
+} */
 
 /* 外部链接并且不是以 # 开头的链接加上图标 */
 /* .external-link::after, */
@@ -164,7 +154,6 @@ ul {
 }
 
 @supports (-webkit-tap-highlight-color: transparent) {
-
   a,
   button,
   [role="button"] {
@@ -173,8 +162,7 @@ ul {
 }
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
-
-  /* 裁剪掉图片加载失败时的边框 */
+  /* 裁剪掉图片未能加载时的边框 */
   img[loading="lazy"] {
     clip-path: inset(0.6px)
   }

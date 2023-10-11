@@ -9,7 +9,7 @@ import pageLayouts from 'vite-plugin-vue-layouts'
 import components from 'unplugin-vue-components/vite'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   base: './',
 
   build: {
@@ -19,7 +19,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vueuse: ['vueuse'],
+          vueuse: ['@vueuse/core'],
         },
       },
     },
@@ -31,20 +31,26 @@ export default defineConfig({
 
   esbuild: {
     target: 'esnext',
-    drop: ['console', 'debugger'],
+    // 在生产环境下去掉 console/debugger
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router'],
+    include: ['vue', 'pinia', 'vue-router', 'axios', 'radix-vue', 'ts-pattern'],
   },
 
   plugins: [
     router({
-      extensions: ['.vue'],
+      extensions: ['.vue', '.tsx'],
       routeBlockLang: 'yaml',
       routesFolder: 'src/views',
       dts: './shims/typed-router.d.ts',
-      exclude: ['**/*/components/**/*'],
+      exclude: [
+        '**/*/components/**/*',
+        '**/*/composables/**/*',
+        '**/*/styles/**/*',
+        '**/*/utils/**/*',
+      ],
 
     }),
 
@@ -58,22 +64,27 @@ export default defineConfig({
     vueJsx(),
 
     components({
+      extensions: ['vue', 'tsx'],
       dts: './shims/components.d.ts',
       // globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
 
     pageLayouts({
+      extensions: ['vue', 'tsx'],
       layoutsDirs: 'src/layouts',
       defaultLayout: 'default',
     }),
 
     autoImport({
       dts: './shims/auto-imports.d.ts',
+      dirs: [
+        './src/composables/**',
+      ],
       imports: [
         'vue',
 
         {
-          'unplugin-vue-router/runtime': [['_definePage', 'definePage']],
+          // 'unplugin-vue-router/runtime': [['_definePage', 'definePage']],
           'vue-router/auto': ['useLink', 'useRoute', 'useRouter', 'defineLoader', 'onBeforeRouteUpdate', 'onBeforeRouteLeave'],
         },
       ],
@@ -96,4 +107,4 @@ export default defineConfig({
   //     }
   //   }
   // }
-})
+}))
