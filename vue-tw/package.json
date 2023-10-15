@@ -27,6 +27,7 @@
     "@antfu/eslint-config": "^1.0.0-beta.17",
     "@egoist/tailwindcss-icons": "^1.2.0",
     "@iconify-json/carbon": "^1.1.21",
+    "@iconify-json/ph": "^1.1.6",
     "@iconify-json/solar": "^1.1.5",
     "@types/js-cookie": "^3.0.2",
     "@types/node": "^18.18.1",

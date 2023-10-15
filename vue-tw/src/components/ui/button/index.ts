@@ -5,7 +5,7 @@ export const VARIANTS = {
   destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/70 active:bg-destructive/90',
   outline: 'border border-input bg-transparent shadow-sm hover:bg-accent active:bg-input hover:text-accent-foreground',
   secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:bg-input',
-  ghost: 'hover:bg-accent active:bg-input hover:text-accent-foreground',
+  ghost: 'hover:text-accent-foreground hover:bg-accent active:bg-input',
   link: 'text-primary underline-offset-4 hover:underline hover:text-primary/80 active:text-primary/50',
 }
 
