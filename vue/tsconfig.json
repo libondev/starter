@@ -1,4 +1,36 @@
 {
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "preserve",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "useDefineForClassFields": true,
+    "baseUrl": "./",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "allowArbitraryExtensions": true,
+    "allowImportingTsExtensions": true,
+    "allowJs": false,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -8,34 +40,5 @@
     "vite.config.*",
     "vitest.config.*",
     "playwright.config.*"
-  ],
-
-  "compilerOptions": {
-    "strict": true,
-    "noEmit": true,
-    "allowJs": false,
-    "target": "ESNext",
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "noImplicitReturns": true,
-    "noUnusedParameters": true,
-    "moduleResolution": "Node",
-    "useDefineForClassFields": true,
-    "allowArbitraryExtensions": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowImportingTsExtensions": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+  ]
 }

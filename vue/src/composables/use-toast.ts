@@ -13,13 +13,12 @@ export function initToast(): HTMLElement {
   const className = 'toast-container'
   const toaster = Toaster || document.querySelector(`#${id}.${className}`) as HTMLElement
 
-  if (toaster) {
+  if (toaster)
     return toaster
-  }
 
   Toaster = Object.assign(
     document.createElement(tagName),
-    { id, className },
+    { className, id },
   )
 
   document.body.append(Toaster)
@@ -61,10 +60,10 @@ function addToast(toast: HTMLOutputElement): void {
 
 export function useToast(htmlText: string, { type, durations = 2000 } = {} as ToastOptions): void {
   const toast = Object.assign(document.createElement('output'), {
-    'role': 'status',
-    'innerHTML': htmlText,
     'aria-live': 'polite',
     'className': `use-toast ${type ?? ''}`,
+    'innerHTML': htmlText,
+    'role': 'status',
     'style': `--durations: ${durations}ms`,
   })
 

@@ -1,13 +1,13 @@
-import { createPinia } from 'pinia'
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import { RouterView } from 'vue-router'
 
-import App from './App.vue'
 import router from './router/index'
 
 // global styles
 import './styles'
 
-const app = createApp(App)
+const app = createApp(<RouterView />)
 
 app.use(createPinia())
 app.use(router)

@@ -1,4 +1,5 @@
 import type { Router } from 'vue-router'
+
 // import { useUserStore } from '@/stores/user'
 
 const AUTH_WHITE_LIST = ['/', '/user/login', '/user/[uid]']

@@ -41,9 +41,6 @@ export default defineConfig(({ mode }) => ({
 
   plugins: [
     router({
-      extensions: ['.vue', '.tsx'],
-      routeBlockLang: 'yaml',
-      routesFolder: 'src/views',
       dts: './shims/typed-router.d.ts',
       exclude: [
         '**/*/components/**/*',
@@ -51,7 +48,9 @@ export default defineConfig(({ mode }) => ({
         '**/*/styles/**/*',
         '**/*/utils/**/*',
       ],
-
+      extensions: ['.vue', '.tsx'],
+      routeBlockLang: 'yaml',
+      routesFolder: 'src/views',
     }),
 
     vue({
@@ -64,22 +63,22 @@ export default defineConfig(({ mode }) => ({
     vueJsx(),
 
     components({
-      extensions: ['vue', 'tsx'],
       dts: './shims/components.d.ts',
+      extensions: ['vue', 'tsx'],
       // globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
 
     pageLayouts({
+      defaultLayout: 'default',
       extensions: ['vue', 'tsx'],
       layoutsDirs: 'src/layouts',
-      defaultLayout: 'default',
     }),
 
     autoImport({
-      dts: './shims/auto-imports.d.ts',
       dirs: [
         './src/composables/**',
       ],
+      dts: './shims/auto-imports.d.ts',
       imports: [
         'vue',
 

@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const route = useRoute('/[id]')
+</script>
+
 <template>
   <div class="h-full flex-col-center">
     <h1 class="text-center">
@@ -10,7 +14,3 @@
     </router-link>
   </div>
 </template>
-
-<script lang="ts" setup>
-const route = useRoute('/[id]')
-</script>

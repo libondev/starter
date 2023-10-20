@@ -1,11 +1,9 @@
 export function toArray(value: any) {
-  if (!value) {
+  if (!value)
     return []
-  }
 
-  if (Array.isArray(value)) {
+  if (Array.isArray(value))
     return value
-  }
 
   return [value]
 }

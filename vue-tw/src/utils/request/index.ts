@@ -1,8 +1,8 @@
 import axios from 'axios'
 import jsCookie from 'js-cookie'
-import { USER_TOKEN_KEY } from '@/stores/user'
+import { USER_TOKEN_KEY, getRedirectLoginPage } from './utils'
 
-interface APIResponse<Data> {
+export interface APIResponse<Data = any> {
   code: number
 
   // 成功
@@ -23,7 +23,8 @@ const refreshing = false
 const configsMap = new Map()
 
 instance.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${jsCookie.get(USER_TOKEN_KEY)}`
+  const token = jsCookie.get(USER_TOKEN_KEY)
+  config.headers.Authorization = `Bearer ${token}`
 
   // 如果正在刷新 token 则将后续的请求全部放入暂存区
   if (refreshing) {
@@ -32,32 +33,32 @@ instance.interceptors.request.use((config) => {
     })
   }
 
-  // if (config.headers.token)
+  // if (!token) {
   //   refreshing = true
 
-  // 刷新 token, 刷新后重新请求 configsMap 里的所有请求
+  //   // 刷新 token, 刷新后重新请求 configsMap 里的所有请求
+  //   axios.post('/refresh-token').then((res) => {
+  //     jsCookie.set(USER_TOKEN_KEY, res.data.data.token)
+
+  //     configsMap.forEach((resolve, conf) => resolve(conf))
+  //   })
+  // }
 
   return config
 })
 
 instance.interceptors.response.use((response) => {
-  if (response.data?.code === 200) {
+  if (response.data?.code === 200)
     return Promise.resolve(response.data)
-  }
 
   // token 过期跳转到登录页
-  if (response.data?.code === 1026) {
+  if (response.data?.code === 1026)
     location.href = getRedirectLoginPage()
-  }
 
   return Promise.reject(response.data)
 })
 
-export function getRedirectLoginPage() {
-  const redirectPath = location.hash.slice(1).split('?')[0]
 
-  return `/#/user/login?redirect=${redirectPath === '/user/login' ? '/' : redirectPath}`
-}
 
 export function useGet<Detail>(...args: Parameters<typeof instance['get']>) {
   return instance.get<unknown, APIResponse<Detail>>(...args)
