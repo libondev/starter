@@ -16,10 +16,12 @@
   "dependencies": {
     "@vueuse/core": "^10.5.0",
     "axios": "^1.5.1",
+    "date-fns": "^2.30.0",
     "js-cookie": "^3.0.5",
     "pinia": "^2.1.7",
     "radix-vue": "^0.4.1",
     "ts-pattern": "^5.0.5",
+    "v-calendar": "^3.1.2",
     "vue": "^3.3.5",
     "vue-router": "^4.2.5"
   },

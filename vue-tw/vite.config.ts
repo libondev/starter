@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router', 'axios', 'radix-vue', 'ts-pattern'],
+    include: ['vue', 'pinia', 'vue-router', 'ts-pattern'],
   },
 
   plugins: [
