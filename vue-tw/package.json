@@ -6,7 +6,7 @@
   "packageManager": "pnpm@6.35.1",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit --composite false",

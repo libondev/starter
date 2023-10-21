@@ -89,7 +89,7 @@ function onFileSelectChange(ev: Event) {
 
       // 如果是最后一张图片则触发 selected 事件
       if (idx >= files.length - 1) {
-        emits('selected', files)
+        emits('selected', chooseFiles.value)
       }
     }
   })

@@ -31,7 +31,7 @@ const forwarded = useForwardPropsEmits(props, emits)
       ]"
     >
       <SelectViewport
-        class="p-0"
+        class="p-1"
         :class="[position === 'popper' && 'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]']"
       >
         <slot />

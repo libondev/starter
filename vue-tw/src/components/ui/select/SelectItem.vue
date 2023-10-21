@@ -16,7 +16,7 @@ const props = defineProps<SelectItemProps>()
   >
     <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectItemIndicator>
-        <i class="i-carbon-check" />
+        <i class="i-carbon-checkmark" />
       </SelectItemIndicator>
     </span>
 

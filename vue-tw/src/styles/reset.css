@@ -48,7 +48,6 @@ html {
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
-  overflow: overlay;
   background-color: var(--bc);
   text-rendering: optimizeLegibility;
   /* 非标准属性, 目前仅在 macos 上生效 */
@@ -64,10 +63,25 @@ html {
   color: var(--tc);
 }
 
+body,
+ul {
+  margin: 0
+}
+
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
 html,
 body,
 #app {
   height: 100%;
+}
+
+body {
+  overflow: auto;
 }
 
 body, h1, h2, h3, h4, p,
@@ -94,6 +108,7 @@ h1, h2, h3, h4 {
   width: fit-content;
   text-wrap: balance
 }
+
 
 a {
   text-decoration: none;
