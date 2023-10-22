@@ -121,3 +121,29 @@ export const prefersDarkColorScheme = () => window && window.matchMedia && windo
  * TIP: 只有移动端才有 ontouchstart 属性
  */
 export const isMobileDevice = () => window && 'ontouchstart' in window
+
+// Depth-First-Search 深度优先遍历
+export function dfs(
+  data: any[] | Record<string, any>,
+  callback: (value: any) => void,
+  { children = 'children' } = {},
+) {
+  if (Array.isArray(data)) {
+    data.forEach(item =>
+      JSON.stringify(item, (_, value) => {
+        callback(value)
+
+        return value[children]
+      }),
+    )
+
+    return
+  }
+
+  JSON.stringify(data, (_, value) => {
+    callback(value)
+
+    return value[children]
+  })
+}
+
