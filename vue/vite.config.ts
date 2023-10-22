@@ -1,13 +1,12 @@
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { fileURLToPath, URL } from 'node:url'
 import unocss from 'unocss/vite'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import pages from 'vite-plugin-pages'
+import jsx from '@vitejs/plugin-vue-jsx'
+import { fileURLToPath, URL } from 'node:url'
+import layouts from 'vite-plugin-vue-layouts'
 import autoImport from 'unplugin-auto-import/vite'
 import components from 'unplugin-vue-components/vite'
-import { VueRouterAutoImports } from 'unplugin-vue-router'
-import routerPages from 'unplugin-vue-router/vite'
-import { defineConfig } from 'vite'
-import pageLayouts from 'vite-plugin-vue-layouts'
 
 // 代码体积分析
 // import { visualizer } from 'rollup-plugin-visualizer'
@@ -65,29 +64,32 @@ export default defineConfig(({ mode }) => ({
 
   plugins: [
     unocss(),
-    vueJsx(),
-
-    pageLayouts({
-      layoutsDirs: 'src/layouts',
-      defaultLayout: 'default'
-    }),
-
-    // visualizer(),
-    // https://github.com/posva/unplugin-vue-router#named-routes
-    routerPages({
-      extensions: ['.vue'],
-      routeBlockLang: 'yaml',
-      routesFolder: 'src/views',
-      dts: './shims/routes.d.ts',
-      exclude: ['**/components/**/*']
-    }),
-
+    jsx(),
     vue({
       script: {
         defineModel: true,
         propsDestructure: true
       }
     }),
+
+    // visualizer(),
+    pages({
+      dirs: 'src/views',
+      routeBlockLang: 'yaml',
+      extensions: ['vue', 'tsx'],
+      exclude: [
+        '**/*/components/**/*',
+        '**/*/composables/**/*',
+        '**/*/styles/**/*',
+        '**/*/utils/**/*',
+      ],
+    }),
+
+    layouts({
+      layoutsDirs: 'src/layouts',
+      defaultLayout: 'default'
+    }),
+
     components({
       dts: './shims/components.d.ts'
       // globs: ['src/components/**/index.{vue,tsx,ts}']
@@ -98,8 +100,8 @@ export default defineConfig(({ mode }) => ({
       imports: [
         'vue',
         'pinia',
+        'vue-router',
         '@vueuse/core',
-        VueRouterAutoImports
         // { 'vue-router/auto': ['useLink'] },
       ]
     })

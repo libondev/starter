@@ -10,11 +10,5 @@
     <Button>
       123123
     </Button>
-
-    <Input />
-
-    <date-picker />
-
-    <Calendar />
   </main>
 </template>

@@ -1,7 +1,9 @@
 import type { Router } from 'vue-router'
 
-export function useViewTransition (router: Router) {
-  if (!document.startViewTransition) { return }
+export function useViewTransition(router: Router) {
+  if (!document.startViewTransition) {
+    return
+  }
 
   let finishTransition: undefined | (() => void)
   let abortTransition: undefined | (() => void)
@@ -34,8 +36,7 @@ export function useViewTransition (router: Router) {
     finishTransition = undefined
   })
 
-  router.onError((error) => {
-    console.log({ error })
+  router.onError(() => {
     abortTransition?.()
     abortTransition = undefined
   })

@@ -1,5 +1,5 @@
 import type { Router } from 'vue-router'
-// import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/user'
 
 const AUTH_WHITE_LIST = ['/', '/user/login', '/user/[uid]']
 
@@ -12,12 +12,12 @@ export function useUserAuth(router: Router) {
     }
 
     // 如果没有 uid
-    // const userStore = useUserStore()
-    // if (!userStore.account?.uid) {
-    //   next(`/user/login?redirect=${to.path}`)
-    //   useToastError('请先登录')
-    //   return
-    // }
+    const userStore = useUserStore()
+    if (!userStore.account?.uid) {
+      next(`/user/login?redirect=${to.path}`)
+      useToastError('请先登录')
+      return
+    }
 
     next()
   })

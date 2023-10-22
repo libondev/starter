@@ -2,10 +2,10 @@ import { URL, fileURLToPath } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import router from 'unplugin-vue-router/vite'
+import pages from 'vite-plugin-pages'
+import jsx from '@vitejs/plugin-vue-jsx'
+import layouts from 'vite-plugin-vue-layouts'
 import autoImport from 'unplugin-auto-import/vite'
-import pageLayouts from 'vite-plugin-vue-layouts'
 import components from 'unplugin-vue-components/vite'
 
 // https://vitejs.dev/config/
@@ -40,19 +40,6 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [
-    router({
-      dts: './shims/typed-router.d.ts',
-      exclude: [
-        '**/*/components/**/*',
-        '**/*/composables/**/*',
-        '**/*/styles/**/*',
-        '**/*/utils/**/*',
-      ],
-      extensions: ['.vue', '.tsx'],
-      routeBlockLang: 'yaml',
-      routesFolder: 'src/views',
-    }),
-
     vue({
       script: {
         defineModel: true,
@@ -60,7 +47,7 @@ export default defineConfig(({ mode }) => ({
       },
     }),
 
-    vueJsx(),
+    jsx(),
 
     components({
       dts: './shims/components.d.ts',
@@ -68,7 +55,19 @@ export default defineConfig(({ mode }) => ({
       // globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
 
-    pageLayouts({
+    pages({
+      dirs: 'src/views',
+      routeBlockLang: 'yaml',
+      extensions: ['vue', 'tsx'],
+      exclude: [
+        '**/*/components/**/*',
+        '**/*/composables/**/*',
+        '**/*/styles/**/*',
+        '**/*/utils/**/*',
+      ],
+    }),
+
+    layouts({
       defaultLayout: 'default',
       extensions: ['vue', 'tsx'],
       layoutsDirs: 'src/layouts',
@@ -81,12 +80,8 @@ export default defineConfig(({ mode }) => ({
       dts: './shims/auto-imports.d.ts',
       imports: [
         'vue',
-
-        {
-          // 'unplugin-vue-router/runtime': [['_definePage', 'definePage']],
-          'vue-router/auto': ['useLink', 'useRoute', 'useRouter', 'defineLoader', 'onBeforeRouteUpdate', 'onBeforeRouteLeave'],
-        },
-      ],
+        'vue-router',
+      ]
     }),
   ],
 

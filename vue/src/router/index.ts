@@ -1,15 +1,16 @@
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import generatedRoutes from 'virtual:generated-pages'
 
-import { useViewTransition } from './view-transition'
+// import { useUserAuth } from './plugins/user-auth'
+import { useViewTransition } from './plugins/view-transition'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  extendRoutes: (routes) => {
-    return setupLayouts(routes)
-  }
+  history: createWebHashHistory(import.meta.env.BASE_URL),
+  routes: setupLayouts(generatedRoutes),
 })
 
+// useUserAuth(router)
 useViewTransition(router)
 
 export default router
