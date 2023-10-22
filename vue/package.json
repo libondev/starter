@@ -5,13 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
     "host": "vite --host",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-check": "run-p type-check build",
     "type-check": "vue-tsc --noEmit --composite false",
-    "build": "run-p type-check build-only",
     "lint": "eslint src",
-    "lint:fix": "eslint src"
+    "lint:fix": "eslint src --fix"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^1.0.0-beta.27",

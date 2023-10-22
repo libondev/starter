@@ -6,9 +6,9 @@
   "packageManager": "pnpm@6.35.1",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-only",
+    "build": "vite build",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-check": "run-p type-check build",
     "type-check": "vue-tsc --noEmit --composite false",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
