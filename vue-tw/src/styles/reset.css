@@ -36,7 +36,6 @@
 */
 
 html {
-  /*
   --c1: #4997f0;
   --c2: #8e9eec;
   --c3: #7f4eea;
@@ -44,7 +43,6 @@ html {
   --c5: #f74e63;
   --c6: #f8b85c;
   --cp: #42b883;
-  */
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
@@ -115,11 +113,6 @@ a {
   color: inherit
 }
 
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
 img {
   display: block;
   max-width: 100%;
@@ -167,6 +160,7 @@ textarea:not([rows]) {
 } */
 
 table {
+  width: 100%;
   table-layout: fixed;
 }
 
@@ -199,6 +193,12 @@ hr {
   /* 裁剪掉图片未能加载时的边框 */
   img[loading="lazy"] {
     clip-path: inset(0.6px)
+  }
+}
+
+@supports (text-wrap: pretty) {
+  p {
+    text-wrap: pretty;
   }
 }
 
