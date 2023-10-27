@@ -36,7 +36,6 @@
 */
 
 html {
-  /*
   --c1: #4997f0;
   --c2: #8e9eec;
   --c3: #7f4eea;
@@ -44,11 +43,9 @@ html {
   --c5: #f74e63;
   --c6: #f8b85c;
   --cp: #42b883;
-  */
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
-  overflow: overlay;
   background-color: var(--bc);
   text-rendering: optimizeLegibility;
   /* 非标准属性, 目前仅在 macos 上生效 */
@@ -64,10 +61,25 @@ html {
   color: var(--tc);
 }
 
+body,
+ul {
+  margin: 0
+}
+
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
 html,
 body,
 #app {
   height: 100%;
+}
+
+body {
+  overflow: auto;
 }
 
 body, h1, h2, h3, h4, p,
@@ -95,20 +107,29 @@ h1, h2, h3, h4 {
   text-wrap: balance
 }
 
+
 a {
   text-decoration: none;
   color: inherit
 }
 
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
+img {
+  /* display: block; */
+  max-width: 100%;
+  height: auto;
+  font-style: italic;
+  object-fit: cover;
+  background-size: cover;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  shape-margin: 0.75rem;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-  object-fit: cover;
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  /* 裁剪掉图片未能加载时的边框 */
+  img[loading="lazy"] {
+    clip-path: inset(0.6px)
+  }
 }
 
 /* Make sure textarea without a rows attribute are not tiny */
@@ -152,6 +173,7 @@ textarea:not([rows]) {
 } */
 
 table {
+  width: 100%;
   table-layout: fixed;
 }
 
@@ -180,10 +202,9 @@ hr {
   }
 }
 
-@supports (font: -apple-system-body) and (-webkit-appearance: none) {
-  /* 裁剪掉图片未能加载时的边框 */
-  img[loading="lazy"] {
-    clip-path: inset(0.6px)
+@supports (text-wrap: pretty) {
+  p {
+    text-wrap: pretty;
   }
 }
 

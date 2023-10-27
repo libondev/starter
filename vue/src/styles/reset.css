@@ -114,9 +114,22 @@ a {
 }
 
 img {
-  display: block;
+  /* display: block; */
   max-width: 100%;
+  height: auto;
+  font-style: italic;
   object-fit: cover;
+  background-size: cover;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  shape-margin: 0.75rem;
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  /* 裁剪掉图片未能加载时的边框 */
+  img[loading="lazy"] {
+    clip-path: inset(0.6px)
+  }
 }
 
 /* Make sure textarea without a rows attribute are not tiny */
@@ -186,13 +199,6 @@ hr {
   button,
   [role="button"] {
     -webkit-tap-highlight-color: transparent;
-  }
-}
-
-@supports (font: -apple-system-body) and (-webkit-appearance: none) {
-  /* 裁剪掉图片未能加载时的边框 */
-  img[loading="lazy"] {
-    clip-path: inset(0.6px)
   }
 }
 
