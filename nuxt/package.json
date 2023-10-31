@@ -1,0 +1,33 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "generate": "nuxt generate",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^1.0.0-beta.29",
+    "@iconify-json/heroicons": "^1.1.13",
+    "@iconify-json/mdi": "^1.1.55",
+    "@iconify-json/simple-icons": "^1.1.76",
+    "@iconify-json/solar": "^1.1.5",
+    "@nuxt/devtools": "latest",
+    "eslint": "^8.52.0",
+    "nuxt": "^3.8.0",
+    "sass": "^1.69.5",
+    "vue": "^3.3.7",
+    "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^2.10.0",
+    "@vueuse/core": "^10.5.0",
+    "axios": "^1.6.0",
+    "js-cookie": "^3.0.5"
+  }
+}

@@ -3,15 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    box-sizing: border-box;
-    border-color: hsl(var(--border))
-  }
-
-  ::placeholder {
-    user-select: none;
-  }
-
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;

@@ -4,6 +4,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  border-color: hsl(var(--border))
 }
 
 ::-webkit-scrollbar {
@@ -24,6 +25,10 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--sh);
+}
+
+::placeholder {
+  user-select: none;
 }
 
 /*
