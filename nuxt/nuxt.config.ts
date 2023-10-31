@@ -9,6 +9,10 @@ export default defineNuxtConfig({
     storageKey: 'fe.system.colorMode',
   },
 
+  typescript: {
+    shim: false
+  },
+
   ui: {
     prefix: 'u',
     global: true,
