@@ -78,8 +78,17 @@ body,
   height: 100%;
 }
 
-body {
-  overflow: auto;
+/* Fallback for browsers that don't support scrollbar-gutter */
+body, .scrollbar {
+  overflow-y: scroll;
+}
+
+/* scrollbar-gutter FTW! */
+@supports (scrollbar-gutter: stable) {
+  body, .scrollbar {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
 }
 
 body, h1, h2, h3, h4, p,
