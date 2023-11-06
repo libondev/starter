@@ -1,7 +1,7 @@
 export { default as Button } from './Button.vue'
 
 export const VARIANTS = {
-  default: 'bg-primary text-primary-foreground shadow hover:bg-primary/70 active:bg-primary/90',
+  default: 'bg-primary text-primary-foreground shadow hover:bg-primary/75 active:bg-primary/90',
   destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/70 active:bg-destructive/90',
   outline: 'border border-input bg-transparent shadow-sm hover:bg-accent active:bg-input hover:text-accent-foreground',
   secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:bg-input',

@@ -1,4 +1,3 @@
-import scrollbar from 'tailwind-scrollbar'
 import animations from 'tailwindcss-animate'
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 
@@ -13,7 +12,6 @@ export default {
 
   plugins: [
     animations,
-    scrollbar({ nocompatible: true }),
     iconsPlugin({
       collections: getIconCollections(['solar', 'carbon', 'ph']),
     }),

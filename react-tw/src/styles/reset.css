@@ -7,6 +7,22 @@
   border-color: hsl(var(--border))
 }
 
+.scrollbar {
+  scrollbar-gutter: stable both-edges;
+}
+
+@supports (scrollbar-width: thin) {
+  .scrollbar {
+    scrollbar-width: thin;
+  }
+}
+
+@supports (scrollbar-color: #000) {
+  .scrollbar {
+    scrollbar-color: var(--sc);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -51,7 +67,7 @@ html {
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
-  background-color: var(--bc);
+  background-color: var(--background);
   text-rendering: optimizeLegibility;
   /* 非标准属性, 目前仅在 macos 上生效 */
   -webkit-font-smoothing: antialiased;
