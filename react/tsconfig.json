@@ -1,4 +1,35 @@
 {
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  },
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -9,35 +40,5 @@
     "vitest.config.*",
     "scripts/**/*.ts",
     "playwright.config.*",
-  ],
-
-  "compilerOptions": {
-    "strict": true,
-    "noEmit": true,
-    "allowJs": false,
-    "target": "ESNext",
-    "module": "ESNext",
-    "jsx": "react-jsx",
-    "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "noImplicitReturns": true,
-    "noUnusedParameters": true,
-    "moduleResolution": "Node",
-    "useDefineForClassFields": true,
-    "allowArbitraryExtensions": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowImportingTsExtensions": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+  ]
 }

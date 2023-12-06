@@ -8,7 +8,7 @@ export default function About() {
       <NavLink
         to="/about"
         className={
-          (navData) => (navData.isActive ? 'text-#f00 ml-2' : 'text-14px ml-2')
+          navData => (navData.isActive ? 'text-#f00 ml-2' : 'text-14px ml-2')
         }
       >
         Home
