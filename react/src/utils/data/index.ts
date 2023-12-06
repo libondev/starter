@@ -20,9 +20,11 @@ export function getBaseUrl(fullUrl: string) {
  * // -> '7982fcfe-5721-4632-bede-6000885be57d'
  * ```
  */
-export const getUUID = () => (1e7 + '' + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) => {
-  return (Number(c) ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (Number(c) / 4)))).toString(16)
-})
+export function getUUID() {
+  return (`${1e7}${-1e3}${-4e3}${-8e3}${-1e11}`).replace(/[018]/g, (c) => {
+    return (Number(c) ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (Number(c) / 4)))).toString(16)
+  })
+}
 
 /**
  * 判断是否为绝对路径
@@ -48,7 +50,7 @@ export const isAbsoluteURL = (url: string) => /^[a-z][a-z0-9+.-]*:/.test(url)
 //   )
 
 // 浏览器版本比较新用这个
-export const getURLParameters = (url: string) => {
+export function getURLParameters(url: string) {
   const entries = new URL(url).searchParams.entries()
 
   return Array.from(entries).reduce((acc, [key, value]) => {
@@ -69,17 +71,17 @@ export const getSelectedText = () => window.getSelection()?.toString()
 /**
  * 复制文本到剪贴板
  */
-export const copyToClipboard = (string: string) => {
+export function copyToClipboard(string: string) {
   if (navigator && navigator.clipboard && navigator.clipboard.writeText)
     return navigator.clipboard.writeText(string)
 
-  return Promise.reject('The Clipboard API is not available.')
+  return Promise.reject(new Error('The Clipboard API is not available.'))
 }
 
 /**
  * 切换指定元素或是 body 为全屏
  */
-export const toggleFullscreen = (open = true, element = document.body) => {
+export function toggleFullscreen(open = true, element = document.body) {
   open ? element.requestFullscreen() : document.exitFullscreen()
 }
 
