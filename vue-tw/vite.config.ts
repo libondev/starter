@@ -7,6 +7,8 @@ import jsx from '@vitejs/plugin-vue-jsx'
 import layouts from 'vite-plugin-vue-layouts'
 import autoImport from 'unplugin-auto-import/vite'
 import components from 'unplugin-vue-components/vite'
+// z-lazy-show/v-show.lazy
+import { transformLazyShow } from 'v-lazy-show'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -45,6 +47,13 @@ export default defineConfig(({ mode }) => ({
         defineModel: true,
         propsDestructure: true,
       },
+      template: {
+        compilerOptions: {
+          nodeTransforms: [
+            transformLazyShow
+          ]
+        }
+      }
     }),
 
     jsx(),

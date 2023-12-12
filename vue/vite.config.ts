@@ -7,6 +7,8 @@ import { fileURLToPath, URL } from 'node:url'
 import layouts from 'vite-plugin-vue-layouts'
 import autoImport from 'unplugin-auto-import/vite'
 import components from 'unplugin-vue-components/vite'
+// z-lazy-show/v-show.lazy
+import { transformLazyShow } from 'v-lazy-show'
 
 // 代码体积分析
 // import { visualizer } from 'rollup-plugin-visualizer'
@@ -68,7 +70,14 @@ export default defineConfig(({ mode }) => ({
     vue({
       script: {
         defineModel: true,
-        propsDestructure: true
+        propsDestructure: true,
+      },
+      template: {
+        compilerOptions: {
+          nodeTransforms: [
+            transformLazyShow
+          ]
+        }
       }
     }),
 
