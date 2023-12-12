@@ -1,9 +1,29 @@
 import { shallowRef } from 'vue'
 
-export function useLazyLoading({ delay = 300, defaultValue = false } = {}) {
+interface Options {
+  default?: boolean
+  delay?: number
+}
+
+interface ReturnType {
+  loading: Ref<boolean>
+  startLoading: () => void
+  cancelLoading: () => void
+}
+
+export function useLazyLoading(valueOrOptions?: boolean): ReturnType;
+export function useLazyLoading(valueOrOptions?: Options): ReturnType;
+export function useLazyLoading(valueOrOptions: boolean | Options = {}): ReturnType {
   let timeoutId: number
 
-  const loading = shallowRef(defaultValue)
+  const {
+    delay = 300,
+    default: value = false
+  } = typeof valueOrOptions === 'boolean'
+      ? { default: valueOrOptions, delay: 300 }
+      : valueOrOptions
+
+  const loading = shallowRef(value)
 
   function startLoading() {
     timeoutId = window.setTimeout(() => {
@@ -13,6 +33,7 @@ export function useLazyLoading({ delay = 300, defaultValue = false } = {}) {
 
   function cancelLoading() {
     clearTimeout(timeoutId)
+    loading.value = false
   }
 
   return {

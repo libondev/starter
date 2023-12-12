@@ -2,7 +2,7 @@ interface Options {
   /**
    * 默认值, 初始情况下是否渲染
    */
-  defaultValue?: boolean
+  default?: boolean
 
   /**
    * 延迟时间, 单位毫秒, 在设置为隐藏后, 多少毫秒后才真正隐藏
@@ -10,7 +10,7 @@ interface Options {
   delay?: number
 }
 
-interface ReturnValue {
+interface ReturnType {
   /**
    * 用于 v-if, 控制元素是否渲染
    */
@@ -32,12 +32,18 @@ interface ReturnValue {
   close: () => void
 }
 
-export function useLazyShow({
-  defaultValue = false,
-  delay = 1500,
-}: Options = {}): ReturnValue {
-  const render = shallowRef(defaultValue)
-  const visible = shallowRef(defaultValue)
+export function useLazyShow(valueOrOptions?: boolean): ReturnType;
+export function useLazyShow(valueOrOptions?: Options): ReturnType;
+export function useLazyShow(valueOrOptions: boolean | Options = {}): ReturnType {
+  const {
+    delay = 300,
+    default: value = false
+  } = typeof valueOrOptions === 'boolean'
+      ? { default: valueOrOptions, delay: 300 }
+      : valueOrOptions
+
+  const render = shallowRef(value)
+  const visible = shallowRef(value)
 
   let delayTimeoutId = -1
 
