@@ -123,3 +123,9 @@ export const prefersDarkColorScheme = () => window && window.matchMedia && windo
  * TIP: 只有移动端才有 ontouchstart 属性
  */
 export const isMobileDevice = () => window && 'ontouchstart' in window
+
+/**
+ * 是否为空对象
+ * @param object 要检测的对象
+ */
+export const isEmptyObject = (object: object) => Reflect.ownKeys(object).length === 0
