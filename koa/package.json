@@ -1,0 +1,37 @@
+{
+  "name": "koa",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "tsx watch app.ts",
+    "prd": "pm2 start dist/app.js",
+    "build": "tsup",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.4.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^12.0.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.4.5",
+    "@types/koa": "^2.13.12",
+    "@types/koa-bodyparser": "^4.3.12",
+    "@types/koa-logger": "^3.1.5",
+    "@types/koa-router": "^7.4.8",
+    "@types/koa2-cors": "^2.0.5",
+    "@types/node": "^20.10.4",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.55.0",
+    "koa2-cors": "^2.0.6",
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
+  }
+}
