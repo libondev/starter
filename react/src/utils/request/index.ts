@@ -24,8 +24,12 @@ const refreshing = false
 const configsMap = new Map()
 
 instance.interceptors.request.use((config) => {
-  const token = jsCookie.get(USER_TOKEN_KEY)
-  config.headers.Authorization = `Bearer ${token}`
+  config.headers.Authorization = `Bearer ${jsCookie.get(USER_TOKEN_KEY)}`
+
+  // 如果是FormData 自动覆写请求头类型
+  if (config.data instanceof FormData) {
+    config.headers['Content-Type'] = 'multipart/form-data'
+  }
 
   // 如果正在刷新 token 则将后续的请求全部放入暂存区
   if (refreshing) {
@@ -34,16 +38,10 @@ instance.interceptors.request.use((config) => {
     })
   }
 
-  // if (!token) {
+  // if (config.headers.token)
   //   refreshing = true
 
-  //   // 刷新 token, 刷新后重新请求 configsMap 里的所有请求
-  //   axios.post('/refresh-token').then((res) => {
-  //     jsCookie.set(USER_TOKEN_KEY, res.data.data.token)
-
-  //     configsMap.forEach((resolve, conf) => resolve(conf))
-  //   })
-  // }
+  // 刷新 token, 刷新后重新请求 configsMap 里的所有请求
 
   return config
 })

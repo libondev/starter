@@ -1,6 +1,6 @@
 import { shallowRef } from 'vue'
 
-export function useLazyLoading({ delay = 300, defaultValue = false } = {}) {
+export function useDelayLoading({ delay = 300, defaultValue = false } = {}) {
   let timeoutId: number
 
   const loading = shallowRef(defaultValue)
