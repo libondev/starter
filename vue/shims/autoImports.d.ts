@@ -195,7 +195,7 @@ declare global {
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
-  const useLazyLoading: typeof import('../src/composables/use-lazy-loading')['useLazyLoading']
+  const useDelayLoading: typeof import('../src/composables/use-delay-loading')['useDelayLoading']
   const useLazyShow: typeof import('../src/composables/use-lazy-show')['useLazyShow']
   const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']

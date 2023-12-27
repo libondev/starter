@@ -57,7 +57,7 @@ declare global {
   const useCountdown: typeof import('../src/composables/use-countdown')['useCountdown']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
-  const useLazyLoading: typeof import('../src/composables/use-lazy-loading')['useLazyLoading']
+  const useDelayLoading: typeof import('../src/composables/use-delay-loading')['useDelayLoading']
   const useLazyShow: typeof import('../src/composables/use-lazy-show')['useLazyShow']
   const useLink: typeof import('vue-router')['useLink']
   const useLru: typeof import('../src/composables/use-lru')['default']
