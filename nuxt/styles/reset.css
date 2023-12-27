@@ -7,6 +7,22 @@
   border-color: hsl(var(--border))
 }
 
+.scrollbar {
+  scrollbar-gutter: stable both-edges;
+}
+
+@supports (scrollbar-width: thin) {
+  .scrollbar {
+    scrollbar-width: thin;
+  }
+}
+
+@supports (scrollbar-color: #000) {
+  .scrollbar {
+    scrollbar-color: var(--sc);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -49,11 +65,9 @@ html {
   --c6: #f8b85c;
   --cp: #42b883;
 
-  --border: 214.3 31.8% 91.4%;
-
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
-  background-color: var(--bc);
+  background-color: var(--background);
   text-rendering: optimizeLegibility;
   /* 非标准属性, 目前仅在 macos 上生效 */
   -webkit-font-smoothing: antialiased;
@@ -68,11 +82,6 @@ html {
   color: var(--tc);
 }
 
-.dark {
-  --border: 217.2 32.6% 17.5%;
-}
-
-body,
 ul {
   margin: 0
 }
@@ -102,7 +111,7 @@ body, .scrollbar {
   }
 }
 
-body, h1, h2, h3, h4, p,
+h1, h2, h3, h4, p,
 figure, blockquote, dl, dd {
   margin: 0;
 }
@@ -236,10 +245,3 @@ hr {
     padding-bottom: env(safe-area-inset-bottom);
   }
 } */
-
-@media (max-width: 640px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem
-  }
-}

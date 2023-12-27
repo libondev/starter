@@ -82,7 +82,6 @@ html {
   color: var(--tc);
 }
 
-body,
 ul {
   margin: 0
 }
@@ -99,7 +98,20 @@ body,
   height: 100%;
 }
 
-body, h1, h2, h3, h4, p,
+/* Fallback for browsers that don't support scrollbar-gutter */
+body, .scrollbar {
+  overflow-y: scroll;
+}
+
+/* scrollbar-gutter FTW! */
+@supports (scrollbar-gutter: stable) {
+  body, .scrollbar {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+}
+
+h1, h2, h3, h4, p,
 figure, blockquote, dl, dd {
   margin: 0;
 }
