@@ -1,8 +1,7 @@
 import type { AxiosError } from 'axios'
-import ApiInstance, { USER_TOKEN_KEY, type APIResponse } from './index'
-import jsCookie from 'js-cookie'
+import ApiInstance, { type APIResponse } from './index'
 
-function refreshToken(refreshToken: string): Promise<{ data: { access: string } }> {
+function refreshToken(_refreshToken: string): Promise<{ data: { access: string } }> {
   return Promise.resolve({ data: { access: '' } })
 }
 
@@ -22,7 +21,6 @@ export default async (error: AxiosError<APIResponse>) => {
   const statusCode = error.response?.status
 
   const clearAuth = () => {
-    console.log('身份过期，请重新登录')
     window.location.replace('/login')
     // 清空数据
     sessionStorage.clear()
@@ -35,17 +33,15 @@ export default async (error: AxiosError<APIResponse>) => {
     // 判断本地是否有缓存有refreshToken
     const _refreshToken = sessionStorage.get('refresh') ?? null
 
-    if (!_refreshToken) {
+    if (!_refreshToken)
       clearAuth()
-    }
 
     // 提取请求的配置
     const { config } = error
 
     // 判断是否refresh失败且状态码401，再次进入错误拦截器
-    if (config!.url!.includes('refresh')) {
+    if (config!.url!.includes('refresh'))
       clearAuth()
-    }
 
     // 判断当前是否为刷新状态中（防止多个请求导致多次调refresh接口）
     if (isRefreshing) {
@@ -62,9 +58,9 @@ export default async (error: AxiosError<APIResponse>) => {
     // 设置当前状态为刷新中
     isRefreshing = true
     // 如果重发次数超过，直接退出登录
-    if (currentCount > MAX_ERROR_COUNT) {
+    if (currentCount > MAX_ERROR_COUNT)
       clearAuth()
-    }
+
     // 增加重试次数
     currentCount += 1
 
@@ -77,12 +73,11 @@ export default async (error: AxiosError<APIResponse>) => {
       // 重置重发次数
       currentCount = 0
       // 遍历队列，重新发起请求
-      queue.forEach((cb) => cb(access))
+      queue.forEach(cb => cb(access))
       // 返回请求数据
       return ApiInstance.request(error.config!)
     } catch {
       // 刷新token失败，直接退出登录
-      console.log('请重新登录')
       sessionStorage.clear()
       window.location.replace('/login')
       return Promise.reject(error)
