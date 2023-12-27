@@ -9,7 +9,7 @@ defineOptions({
 
 withDefaults(
   defineProps<{
-    modelValue?: string | number | Date | Partial<{ start: Date; end: Date }>
+    modelValue?: string | number | Date | Partial<{ start: Date, end: Date }>
     modelModifiers?: object
     columns?: number
     type?: 'single' | 'range'

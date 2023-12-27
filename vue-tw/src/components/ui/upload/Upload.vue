@@ -24,7 +24,7 @@ const emits = defineEmits(['selected', 'deleted'])
 
 const modelValue = defineModel<string | string[]>()
 
-const chooseFiles = ref<{ file?: File; base64: string }[]>([])
+const chooseFiles = ref<{ file?: File, base64: string }[]>([])
 
 const inputRef = shallowRef<HTMLInputElement>()
 
@@ -60,9 +60,8 @@ function onFileSelectChange(ev: Event) {
     return true
   })
 
-  if (!files.length) {
+  if (!files.length)
     return
-  }
 
   // 如果有指定替换某张图片则替换, 替换时只能选择单张, 所以直接取 0 位
   if (replaceIndex.value !== undefined) {
@@ -88,9 +87,8 @@ function onFileSelectChange(ev: Event) {
       chooseFiles.value.push({ file, base64: e.target?.result as string })
 
       // 如果是最后一张图片则触发 selected 事件
-      if (idx >= files.length - 1) {
+      if (idx >= files.length - 1)
         emits('selected', chooseFiles.value)
-      }
     }
   })
 }

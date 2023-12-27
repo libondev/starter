@@ -58,8 +58,6 @@ instance.interceptors.response.use((response) => {
   return Promise.reject(response.data)
 })
 
-
-
 export function useGet<Detail>(...args: Parameters<typeof instance['get']>) {
   return instance.get<unknown, APIResponse<Detail>>(...args)
 }

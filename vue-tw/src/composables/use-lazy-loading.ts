@@ -11,17 +11,17 @@ interface ReturnType {
   cancelLoading: () => void
 }
 
-export function useLazyLoading(valueOrOptions?: boolean): ReturnType;
-export function useLazyLoading(valueOrOptions?: Options): ReturnType;
+export function useLazyLoading(valueOrOptions?: boolean): ReturnType
+export function useLazyLoading(valueOrOptions?: Options): ReturnType
 export function useLazyLoading(valueOrOptions: boolean | Options = {}): ReturnType {
   let timeoutId: number
 
   const {
     delay = 300,
-    default: value = false
+    default: value = false,
   } = typeof valueOrOptions === 'boolean'
-      ? { default: valueOrOptions, delay: 300 }
-      : valueOrOptions
+    ? { default: valueOrOptions, delay: 300 }
+    : valueOrOptions
 
   const loading = shallowRef(value)
 

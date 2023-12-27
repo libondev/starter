@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { DropdownMenuItem, type DropdownMenuItemProps } from 'radix-vue'
 
-const props = defineProps<DropdownMenuItemProps & { inset?: boolean; class?: string }>()
+const props = defineProps<DropdownMenuItemProps & { inset?: boolean, class?: string }>()
 </script>
 
 <template>
