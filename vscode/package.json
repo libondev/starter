@@ -1,47 +1,78 @@
 {
   "name": "ext-name",
   "type": "module",
+  "version": "0.0.1",
   "displayName": "ext-name",
   "description": "",
+  "icon": "res/icon.png",
   "publisher": "banlify",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.72.0"
-  },
+  "main": "./out/extension.js",
+
   "categories": [
     "Other"
   ],
+
+  "homepage": "https://github.com/libondev/ext-name#readme",
+  "bugs": {
+    "url": "https://github.com/libondev/ext-name/issues"
+  },
+
+  "scripts": {
+    "test": "vitest",
+    "dev": "tsup src/extension.ts --watch --external vscode",
+    "build": "npm run typecheck && tsup src/extension.ts --external vscode",
+    "release": "bumpp --commit --push --tag",
+    "typecheck": "tsc --noEmit",
+    "vscode:prepublish": "npm run build",
+    "lint": "eslint src --ext ts",
+    "lint:fix": "eslint src --ext ts --fix"
+  },
+
+  "engines": {
+    "vscode": "^1.55.0"
+  },
+
   "activationEvents": [
     "onCommand:ext-name.helloWorld"
   ],
-  "main": "./out/extension.js",
+
   "contributes": {
     "commands": [
       {
         "command": "ext-name.helloWorld",
         "title": "Hello World"
       }
+    ],
+    "configuration": {
+      "properties": {
+        "ext-name.test": {
+          "default": true,
+          "description": "test configuration.",
+          "type": "boolean"
+        }
+      },
+      "title": "ext-name",
+      "type": "object"
+    },
+    "keybindings": [
+      {
+        "command": "ext-name.helloWorld",
+        "key": "ctrl+g",
+        "when": "editorTextFocus && !editorReadonly"
+      }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "pnpm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
-    "test": "node ./out/test/runTest.js",
-    "lint": "eslint src --ext ts",
-    "lint:fix": "eslint src --ext ts --fix"
-  },
+
   "devDependencies": {
-    "@antfu/eslint-config": "^1.0.0-beta.17",
-    "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.3",
-    "@types/node": "^16.18.59",
-    "@types/vscode": "^1.83.1",
-    "@vscode/test-electron": "^2.3.5",
-    "eslint": "^8.51.0",
-    "glob": "^10.3.10",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2"
+    "@antfu/eslint-config": "^1.2.1",
+    "@antfu/ni": "^0.21.12",
+    "@types/node": "^20.10.6",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.22.0",
+    "bumpp": "^9.2.1",
+    "eslint": "^8.56.0",
+    "tsup": "^7.3.0",
+    "typescript": "^5.3.3",
+    "vitest": "^0.34.3"
   }
 }
