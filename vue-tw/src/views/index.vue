@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main class="h-[200vh] w-[200vw] mx-auto">
+  <main class="h-[200vh] mx-auto">
     <h1 class="text-3xl font-bold underline">
       Hello world!
     </h1>
