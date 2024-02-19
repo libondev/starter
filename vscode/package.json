@@ -7,16 +7,13 @@
   "icon": "res/icon.png",
   "publisher": "banlify",
   "main": "./out/extension.js",
-
   "categories": [
     "Other"
   ],
-
   "homepage": "https://github.com/libondev/ext-name#readme",
   "bugs": {
     "url": "https://github.com/libondev/ext-name/issues"
   },
-
   "scripts": {
     "test": "vitest",
     "dev": "tsup src/extension.ts --watch --external vscode",
@@ -27,15 +24,12 @@
     "lint": "eslint src --ext ts",
     "lint:fix": "eslint src --ext ts --fix"
   },
-
   "engines": {
     "vscode": "^1.55.0"
   },
-
   "activationEvents": [
     "onCommand:ext-name.helloWorld"
   ],
-
   "contributes": {
     "commands": [
       {
@@ -62,17 +56,16 @@
       }
     ]
   },
-
   "devDependencies": {
     "@antfu/eslint-config": "^1.2.1",
     "@antfu/ni": "^0.21.12",
-    "@types/node": "^20.10.6",
-    "@types/vscode": "^1.85.0",
-    "@vscode/vsce": "^2.22.0",
-    "bumpp": "^9.2.1",
+    "@types/node": "^20.11.19",
+    "@types/vscode": "^1.86.0",
+    "@vscode/vsce": "^2.23.0",
+    "bumpp": "^9.3.0",
     "eslint": "^8.56.0",
     "tsup": "^7.3.0",
     "typescript": "^5.3.3",
-    "vitest": "^0.34.3"
+    "vitest": "^0.34.6"
   }
 }
