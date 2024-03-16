@@ -1,4 +1,9 @@
+<script lang="ts" setup>
+
+</script>
+
 <template>
-  <span>123</span>
-  <router-view />
+  <div class="h-full">
+    <router-view />
+  </div>
 </template>

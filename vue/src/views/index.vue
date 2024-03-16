@@ -1,16 +1,14 @@
-<script lang="ts" setup>
-defineOptions({
-  name: 'Counter'
-})
+<script setup lang="ts">
 </script>
 
 <template>
-  <div class="h-full flex-col-center">
-    <Computer />
+  <main class="h-[200vh] mx-auto">
+    <h1 class="text-3xl font-bold underline">
+      Hello world!
+    </h1>
 
-    <router-link to="/about" class="mt-4 text-14px">
-      <i class="i-carbon-arrow-right text-$cp" />
-      Jump to Detail
-    </router-link>
-  </div>
+    <Button>
+      123123
+    </Button>
+  </main>
 </template>

@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { useStorage } from '@vueuse/core'
+import { name } from '../../../package.json'
 
 // 如果用户没有设置过主题选项(包含第一次进入系统)，那么就使用系统的明暗主题设置
 const userSystemPreferMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-const siteDarkMode = useStorage('ai.fe.color-mode', userSystemPreferMode)
+const siteDarkMode = useStorage(`${name}.fe.color-mode`, userSystemPreferMode)
 
 const rootElement = document.documentElement.classList
 

@@ -1,26 +1,26 @@
-# pkg-name
+# vue-project
 
-图标库:
-https://lucide.dev/
+## router
+```
+src/pages/
+├── index.vue
+├── about.vue
+└── users/
+    ├── index.vue
+    └── [id].vue
+```
 
-用户界面设计指南
-https://interfaces.rauno.me/
+This will generate the following routes:
 
-颜色设计指南:
-https://www.opensourcecolorsystem.design
+`/`: -> renders the `index.vue` component\
+`/about`: -> renders the `about.vue` component\
+`/users`: -> renders the `users/index.vue` component\
+`/users/:id`: -> renders the `users/[id].vue` component. `id` becomes a route param.
 
-占位图片:
-https://placehold.co/
+## Icons
+https://github.com/egoist/tailwindcss-icons
+https://icon-sets.iconify.design/solar/
+https://icon-sets.iconify.design/carbon/
 
-虚拟接口:
-https://jsonplaceholder.typicode.com/
-
-虚拟键盘API virtual-keyboard-api:
-https://ishadeed.com/article/virtual-keyboard-api/
-
-* ESLint 扁平配置系统背景及历程
-* 1. https://eslint.org/blog/2022/08/new-config-system-part-1/
-* 2. https://eslint.org/blog/2022/08/new-config-system-part-2/
-* 3. https://eslint.org/blog/2022/08/new-config-system-part-3/
-* 新配置文件的使用
-* 4. https://eslint.org/docs/latest/use/configure/configuration-files-new
+## CSS
+https://tailwindcss.com/

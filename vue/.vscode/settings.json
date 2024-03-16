@@ -1,21 +1,52 @@
 {
-  "editor.formatOnSave": true,
+  // Enable the ESlint flat config support
+  "eslint.experimental.useFlatConfig": true,
+
+  // Disable the default formatter, use eslint instead
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+
+  // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    // "source.fixAll.stylelint": true,
-    // "source.organizeImports": true
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
-  "cSpell.words": [
-    "lightningcss",
-    "lucide",
-    "nodenext",
-    "nums",
-    "vite"
+
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "ui"
   ],
-  // 忽略未知属性的提示, 可能是新的特性, 但是编辑器不知道
-  "css.lint.unknownProperties": "ignore",
-  "less.lint.unknownProperties": "ignore",
-  "scss.lint.unknownProperties": "ignore",
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "typescript.preferences.autoImportFileExcludePatterns": ["vue-router"]
+
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    // { "rule": "style/*", "severity": "off" },
+    // { "rule": "*-indent", "severity": "off" },
+    // { "rule": "*-spacing", "severity": "off" },
+    // { "rule": "*-spaces", "severity": "off" },
+    // { "rule": "*-order", "severity": "off" },
+    // { "rule": "*-dangle", "severity": "off" },
+    // { "rule": "*-newline", "severity": "off" },
+    // { "rule": "*quotes", "severity": "off" },
+    // { "rule": "*semi", "severity": "off" }
+  ],
+
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml"
+  ],
+  "cSpell.words": [
+    "clsx",
+    "lightningcss"
+  ]
 }

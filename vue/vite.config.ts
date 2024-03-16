@@ -1,20 +1,14 @@
-import unocss from 'unocss/vite'
+import { URL, fileURLToPath } from 'node:url'
+
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import pages from 'vite-plugin-pages'
 import jsx from '@vitejs/plugin-vue-jsx'
-import { fileURLToPath, URL } from 'node:url'
 import layouts from 'vite-plugin-vue-layouts'
 import autoImport from 'unplugin-auto-import/vite'
 import components from 'unplugin-vue-components/vite'
 // z-lazy-show/v-show.lazy
 import { transformLazyShow } from 'v-lazy-show'
-
-// 代码体积分析
-// import { visualizer } from 'rollup-plugin-visualizer'
-
-// import tailwindcss from 'tailwindcss'
-// import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -28,30 +22,13 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           vueuse: ['@vueuse/core'],
-          'vue-vendor': ['vue', 'vue-router']
-        }
-      }
-    }
+        },
+      },
+    },
   },
 
   css: {
     devSourcemap: true,
-    transformer: 'lightningcss'
-    // https://main.vitejs.dev/config/shared-options.html#css-lightningcss
-    // https://github.com/parcel-bundler/lightningcss/blob/master/node/index.d.ts
-    // lightningcss: {},
-
-    // postcss: {
-    //   plugins: [tailwindcss, autoprefixer]
-    // },
-
-    // 预处理器选项, scss/less/stylus...
-    // preprocessorOptions: {
-    //   less: {
-    //     additionalData: '@import "./src/styles/variables.less";',
-    //     javascriptEnabled: true
-    //   }
-    // }
   },
 
   esbuild: {
@@ -61,13 +38,11 @@ export default defineConfig(({ mode }) => ({
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router'],
+    include: ['vue', 'pinia', 'vue-router', 'ts-pattern'],
     exclude: ['vue-demi'],
   },
 
   plugins: [
-    unocss(),
-    jsx(),
     vue({
       script: {
         defineModel: true,
@@ -82,7 +57,14 @@ export default defineConfig(({ mode }) => ({
       }
     }),
 
-    // visualizer(),
+    jsx(),
+
+    components({
+      dts: './shims/components.d.ts',
+      extensions: ['vue', 'tsx'],
+      // globs: ['src/components/**/index.{vue,tsx,ts}']
+    }),
+
     pages({
       dirs: 'src/views',
       routeBlockLang: 'yaml',
@@ -96,32 +78,28 @@ export default defineConfig(({ mode }) => ({
     }),
 
     layouts({
+      defaultLayout: 'default',
+      extensions: ['vue', 'tsx'],
       layoutsDirs: 'src/layouts',
-      defaultLayout: 'default'
     }),
 
-    components({
-      dts: './shims/components.d.ts'
-      // globs: ['src/components/**/index.{vue,tsx,ts}']
-    }),
     autoImport({
-      dts: './shims/autoImports.d.ts',
-      dirs: ['./src/composables/**/*'],
+      dirs: [
+        './src/composables/**',
+      ],
+      dts: './shims/auto-imports.d.ts',
       imports: [
         'vue',
-        'pinia',
         'vue-router',
-        '@vueuse/core',
-        // { 'vue-router/auto': ['useLink'] },
       ]
-    })
+    }),
   ],
 
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
 
   // server: {
   //   open: true,
