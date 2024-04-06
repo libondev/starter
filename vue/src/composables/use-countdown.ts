@@ -19,14 +19,14 @@ interface Options {
   /**
    * 当倒计时结束时
    */
-  onEnd?: () => void
+  onFinished?: () => void
 }
 
 export function useCountdown({
   times = 60,
   interval = 1,
   immediate = false,
-  onEnd = () => { },
+  onFinished = () => { },
 } = {} as Options) {
   let timeoutId: number
 
@@ -37,22 +37,27 @@ export function useCountdown({
   }
 
   function start(manual = true) {
-    if (manual && !remainder.value)
+    if (manual && !remainder.value) {
       remainder.value = times
+    }
 
     timeoutId = window.setTimeout(() => {
       remainder.value -= interval
 
-      remainder.value ? start(false) : onEnd()
+      remainder.value ? start(false) : onFinished()
     }, interval * 1000)
   }
 
   function reset() {
-    clearTimeout(timeoutId)
+    pause()
     remainder.value = times
   }
 
   immediate && start()
+
+  onBeforeUnmount(() => {
+    pause()
+  })
 
   return {
     pause,
