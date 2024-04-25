@@ -70,6 +70,9 @@ devDependencies:
   '@radix-ui/react-icons':
     specifier: ^1.3.0
     version: 1.3.0(react@18.2.0)
+  '@types/js-cookie':
+    specifier: ^3.0.6
+    version: 3.0.6
   '@types/node':
     specifier: ^20.11.26
     version: 20.11.26
@@ -2063,6 +2066,10 @@ packages:
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+    dev: true
+
+  /@types/js-cookie@3.0.6:
+    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
     dev: true
 
   /@types/json-schema@7.0.15:

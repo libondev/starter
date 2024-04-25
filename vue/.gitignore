@@ -15,6 +15,7 @@ coverage
 *.local
 **/components.d.ts
 **/auto-imports.d.ts
+tsconfig.tsbuildinfo
 
 /cypress/videos/
 /cypress/screenshots/
