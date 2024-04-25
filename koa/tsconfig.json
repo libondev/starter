@@ -11,6 +11,7 @@
     "alwaysStrict": true,
     "declarationMap": true,
     "downlevelIteration": true,
+    "skipLibCheck": true,
     "importHelpers": true,
     "inlineSources": false,
     "isolatedModules": true,

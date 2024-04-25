@@ -4,6 +4,7 @@
     "allowImportingTsExtensions": true,
     "allowJs": false,
     "baseUrl": "./",
+    "composite": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -14,7 +15,7 @@
       "DOM.Iterable"
     ],
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,

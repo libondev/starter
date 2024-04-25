@@ -2,6 +2,7 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "jsx": "preserve",
+    "skipLibCheck": true,
     "types": ["vite-plugin-pwa/info"]
   }
 }

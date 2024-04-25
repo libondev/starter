@@ -12,6 +12,7 @@
     "declarationMap": true,
     "downlevelIteration": true,
     "importHelpers": true,
+    "skipLibCheck": true,
     "inlineSources": false,
     "isolatedModules": true,
     "lib": ["ES2016", "DOM", "DOM.Iterable"],
