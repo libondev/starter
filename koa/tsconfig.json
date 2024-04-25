@@ -29,5 +29,6 @@
     "strictNullChecks": true,
     "noImplicitAny": true,
     "noEmitOnError": true
-  }
+  },
+  "exclude": ["**/node_modules", "**/.*/"],
 }

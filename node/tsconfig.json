@@ -1,33 +1,47 @@
 {
-  "include": ["src/**/*.ts", "vite.config.*", "env.d.ts"],
   "compilerUserOptions": {
-    "strict": true,
-    "noEmit": true,
-    "types": ["node"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "sourceMap": false,
-    "declaration": true,
     "alwaysStrict": true,
+    "declaration": true,
     "declarationMap": true,
     "downlevelIteration": true,
     "importHelpers": true,
-    "skipLibCheck": true,
     "inlineSources": false,
     "isolatedModules": true,
-    "lib": ["ES2016", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2016",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
     "moduleResolution": "node",
+    "noEmit": true,
     "noEmitHelpers": true,
+    // 不包含任何错误的时候才能进行打包
+    "noEmitOnError": true,
     "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "preserveWatchOutput": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,
     "strictBindCallApply": true,
     "strictNullChecks": true,
-    "noImplicitAny": true,
-    // 不包含任何错误的时候才能进行打包
-    "noEmitOnError": true
-  }
+    "target": "ESNext",
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/.*/"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "vite.config.*",
+    "env.d.ts"
+  ]
 }

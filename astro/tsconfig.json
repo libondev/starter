@@ -3,6 +3,7 @@
   "compilerOptions": {
     "jsx": "preserve",
     "skipLibCheck": true,
-    "types": ["vite-plugin-pwa/info"]
+    "types": ["vite-plugin-pwa/info"],
+    "exclude": ["**/node_modules", "**/.*/"],
   }
 }

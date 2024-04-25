@@ -44,6 +44,7 @@
     "scripts/**/*.ts",
     "playwright.config.*",
   ],
+  "exclude": ["**/node_modules", "**/.*/"],
   "references": [
     {
       "path": "./tsconfig.node.json"

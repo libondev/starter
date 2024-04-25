@@ -42,5 +42,6 @@
     "vite.config.*",
     "vitest.config.*",
     "playwright.config.*"
-  ]
+  ],
+  "exclude": ["**/node_modules", "**/.*/"],
 }
