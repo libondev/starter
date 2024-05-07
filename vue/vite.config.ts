@@ -51,10 +51,10 @@ export default defineConfig(({ mode }) => ({
       template: {
         compilerOptions: {
           nodeTransforms: [
-            transformLazyShow
-          ]
-        }
-      }
+            transformLazyShow,
+          ],
+        },
+      },
     }),
 
     jsx(),
@@ -91,7 +91,7 @@ export default defineConfig(({ mode }) => ({
       imports: [
         'vue',
         'vue-router',
-      ]
+      ],
     }),
   ],
 
