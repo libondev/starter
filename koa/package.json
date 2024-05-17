@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node dist/app.js",
-    "dev": "tsx watch app.ts",
-    "prd": "pm2 start dist/app.js",
+    "start": "node dist/main.js",
+    "dev": "tsx watch src/main.ts",
+    "prd": "pm2 start dist/main.js",
     "build": "tsup",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
@@ -20,18 +20,18 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.4.5",
-    "@types/koa": "^2.13.12",
+    "@antfu/eslint-config": "^2.18.0",
+    "@types/koa": "^2.15.0",
     "@types/koa-bodyparser": "^4.3.12",
     "@types/koa-logger": "^3.1.5",
     "@types/koa-router": "^7.4.8",
     "@types/koa2-cors": "^2.0.5",
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.12.12",
     "cross-env": "^7.0.3",
-    "eslint": "^8.55.0",
+    "eslint": "^8.57.0",
     "koa2-cors": "^2.0.6",
-    "tsup": "^8.0.1",
-    "tsx": "^4.6.2",
-    "typescript": "^5.3.3"
+    "tsup": "^8.0.2",
+    "tsx": "^4.10.3",
+    "typescript": "^5.4.5"
   }
 }

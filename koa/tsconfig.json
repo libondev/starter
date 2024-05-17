@@ -1,4 +1,5 @@
 {
+  "exclude": ["**/node_modules", "**/.*/"],
   "include": ["src/**/*.ts", "dts/**.d.ts"],
   "compilerUserOptions": {
     "strict": true,
@@ -30,5 +31,4 @@
     "noImplicitAny": true,
     "noEmitOnError": true
   },
-  "exclude": ["**/node_modules", "**/.*/"],
 }
