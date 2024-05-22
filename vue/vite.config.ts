@@ -16,12 +16,17 @@ export default defineConfig(({ mode }) => ({
 
   build: {
     cssMinify: 'lightningcss',
-    // 是否输出 gzip 压缩大小的报告，设置 false 可以提高构建速度
     reportCompressedSize: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vueuse: ['@vueuse/core'],
+        manualChunks(id) {
+          if (!id.includes('node_modules'))
+            return 'chunk'
+
+          if (id.includes('vue') || id.includes('pinia'))
+            return 'vue-vendors'
+
+          return 'vendors'
         },
       },
     },
@@ -38,7 +43,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router', 'ts-pattern'],
+    include: ['vue', 'pinia', 'vue-router'],
     exclude: ['vue-demi'],
   },
 

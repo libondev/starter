@@ -37,9 +37,8 @@ export function useCountdown({
   }
 
   function start(manual = true) {
-    if (manual && !remainder.value) {
+    if (manual && !remainder.value)
       remainder.value = times
-    }
 
     timeoutId = window.setTimeout(() => {
       remainder.value -= interval

@@ -1,9 +1,7 @@
-
 /**
  * 判断是否为绝对路径
  */
 export const isAbsoluteURL = (url: string) => /^[a-z][a-z0-9+.-]*:/.test(url)
-
 
 /**
  * 解析目标 url 的参数为对象

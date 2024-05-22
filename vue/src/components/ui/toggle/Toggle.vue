@@ -18,7 +18,6 @@ const props = withDefaults(
 const emits = defineEmits<ToggleEmits>()
 
 const toggleProps = computed(() => {
-  // eslint-disable-next-line unused-imports/no-unused-vars
   const { variant, size, ...otherProps } = props
   return otherProps
 })

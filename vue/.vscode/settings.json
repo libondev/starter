@@ -46,7 +46,12 @@
     "yaml"
   ],
   "cSpell.words": [
+    "antfu",
     "clsx",
-    "lightningcss"
+    "composables",
+    "demi",
+    "lightningcss",
+    "pinia",
+    "unplugin"
   ]
 }
