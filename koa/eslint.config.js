@@ -7,6 +7,7 @@ export default antfu(
     rules: {
       'curly': ['error', 'all'], // 'multi' , 'consistent'
       'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+      'style/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
     },
   },
   //  {

@@ -10,5 +10,6 @@ export default antfu({
     'react-refresh/only-export-components': 'off',
     // TODO
     'react/prop-types': 'off',
+    'style/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
   },
 })
