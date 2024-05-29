@@ -1,0 +1,43 @@
+{
+  "cSpell.words": [
+    "antfu",
+    "climblee",
+    "commitlint",
+    "dcloudio",
+    "iconfont",
+    "miniprogram",
+    "qrcode",
+    "refresherrefresh",
+    "scrolltolower",
+    "tabbar",
+    "uniapp",
+    "uvui",
+    "Vite",
+    "wechat"
+  ],
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+  "eslint.experimental.useFlatConfig": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.fixAll.eslint": "explicit"
+  },
+  // 配置语言的文件关联
+  "files.associations": {
+    "pages.json": "jsonc", // pages.json 可以写注释
+    "manifest.json": "jsonc" // manifest.json 可以写注释
+  },
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml"
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "never"
+}
