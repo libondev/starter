@@ -11,5 +11,6 @@ export default antfu({
     // TODO
     'react/prop-types': 'off',
     'style/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' }],
   },
 })
