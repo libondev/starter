@@ -6,6 +6,7 @@ export default antfu({
   react: true,
   yaml: false,
   rules: {
+    'curly': ['error', 'multi', 'consistent'],
     'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'react-refresh/only-export-components': 'off',
     // TODO
