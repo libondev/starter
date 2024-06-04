@@ -30,6 +30,9 @@ export async function onResponseResolve(result) {
 
     return getTokenByRefreshToken()
       .then(({ code, data }) => {
+        // 因为 finally 会在 then 之后执行，这会导致还没执行 finally 队列就被清空了
+        // 所以状态不能放到 finally 中, 而是放在这里手动设置状态
+        isRefreshing = false
         // 如果状态不正确则不继续处理
         if (code !== '200') {
           reAuthentication()
@@ -55,7 +58,10 @@ export async function onResponseResolve(result) {
         // 重新请求当前请求
         return requestService(config)
       })
-      .catch(reAuthentication)
+      .catch(() => {
+        isRefreshing = false
+        reAuthentication()
+      })
   }
 
   // http请求失败的请求单独处理
