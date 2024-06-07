@@ -13,8 +13,8 @@ dist
 dist-ssr
 coverage
 *.local
-**/components.d.ts
-**/auto-imports.d.ts
+components.d.ts
+auto-imports.d.ts
 tsconfig.tsbuildinfo
 
 /cypress/videos/
