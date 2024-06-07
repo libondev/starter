@@ -4,6 +4,6 @@
 
 <template>
   <div class="h-full">
-    <router-view />
+    <RouterView />
   </div>
 </template>

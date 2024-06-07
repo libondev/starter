@@ -2,6 +2,7 @@ import axios from 'axios'
 import jsCookie from 'js-cookie'
 import { downloadBlobFile } from '../parsers/file'
 import { USER_TOKEN_KEY, getRedirectLoginPage } from './utils'
+import refreshAccessToken from './refresh'
 
 export interface APIResponse<Data = any> {
   code: number
@@ -66,7 +67,7 @@ instance.interceptors.response.use(({ data, headers }) => {
 
     return reject(data)
   })
-})
+}, refreshAccessToken)
 
 export function useGet<Detail>(...args: Parameters<typeof instance['get']>) {
   return instance.get<unknown, APIResponse<Detail>>(...args)

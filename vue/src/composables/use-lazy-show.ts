@@ -1,3 +1,6 @@
+import type { Ref } from 'vue'
+import { shallowRef } from 'vue'
+
 interface Options {
   /**
    * 默认值, 初始情况下是否渲染
