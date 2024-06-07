@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import { toast } from 'vue-sonner'
+
+function onClick() {
+  toast('Event has been created', {
+    description: 'Sunday, December 03, 2023 at 9:00 AM',
+    action: {
+      label: 'Undo',
+      onClick: () => {},
+    },
+  })
+}
 </script>
 
 <template>
@@ -7,7 +18,7 @@
       Hello world!
     </h1>
 
-    <Button>
+    <Button variant="outline" @click="onClick">
       123123
     </Button>
   </main>

@@ -9,7 +9,7 @@ withDefaults(
     disabled?: boolean | number | string
   }>(),
   {
-    variant: 'default',
+    variant: 'outline',
     size: 'default',
     loading: false,
   },

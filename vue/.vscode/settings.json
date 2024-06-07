@@ -52,6 +52,7 @@
     "demi",
     "lightningcss",
     "pinia",
+    "sonner",
     "unplugin"
   ]
 }
