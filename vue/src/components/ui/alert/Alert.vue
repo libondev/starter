@@ -1,26 +1,16 @@
 <script setup lang="ts">
-interface Props {
-  variant?: keyof typeof VARIANTS
-}
+import type { HTMLAttributes } from 'vue'
+import { type AlertVariants, alertVariants } from '.'
+import { cn } from '@/utils/cls.ts'
 
-withDefaults(
-  defineProps<Props>(),
-  {
-    variant: 'default',
-  },
-)
-
-const VARIANTS = {
-  default: 'bg-background text-foreground',
-  destructive: 'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',
-}
+const props = defineProps<{
+  class?: HTMLAttributes['class']
+  variant?: AlertVariants['variant']
+}>()
 </script>
 
 <template>
-  <div
-    class="relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground"
-    :class="VARIANTS[variant]"
-  >
+  <div :class="cn(alertVariants({ variant }), props.class)" role="alert">
     <slot />
   </div>
 </template>

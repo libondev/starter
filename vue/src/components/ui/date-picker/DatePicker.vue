@@ -1,14 +1,22 @@
 <script setup lang="ts">
-import { format } from 'date-fns'
-
 import { ref } from 'vue'
-import Button from '../button/Button.vue'
-import Calendar from '../calendar/Calendar.vue'
-import Popover from '../popover/Popover.vue'
-import PopoverContent from '../popover/PopoverContent.vue'
-import PopoverTrigger from '../popover/PopoverTrigger.vue'
+import {
+  DateFormatter,
+  type DateValue,
+  getLocalTimeZone,
+} from '@internationalized/date'
 
-const date = ref<Date>()
+import { CalendarIcon } from '@radix-icons/vue'
+import { Calendar } from '@/components/ui/calendar'
+import { Button } from '@/components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { cn } from '@/utils/cls.ts'
+
+const df = new DateFormatter('en-US', {
+  dateStyle: 'long',
+})
+
+const value = ref<DateValue>()
 </script>
 
 <template>
@@ -16,15 +24,17 @@ const date = ref<Date>()
     <PopoverTrigger as-child>
       <Button
         variant="outline"
-        class="w-full pl-3 !justify-start text-left font-normal"
-        :class="[!date && 'text-muted-foreground']"
+        :class="cn(
+          'w-[280px] justify-start text-left font-normal',
+          !value && 'text-muted-foreground',
+        )"
       >
-        <!-- <i class="i-solar-calendar-minimalistic-outline mr-2 h-4 w-4" /> -->
-        {{ date ? format(date, "yyyy-MM-dd") : "Pick a date" }}
+        <CalendarIcon class="mr-2 h-4 w-4" />
+        {{ value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a date" }}
       </Button>
     </PopoverTrigger>
     <PopoverContent class="w-auto p-0">
-      <Calendar v-model="date" />
+      <Calendar v-model="value" initial-focus />
     </PopoverContent>
   </Popover>
 </template>

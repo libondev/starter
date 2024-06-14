@@ -1,18 +1,31 @@
 <script setup lang="ts">
-import { SelectIcon, SelectTrigger, type SelectTriggerProps } from 'radix-vue'
+import { type HTMLAttributes, computed } from 'vue'
+import { SelectIcon, SelectTrigger, type SelectTriggerProps, useForwardProps } from 'radix-vue'
+import { CaretSortIcon } from '@radix-icons/vue'
+import { cn } from '@/utils/cls.ts'
 
-const props = defineProps<SelectTriggerProps & { invalid?: boolean }>()
+const props = defineProps<SelectTriggerProps & { class?: HTMLAttributes['class'] }>()
+
+const delegatedProps = computed(() => {
+  const { class: _, ...delegated } = props
+
+  return delegated
+})
+
+const forwardedProps = useForwardProps(delegatedProps)
 </script>
 
 <template>
   <SelectTrigger
-    v-bind="props"
-    class="flex h-8 w-full items-center justify-between truncate rounded-md border border-input focus:border-primary bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-    :class="props.invalid && '!ring-destructive ring-2 placeholder:!text-destructive'"
+    v-bind="forwardedProps"
+    :class="cn(
+      'flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
+      props.class,
+    )"
   >
     <slot />
     <SelectIcon as-child>
-      <i class="i-solar-alt-arrow-down-linear opacity-50 ml-1.5" />
+      <CaretSortIcon class="w-4 h-4 opacity-50" />
     </SelectIcon>
   </SelectTrigger>
 </template>

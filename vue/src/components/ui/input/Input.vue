@@ -1,41 +1,24 @@
 <script setup lang="ts">
-defineOptions({
-  inheritAttrs: false,
-})
+import type { HTMLAttributes } from 'vue'
+import { useVModel } from '@vueuse/core'
+import { cn } from '@/utils/cls.ts'
 
 const props = defineProps<{
-  loading?: boolean
-  disabled?: boolean
-  class?: string
-  modelValue?: string
-  inputClass?: string
-  defaultValue?: string
+  defaultValue?: string | number
+  modelValue?: string | number
+  class?: HTMLAttributes['class']
 }>()
 
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits<{
+  (e: 'update:modelValue', payload: string | number): void
+}>()
 
-const modelValue = computed({
-  get() {
-    return props.modelValue || props.defaultValue
-  },
-  set(value) {
-    emits('update:modelValue', value)
-  },
+const modelValue = useVModel(props, 'modelValue', emits, {
+  passive: true,
+  defaultValue: props.defaultValue,
 })
 </script>
 
 <template>
-  <div class="relative w-full" :class="props.class">
-    <input
-      v-model="modelValue"
-      type="text"
-      class="inline-flex h-8 w-full rounded-md border border-input disabled:bg-secondary focus:border-primary bg-transparent pl-3 py-1 text-sm leading-none shadow-sm truncate file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-      :class="[props.inputClass, loading ? 'pr-8' : 'pr-3']"
-      :disabled="loading || disabled"
-      v-bind="$attrs"
-    >
-    <span v-if="loading" class="absolute h-full right-2 top-0 inline-flex items-center">
-      <i class="i-solar-refresh-broken animate-spin pointer-events-none text-primary" />
-    </span>
-  </div>
+  <input v-model="modelValue" :class="cn('flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50', props.class)">
 </template>

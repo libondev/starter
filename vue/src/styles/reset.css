@@ -1,11 +1,10 @@
 /* https://andy-bell.co.uk/a-more-modern-css-reset/ */
 
-/* *,
+*,
 *::before,
 *::after {
   box-sizing: border-box;
-  border-color: hsl(var(--border))
-} */
+}
 
 ::-webkit-scrollbar {
   width: 6px;
