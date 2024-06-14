@@ -5,8 +5,8 @@
   "tsConfigPath": "./tsconfig.json",
   "tailwind": {
     "config": "tailwind.config.js",
-    "css": "src/styles/global.css",
-    "baseColor": "slate",
+    "css": "src/styles/tailwind.css",
+    "baseColor": "zinc",
     "cssVariables": true
   },
   "framework": "vite",

@@ -1,11 +1,11 @@
 /* https://andy-bell.co.uk/a-more-modern-css-reset/ */
 
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
   border-color: hsl(var(--border))
-}
+} */
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -31,6 +31,11 @@
   user-select: none;
 }
 
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
 /*
 --spacing-30: clamp(1.5rem, 5vw, 2rem);
 --spacing-40: clamp(1.8rem, 1.8rem + ((1vw - 0.48rem) * 2.885), 3rem);
@@ -51,7 +56,6 @@ html {
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
-  background-color: var(--background);
   text-rendering: optimizeLegibility;
   /* 非标准属性, 目前仅在 macos 上生效 */
   -webkit-font-smoothing: antialiased;
@@ -60,20 +64,8 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-
-  line-height: 1.5;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  color: var(--tc);
-}
-
-ul {
-  margin: 0
-}
-
-
-ul {
-  padding-left: 0;
-  list-style: none;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
 }
 
 html,
@@ -88,52 +80,27 @@ body, .scrollbar {
 }
 
 /* scrollbar-gutter FTW! */
-/* @supports (scrollbar-gutter: stable) {
+@supports (scrollbar-gutter: stable) {
   body, .scrollbar {
     overflow-y: auto;
     scrollbar-gutter: stable;
   }
-} */
-
-h1, h2, h3, h4, p,
-figure, blockquote, dl, dd {
-  margin: 0;
 }
-
-ul[role='list'],
-ol[role='list'] {
-  padding-left: 0;
-  list-style: none;
-}
-
-/* input, button {
-  appearance: none;
-} */
 
 p, h1, h2, h3, h4 {
   overflow-wrap: break-word;
 }
 
 h1, h2, h3, h4 {
-  line-height: 1.1;
   width: fit-content;
-  text-wrap: balance
-}
-
-
-a {
-  text-decoration: none;
-  color: inherit
+  /* 换行时保证多行能对齐 */
+  text-wrap: balance;
 }
 
 img {
-  /* display: block; */
-  max-width: 100%;
-  height: auto;
-  font-style: italic;
+  /* font-style: italic; */
   object-fit: cover;
   background-size: cover;
-  vertical-align: middle;
   background-repeat: no-repeat;
   shape-margin: 0.75rem;
 }
@@ -149,18 +116,6 @@ img {
 textarea:not([rows]) {
   min-height: 10em;
 }
-
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
-}
-
-/* a:not(.no-underline, .underline):hover {
-  text-decoration: underline dashed;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 1.5px;
-  color: hsl(var(--primary))
-} */
 
 /* 外部链接并且不是以 # 开头的链接加上图标 */
 /* .external-link::after, */
@@ -219,16 +174,9 @@ hr {
   }
 }
 
-@supports (-webkit-tap-highlight-color: transparent) {
-  a,
-  button,
-  [role="button"] {
-    -webkit-tap-highlight-color: transparent;
-  }
-}
-
 @supports (text-wrap: pretty) {
   p {
+    /* 保证最后一行不会只有一个单词或字 */
     text-wrap: pretty;
   }
 }

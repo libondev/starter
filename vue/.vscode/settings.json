@@ -12,6 +12,10 @@
     "source.organizeImports": "never"
   },
 
+  "css.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+
   "tailwindCSS.classAttributes": [
     "class",
     "className",

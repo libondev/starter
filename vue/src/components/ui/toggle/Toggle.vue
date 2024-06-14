@@ -1,33 +1,34 @@
 <script setup lang="ts">
-import type { ToggleEmits, ToggleProps } from 'radix-vue'
-import { Toggle, useEmitAsProps } from 'radix-vue'
-import { computed } from 'vue'
-import { SIZES, VARIANTS } from './index'
+import { type HTMLAttributes, computed } from 'vue'
+import { Toggle, type ToggleEmits, type ToggleProps, useForwardPropsEmits } from 'radix-vue'
+import { type ToggleVariants, toggleVariants } from '.'
+import { cn } from '@/utils/cls.ts'
 
-interface Props extends ToggleProps {
-  variant?: keyof typeof VARIANTS
-  size?: keyof typeof SIZES
-}
-const props = withDefaults(
-  defineProps<Props>(),
-  {
-    variant: 'default',
-    size: 'default',
-  },
-)
+const props = withDefaults(defineProps<ToggleProps & {
+  class?: HTMLAttributes['class']
+  variant?: ToggleVariants['variant']
+  size?: ToggleVariants['size']
+}>(), {
+  variant: 'default',
+  size: 'default',
+  disabled: false,
+})
+
 const emits = defineEmits<ToggleEmits>()
 
-const toggleProps = computed(() => {
-  const { variant, size, ...otherProps } = props
-  return otherProps
+const delegatedProps = computed(() => {
+  const { class: _, size, variant, ...delegated } = props
+
+  return delegated
 })
+
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>
 
 <template>
   <Toggle
-    v-bind="{ ...toggleProps, ...useEmitAsProps(emits) }"
-    class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground"
-    :class="[VARIANTS[variant], SIZES[size]]"
+    v-bind="forwarded"
+    :class="cn(toggleVariants({ variant, size }), props.class)"
   >
     <slot />
   </Toggle>

@@ -1,16 +1,20 @@
 <script setup lang="ts">
+import { type HTMLAttributes, computed } from 'vue'
 import { AlertDialogCancel, type AlertDialogCancelProps } from 'radix-vue'
-import { VARIANTS } from '../button/index'
+import { cn } from '@/utils/cls.ts'
+import { buttonVariants } from '@/components/ui/button'
 
-const props = defineProps<AlertDialogCancelProps>()
+const props = defineProps<AlertDialogCancelProps & { class?: HTMLAttributes['class'] }>()
+
+const delegatedProps = computed(() => {
+  const { class: _, ...delegated } = props
+
+  return delegated
+})
 </script>
 
 <template>
-  <AlertDialogCancel
-    v-bind="props"
-    class="inline-flex items-center justify-center rounded-md text-[0.875rem] font-medium select-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 mt-2 sm:mt-0"
-    :class="VARIANTS.outline"
-  >
+  <AlertDialogCancel v-bind="delegatedProps" :class="cn(buttonVariants({ variant: 'outline' }), 'mt-2 sm:mt-0', props.class)">
     <slot />
   </AlertDialogCancel>
 </template>

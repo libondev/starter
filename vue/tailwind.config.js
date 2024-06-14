@@ -5,7 +5,7 @@ import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 export default {
   darkMode: ['class'],
   safelist: ['dark'],
-  prefix: '',
+  // prefix: '',
 
   content: [
     './pages/**/*.{ts,tsx,vue}',
