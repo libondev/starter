@@ -67,12 +67,6 @@ html {
   color: hsl(var(--foreground));
 }
 
-html,
-body,
-#app {
-  height: 100%;
-}
-
 /* Fallback for browsers that don't support scrollbar-gutter */
 body, .scrollbar {
   overflow-y: auto;
