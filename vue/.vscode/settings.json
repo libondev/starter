@@ -1,6 +1,6 @@
 {
   // Enable the ESlint flat config support
-  "eslint.experimental.useFlatConfig": true,
+  "eslint.useFlatConfig": true,
 
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
@@ -12,9 +12,7 @@
     "source.organizeImports": "never"
   },
 
-  "css.lint.unknownAtRules": "ignore",
-  "less.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore",
+  "css.customData": [".vscode/tailwind.json"],
 
   "tailwindCSS.classAttributes": [
     "class",
@@ -22,18 +20,17 @@
     "ngClass",
     "ui"
   ],
-
-  // Silent the stylistic rules in you IDE, but still auto fix them
-  "eslint.rules.customizations": [
-    // { "rule": "style/*", "severity": "off" },
-    // { "rule": "*-indent", "severity": "off" },
-    // { "rule": "*-spacing", "severity": "off" },
-    // { "rule": "*-spaces", "severity": "off" },
-    // { "rule": "*-order", "severity": "off" },
-    // { "rule": "*-dangle", "severity": "off" },
-    // { "rule": "*-newline", "severity": "off" },
-    // { "rule": "*quotes", "severity": "off" },
-    // { "rule": "*semi", "severity": "off" }
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["classnames\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["classNames\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    "(?:enter|leave)(?:From|To)?=\\s*(?:\"|')([^(?:\"|')]*)",
+    "(?:enter|leave)(?:From|To)?=\\s*(?:\"|'|{`)([^(?:\"|'|`})]*)",
+    ":\\s*?[\"'`]([^\"'`]*).*?,",
+    ["(?:twMerge|twJoin)\\(([^;]*)[\\);]", "[`'\"`]([^'\"`;]*)[`'\"`]"],
+    "tailwind\\('([^)]*)\\')", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)",
+    "(?:const|let|var)\\s+[\\w$_][_\\w\\d]*\\s*=\\s*['\\\"](.*?)['\\\"]"
   ],
 
   // Enable eslint for all supported languages
