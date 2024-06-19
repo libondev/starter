@@ -1,9 +1,27 @@
+import type { VNode } from 'vue'
+
 export { default as Table } from './Table.vue'
-export { default as TableBody } from './TableBody.vue'
-export { default as TableCell } from './TableCell.vue'
-export { default as TableHead } from './TableHead.vue'
-export { default as TableHeader } from './TableHeader.vue'
-export { default as TableFooter } from './TableFooter.vue'
-export { default as TableRow } from './TableRow.vue'
-export { default as TableCaption } from './TableCaption.vue'
-export { default as TableEmpty } from './TableEmpty.vue'
+export { default as TableCell } from './components/TableCell.vue'
+export { default as TableHead } from './components/TableHead.vue'
+export { default as TableFooter } from './components/TableFooter.vue'
+export { default as TableRow } from './components/TableRow.vue'
+export { default as TableCaption } from './components/TableCaption.vue'
+export { default as TableEmpty } from './components/TableEmpty.vue'
+
+export interface ITableColumnRenderParams {
+  row: any
+  col: ITableColumn
+  idx: number
+}
+
+export interface ITableColumn {
+  title: string
+  field: string
+
+  width?: string | number
+  headClass?: string
+  cellClass?: string
+
+  renderHead?: (column: ITableColumn) => VNode
+  renderCell?: (params: ITableColumnRenderParams) => VNode
+}

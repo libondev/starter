@@ -29,8 +29,8 @@ const delegatedProps = computed(() => {
       "
       v-bind="delegatedProps"
     >
-      <div class="flex items-center justify-center py-10">
-        <slot />
+      <div class="flex items-center justify-center py-10 text-gray-500">
+        Empty data
       </div>
     </TableCell>
   </TableRow>
