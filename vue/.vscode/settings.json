@@ -51,9 +51,13 @@
     "clsx",
     "composables",
     "demi",
+    "iconify",
     "lightningcss",
     "pinia",
     "sonner",
-    "unplugin"
+    "tailwindcss",
+    "tanstack",
+    "unplugin",
+    "vaul"
   ]
 }
