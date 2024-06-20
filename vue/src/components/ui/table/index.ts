@@ -25,3 +25,9 @@ export interface ITableColumn {
   renderHead?: (column: ITableColumn) => VNode
   renderCell?: (params: ITableColumnRenderParams) => VNode
 }
+
+export interface ConditionItem {
+  property: string
+  condition: string
+  value: string
+}
