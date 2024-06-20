@@ -3,7 +3,7 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
 
 // import { useUserAuth } from './plugins/user-auth'
-import { useViewTransition } from './plugins/view-transition'
+import { useViewTransition } from './guards/use-view-transition'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),

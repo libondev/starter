@@ -1,4 +1,4 @@
-export default function (capacity: number = 10) {
+export function useLRUCache(capacity: number = 10) {
   return new LRUCache(capacity)
 }
 
