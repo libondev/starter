@@ -10,7 +10,7 @@ interface ThemeProviderProps {
 
 interface ThemeProviderState {
   theme: Theme
-  setTheme: (theme: Theme) => void
+  setTheme: () => void
 }
 
 const initialState: ThemeProviderState = {
@@ -23,7 +23,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 export function ThemeProvider({
   children,
   defaultTheme = 'system',
-  storageKey = 'site-theme',
+  storageKey = 'vite-ui-theme',
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(

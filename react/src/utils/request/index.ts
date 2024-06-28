@@ -1,7 +1,7 @@
 import axios from 'axios'
 import jsCookie from 'js-cookie'
-import { USER_TOKEN_KEY, getRedirectLoginPage } from './utils'
 import { downloadBlobFile } from '../parsers/file'
+import { USER_TOKEN_KEY, getRedirectLoginPage } from './utils'
 
 export interface APIResponse<Data = any> {
   code: number
@@ -27,9 +27,8 @@ instance.interceptors.request.use((config) => {
   config.headers.Authorization = `Bearer ${jsCookie.get(USER_TOKEN_KEY)}`
 
   // 如果是FormData 自动覆写请求头类型
-  if (config.data instanceof FormData) {
+  if (config.data instanceof FormData)
     config.headers['Content-Type'] = 'multipart/form-data'
-  }
 
   // 如果正在刷新 token 则将后续的请求全部放入暂存区
   if (refreshing) {
@@ -56,9 +55,8 @@ instance.interceptors.response.use(({ data, headers }) => {
       return resolve({ code: 200, msg: 'Success' })
     }
 
-    if (data?.code === 200) {
+    if (data?.code === 200)
       return resolve(data)
-    }
 
     // token 过期跳转到登录页
     if (data?.code === 1026) {

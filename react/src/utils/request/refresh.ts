@@ -12,7 +12,7 @@ const MAX_ERROR_COUNT = 5
 let currentCount = 0
 
 // 缓存请求队列
-const queue: ((t: string) => any)[] = []
+const queue: ((_t: string) => any)[] = []
 
 // 当前是否刷新状态
 let isRefreshing = false

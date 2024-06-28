@@ -26,7 +26,7 @@ const actionTypes = {
 let count = 0
 
 function genId() {
-  count = (count + 1) % Number.MAX_VALUE
+  count = (count + 1) % Number.MAX_SAFE_INTEGER
   return count.toString()
 }
 
@@ -119,6 +119,7 @@ export function reducer(state: State, action: Action): State {
           toasts: [],
         }
       }
+
       return {
         ...state,
         toasts: state.toasts.filter(t => t.id !== action.toastId),
@@ -126,7 +127,7 @@ export function reducer(state: State, action: Action): State {
   }
 }
 
-const listeners: Array<(state: State) => void> = []
+const listeners: Array<(_state: State) => void> = []
 
 let memoryState: State = { toasts: [] }
 

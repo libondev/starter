@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
 
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider } from '@/components/layout/theme-provider'
 import routes from '~react-pages'
 
 export default function App() {

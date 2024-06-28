@@ -62,24 +62,25 @@ export function ComboboxDemo() {
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
+          <CommandInput placeholder="Search framework..." />
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
             {frameworks.map(framework => (
               <CommandItem
                 key={framework.value}
-                onSelect={(currentValue: string) => {
+                value={framework.value}
+                onSelect={(currentValue) => {
                   setValue(currentValue === value ? '' : currentValue)
                   setOpen(false)
                 }}
               >
-                {framework.label}
                 <CheckIcon
                   className={cn(
-                    'ml-auto h-4 w-4',
+                    'mr-2 h-4 w-4',
                     value === framework.value ? 'opacity-100' : 'opacity-0',
                   )}
                 />
+                {framework.label}
               </CommandItem>
             ))}
           </CommandGroup>

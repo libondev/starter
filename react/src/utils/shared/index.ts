@@ -26,7 +26,6 @@ export function getUUID() {
   })
 }
 
-
 /**
  * 获取当前选中的文本
  * @example
