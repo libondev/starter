@@ -1,0 +1,7 @@
+# Custom Dictionary Words
+immer
+clsx
+lightningcss
+antfu
+iconify
+cmdk

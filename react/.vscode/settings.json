@@ -50,8 +50,12 @@
     "jsonc",
     "yaml"
   ],
-  "cSpell.words": [
-    "clsx",
-    "lightningcss"
-  ],
+  "cSpell.customDictionaries": {
+    "custom-dictionary-workspace": {
+      "name": "custom-dictionary-workspace",
+      "path": "${workspaceFolder:react}/.cspell/custom-dictionary-workspace.txt",
+      "addWords": true,
+      "scope": "workspace"
+    }
+  },
 }
