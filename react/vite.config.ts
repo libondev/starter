@@ -1,8 +1,12 @@
 import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import react from '@vitejs/plugin-react'
 import autoImport from 'unplugin-auto-import/vite'
 import pages from 'vite-plugin-pages'
+
+const reactCompilerConfig = {
+  runtimeModule: "/scripts/compiler-polyfill.js",
+};
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -37,7 +41,11 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", reactCompilerConfig]],
+      }
+    }),
 
     pages({
       dirs: ['src/pages'],
