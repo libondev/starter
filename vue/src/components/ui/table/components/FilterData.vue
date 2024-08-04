@@ -111,7 +111,7 @@ function onRemoveCondition(conditionIndex: number) {
       </Button>
     </PopoverTrigger>
 
-    <PopoverContent align="end" class="p-2 min-w-[430px]">
+    <PopoverContent align="end" class="p-2 min-w-[415px]">
       <div class="flex items-center justify-between text-sm">
         <span>Filter Data</span>
 
@@ -134,7 +134,7 @@ function onRemoveCondition(conditionIndex: number) {
         </Select>
 
         <Select v-model="condition.condition">
-          <SelectTrigger class="w-20 min-w-20">
+          <SelectTrigger class="w-16 min-w-16">
             <SelectValue class="truncate" />
           </SelectTrigger>
 

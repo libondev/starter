@@ -11,7 +11,8 @@ const props = withDefaults(
     class?: HTMLAttributes['class']
     index?: boolean
     data: D[]
-    dataKey: string
+    dataKey?: string
+    filterable?: boolean
     columns: ITableColumn[]
     height?: string | number
     maxHeight?: string | number
@@ -19,6 +20,7 @@ const props = withDefaults(
   {
     index: true,
     dataKey: 'id',
+    filterable: true,
     data: () => [],
     columns: () => [],
   },
@@ -62,8 +64,8 @@ function _getCSSUnitValue(value?: string | number) {
 }
 
 // get unique key for each row
-function _getRowKey(row: any) {
-  return row[props.dataKey]
+function _getRowKey(row: any, idx: number) {
+  return props.dataKey ? row[props.dataKey] : idx
 }
 
 const _getCellValue = ({ row, col }: ITableColumnRenderParams) => row[col.field]
@@ -75,46 +77,49 @@ function onFilterData(conditions: ConditionGetter[]) {
 </script>
 
 <template>
-  <div>
-    <div class="mb-2 flex justify-end">
-      <FilterData :columns="columns" @filter="onFilterData" />
-    </div>
+  <div class="mb-2 px-[9px] flex justify-between gap-1.5 empty:hidden">
+    <slot name="header" />
+    <FilterData v-if="filterable" :columns="columns" @filter="onFilterData" />
+  </div>
 
-    <div
-      class="relative w-full overflow-auto border rounded-md h-[var(--h)] max-h-[var(--h)]"
-      :style="{ '--h': _getCSSUnitValue(height), '--mh': _getCSSUnitValue(maxHeight) }"
-    >
-      <table :class="cn('w-full caption-bottom text-sm', props.class)">
-        <thead class="[&_tr]:border-b sticky top-0 bg-background">
-          <TableRow>
-            <TableHead v-for="th of formatColumns" :key="th.field" :class="th.headClass" :width="th.width">
-              <template v-if="th.renderHead">
-                <Component :is="th.renderHead(th)" />
+  <div
+    class="relative w-full overflow-auto border rounded-md h-[var(--h)] max-h-[var(--h)]"
+    :style="{ '--h': _getCSSUnitValue(height), '--mh': _getCSSUnitValue(maxHeight) }"
+  >
+    <table :class="cn('w-full caption-bottom text-sm', props.class)">
+      <thead class="[&_tr]:border-b [&_tr]:border-border sticky top-0 bg-background">
+        <TableRow>
+          <TableHead v-for="th of formatColumns" :key="th.field" :class="th.headClass" :width="th.width">
+            <template v-if="th.renderHead">
+              <Component :is="th.renderHead(th)" />
+            </template>
+            <template v-else>
+              {{ th.title }}
+            </template>
+          </TableHead>
+        </TableRow>
+      </thead>
+
+      <tbody class="[&_tr:last-child]:border-0">
+        <template v-if="filterData.length">
+          <TableRow v-for="row, idx of filterData" :key="_getRowKey(row, idx)">
+            <TableCell
+              v-for="col of formatColumns"
+              :key="col.field"
+              :class="col.cellClass"
+            >
+              <template v-if="col.renderCell">
+                <Component :is="col.renderCell({ row, col, idx })" />
               </template>
               <template v-else>
-                {{ th.title }}
+                {{ _getCellValue({ row, col, idx }) }}
               </template>
-            </TableHead>
+            </TableCell>
           </TableRow>
-        </thead>
+        </template>
 
-        <tbody class="[&_tr:last-child]:border-0">
-          <template v-if="filterData.length">
-            <TableRow v-for="row, idx of filterData" :key="_getRowKey(row)">
-              <TableCell v-for="col of formatColumns" :key="col.field" :class="col.cellClass">
-                <template v-if="col.renderCell">
-                  <Component :is="col.renderCell({ row, col, idx })" />
-                </template>
-                <template v-else>
-                  {{ _getCellValue({ row, col, idx }) }}
-                </template>
-              </TableCell>
-            </TableRow>
-          </template>
-
-          <TableEmpty v-else :colspan="formatColumns.length" />
-        </tbody>
-      </table>
-    </div>
+        <TableEmpty v-else :colspan="formatColumns.length" />
+      </tbody>
+    </table>
   </div>
 </template>

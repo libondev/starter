@@ -15,11 +15,14 @@
       "DOM.Iterable"
     ],
     "module": "ESNext",
+    "moduleDetection": "force",
     "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
@@ -31,8 +34,13 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "verbatimModuleSyntax": true
   },
+  "exclude": [
+    "**/node_modules",
+    "**/.*/"
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -42,6 +50,5 @@
     "vite.config.*",
     "vitest.config.*",
     "playwright.config.*"
-  ],
-  "exclude": ["**/node_modules", "**/.*/"],
+  ]
 }
