@@ -25,6 +25,8 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    // 导入不存在的文件时会报错
+    "noUncheckedSideEffectImports": true,
     "paths": {
       "@/*": [
         "./src/*"
