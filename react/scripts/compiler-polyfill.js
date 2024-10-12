@@ -1,3 +1,4 @@
 import { useState } from 'react'
 
-export const c = (size) => useState(() => new Array(size))[0]
+// eslint-disable-next-line react-hooks/rules-of-hooks
+export const c = size => useState(() => Array.from({ length: size }))[0]
