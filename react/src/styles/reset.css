@@ -1,12 +1,5 @@
 /* https://andy-bell.co.uk/a-more-modern-css-reset/ */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  border-color: hsl(var(--border))
-}
-
 .scrollbar {
   scrollbar-gutter: stable both-edges;
 }
@@ -23,6 +16,14 @@
   }
 }
 
+@font-face {
+  font-family: 'Departure Mono';
+  src:
+    local('Departure Mono'),
+    url('/fonts/DepartureMono-Regular.woff2') format('woff2'),
+    url('/fonts/DepartureMono-Regular.woff') format('woff');
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -30,7 +31,7 @@
 
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-corner {
-  background: var(--bc);
+  background: var(--background);
   border-radius: 10px;
 }
 
@@ -67,7 +68,6 @@ html {
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
-  background-color: var(--background);
   text-rendering: optimizeLegibility;
   /* 非标准属性, 目前仅在 macos 上生效 */
   -webkit-font-smoothing: antialiased;
@@ -76,10 +76,6 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-
-  line-height: 1.5;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  color: var(--tc);
 }
 
 ul {
