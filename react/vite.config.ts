@@ -4,9 +4,10 @@ import react from '@vitejs/plugin-react'
 import autoImport from 'unplugin-auto-import/vite'
 import pages from 'vite-plugin-pages'
 
-const reactCompilerConfig = {
-  runtimeModule: "/scripts/compiler-polyfill.js",
-};
+const ReactCompilerConfig = {
+  target: '18',
+  runtimeModule: 'react-compiler-runtime',
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -43,8 +44,10 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react({
       babel: {
-        plugins: [["babel-plugin-react-compiler", reactCompilerConfig]],
-      }
+        plugins: [
+          ['babel-plugin-react-compiler', ReactCompilerConfig],
+        ],
+      },
     }),
 
     pages({

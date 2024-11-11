@@ -7,6 +7,7 @@ export default antfu({
   yaml: false,
   rules: {
     'no-console': 'warn',
+    'react-compiler/react-compiler': 'error',
     'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'react-refresh/only-export-components': 'off',
     // TODO
