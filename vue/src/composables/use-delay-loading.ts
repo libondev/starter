@@ -1,4 +1,4 @@
-import { shallowRef } from 'vue'
+import { type Ref, shallowRef } from 'vue'
 
 interface Options {
   default?: boolean

@@ -9,6 +9,7 @@ import autoImport from 'unplugin-auto-import/vite'
 import components from 'unplugin-vue-components/vite'
 // z-lazy-show/v-show.lazy
 import { transformLazyShow } from 'v-lazy-show'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -48,6 +49,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [
+    tailwindcss(),
     vue({
       script: {
         defineModel: true,

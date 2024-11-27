@@ -1,9 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+/* @source "../../node_modules/@my-company/ui-lib"; */
+@config "../../tailwind.config.js";
 
-@layer base {
-  div,p,button,input,textarea {
+@layer theme {
+  div, p, button, input, textarea {
     border-color: hsl(var(--border));
   }
 

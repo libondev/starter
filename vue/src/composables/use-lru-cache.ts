@@ -30,7 +30,7 @@ export class LRUCache<K, V> {
       this.items.delete(key)
     } else if (this.items.size >= this.capacity) {
       // 如果当前缓存已满，删除最不常用的项
-      const firstKey = this.items.keys().next().value
+      const firstKey = this.items.keys().next().value!
 
       this.items.delete(firstKey)
     }

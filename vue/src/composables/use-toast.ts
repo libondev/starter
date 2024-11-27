@@ -53,9 +53,11 @@ function addToast(toast: HTMLOutputElement): void {
     '(prefers-reduced-motion: no-preference)',
   )
 
-  Toaster.children.length && motionOK
-    ? flipToast(toast)
-    : Toaster.appendChild(toast)
+  if (motionOK && Toaster.children.length) {
+    flipToast(toast)
+  } else {
+    Toaster.appendChild(toast)
+  }
 }
 
 export function useToast(htmlText: string, { type, durations = 2000 } = {} as ToastOptions): void {

@@ -4,9 +4,9 @@ interface Options {
 }
 
 /**
- * 当从配置项中切换值得时候将值记录到 url 中
+ * 当从配置项中切换值的时候将值记录到 url 中
  */
-export function useSetQueryParams<ValueType>({
+export function useURLQueryParams<ValueType>({
   options,
   urlKey,
 } = {} as Options) {
