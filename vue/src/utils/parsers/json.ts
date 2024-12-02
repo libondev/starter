@@ -7,7 +7,7 @@ export function parseJson<T>(
       throw new Error('json is empty')
 
     return JSON.parse(json) as T
-  } catch (err) {
+  } catch {
     return typeof defaultValueOrParser === 'function'
       ? defaultValueOrParser(json)
       : defaultValueOrParser

@@ -55,7 +55,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'data-fns', 'axios', '@vueuse/core'],
+    include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'date-fns', 'axios', '@vueuse/core'],
     exclude: ['vue-demi'],
   },
 
