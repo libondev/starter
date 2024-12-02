@@ -36,3 +36,8 @@ import { Button } from '@/components/ui/button'
     </AlertDialogContent>
   </AlertDialog>
 </template>
+
+<route>
+  meta:
+    title: Index page
+</route>

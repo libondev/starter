@@ -1,15 +1,17 @@
-import { URL, fileURLToPath } from 'node:url'
+import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import pages from 'vite-plugin-pages'
-import jsx from '@vitejs/plugin-vue-jsx'
-import layouts from 'vite-plugin-vue-layouts'
-import autoImport from 'unplugin-auto-import/vite'
-import components from 'unplugin-vue-components/vite'
+import TW from '@tailwindcss/vite'
+import Vue from '@vitejs/plugin-vue'
+import JSX from '@vitejs/plugin-vue-jsx'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 // z-lazy-show/v-show.lazy
 import { transformLazyShow } from 'v-lazy-show'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'vite'
+import Pages from 'vite-plugin-pages'
+import Layouts from 'vite-plugin-vue-layouts'
+
+const extensions = ['vue', 'tsx']
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -21,13 +23,22 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (!id.includes('node_modules'))
-            return 'chunk'
+          if (id.includes('node_modules/lodash')) {
+            return 'lodash'
+          }
 
-          if (id.includes('vue') || id.includes('pinia'))
-            return 'vue-vendors'
+          if (
+            id.includes('node_modules/vue') ||
+            id.includes('node_modules/pinia')
+          ) {
+            return 'vue'
+          }
 
-          return 'vendors'
+          if (id.includes('node_modules/')) {
+            return 'vendors'
+          }
+
+          return 'chunk'
         },
       },
     },
@@ -44,13 +55,16 @@ export default defineConfig(({ mode }) => ({
   },
 
   optimizeDeps: {
-    include: ['vue', 'pinia', 'vue-router', 'lodash-es'],
+    include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'data-fns', 'axios', '@vueuse/core'],
     exclude: ['vue-demi'],
   },
 
   plugins: [
-    tailwindcss(),
-    vue({
+    TW(),
+
+    JSX(),
+
+    Vue({
       script: {
         defineModel: true,
         propsDestructure: true,
@@ -64,18 +78,30 @@ export default defineConfig(({ mode }) => ({
       },
     }),
 
-    jsx(),
+    AutoImport({
+      dirs: [
+        './src/composables/**',
+      ],
+      imports: [
+        'vue',
+        'vue-router',
+      ],
+      resolvers: [],
+      dts: './shims/auto-imports.d.ts',
+      // include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/],
+    }),
 
-    components({
+    Components({
       dts: './shims/components.d.ts',
-      extensions: ['vue', 'tsx'],
+      extensions,
+      resolvers: [],
       // globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
 
-    pages({
+    Pages({
       dirs: 'src/views',
       routeBlockLang: 'yaml',
-      extensions: ['vue', 'tsx'],
+      extensions,
       exclude: [
         '**/*/components/**/*',
         '**/*/composables/**/*',
@@ -84,21 +110,10 @@ export default defineConfig(({ mode }) => ({
       ],
     }),
 
-    layouts({
+    Layouts({
       defaultLayout: 'default',
-      extensions: ['vue', 'tsx'],
+      extensions,
       layoutsDirs: 'src/layouts',
-    }),
-
-    autoImport({
-      dirs: [
-        './src/composables/**',
-      ],
-      dts: './shims/auto-imports.d.ts',
-      imports: [
-        'vue',
-        'vue-router',
-      ],
     }),
   ],
 
