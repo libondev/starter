@@ -18,7 +18,6 @@ This will generate the following routes:
 `/users/:id`: -> renders the `users/[id].vue` component. `id` becomes a route param.
 
 ## Icons
-https://github.com/egoist/tailwindcss-icons
 https://icon-sets.iconify.design/solar/
 https://icon-sets.iconify.design/carbon/
 

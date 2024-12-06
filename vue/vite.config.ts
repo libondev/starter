@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'node:url'
+import { URL, fileURLToPath } from 'node:url'
 
 import TW from '@tailwindcss/vite'
 import Vue from '@vitejs/plugin-vue'
@@ -9,7 +9,10 @@ import Components from 'unplugin-vue-components/vite'
 import { transformLazyShow } from 'v-lazy-show'
 import { defineConfig } from 'vite'
 import Pages from 'vite-plugin-pages'
+import Icons from 'unplugin-icons/vite'
 import Layouts from 'vite-plugin-vue-layouts'
+import IconsResolver from 'unplugin-icons/resolver'
+import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 const extensions = ['vue', 'tsx']
 
@@ -94,7 +97,14 @@ export default defineConfig(({ mode }) => ({
     Components({
       dts: './shims/components.d.ts',
       extensions,
-      resolvers: [],
+      resolvers: [
+        // 图标自动导入(依赖或者本地)
+        IconsResolver({
+          // 如果图标组比较长可以设置得简短点
+          alias: {},
+          customCollections: ['local'],
+        }),
+      ],
       // globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
 
@@ -114,6 +124,23 @@ export default defineConfig(({ mode }) => ({
       defaultLayout: 'default',
       extensions,
       layoutsDirs: 'src/layouts',
+    }),
+
+    Icons({
+      autoInstall: true,
+      compiler: 'vue3',
+      customCollections: {
+        local: FileSystemIconLoader('./src/icons'),
+      },
+      // 修改图标的属性
+      // iconCustomizer(_collection, _icon, props) {
+      //   // props.width ||= props.width = '1em'
+      //   // props.height ||= props.height = '1em'
+
+      //   // if (props.fill !== 'currentColor') {
+      //   //   props.fill = 'currentColor'
+      //   // }
+      // },
     }),
   ],
 

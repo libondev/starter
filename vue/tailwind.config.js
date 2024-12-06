@@ -1,11 +1,9 @@
 import Animate from 'tailwindcss-animate'
-import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
   safelist: ['dark'],
-  // prefix: '',
 
   content: [
     './src/**/*.{ts,tsx,vue}',
@@ -89,8 +87,5 @@ export default {
   },
   plugins: [
     Animate,
-    iconsPlugin({
-      collections: getIconCollections(['ph', 'carbon', 'solar']),
-    }),
   ],
 }

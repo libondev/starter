@@ -11,7 +11,8 @@
     "build-check": "run-p type-check build",
     "type-check": "vue-tsc --noEmit --composite false",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "depcheck": "pnpx depcheck"
   },
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
@@ -35,7 +36,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.11.2",
-    "@egoist/tailwindcss-icons": "^1.8.1",
     "@iconify-json/carbon": "^1.2.4",
     "@iconify-json/ph": "^1.2.1",
     "@iconify-json/solar": "^1.2.1",
@@ -52,6 +52,7 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "~5.7.2",
     "unplugin-auto-import": "^0.18.6",
+    "unplugin-icons": "^0.21.0",
     "unplugin-vue-components": "^0.27.5",
     "v-lazy-show": "^0.2.4",
     "vite": "^6.0.2",

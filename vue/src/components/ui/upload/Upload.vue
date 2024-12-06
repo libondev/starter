@@ -110,7 +110,7 @@ defineExpose({
       :class="[circular ? 'rounded-full' : 'rounded-md']"
       @click="onUploadButtonClick()"
     >
-      <i class="i-solar-cloud-upload-linear block text-3xl opacity-60" />
+      <ISolarCloudUploadLinear class="block text-3xl opacity-60" />
     </button>
 
     <ul v-if="chooseFiles.length" class="">
@@ -122,8 +122,8 @@ defineExpose({
       >
         <Image :src="base64" alt="" />
         <div class="absolute inset-0 bg-white/95 flex items-center gap-2 justify-center opacity-0 transition-opacity group-hover:opacity-100 empty:hidden">
-          <i v-if="replaceable" class="i-solar-refresh-line-duotone hover:text-primary text-2xl cursor-pointer" @click="onUploadButtonClick(idx)" />
-          <i v-if="deletable" class="i-solar-trash-bin-2-linear hover:text-destructive text-2xl cursor-pointer" @click="removeImageByIndex(idx)" />
+          <ISolarRefreshLineDuotone v-if="replaceable" class="hover:text-primary text-2xl cursor-pointer" @click="onUploadButtonClick(idx)" />
+          <ISolarTrashBin2Linear v-if="deletable" class="hover:text-destructive text-2xl cursor-pointer" @click="removeImageByIndex(idx)" />
         </div>
       </li>
     </ul>

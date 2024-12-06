@@ -107,7 +107,7 @@ function onRemoveCondition(conditionIndex: number) {
   <Popover @update:open="onFilterPopoverOpen">
     <PopoverTrigger as-child>
       <Button variant="outline" class="px-2">
-        <i class="i-solar-filter-linear" />
+        <ISolarFilterLinear />
       </Button>
     </PopoverTrigger>
 
@@ -116,7 +116,7 @@ function onRemoveCondition(conditionIndex: number) {
         <span>Filter Data</span>
 
         <Button variant="outline" class="h-6 p-1" @click="onCreateCondition">
-          <i class="i-ph-plus-bold" />
+          <IPhPlusBold />
         </Button>
       </div>
 
@@ -148,7 +148,7 @@ function onRemoveCondition(conditionIndex: number) {
         <Input v-model="condition.value" class="min-w-32" />
 
         <Button variant="ghost" class="h-7 p-2" @click="onRemoveCondition(idx)">
-          <i class="i-ph-trash-bold text-red-500" />
+          <IPhTrashBold class="text-red-500" />
         </Button>
       </div>
     </PopoverContent>

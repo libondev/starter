@@ -14,6 +14,9 @@ import { Button } from '@/components/ui/button'
 </script>
 
 <template>
+  <ISolarMoonBold />
+  <ILocalMoonBroken />
+
   <AlertDialog>
     <AlertDialogTrigger as-child>
       <Button>

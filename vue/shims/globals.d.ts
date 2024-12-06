@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="unplugin-icons/types/vue" />
 /// <reference types="vite-plugin-pages/client" />
 /// <reference types="vite-plugin-vue-layouts/client" />
 
@@ -22,6 +23,6 @@ declare global {
   }
 }
 
-declare module "*.css" {}
-declare module "*.less" {}
-declare module "*.scss" {}
+declare module '*.css' {}
+declare module '*.less' {}
+declare module '*.scss' {}
