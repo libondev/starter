@@ -127,8 +127,11 @@ export default defineConfig(({ mode }) => ({
     }),
 
     Icons({
-      autoInstall: true,
+      // scale: 1.2,
       compiler: 'vue3',
+      autoInstall: true,
+      defaultClass: 'svg-icon',
+      // defaultStyle: '',
       customCollections: {
         local: FileSystemIconLoader('./src/icons'),
       },
@@ -137,9 +140,10 @@ export default defineConfig(({ mode }) => ({
       //   return svg
       // },
       // 修改所有修改图标的属性
-      iconCustomizer(_collection, _icon, props) {
-        props.class ??= 'svg-icon'
-      },
+      // iconCustomizer(_collection, _icon, props) {
+      //   props.width ??= '1em'
+      //   props.height ??= '1em'
+      // },
     }),
   ],
 
