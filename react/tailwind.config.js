@@ -1,15 +1,17 @@
 import animations from 'tailwindcss-animate'
-import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
 
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
+  safelist: ['dark', 'inline-block'],
+
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+
   theme: {
     container: {
       center: true,
@@ -77,8 +79,5 @@ export default {
   },
   plugins: [
     animations,
-    iconsPlugin({
-      collections: getIconCollections(['solar', 'carbon', 'ph']),
-    }),
   ],
 }

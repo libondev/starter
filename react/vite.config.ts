@@ -1,8 +1,11 @@
 import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import autoImport from 'unplugin-auto-import/vite'
-import pages from 'vite-plugin-pages'
+import React from '@vitejs/plugin-react'
+import AutoImport from 'unplugin-auto-import/vite'
+import Pages from 'vite-plugin-pages'
+import { FileSystemIconLoader } from 'unplugin-icons/loaders'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
 
 const ReactCompilerConfig = {
   target: '18',
@@ -42,7 +45,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [
-    react({
+    React({
       babel: {
         plugins: [
           ['babel-plugin-react-compiler', ReactCompilerConfig],
@@ -50,13 +53,14 @@ export default defineConfig(({ mode }) => ({
       },
     }),
 
-    pages({
+    Pages({
       dirs: ['src/pages'],
       extensions: ['tsx'],
       exclude: ['**/components/**/*'],
     }),
+
     // https://github.com/antfu/unplugin-auto-import
-    autoImport({
+    AutoImport({
       include: [/\.[tj]sx?$/],
       dirs: ['./src/hooks/**/*'],
       dts: './shims/imports.d.ts',
@@ -69,11 +73,34 @@ export default defineConfig(({ mode }) => ({
           'use-immer': ['useImmer', 'useImmerReducer'],
         },
       ],
-      // resolvers: [
-      //   IconsResolver({
-      //     componentPrefix: 'Icon',
-      //   }),
-      // ],
+      resolvers: [
+        IconsResolver({
+          alias: {},
+          extension: 'jsx',
+          customCollections: ['local'],
+        }),
+      ],
+    }),
+
+    Icons({
+      scale: 1,
+      jsx: 'react',
+      compiler: 'jsx',
+      autoInstall: true,
+      defaultClass: 'inline-block svg-icon',
+      // defaultStyle: '',
+      customCollections: {
+        local: FileSystemIconLoader('./src/icons'),
+      },
+      // 仅修改自定义svg图标
+      // transform(svg, _collection, _icon) {
+      //   return svg
+      // },
+      // 修改所有修改图标的属性
+      // iconCustomizer(_collection, _icon, props) {
+      //   props.width ??= '1em'
+      //   props.height ??= '1em'
+      // },
     }),
   ],
 

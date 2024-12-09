@@ -127,10 +127,10 @@ export default defineConfig(({ mode }) => ({
     }),
 
     Icons({
-      // scale: 1.2,
+      scale: 1,
       compiler: 'vue3',
       autoInstall: true,
-      defaultClass: 'svg-icon',
+      defaultClass: 'inline-block svg-icon',
       // defaultStyle: '',
       customCollections: {
         local: FileSystemIconLoader('./src/icons'),
