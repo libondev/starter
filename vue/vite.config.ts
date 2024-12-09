@@ -1,18 +1,18 @@
-import { URL, fileURLToPath } from 'node:url'
+import { fileURLToPath, URL } from 'node:url'
 
 import TW from '@tailwindcss/vite'
 import Vue from '@vitejs/plugin-vue'
 import JSX from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
+import { FileSystemIconLoader } from 'unplugin-icons/loaders'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
 // z-lazy-show/v-show.lazy
 import { transformLazyShow } from 'v-lazy-show'
 import { defineConfig } from 'vite'
 import Pages from 'vite-plugin-pages'
-import Icons from 'unplugin-icons/vite'
 import Layouts from 'vite-plugin-vue-layouts'
-import IconsResolver from 'unplugin-icons/resolver'
-import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
 const extensions = ['vue', 'tsx']
 
@@ -132,15 +132,14 @@ export default defineConfig(({ mode }) => ({
       customCollections: {
         local: FileSystemIconLoader('./src/icons'),
       },
-      // 修改图标的属性
-      // iconCustomizer(_collection, _icon, props) {
-      //   // props.width ||= props.width = '1em'
-      //   // props.height ||= props.height = '1em'
-
-      //   // if (props.fill !== 'currentColor') {
-      //   //   props.fill = 'currentColor'
-      //   // }
+      // 仅修改自定义svg图标
+      // transform(svg, _collection, _icon) {
+      //   return svg
       // },
+      // 修改所有修改图标的属性
+      iconCustomizer(_collection, _icon, props) {
+        props.class ??= 'svg-icon'
+      },
     }),
   ],
 

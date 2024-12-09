@@ -18,8 +18,13 @@ This will generate the following routes:
 `/users/:id`: -> renders the `users/[id].vue` component. `id` becomes a route param.
 
 ## Icons
+https://github.com/unplugin/unplugin-icons
 https://icon-sets.iconify.design/solar/
 https://icon-sets.iconify.design/carbon/
+
+### Add local svg icon
+ - copy file to `src/icons/*/file.svg`
+ - run `npm run format:icons file`
 
 ## CSS
 https://tailwindcss.com/

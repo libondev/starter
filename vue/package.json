@@ -12,7 +12,8 @@
     "type-check": "vue-tsc --noEmit --composite false",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "depcheck": "pnpx depcheck"
+    "depcheck": "pnpx depcheck",
+    "format:icons": "node ./scripts/format-icons.js"
   },
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
@@ -39,6 +40,7 @@
     "@iconify-json/carbon": "^1.2.4",
     "@iconify-json/ph": "^1.2.1",
     "@iconify-json/solar": "^1.2.1",
+    "@iconify/tools": "^4.0.7",
     "@tailwindcss/vite": "4.0.0-beta.2",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.10.1",
@@ -46,6 +48,7 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
     "eslint": "^9.16.0",
+    "fast-glob": "^3.3.2",
     "npm-run-all": "^4.1.5",
     "sass": "^1.81.0",
     "tailwindcss": "4.0.0-beta.2",
