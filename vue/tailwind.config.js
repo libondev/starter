@@ -53,6 +53,9 @@ export default {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      fontFamily: {
+        sans: '"Inter","Geist","Geist Fallback",Arial,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol',
+      },
       borderRadius: {
         xl: 'calc(var(--radius) + 4px)',
         lg: 'var(--radius)',

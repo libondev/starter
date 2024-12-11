@@ -39,6 +39,8 @@
     "verbatimModuleSyntax": true
   },
   "exclude": [
+    "dist",
+    "cypress",
     "**/node_modules",
     "**/.*/"
   ],
@@ -46,8 +48,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "shims/**/*.d.ts",
-    "uno.config.*",
     "vite.config.*",
     "vitest.config.*",
     "playwright.config.*"

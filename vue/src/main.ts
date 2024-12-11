@@ -1,10 +1,11 @@
-import { createApp } from 'vue'
+import { initToast } from '@/composables/use-toast'
 import { createPinia } from 'pinia'
 
-import App from './App.vue'
-import router from './router/index.ts'
+import { createApp } from 'vue'
 
-import { initToast } from '@/composables/use-toast'
+import App from './App.vue'
+import { setupI18n } from './app/i18n.ts'
+import router from './router/index.ts'
 
 import './styles'
 
@@ -12,6 +13,8 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+
+setupI18n(app)
 
 app.mount('#app')
 

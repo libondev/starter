@@ -5,6 +5,15 @@
 
 export { }
 
+interface ImportMetaEnv {
+  readonly VITE_APP_TITLE: string
+  // more env variables...
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
 declare global {
   interface Document {
     startViewTransition?: (callback: () => Promise<void> | void) => {
@@ -23,6 +32,6 @@ declare global {
   }
 }
 
-declare module '*.css' {}
-declare module '*.less' {}
-declare module '*.scss' {}
+// declare module '*.css' {}
+// declare module '*.less' {}
+// declare module '*.scss' {}
