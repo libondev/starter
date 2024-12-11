@@ -99,13 +99,13 @@ export default defineConfig(({ mode }) => {
           'vue-i18n',
           'vue-router',
         ],
-        resolvers: [],
-        dts: './shims/auto-imports.d.ts',
+        // resolvers: [],
+        dts: './src/types/auto-imports.d.ts',
         // include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/],
       }),
 
       Components({
-        dts: './shims/components.d.ts',
+        dts: './src/types/components.d.ts',
         extensions,
         resolvers: [
           // 图标自动导入(依赖或者本地)
