@@ -8,7 +8,7 @@ import { useProgressBar } from './guards/use-progress-bar.ts'
 import { useViewTransition } from './guards/use-view-transition.ts'
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.VITE_BASE_PATH),
   routes: setupLayouts(generatedRoutes),
 })
 

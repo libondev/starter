@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 import { useDark, useToggle } from '@vueuse/core'
-import { name } from '@/../package.json'
 
 // 如果用户没有设置过主题选项(包含第一次进入系统)，那么就使用系统的明暗主题设置
-const isDark = useDark({ storageKey: `${name}.system.color-mode` })
+const isDark = useDark({ storageKey: `fe.system.color-mode` })
 const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <button class="cursor-pointer p-2 rounded hover:bg-accent text-xl hover:text-foreground/80 text-foreground/60" @click="toggleDark()">
-    <ISolarMoonBold v-if="!isDark" />
-    <ISolarSunBold v-else />
-  </button>
+  <Button variant="outline" @click="toggleDark()">
+    <ISolarSunBold v-if="isDark" />
+    <ISolarMoonBold v-else />
+  </Button>
 </template>

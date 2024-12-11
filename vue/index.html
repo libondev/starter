@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html class="h-full">
 
 <head>
   <meta charset="UTF-8">
@@ -7,9 +7,11 @@
   <meta name="theme-color" content="#00c488">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="msapplication-TileColor" content="#00c488">
   <meta name="msapplication-navbutton-color" content="#00c488">
   <meta name="apple-mobile-web-app-status-bar-style" content="black or black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual" />
+  <script>;(function(){const pd=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;const s=localStorage.getItem('fe.system.color-mode')||'auto';if(s==='dark'||(pd&&s!=='light'));document.documentElement.classList.toggle('dark',true)})()</script>
   <title>vue-project</title>
 </head>
 
@@ -19,6 +21,7 @@
   <div id="app" class="h-full"></div>
   <script type="module" src="/src/main.ts"></script>
   <script>if(typeof window!=='undefined'&&'virtualKeyboard'in window.navigator){window.navigator.virtualKeyboard.overlaysContent=true}</script>
+  <noscript> This website requires JavaScript to function properly. Please enable JavaScript to continue. </noscript>
 </body>
 
 </html>

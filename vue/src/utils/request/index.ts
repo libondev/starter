@@ -1,8 +1,8 @@
 import axios from 'axios'
 import jsCookie from 'js-cookie'
 import { downloadBlobFile } from '../parsers/file'
-import { USER_TOKEN_KEY, getRedirectLoginPage } from './utils'
 import refreshAccessToken from './refresh'
+import { getRedirectLoginPage, USER_TOKEN_KEY } from './utils'
 
 export interface APIResponse<Data = any> {
   code: number
@@ -16,13 +16,12 @@ export interface APIResponse<Data = any> {
 }
 
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-  // baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_BASE,
 })
 
 const refreshing = false
 
-const configsMap = new Map()
+const configsMap = new WeakMap()
 
 instance.interceptors.request.use((config) => {
   config.headers.Authorization = `Bearer ${jsCookie.get(USER_TOKEN_KEY)}`

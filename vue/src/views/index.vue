@@ -1,46 +1,34 @@
 <script setup lang="ts">
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+import { switchLanguage } from '@/app/i18n.ts'
 import { Button } from '@/components/ui/button'
+import ToggleMode from '@/layouts/components/ToggleMode.vue'
+
+// 如果是 SFC 文件中设置的局部国际化文件, 则必须使用 useI18n() 返回的 t 来调用翻译
+// 因为只有 useI18n 才能拿到当前文件的上下文, 而如果是全局的翻译, 那么 t 或者 $t 都可以使用
+const { t } = useI18n()
 </script>
 
 <template>
-  <ISolarMoonBold />
-  <ILocalMoonBroken />
+  <div class="flex gap-2 w-full h-full justify-center items-center">
+    <ToggleMode />
 
-  <AlertDialog>
-    <AlertDialogTrigger as-child>
-      <Button>
-        Show Dialog
-      </Button>
-    </AlertDialogTrigger>
-
-    <AlertDialogContent>
-      <AlertDialogHeader>
-        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-        <AlertDialogDescription>
-          This action cannot be undone. This will permanently delete your
-          account and remove your data from our servers.
-        </AlertDialogDescription>
-      </AlertDialogHeader>
-      <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>Continue</AlertDialogAction>
-      </AlertDialogFooter>
-    </AlertDialogContent>
-  </AlertDialog>
+    <Button variant="outline" @click="switchLanguage()">
+      <ICarbonLanguage class="mr-2" />{{ $t('button.toggle') }} {{ t('sfc.language') }}
+    </Button>
+  </div>
 </template>
 
 <route>
   meta:
-    title: Index page
+    title: Index
 </route>
+
+<i18n>
+en:
+  sfc:
+    language: Language
+
+zh-CN:
+  sfc:
+    language: 语言
+</i18n>
