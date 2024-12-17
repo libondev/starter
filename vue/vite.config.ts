@@ -6,6 +6,7 @@ import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import TW from '@tailwindcss/vite'
 import Vue from '@vitejs/plugin-vue'
 import JSX from '@vitejs/plugin-vue-jsx'
+import GdsiResolver from 'gdsi/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -114,6 +115,7 @@ export default defineConfig(({ mode }) => {
             alias: {},
             customCollections: ['local'],
           }),
+          GdsiResolver({ type: 'vue', prefix: 'IGds' }),
         ],
         // globs: ['src/components/**/index.{vue,tsx,ts}']
       }),

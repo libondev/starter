@@ -7,7 +7,7 @@ import {
   DropdownMenuItemIndicator,
   useForwardPropsEmits,
 } from 'radix-vue'
-import { CheckIcon } from '@radix-icons/vue'
+import { CheckIcon } from 'gdsi/vue'
 import { cn } from '@/utils/cls.ts'
 
 const props = defineProps<DropdownMenuCheckboxItemProps & { class?: HTMLAttributes['class'] }>()

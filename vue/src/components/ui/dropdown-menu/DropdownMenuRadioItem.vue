@@ -7,7 +7,7 @@ import {
   type DropdownMenuRadioItemProps,
   useForwardPropsEmits,
 } from 'radix-vue'
-import { DotFilledIcon } from '@radix-icons/vue'
+import { DotFilledIcon } from 'gdsi/vue'
 import { cn } from '@/utils/cls.ts'
 
 const props = defineProps<DropdownMenuRadioItemProps & { class?: HTMLAttributes['class'] }>()

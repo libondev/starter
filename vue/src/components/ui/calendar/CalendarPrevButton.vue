@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
 import { CalendarPrev, type CalendarPrevProps, useForwardProps } from 'radix-vue'
-import { ChevronLeftIcon } from '@radix-icons/vue'
+import { ChevronLeftIcon } from 'gdsi/vue'
 import { cn } from '@/utils/cls.ts'
 import { buttonVariants } from '@/components/ui/button'
 

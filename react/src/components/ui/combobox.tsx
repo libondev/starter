@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
+import { CaretSortIcon, CheckIcon } from 'gdsi/react'
 
 import { cn } from '@/utils/cls'
 import { Button } from '@/components/ui/button'

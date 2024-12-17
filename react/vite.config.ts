@@ -6,6 +6,7 @@ import Pages from 'vite-plugin-pages'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
+import GdsiResolver from 'gdsi/resolver'
 
 const ReactCompilerConfig = {
   target: '18',
@@ -79,6 +80,7 @@ export default defineConfig(({ mode }) => ({
           extension: 'jsx',
           customCollections: ['local'],
         }),
+        GdsiResolver({ type: 'react', prefix: 'IGds' }),
       ],
     }),
 

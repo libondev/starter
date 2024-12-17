@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
+import { MoonIcon, SunIcon } from 'gdsi/react'
 
 import { Button } from '@/components/ui/button'
 import {

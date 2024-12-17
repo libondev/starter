@@ -3,7 +3,7 @@ import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
-} from '@radix-ui/react-icons'
+} from 'gdsi/react'
 import * as MenubarPrimitive from '@radix-ui/react-menubar'
 
 import { cn } from '@/utils/cls'

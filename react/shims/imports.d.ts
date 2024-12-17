@@ -7,6 +7,7 @@
 export {}
 declare global {
   const ICarbonMoon: typeof import('~icons/carbon/moon.jsx')['default']
+  const IGdsSun: typeof import('gdsi/react/Sun.js')['SunIcon']
   const ILocalHeartFilled: typeof import('~icons/local/heart-filled.jsx')['default']
   const IconCarbonMoon: typeof import('~icons/carbon/moon.jsx')['default']
   const Link: typeof import('react-router-dom')['Link']

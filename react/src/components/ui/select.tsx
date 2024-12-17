@@ -4,7 +4,7 @@ import {
   CheckIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-} from '@radix-ui/react-icons'
+} from 'gdsi/react'
 import * as SelectPrimitive from '@radix-ui/react-select'
 
 import { cn } from '@/utils/cls'

@@ -4,7 +4,7 @@ import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
-} from '@radix-ui/react-icons'
+} from 'gdsi/react'
 
 import { cn } from '@/utils/cls'
 

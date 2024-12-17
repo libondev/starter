@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Primitive, type PrimitiveProps, useForwardProps } from 'radix-vue'
-import { DashIcon } from '@radix-icons/vue'
+import { DashIcon } from 'gdsi/vue'
 
 const props = defineProps<PrimitiveProps>()
 const forwardedProps = useForwardProps(props)
