@@ -23,8 +23,8 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <Button variant="outline" @click="toggleDark()">
-    <ISolarSunBold v-if="isDark" />
-    <ISolarMoonBold v-else />
-  </Button>
+  <PButton variant="outline" @click="toggleDark()">
+    <IGdsSun v-if="isDark" />
+    <IGdsMoon v-else />
+  </PButton>
 </template>

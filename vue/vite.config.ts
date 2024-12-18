@@ -7,6 +7,7 @@ import TW from '@tailwindcss/vite'
 import Vue from '@vitejs/plugin-vue'
 import JSX from '@vitejs/plugin-vue-jsx'
 import GdsiResolver from 'gdsi/resolver'
+import PxdResolver from 'pxd/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -16,7 +17,6 @@ import Components from 'unplugin-vue-components/vite'
 import { transformLazyShow } from 'v-lazy-show'
 import { defineConfig, loadEnv } from 'vite'
 import Pages from 'vite-plugin-pages'
-// import VueDevtools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 
 const extensions = ['vue', 'tsx']
@@ -45,6 +45,13 @@ export default defineConfig(({ mode }) => {
               return 'vue'
             }
 
+            if (
+              id.includes('~icons') ||
+              id.includes('node_modules/gdsi')
+            ) {
+              return 'icons'
+            }
+
             if (id.includes('node_modules/')) {
               return 'vendors'
             }
@@ -61,19 +68,16 @@ export default defineConfig(({ mode }) => {
 
     esbuild: {
       target: 'esnext',
-      // 在生产环境下去掉 console/debugger
       drop: mode === 'production' ? ['console', 'debugger'] : [],
     },
 
     optimizeDeps: {
-      include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'date-fns', 'axios', '@vueuse/core'],
+      include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'date-fns', 'axios', '@vueuse/core', 'gdsi/vue'],
       exclude: ['vue-demi'],
     },
 
     plugins: [
       TW(),
-
-      // VueDevtools(),
 
       JSX(),
 
@@ -116,6 +120,7 @@ export default defineConfig(({ mode }) => {
             customCollections: ['local'],
           }),
           GdsiResolver({ type: 'vue', prefix: 'IGds' }),
+          PxdResolver(),
         ],
         // globs: ['src/components/**/index.{vue,tsx,ts}']
       }),

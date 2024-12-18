@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/toast'
 <template>
   <div class="h-full">
     <RouterView />
-
-    <Toaster />
   </div>
+
+  <Toaster />
 </template>
