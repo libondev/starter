@@ -1,5 +1,5 @@
+import { theme as antdTheme, ConfigProvider } from 'antd'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { ConfigProvider, theme as antdTheme } from 'antd'
 
 type Theme = 'dark' | 'light' | 'auto'
 
@@ -11,7 +11,7 @@ interface ThemeProviderProps {
 
 interface ThemeProviderState {
   theme: Theme
-  setTheme: (theme: Theme) => void
+  setTheme: (_theme: Theme) => void
 }
 
 const initialState: ThemeProviderState = {
@@ -23,47 +23,41 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'auto',
   storageKey = 'fe.system.color-mode',
   ...props
 }: ThemeProviderProps) {
   const isPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
+    () => (localStorage.getItem(storageKey) as Theme) || isPrefersDark ? 'dark' : 'light',
   )
 
   useEffect(() => {
     const root = window.document.documentElement
 
-    root.classList.remove('auto', 'dark', 'light')
+    root.classList.remove('dark', 'light')
 
-    if (theme === 'auto') {
-      const systemTheme = isPrefersDark
-        ? 'dark'
-        : 'light'
-
-      root.classList.add(systemTheme)
-      return
+    if (theme === 'dark' || (theme === 'auto' && isPrefersDark)) {
+      root.classList.add('dark')
     }
-
-    root.classList.add(theme)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme])
 
-  const provideValue = {
+  const provideValue = useMemo(() => ({
     theme,
     setTheme: (theme: Theme) => {
       localStorage.setItem(storageKey, theme)
       setTheme(theme)
     },
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }), [theme])
 
   const algorithm = theme === 'dark' || (theme === 'auto' && isPrefersDark)
     ? antdTheme.darkAlgorithm
     : antdTheme.defaultAlgorithm
 
   return (
-    <ThemeProviderContext.Provider { ...props } value={ provideValue }>
-      <ConfigProvider theme={ { algorithm } }>
+    <ThemeProviderContext.Provider {...props} value={provideValue}>
+      <ConfigProvider theme={{ algorithm }}>
         { children }
       </ConfigProvider>
     </ThemeProviderContext.Provider>
