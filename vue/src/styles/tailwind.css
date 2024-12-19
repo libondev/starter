@@ -2,19 +2,14 @@
 /* @source "../../node_modules/@my-company/ui-lib"; */
 @config "../../tailwind.config.js";
 
-@layer theme {
+:root {
 
-  :root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  .dark {
-
-    color-scheme: dark;
-  }
-
+.dark, [arco-theme='dark'] {
+  color-scheme: dark;
 }

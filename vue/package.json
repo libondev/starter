@@ -16,6 +16,7 @@
     "format:icons": "node ./scripts/format-icons.js"
   },
   "dependencies": {
+    "@arco-design/web-vue": "^2.56.3",
     "@vueuse/core": "^12.0.0",
     "axios": "^1.7.8",
     "class-variance-authority": "^0.7.1",
@@ -26,7 +27,6 @@
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.2.8",
-    "pxd": "^0.0.5",
     "tailwind-merge": "^2.5.5",
     "vaul-vue": "^0.2.0",
     "vue": "^3.5.13",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.11.2",
+    "@arco-plugins/vite-vue": "^1.4.5",
     "@iconify-json/carbon": "^1.2.4",
     "@iconify-json/ph": "^1.2.1",
     "@iconify-json/solar": "^1.2.1",

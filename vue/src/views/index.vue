@@ -11,9 +11,9 @@ const { t } = useI18n()
   <div class="flex gap-2 w-full h-full justify-center items-center">
     <ColorMode />
 
-    <PButton variant="outline" @click="switchLanguage()">
+    <AButton @click="switchLanguage()">
       {{ $t('button.toggle') }} {{ t('sfc.language') }}
-    </PButton>
+    </AButton>
   </div>
 </template>
 

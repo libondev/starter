@@ -2,12 +2,12 @@ import { resolve } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath, URL } from 'node:url'
 
+import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import TW from '@tailwindcss/vite'
 import Vue from '@vitejs/plugin-vue'
 import JSX from '@vitejs/plugin-vue-jsx'
 import GdsiResolver from 'gdsi/resolver'
-import PxdResolver from 'pxd/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -120,7 +120,6 @@ export default defineConfig(({ mode }) => {
             customCollections: ['local'],
           }),
           GdsiResolver({ type: 'vue', prefix: 'IGds' }),
-          PxdResolver(),
         ],
         // globs: ['src/components/**/index.{vue,tsx,ts}']
       }),
@@ -169,6 +168,10 @@ export default defineConfig(({ mode }) => {
         compositionOnly: true,
         defaultSFCLang: 'yaml',
         include: [resolve(__dirname, 'locales/*.yaml')],
+      }),
+
+      vitePluginForArco({
+        style: 'css',
       }),
     ],
 

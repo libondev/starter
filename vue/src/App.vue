@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { useArcoLocaleAsync } from '@/composables/use-arco-locale-async'
+
+const locale = useArcoLocaleAsync()
+</script>
+
 <template>
-  <RouterView />
+  <AConfigProvider :locale="locale">
+    <RouterView />
+  </AConfigProvider>
 </template>

@@ -91,6 +91,10 @@ body, .scrollbar {
   overflow-y: scroll;
 }
 
+body {
+  --border-radius-small: 5px;
+}
+
 /* scrollbar-gutter FTW! */
 @supports (scrollbar-gutter: stable) {
   body, .scrollbar {

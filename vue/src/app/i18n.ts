@@ -5,7 +5,7 @@ import { createI18n } from 'vue-i18n'
 const DEFAULT_LANGUAGE_KEY = 'fe.system.intl'
 
 // 后面加上 ! 可以避免从 zh-CN 回退到 zh, 或是 en-US -> en
-const DEFAULT_LANGUAGE = `${localStorage.getItem(DEFAULT_LANGUAGE_KEY) || 'en'}`
+export const DEFAULT_LANGUAGE = `${localStorage.getItem(DEFAULT_LANGUAGE_KEY) || 'en'}`
 
 const i18n = createI18n({
   legacy: false,
@@ -77,3 +77,5 @@ export function setupI18n(app: App) {
   app.use(i18n)
   loadLanguageAsync(DEFAULT_LANGUAGE)
 }
+
+export default i18n
