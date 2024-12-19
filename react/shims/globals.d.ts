@@ -5,5 +5,5 @@
 export { }
 
 declare global {
-  export type { FormEvent, FC } from 'react'
+  export type { FC, FormEvent } from 'react'
 }

@@ -1,12 +1,12 @@
-import { URL, fileURLToPath } from 'node:url'
-import { defineConfig } from 'vite'
+import { fileURLToPath, URL } from 'node:url'
 import React from '@vitejs/plugin-react'
+import GdsiResolver from 'gdsi/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
-import Pages from 'vite-plugin-pages'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
-import GdsiResolver from 'gdsi/resolver'
+import { defineConfig } from 'vite'
+import Pages from 'vite-plugin-pages'
 
 const ReactCompilerConfig = {
   target: '18',
@@ -23,9 +23,8 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react': ['react'],
-          'react-dom': ['react-dom', 'react-router-dom'],
-          // 'ui-vendor': ['antd'],
+          ui: ['antd'],
+          react: ['react', 'react-dom', 'react-router-dom'],
         },
       },
     },

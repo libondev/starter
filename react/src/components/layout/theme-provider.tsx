@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { ConfigProvider, theme as antdTheme } from 'antd'
 
 type Theme = 'dark' | 'light' | 'auto'
 
@@ -26,6 +27,7 @@ export function ThemeProvider({
   storageKey = 'fe.system.color-mode',
   ...props
 }: ThemeProviderProps) {
+  const isPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   const [theme, setTheme] = useState<Theme>(
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
   )
@@ -36,7 +38,7 @@ export function ThemeProvider({
     root.classList.remove('auto', 'dark', 'light')
 
     if (theme === 'auto') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const systemTheme = isPrefersDark
         ? 'dark'
         : 'light'
 
@@ -47,7 +49,7 @@ export function ThemeProvider({
     root.classList.add(theme)
   }, [theme])
 
-  const value = {
+  const provideValue = {
     theme,
     setTheme: (theme: Theme) => {
       localStorage.setItem(storageKey, theme)
@@ -55,9 +57,15 @@ export function ThemeProvider({
     },
   }
 
+  const algorithm = theme === 'dark' || (theme === 'auto' && isPrefersDark)
+    ? antdTheme.darkAlgorithm
+    : antdTheme.defaultAlgorithm
+
   return (
-    <ThemeProviderContext.Provider {...props} value={value}>
-      {children}
+    <ThemeProviderContext.Provider { ...props } value={ provideValue }>
+      <ConfigProvider theme={ { algorithm } }>
+        { children }
+      </ConfigProvider>
     </ThemeProviderContext.Provider>
   )
 }
