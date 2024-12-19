@@ -8,12 +8,19 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <div class="flex gap-2 w-full h-full justify-center items-center">
-    <ColorMode />
+  <div class="flex flex-col gap-2 w-full h-full justify-center items-center">
+    <div class="flex items-center text-2xl font-medium">
+      <IGdsLogoVue class="mr-2" width="1em" height="1em" />
+      Vue App
+    </div>
 
-    <AButton @click="switchLanguage()">
-      {{ $t('button.toggle') }} {{ t('sfc.language') }}
-    </AButton>
+    <div class="flex items-center gap-2 mt-4">
+      <ColorMode />
+
+      <AButton @click="switchLanguage()">
+        {{ $t('button.toggle') }} {{ t('sfc.language') }}
+      </AButton>
+    </div>
   </div>
 </template>
 

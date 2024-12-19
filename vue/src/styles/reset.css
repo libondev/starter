@@ -63,19 +63,17 @@ html {
   text-rendering: optimizeLegibility;
   /* 非标准属性, 目前仅在 macos 上生效 */
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   /* Prevent font size inflation */
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  font-synthesis: none;
 }
 
 ul {
-  margin: 0
-}
-
-
-ul {
+  margin: 0;
   padding-left: 0;
   list-style: none;
 }

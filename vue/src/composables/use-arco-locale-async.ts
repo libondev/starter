@@ -18,7 +18,7 @@ export function useArcoLocaleAsync() {
         return
 
       const aliasedLocale = localeAlias[newLocale as AliasLocale] || newLocale
-      const module = await import(`/node_modules/@arco-design/web-vue/es/locale/lang/${aliasedLocale}`)
+      const module = await import(`@/../node_modules/@arco-design/web-vue/es/locale/lang/${aliasedLocale}.js`)
 
       locale.value = module.default
     },

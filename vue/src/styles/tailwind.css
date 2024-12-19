@@ -1,14 +1,6 @@
 @import "tailwindcss";
-/* @source "../../node_modules/@my-company/ui-lib"; */
 @config "../../tailwind.config.js";
-
-:root {
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* @source "../../node_modules/@my-company/ui-lib"; */
 
 .dark, [arco-theme='dark'] {
   color-scheme: dark;
