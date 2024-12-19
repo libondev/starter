@@ -27,9 +27,10 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
   const isPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || isPrefersDark ? 'dark' : 'light',
-  )
+  const [theme, setTheme] = useState<Theme>(() => {
+    const _cache = (localStorage.getItem(storageKey) as Theme) || 'auto'
+    return _cache === 'auto' ? (isPrefersDark ? 'dark' : 'light') : _cache
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
