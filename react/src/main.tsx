@@ -6,9 +6,14 @@ import App from './App'
 
 import './styles'
 
+const routerFuture = {
+  v7_startTransition: true,
+  v7_relativeSplatPath: true,
+}
+
 createRoot(document.getElementById('app') as HTMLElement).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter future={routerFuture}>
       <App />
     </BrowserRouter>
   </StrictMode>,
