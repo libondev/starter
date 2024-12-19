@@ -1,7 +1,8 @@
 # Custom Dictionary Words
-immer
-clsx
-lightningcss
 antfu
-iconify
+clsx
 cmdk
+gdsi
+iconify
+immer
+lightningcss
