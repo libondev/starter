@@ -1,37 +1,49 @@
-import { useState, useDeferredValue, useMemo } from 'react';
+import { useDeferredValue, useMemo, useState } from 'react'
 
 function SearchList({ items }: { items: string[] }) {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('')
 
   // 创建延迟的 search 值
-  const deferredSearch = useDeferredValue(search);
+  const deferredSearch = useDeferredValue(search)
 
   // 基于延迟值进行过滤
   const filteredItems = useMemo(() => {
     return items.filter(item =>
-      item.toLowerCase().includes(deferredSearch.toLowerCase())
-    );
-  }, [deferredSearch, items]);
+      item.toLowerCase().includes(deferredSearch.toLowerCase()),
+    )
+  }, [deferredSearch, items])
+
+  const isDeferred = search !== deferredSearch
 
   return (
     <div>
       <input
         type="text"
-        value={ search }
-        onChange={ (e) => setSearch(e.target.value) }
+        value={search}
+        className="px-2 py-1 border rounded-md mb-1"
+        onChange={e => setSearch(e.target.value)}
         placeholder="搜索..."
       />
-      <ul>
-        { filteredItems.map((item, index) => (
-          <li key={ index }>{ item }</li>
-        )) }
+
+      <ul className={`px-2${isDeferred ? ' opacity-50' : ''}`}>
+        {
+          filteredItems.map((item, index) => (
+            <li key={index}>{ item }</li>
+          ))
+        }
       </ul>
     </div>
-  );
+  )
 }
 
 export default function App() {
-  const items = ['apple', 'banana', 'cherry', 'date', 'elderberry'];
+  const items = ['apple', 'banana', 'cherry', 'date', 'elderberry']
 
-  return <SearchList items={ items } />;
-};
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center">
+      <SearchList items={items} />
+
+      <Link to="/" className="mt-5 underline">Back to Home</Link>
+    </div>
+  )
+}

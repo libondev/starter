@@ -1,11 +1,11 @@
 import { ModeToggle } from '@/components/layout/mode-toggle'
+import { Button } from 'antd'
 import { useState } from 'react'
 
 function Header() {
   return (
-    <header className="font-medium flex items-center text-lg">
-      <ModeToggle className="mr-1.5" />
-
+    <header className="font-medium flex items-center text-2xl">
+      <IGdsLogoReact className="mr-2" width="1em" height="1em" />
       React Counter
     </header>
   )
@@ -23,8 +23,10 @@ function App() {
       </div>
 
       <div className="flex items-center justify-center gap-2">
-        <button type="button" className="rounded-md bg-zinc-800 hover:bg-zinc-800/80 active:bg-zinc-900 text-white px-4 py-1" onClick={() => setCount(count + 1)}>Increment</button>
-        <button type="button" className="rounded-md bg-zinc-800 hover:bg-zinc-800/80 active:bg-zinc-900 text-white px-4 py-1" onClick={() => setCount(count - 1)}>Decrement</button>
+        <ModeToggle />
+
+        <Button onClick={() => setCount(count + 1)}>+1</Button>
+        <Button onClick={() => setCount(count - 1)}>-1</Button>
       </div>
 
       <Link to="/about" className="mt-5 underline">About Page</Link>
