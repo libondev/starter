@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => ({
   },
 
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'react-dom/client', 'use-immer'],
+    include: ['react', 'react-dom', 'react-router-dom', 'react-dom/client', 'use-immer', 'gdsi/react'],
   },
 
   plugins: [
