@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Toaster } from '@/components/ui/toast'
+// import { Toaster } from '@/components/ui/toast'
 </script>
 
 <template>
@@ -7,5 +7,5 @@ import { Toaster } from '@/components/ui/toast'
     <RouterView />
   </div>
 
-  <Toaster />
+  <!-- <Toaster /> -->
 </template>
