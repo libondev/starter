@@ -50,13 +50,13 @@
 */
 
 html {
-  --c1: #4997f0;
+  /* --c1: #4997f0;
   --c2: #8e9eec;
   --c3: #7f4eea;
   --c4: #ec8ebf;
   --c5: #f74e63;
   --c6: #f8b85c;
-  --cp: #42b883;
+  --cp: #42b883; */
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;

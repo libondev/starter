@@ -1,4 +1,3 @@
-import { initToast } from '@/composables/use-toast'
 import { createPinia } from 'pinia'
 
 import { createApp } from 'vue'
@@ -17,5 +16,3 @@ app.use(router)
 setupI18n(app)
 
 app.mount('#app')
-
-initToast()

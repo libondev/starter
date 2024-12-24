@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { MoonIcon, SunIcon } from 'gdsi/vue'
+import { customRef } from 'vue'
 
 const colorModes = {
   dark: {
