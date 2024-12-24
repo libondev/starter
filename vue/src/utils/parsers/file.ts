@@ -4,16 +4,16 @@
  * @param filename 文件名
  */
 export function downloadBlobFile(blob: Blob, filename = 'download-file') {
-  const blobUrl = window.URL.createObjectURL(blob)
-  const elA = Object.assign(document.createElement('a'), {
+  const url = window.URL.createObjectURL(blob)
+  const a = Object.assign(document.createElement('a'), {
     style: { display: 'none' },
-    href: blobUrl,
+    href: url,
     download: filename,
   })
 
-  document.body.appendChild(elA)
-  elA.click()
+  document.body.appendChild(a)
+  a.click()
 
-  window.URL.revokeObjectURL(blobUrl)
-  document.body.removeChild(elA)
+  window.URL.revokeObjectURL(url)
+  document.body.removeChild(a)
 }

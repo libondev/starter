@@ -1,91 +1,122 @@
-import type { AxiosError } from 'axios'
-import ApiInstance, { type APIResponse } from './index'
+import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
+import cookie from 'js-cookie'
+import instance, { type APIResponse } from './index'
+import {
+  setRequestHeaderTokens,
+  setRequestTokensToStorage,
+  STORAGE_TOKEN_KEYS,
+  USER_REFRESH_API_PATH,
+} from './utils'
 
-function refreshToken(_refreshToken: string): Promise<{ data: { access: string } }> {
-  return Promise.resolve({ data: { access: '' } })
+interface TokenResponse {
+  access: string
+  refresh: string
 }
 
-// 最大重发次数
-const MAX_ERROR_COUNT = 5
+interface PendingRequest {
+  resolve: (value: any) => void
+  reject: (error: Error) => void
+  config: InternalAxiosRequestConfig
+}
 
-// 当前重发次数
-let currentCount = 0
+class TokenRefresher {
+  private isRefreshing = false
+  private failedQueue: PendingRequest[] = []
+  private readonly maxRetries = 3
+  private retryCount = 0
 
-// 缓存请求队列
-const queue: ((t: string) => any)[] = []
-
-// 当前是否刷新状态
-let isRefreshing = false
-
-export default async (error: AxiosError<APIResponse>) => {
-  const statusCode = error.response?.status
-
-  const clearAuth = () => {
-    window.location.replace('/login')
-    // 清空数据
-    sessionStorage.clear()
-    return Promise.reject(error)
+  // 刷新 token
+  private async refreshToken(refreshToken: string) {
+    return instance.post<unknown, APIResponse<TokenResponse>>(USER_REFRESH_API_PATH, {
+      refresh_token: refreshToken,
+    })
   }
 
-  // 为了节省多余的代码，这里仅展示处理状态码为401的情况
-  if (statusCode === 401) {
-    // accessToken失效
-    // 判断本地是否有缓存有refreshToken
-    const _refreshToken = sessionStorage.get('refresh') ?? null
+  // 执行队列中的请求
+  private processQueue(error: any = null) {
+    this.failedQueue.forEach(({ resolve, reject, config }) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(instance(config))
+      }
+    })
+    this.failedQueue = []
+  }
 
-    if (!_refreshToken)
-      clearAuth()
+  // 清除认证信息
+  private clearAuth() {
+    this.isRefreshing = false
+    this.retryCount = 0
+    this.failedQueue = []
 
-    // 提取请求的配置
-    const { config } = error
+    cookie.remove(STORAGE_TOKEN_KEYS.ACCESS)
+    cookie.remove(STORAGE_TOKEN_KEYS.REFRESH)
 
-    // 判断是否refresh失败且状态码401，再次进入错误拦截器
-    if (config!.url!.includes('refresh'))
-      clearAuth()
+    // 跳转到登录页
+    location.replace('/login')
+  }
 
-    // 判断当前是否为刷新状态中（防止多个请求导致多次调refresh接口）
-    if (isRefreshing) {
-      // 当前正在尝试刷新token，先返回一个promise阻塞请求并推进请求列表中
-      return new Promise((resolve) => {
-        // 缓存网络请求，等token刷新后直接执行
-        queue.push((newToken: string) => {
-          Reflect.set(config!.headers!, 'authorization', newToken)
-          resolve(ApiInstance.request(config!))
-        })
+  // 处理请求错误
+  async handleRequestError(error: AxiosError<APIResponse>): Promise<void> {
+    const { config, response } = error
+
+    if (!config || !response || response.status !== 401) {
+      return Promise.reject(error)
+    }
+
+    // 如果是刷新token的请求失败了，直接清除认证信息
+    if (config.url?.includes(USER_REFRESH_API_PATH)) {
+      this.clearAuth()
+      return Promise.reject(error)
+    }
+
+    const refreshToken = cookie.get(STORAGE_TOKEN_KEYS.REFRESH)
+    if (!refreshToken) {
+      this.clearAuth()
+      return Promise.reject(error)
+    }
+
+    // 如果已经在刷新中，将请求加入队列
+    if (this.isRefreshing) {
+      return new Promise((resolve, reject) => {
+        this.failedQueue.push({ resolve, reject, config })
       })
     }
 
-    // 设置当前状态为刷新中
-    isRefreshing = true
-    // 如果重发次数超过，直接退出登录
-    if (currentCount > MAX_ERROR_COUNT)
-      clearAuth()
-
-    // 增加重试次数
-    currentCount += 1
+    this.isRefreshing = true
 
     try {
-      const {
-        data: { access },
-      } = await refreshToken(_refreshToken)
-      // 请求成功，缓存新的accessToken
-      sessionStorage.set('token', access)
-      // 重置重发次数
-      currentCount = 0
-      // 遍历队列，重新发起请求
-      queue.forEach(cb => cb(access))
-      // 返回请求数据
-      return ApiInstance.request(error.config!)
-    } catch {
-      // 刷新token失败，直接退出登录
-      sessionStorage.clear()
-      window.location.replace('/login')
-      return Promise.reject(error)
+      const { data } = await this.refreshToken(refreshToken)
+
+      // 更新 token
+      setRequestTokensToStorage(data.access, data.refresh)
+      setRequestHeaderTokens(instance, data.access, data.refresh)
+
+      // 重试队列中的请求
+      this.processQueue()
+
+      // 重试当前请求
+      return instance(config)
+    } catch (refreshError) {
+      this.retryCount++
+
+      if (this.retryCount >= this.maxRetries) {
+        this.clearAuth()
+        this.processQueue(refreshError)
+        return Promise.reject(refreshError)
+      }
+
+      // 重试刷新
+      return this.handleRequestError(error)
     } finally {
-      // 重置状态
-      isRefreshing = false
+      this.isRefreshing = false
     }
   }
+}
 
-  return Promise.reject(error)
+const tokenRefresher = new TokenRefresher()
+
+export default (error: AxiosError<APIResponse>) => {
+  return tokenRefresher.handleRequestError(error)
 }
