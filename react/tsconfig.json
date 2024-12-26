@@ -37,21 +37,18 @@
     "useDefineForClassFields": true,
     "verbatimModuleSyntax": true
   },
+  "exclude": [
+    "e2e",
+    "dist",
+    "cypress",
+    "**/node_modules",
+    "**/.*/"
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "shims/**/*.d.ts",
-    ".eslintrc.cjs",
-    "uno.config.*",
     "vite.config.*",
     "vitest.config.*",
-    "scripts/**/*.ts",
-    "playwright.config.*",
-  ],
-  "exclude": ["**/node_modules", "**/.*/"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
+    "playwright.config.*"
   ]
 }

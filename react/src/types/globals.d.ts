@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
-/// <reference types="unplugin-icons/types/vue" />
-/// <reference types="vite-plugin-pages/client" />
-/// <reference types="vite-plugin-vue-layouts/client" />
+/// <reference types="unplugin-icons/types/react" />
+/// <reference types="vite-plugin-pages/client-react" />
 
 export { }
 
@@ -15,19 +14,13 @@ interface ImportMeta {
 }
 
 declare global {
+  export type { FC, FormEvent } from 'react'
+
   interface Document {
     startViewTransition?: (callback: () => Promise<void> | void) => {
       finished: Promise<void>
       updateCallbackDone: Promise<void>
       ready: Promise<void>
-    }
-  }
-
-  interface MatcherResult<Value, Input = unknown> {
-    input: Input
-    state: {
-      matched: boolean
-      value: Value
     }
   }
 }

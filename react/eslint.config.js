@@ -1,28 +1,22 @@
 import antfu from '@antfu/eslint-config'
+import eslintPluginReactCompiler from 'eslint-plugin-react-compiler'
 
 export default antfu({
-  markdown: false,
-  jsonc: false,
-  react: true,
   yaml: false,
-  rules: {
-    'no-console': 'warn',
-    // 'react-compiler/react-compiler': 'error',
-    'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
-    'react-refresh/only-export-components': 'off',
-    // TODO
-    'react/prop-types': 'off',
-    'style/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' }],
+  react: true,
+  jsonc: false,
+  markdown: false,
+  ignores: ['*.d.ts', '.DS_Store'],
+  plugins: {
+    'react-compiler': eslintPluginReactCompiler,
   },
-  ignores: [
-    'dist',
-    'node_modules',
-    '.output',
-    '.nuxt',
-    '.DS_Store',
-    'index.html',
-    '*.d.ts',
-    'shims/imports.d.ts',
-  ],
+  rules: {
+    // 'sort-keys/sort-keys-fix': 'error',
+    'no-console': 'warn',
+    'react/prop-types': 'off',
+    'react-compiler/react-compiler': 'error',
+    'react-refresh/only-export-components': 'off',
+    'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+    'style/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
+  },
 })

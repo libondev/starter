@@ -40,8 +40,7 @@ export function ThemeProvider({
     if (theme === 'dark' || (theme === 'auto' && isPrefersDark)) {
       root.classList.add('dark')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme])
+  }, [theme, isPrefersDark])
 
   const provideValue = useMemo(() => ({
     theme,
@@ -49,8 +48,7 @@ export function ThemeProvider({
       localStorage.setItem(storageKey, theme)
       setTheme(theme)
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [theme])
+  }), [theme, storageKey])
 
   const algorithm = theme === 'dark' || (theme === 'auto' && isPrefersDark)
     ? antdTheme.darkAlgorithm

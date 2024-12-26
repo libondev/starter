@@ -1,6 +1,6 @@
 import { useDeferredValue, useMemo, useState } from 'react'
 
-function SearchList({ items }: { items: string[] }) {
+const SearchList = memo(({ items }: { items: string[] }) => {
   const [search, setSearch] = useState('')
 
   // 创建延迟的 search 值
@@ -27,14 +27,14 @@ function SearchList({ items }: { items: string[] }) {
 
       <ul className={`px-2${isDeferred ? ' opacity-50' : ''}`}>
         {
-          filteredItems.map((item, index) => (
-            <li key={index}>{ item }</li>
+          filteredItems.map(item => (
+            <li key={item}>{ item }</li>
           ))
         }
       </ul>
     </div>
   )
-}
+})
 
 export default function App() {
   const items = ['apple', 'banana', 'cherry', 'date', 'elderberry']

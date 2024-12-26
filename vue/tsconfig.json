@@ -39,6 +39,7 @@
     "verbatimModuleSyntax": true
   },
   "exclude": [
+    "e2e",
     "dist",
     "cypress",
     "**/node_modules",

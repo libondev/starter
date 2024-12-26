@@ -36,12 +36,11 @@ export default defineConfig(({ mode }) => ({
 
   esbuild: {
     target: 'esnext',
-    // 在生产环境下去掉 console/debugger
     drop: mode === 'production' ? ['console', 'debugger'] : [],
   },
 
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'react-dom/client', 'use-immer', 'gdsi/react'],
+    include: ['react', 'react-dom', 'react-router-dom', 'react-dom/client', 'use-immer'],
   },
 
   plugins: [
@@ -63,7 +62,7 @@ export default defineConfig(({ mode }) => ({
     AutoImport({
       include: [/\.[tj]sx?$/],
       dirs: ['./src/hooks/**/*'],
-      dts: './shims/imports.d.ts',
+      dts: './src/types/imports.d.ts',
       imports: [
         'react',
         'react-router-dom',
