@@ -1,3 +1,4 @@
+import { prefersDarkColorScheme } from '@/utils/shared'
 import { theme as antdTheme, ConfigProvider } from 'antd'
 import { createContext, useContext, useEffect, useState } from 'react'
 
@@ -26,7 +27,7 @@ export function ThemeProvider({
   storageKey = 'fe.system.color-mode',
   ...props
 }: ThemeProviderProps) {
-  const isPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const isPrefersDark = prefersDarkColorScheme()
   const [theme, setTheme] = useState<Theme>(() => {
     const _cache = (localStorage.getItem(storageKey) as Theme) || 'auto'
     return _cache === 'auto' ? (isPrefersDark ? 'dark' : 'light') : _cache

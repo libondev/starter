@@ -1,7 +1,5 @@
 @import "tailwindcss";
 @config "../../tailwind.config.js";
+@source "../../index.html";
+@source "../../src/**/*.{ts,tsx,vue}";
 /* @source "../../node_modules/@my-company/ui-lib"; */
-
-.dark, [arco-theme='dark'] {
-  color-scheme: dark;
-}

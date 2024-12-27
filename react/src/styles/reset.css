@@ -1,21 +1,5 @@
 /* https://andy-bell.co.uk/a-more-modern-css-reset/ */
 
-.scrollbar {
-  scrollbar-gutter: stable both-edges;
-}
-
-@supports (scrollbar-width: thin) {
-  .scrollbar {
-    scrollbar-width: thin;
-  }
-}
-
-@supports (scrollbar-color: #000) {
-  .scrollbar {
-    scrollbar-color: var(--sc);
-  }
-}
-
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -23,31 +7,22 @@
 
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-corner {
-  background: var(--background);
+  background: var(--background-color);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: var(--sc);
+  background: var(--scrollbar-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--sh);
+  background: var(--scrollbar-hover);
 }
 
 ::placeholder {
   user-select: none;
 }
-
-/*
---spacing-30: clamp(1.5rem, 5vw, 2rem);
---spacing-40: clamp(1.8rem, 1.8rem + ((1vw - 0.48rem) * 2.885), 3rem);
---spacing-50: clamp(2.5rem, 8vw, 4.5rem);
---spacing-60: clamp(3.75rem, 10vw, 7rem);
---spacing-70: clamp(5rem, 5.25rem + ((1vw - 0.48rem) * 9.096), 8rem);
---spacing-80: clamp(7rem, 14vw, 11rem);
-*/
 
 html {
   /* --c1: #4997f0;
@@ -57,11 +32,14 @@ html {
   --c5: #f74e63;
   --c6: #f8b85c;
   --cp: #42b883; */
+  --scrollbar-color: #ccc;
+  --scrollbar-hover: #999;
+  --background-color: #ffffff;
+  --foreground-color: #171717;
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
   text-rendering: optimizeLegibility;
-  /* 非标准属性, 目前仅在 macos 上生效 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -70,38 +48,54 @@ html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
   font-synthesis: none;
+  background-color: var(--background-color);
+  color: var(--foreground-color);
 }
 
-ul {
-  margin: 0;
-  padding-left: 0;
-  list-style: none;
+.dark, [arco-theme='dark'] {
+  --scrollbar-color: #555;
+  --scrollbar-hover: #444;
+  --background-color: #121212;
+  --foreground-color: #ededed;
+  color-scheme: dark;
 }
 
-html,
-body,
-#app {
-  height: 100%;
+.scrollbar-stable {
+  scrollbar-gutter: stable both-edges;
+}
+
+@supports (scrollbar-width: thin) {
+  .scrollbar-stable {
+    scrollbar-width: thin;
+  }
+}
+
+@supports (scrollbar-color: #000) {
+  .scrollbar-stable {
+    scrollbar-color: var(--scrollbar-color);
+  }
 }
 
 /* Fallback for browsers that don't support scrollbar-gutter */
-body, .scrollbar {
+.scrollbar-stable {
   overflow-y: scroll;
 }
 
 /* scrollbar-gutter FTW! */
 @supports (scrollbar-gutter: stable) {
-  body, .scrollbar {
+  .scrollbar-stable {
     overflow-y: auto;
     scrollbar-gutter: stable;
   }
 }
 
-h1, h2, h3, h4, p,
+body, h1, h2, h3, h4, p, ul,
 figure, blockquote, dl, dd {
   margin: 0;
 }
 
+/* ul,
+ol, */
 ul[role='list'],
 ol[role='list'] {
   padding-left: 0;
@@ -121,7 +115,6 @@ h1, h2, h3, h4 {
   width: fit-content;
   text-wrap: balance
 }
-
 
 a {
   text-decoration: none;
@@ -152,6 +145,14 @@ textarea:not([rows]) {
   min-height: 10em;
 }
 
+@supports (field-sizing: content) {
+  textarea {
+    width: 100%;
+    max-height: 160px;
+    field-sizing: content;
+  }
+}
+
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 5ex;
@@ -164,7 +165,6 @@ textarea:not([rows]) {
   color: hsl(var(--primary))
 } */
 
-/* 外部链接并且不是以 # 开头的链接加上图标 */
 /* .external-link::after, */
 /* a[target="_blank"]:not([href^="#"], [role="icon"], .no-icon) {
   content: '';

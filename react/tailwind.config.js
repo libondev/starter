@@ -1,4 +1,4 @@
-import animations from 'tailwindcss-animate'
+import Animate from 'tailwindcss-animate'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -6,23 +6,14 @@ export default {
   safelist: ['dark', 'inline-block'],
 
   content: [
+    './index.html',
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
 
-  theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
-  },
-
   plugins: [
-    animations,
+    Animate,
   ],
 }

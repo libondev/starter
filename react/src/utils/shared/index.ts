@@ -33,7 +33,7 @@ export function getUUID() {
  * getSelectedText() // 'Lorem ipsum'
  * ```
  */
-export const getSelectedText = () => window.getSelection()?.toString()
+export const getSelectedText = () => globalThis.getSelection?.()?.toString()
 
 /**
  * 复制文本到剪贴板
@@ -83,13 +83,13 @@ export const getDateTimeFromDate = (date: Date = new Date()) => date.toTimeStrin
  * prefersDarkColorScheme() // true
  * ```
  */
-export const prefersDarkColorScheme = () => window && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+export const prefersDarkColorScheme = () => globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches
 
 /**
  * 判断是否为移动端设备
  * TIP: 只有移动端才有 ontouchstart 属性
  */
-export const isMobileDevice = () => window && 'ontouchstart' in window
+export const isMobileDevice = () => 'ontouchstart' in globalThis
 
 /**
  * 是否为空对象

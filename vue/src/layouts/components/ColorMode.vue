@@ -16,9 +16,8 @@ const colorModes = {
 type ColorMode = keyof typeof colorModes
 
 const colorMode = customRef<ColorMode>((track, trigger) => {
-  const root = document.documentElement
-  const body = document.body
   const storageKey = 'fe.system.color-mode'
+  const { documentElement: root, body } = document
   let curMode: ColorMode = root.classList.contains('dark') ? 'dark' : 'light'
 
   return {
