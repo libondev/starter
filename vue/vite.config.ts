@@ -82,10 +82,6 @@ export default defineConfig(({ mode }) => {
       JSX(),
 
       Vue({
-        script: {
-          defineModel: true,
-          propsDestructure: true,
-        },
         template: {
           compilerOptions: {
             nodeTransforms: [
