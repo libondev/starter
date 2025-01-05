@@ -1,8 +1,11 @@
+import type { ConfigProvider } from '@arco-design/web-vue'
 import i18n from '@/app/i18n.ts'
-import { shallowRef } from 'vue'
+import { onScopeDispose, shallowRef, watch } from 'vue'
+
+type ArcoLang = InstanceType<typeof ConfigProvider>['$props']['locale']
 
 export function useArcoLocaleAsync() {
-  const locale = shallowRef()
+  const locale = shallowRef<ArcoLang>()
 
   const localeAlias = {
     'en': 'en-us',
