@@ -12,6 +12,16 @@
       ]
     },
     {
+      "name": "@source",
+      "description": "Specify which files need to be processed by tailwindcss.",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/v4-beta#adding-content-sources"
+        }
+      ]
+    },
+    {
       "name": "@config",
       "description": "Use the @config directive to specify which config file Tailwind should use when compiling that CSS file. This is useful for projects that need to use different configuration files for different CSS entry points.",
       "references": [
