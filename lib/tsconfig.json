@@ -8,10 +8,10 @@
     "inlineSources": false,
     "isolatedModules": true,
     "lib": [
-      "ES2016",
+      "ESNext",
       "DOM",
-      "DOM.Iterable"
     ],
+    "esModuleInterop": true,
     "module": "ESNext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -29,6 +29,7 @@
     "sourceMap": false,
     "strict": true,
     "strictBindCallApply": true,
+    "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
     "target": "ESNext",
     "types": [

@@ -1,12 +1,13 @@
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "cSpell.words": [
     "antfu",
     "bumpp",
     "esno",
     "pnpx",
-    "vitepress"
+    "vitepress",
+    "nodenext"
   ]
 }
