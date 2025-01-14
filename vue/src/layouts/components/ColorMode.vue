@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { MoonIcon, SunIcon } from 'gdsi/vue'
+import { MoonIcon } from 'gdsi/vue/moon'
+import { SunIcon } from 'gdsi/vue/sun'
 import { customRef } from 'vue'
 
 const colorModes = {
@@ -52,9 +53,23 @@ function toggleColorMode() {
 </script>
 
 <template>
-  <AButton variant="outline" @click="toggleColorMode()">
+  <AButton variant="outline" class="!transition-none" @click="toggleColorMode()">
     <template #icon>
-      <Component :is="colorModes[colorMode].render" />
+      <Transition name="fade" mode="out-in">
+        <Component :is="colorModes[colorMode].render" />
+      </Transition>
     </template>
   </AButton>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: transform 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: scale(0.3);
+}
+</style>

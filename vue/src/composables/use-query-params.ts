@@ -1,15 +1,22 @@
+import type { Ref } from 'vue'
+
 interface Options {
   urlKey: string
   options: string[]
 }
 
+interface ReturnValue<T> {
+  value: Ref<T>
+  toggle: (mode: T) => void
+}
+
 /**
  * 当从配置项中切换值的时候将值记录到 url 中
  */
-export function useURLQueryParams<ValueType>({
+export function useQueryParams<ValueType>({
   options,
   urlKey,
-} = {} as Options) {
+} = {} as Options): ReturnValue<ValueType> {
   const route = useRoute()
 
   const value = shallowRef(

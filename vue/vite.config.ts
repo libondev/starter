@@ -1,7 +1,6 @@
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath, URL } from 'node:url'
-
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import TW from '@tailwindcss/vite'
@@ -13,13 +12,20 @@ import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueRouter from 'unplugin-vue-router/vite'
 // z-lazy-show/v-show.lazy
 import { transformLazyShow } from 'v-lazy-show'
 import { defineConfig, loadEnv } from 'vite'
-import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
+
 const extensions = ['vue', 'tsx']
+
+const autoImportIcons = {
+  'local-heart': FileSystemIconLoader('./src/icons/heart'),
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -72,11 +78,35 @@ export default defineConfig(({ mode }) => {
     },
 
     optimizeDeps: {
-      include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'date-fns', 'axios', '@vueuse/core', 'gdsi/vue', '@arco-design/web-vue'],
+      include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'date-fns', 'axios', '@vueuse/core'],
       exclude: ['vue-demi'],
     },
 
     plugins: [
+      // 路由插件必须在 Vue 前面
+      VueRouter({
+        routesFolder: [
+          {
+            path: '',
+            src: 'src/views',
+          },
+        ],
+        routeBlockLang: 'yaml',
+        dts: 'src/types/typed-router.d.ts',
+        extensions: extensions.map(ext => `.${ext}`),
+        exclude: [
+          '**/*/apis/**/*',
+          '**/*/components/**/*',
+          '**/*/composables/**/*',
+          '**/*/styles/**/*',
+          '**/*/utils/**/*',
+        ],
+        pathParser: {
+          // `users.[id]` -> `users/:id`
+          dotNesting: true,
+        },
+      }),
+
       TW(),
 
       JSX(),
@@ -91,6 +121,12 @@ export default defineConfig(({ mode }) => {
         },
       }),
 
+      Layouts({
+        defaultLayout: 'default',
+        extensions,
+        layoutsDirs: 'src/layouts',
+      }),
+
       AutoImport({
         dirs: [
           './src/composables/**',
@@ -98,7 +134,7 @@ export default defineConfig(({ mode }) => {
         imports: [
           'vue',
           'vue-i18n',
-          'vue-router',
+          VueRouterAutoImports,
         ],
         // resolvers: [],
         dts: './src/types/auto-imports.d.ts',
@@ -113,29 +149,11 @@ export default defineConfig(({ mode }) => {
           IconsResolver({
             // 如果图标组比较长可以设置得简短点
             alias: {},
-            customCollections: ['local'],
+            customCollections: Object.keys(autoImportIcons),
           }),
           GdsiResolver({ type: 'vue', prefix: 'IGds' }),
         ],
         // globs: ['src/components/**/index.{vue,tsx,ts}']
-      }),
-
-      Pages({
-        dirs: 'src/views',
-        routeBlockLang: 'yaml',
-        extensions,
-        exclude: [
-          '**/*/components/**/*',
-          '**/*/composables/**/*',
-          '**/*/styles/**/*',
-          '**/*/utils/**/*',
-        ],
-      }),
-
-      Layouts({
-        defaultLayout: 'default',
-        extensions,
-        layoutsDirs: 'src/layouts',
       }),
 
       Icons({
@@ -144,17 +162,10 @@ export default defineConfig(({ mode }) => {
         autoInstall: true,
         defaultClass: 'inline-block svg-icon',
         // defaultStyle: '',
-        customCollections: {
-          local: FileSystemIconLoader('./src/icons'),
-        },
+        customCollections: autoImportIcons,
         // 仅修改自定义svg图标
         // transform(svg, _collection, _icon) {
         //   return svg
-        // },
-        // 修改所有修改图标的属性
-        // iconCustomizer(_collection, _icon, props) {
-        //   props.width ??= '1em'
-        //   props.height ??= '1em'
         // },
       }),
 

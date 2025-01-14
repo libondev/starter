@@ -59,6 +59,7 @@
     "tailwindcss",
     "tanstack",
     "unplugin",
-    "vaul"
+    "vaul",
+    "vite"
   ]
 }
