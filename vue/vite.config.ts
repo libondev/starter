@@ -17,7 +17,7 @@ import VueRouter from 'unplugin-vue-router/vite'
 // z-lazy-show/v-show.lazy
 import { transformLazyShow } from 'v-lazy-show'
 import { defineConfig, loadEnv } from 'vite'
-import Layouts from 'vite-plugin-vue-layouts'
+import Layouts from 'vite-plugin-vue-meta-layouts'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
@@ -78,7 +78,7 @@ export default defineConfig(({ mode }) => {
     },
 
     optimizeDeps: {
-      include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'date-fns', 'axios', '@vueuse/core'],
+      include: ['vue', 'pinia', 'vue-router', 'lodash-es', 'nprogress', 'date-fns', 'axios', '@vueuse/core', '@arco-design/web-vue'],
       exclude: ['vue-demi'],
     },
 
@@ -122,9 +122,10 @@ export default defineConfig(({ mode }) => {
       }),
 
       Layouts({
+        target: 'src/layouts',
         defaultLayout: 'default',
-        extensions,
-        layoutsDirs: 'src/layouts',
+        // skipTopLevelRouteLayout: true,
+        // excludes: [],
       }),
 
       AutoImport({

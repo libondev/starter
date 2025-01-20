@@ -3,9 +3,7 @@
 </script>
 
 <template>
-  <div class="h-full">
-    <RouterView />
-  </div>
+  <RouterView />
 
   <!-- <Toaster /> -->
 </template>

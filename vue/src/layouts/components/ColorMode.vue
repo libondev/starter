@@ -65,11 +65,11 @@ function toggleColorMode() {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: transform 0.2s ease;
+  transition: transform 0.15s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  transform: scale(0.3);
+  transform: scale(0.68);
 }
 </style>
