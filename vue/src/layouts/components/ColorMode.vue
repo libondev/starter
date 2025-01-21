@@ -53,7 +53,7 @@ function toggleColorMode() {
 </script>
 
 <template>
-  <AButton variant="outline" class="!transition-none" @click="toggleColorMode()">
+  <AButton variant="outline" @click="toggleColorMode()">
     <template #icon>
       <Transition name="fade" mode="out-in">
         <Component :is="colorModes[colorMode].render" />
@@ -70,6 +70,6 @@ function toggleColorMode() {
 
 .fade-enter-from,
 .fade-leave-to {
-  transform: scale(0.68);
+  transform: rotate(45deg) scale(0.68);
 }
 </style>

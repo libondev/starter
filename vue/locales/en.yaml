@@ -1,2 +1,5 @@
 button:
   toggle: Toggle
+
+input:
+  placeholder: Enter your name

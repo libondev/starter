@@ -1,5 +1,17 @@
 /* ui library styles/variables overwrite */
 
-body {
-  --border-radius-small: 5px;
+.arco-btn,
+.arco-input-wrapper {
+  /* 避免在切换主题的时候出现过渡时的闪烁 */
+  transition: none !important;
+}
+
+.arco-btn:hover {
+  transition: all .1s cubic-bezier(0, 0, 1, 1);
+}
+
+.arco-input-wrapper:hover {
+  transition: color .1s cubic-bezier(0, 0, 1, 1),
+    border-color .1s cubic-bezier(0, 0, 1, 1),
+    background-color .1s cubic-bezier(0, 0, 1, 1);
 }

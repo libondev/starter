@@ -1,2 +1,5 @@
 button:
   toggle: 切换
+
+input:
+  placeholder: 请输入你的名字

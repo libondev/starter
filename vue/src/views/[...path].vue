@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const { params } = useRoute()
+// 调用 useRoute 时传入 path 以获取类型提示
+const { params } = useRoute('/[...path]')
 </script>
 
 <template>

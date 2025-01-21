@@ -32,7 +32,7 @@
       ]
     },
     "resolveJsonModule": true,
-    "rewriteRelativeImportExtensions": true,
+    // "rewriteRelativeImportExtensions": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
@@ -50,8 +50,9 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "configs/**/*.ts",
     "vite.config.*",
     "vitest.config.*",
     "playwright.config.*"
-  ]
+   ]
 }
