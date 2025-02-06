@@ -24,6 +24,10 @@ export const buildConfig: UserConfig['build'] = {
           return 'icons'
         }
 
+        if (id.includes('@arco-design')) {
+          return 'ui'
+        }
+
         if (id.includes('node_modules/')) {
           return 'vendors'
         }
