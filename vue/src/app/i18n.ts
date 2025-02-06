@@ -5,13 +5,13 @@ import { createI18n } from 'vue-i18n'
 const DEFAULT_LANGUAGE_KEY = 'fe.system.intl'
 
 // 后面加上 ! 可以避免从 zh-CN 回退到 zh, 或是 en-US -> en
-export const DEFAULT_LANGUAGE = `${localStorage.getItem(DEFAULT_LANGUAGE_KEY) || 'en'}`
+export const DEFAULT_LANGUAGE = `${localStorage.getItem(DEFAULT_LANGUAGE_KEY) || 'en-US'}`
 
 const i18n = createI18n({
   legacy: false,
   locale: '',
   messages: {},
-  // 忽略控制台提示: `Not found 'button.toggle' key in 'en' locale messages.`
+  // 忽略控制台提示: `Not found 'xxx' key in 'xxx' locale messages.`
   missingWarn: false,
   // 忽略控制台提示: `Fall back to translate 'xxx' with root locale.`
   fallbackWarn: false,

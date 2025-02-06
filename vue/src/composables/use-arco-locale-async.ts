@@ -8,7 +8,7 @@ export function useArcoLocaleAsync() {
   const locale = shallowRef<ArcoLang>()
 
   const localeAlias = {
-    'en': 'en-us',
+    'en-US': 'en-us',
     'zh-CN': 'zh-cn',
   }
 

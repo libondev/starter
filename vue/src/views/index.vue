@@ -47,7 +47,7 @@ function onEnter() {
 </route>
 
 <i18n>
-en:
+en-US:
   sfc:
     language: ' Language'
   button:
