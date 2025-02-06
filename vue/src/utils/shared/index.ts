@@ -95,10 +95,36 @@ export const isMobileDevice = () => 'ontouchstart' in globalThis
  * 是否为空对象
  * @param object 要检测的对象
  */
-export const isEmptyObject = (object: object) => Reflect.ownKeys(object).length === 0
+export const isEmptyObject = (
+  object: object,
+  options = {} as { checkSymbols: boolean, checkNonEnumerable: boolean }
+) => {
+  // 基础类型检查
+  if (object === null || object === undefined) {
+    return true;
+  }
+
+  // 类型检查
+  if (typeof object !== 'object') {
+    return false;
+  }
+
+  if (options.checkSymbols) {
+    return Reflect.ownKeys(object).length === 0;
+  } else if (options.checkNonEnumerable) {
+    return Object.getOwnPropertyNames(object).length === 0;
+  }
+
+  return Object.keys(object).length === 0;
+}
 
 /**
  * 获取客户端语言
- * @return {string} 语言名称，例如：zh-CN / en-US / zh / en
  */
-export const getClientLang = () => navigator.languages?.[0] || navigator.language
+export const getClientLang = () => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().locale
+  } catch (_error) {
+    return navigator.language
+  }
+}

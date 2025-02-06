@@ -1,11 +1,17 @@
 import type { App } from 'vue'
 import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
+import { getClientLang } from '@/utils/shared/index.ts'
 
-const DEFAULT_LANGUAGE_KEY = 'fe.system.intl'
+const DEFAULT_LANGUAGE_KEY = 'fe.system.intl.lang'
 
-// 后面加上 ! 可以避免从 zh-CN 回退到 zh, 或是 en-US -> en
-export const DEFAULT_LANGUAGE = `${localStorage.getItem(DEFAULT_LANGUAGE_KEY) || 'en-US'}`
+// 优先获取本地已经保存好的语言选项，否则获取用户系统/浏览器界面中配置的语言选项
+export const DEFAULT_LANGUAGE = `${localStorage.getItem(DEFAULT_LANGUAGE_KEY) || getClientLang()}`
+
+export const LANGUAGES_NAME_MAP = {
+  'zh-CN': '简体中文',
+  'en-US': 'English(US)',
+}
 
 const i18n = createI18n({
   legacy: false,
@@ -22,7 +28,7 @@ const localesMap = Object.fromEntries(
     .map(([path, loadLocale]) => [path.match(/([\w-]*)\.yaml/)?.[1], loadLocale]),
 ) as Record<Locale, () => Promise<{ default: Record<string, string> }>>
 
-export const availableLocales = Object.keys(localesMap)
+const availableLocales = Object.keys(localesMap)
 
 const loadedLanguages: string[] = []
 
@@ -56,7 +62,7 @@ async function loadLanguageAsync(lang: string): Promise<Locale> {
 
 let curLangIdx = availableLocales.indexOf(DEFAULT_LANGUAGE)
 
-// 切换到指定语言, 或者是轮换语言
+// 切换到指定语言, 如果没有指定切换到什么语言则按名称顺序轮换语言
 export function switchLanguage(lang?: string) {
   if (lang) {
     loadLanguageAsync(lang)
