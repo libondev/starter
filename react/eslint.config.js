@@ -18,5 +18,6 @@ export default antfu({
     'react-refresh/only-export-components': 'off',
     'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'style/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
+    'unused-imports/no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_', caughtErrors: 'none', ignoreRestSiblings: true }],
   },
 })

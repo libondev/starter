@@ -13,5 +13,6 @@ export default antfu({
     'vue/max-attributes-per-line': ['error', { multiline: 1, singleline: 5 }],
     'style/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
     'vue/component-name-in-template-casing': ['error', 'PascalCase', { registeredComponentsOnly: false }],
+    'unused-imports/no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_', caughtErrors: 'none', ignoreRestSiblings: true }],
   },
 })

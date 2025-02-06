@@ -1,7 +1,8 @@
 import type { App } from 'vue'
 import type { Locale } from 'vue-i18n'
-import { createI18n } from 'vue-i18n'
 import { getClientLang } from '@/utils/shared/index.ts'
+
+import { createI18n } from 'vue-i18n'
 
 const DEFAULT_LANGUAGE_KEY = 'fe.system.intl.lang'
 
