@@ -96,3 +96,9 @@ export const isMobileDevice = () => 'ontouchstart' in globalThis
  * @param object 要检测的对象
  */
 export const isEmptyObject = (object: object) => Reflect.ownKeys(object).length === 0
+
+/**
+ * 获取客户端语言
+ * @return {string} 语言名称，例如：zh-CN / en-US / zh / en
+ */
+export const getClientLang = () => navigator.languages?.[0] || navigator.language

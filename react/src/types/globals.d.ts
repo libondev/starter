@@ -15,12 +15,4 @@ interface ImportMeta {
 
 declare global {
   export type { FC, FormEvent } from 'react'
-
-  interface Document {
-    startViewTransition?: (callback: () => Promise<void> | void) => {
-      finished: Promise<void>
-      updateCallbackDone: Promise<void>
-      ready: Promise<void>
-    }
-  }
 }

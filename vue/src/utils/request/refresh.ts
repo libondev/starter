@@ -1,12 +1,8 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
 import cookie from 'js-cookie'
-import instance, { type APIResponse } from './index'
-import {
-  setRequestHeaderTokens,
-  setRequestTokensToStorage,
-  STORAGE_TOKEN_KEYS,
-  USER_REFRESH_API_PATH,
-} from './utils'
+import instance, { type APIResponse } from './index.ts'
+import { STORAGE_TOKEN_KEYS, USER_REFRESH_API_PATH } from './consts.ts'
+import { setRequestHeaderTokens, setRequestTokensToStorage } from './utils.ts'
 
 interface TokenResponse {
   access: string

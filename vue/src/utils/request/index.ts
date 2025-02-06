@@ -1,13 +1,9 @@
 import axios from 'axios'
 import cookie from 'js-cookie'
-import { downloadBlobFile } from '../parsers/file'
-import refreshAccessTokenHandler from './refresh'
-import {
-  getRedirectLoginPage,
-
-  HEADER_TOKEN_KEYS,
-  STORAGE_TOKEN_KEYS,
-} from './utils'
+import { downloadBlobFile } from '../parsers/file.ts'
+import refreshAccessTokenHandler from './refresh.ts'
+import { getRedirectLoginPage } from './utils.ts'
+import { HEADER_TOKEN_KEYS, STORAGE_TOKEN_KEYS } from './consts.ts'
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE,
