@@ -10,7 +10,7 @@ const DEFAULT_LANGUAGE_KEY = 'fe.system.intl.lang'
 export const DEFAULT_LANGUAGE = `${localStorage.getItem(DEFAULT_LANGUAGE_KEY) || getClientLang()}`
 
 export const LANGUAGES_NAME_MAP = {
-  'zh-CN': '简体中文',
+  'zh-CN': '中文(简体)',
   'en-US': 'English(US)',
 }
 
