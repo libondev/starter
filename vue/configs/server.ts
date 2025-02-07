@@ -6,7 +6,7 @@ export const serverConfig: UserConfig['server'] = {
     '/api': {
       changeOrigin: true,
       target: 'http://localhost:3000',
-      rewrite: path => path.replace(/^\/api/, ''),
+      rewrite: (path: string) => path.replace(/^\/api/, ''),
     },
   },
 }

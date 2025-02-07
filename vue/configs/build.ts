@@ -5,7 +5,7 @@ export const buildConfig: UserConfig['build'] = {
   reportCompressedSize: false,
   rollupOptions: {
     output: {
-      manualChunks(id) {
+      manualChunks(id: string) {
         if (id.includes('node_modules/lodash')) {
           return 'lodash'
         }
