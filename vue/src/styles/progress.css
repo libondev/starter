@@ -1,5 +1,5 @@
 #nprogress {
-  --color: var(--progress-bar, #00c488);
+  --color: var(--progress-bar, rgb(var(--primary-6)));
   pointer-events: none;
 }
 
