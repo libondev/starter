@@ -16,6 +16,14 @@ const arcoDesignVars = {
   // 点击（按下）
   'primary-7': '#4100A9',
 
+  'dark-primary-1': '#16004D',
+  'dark-primary-2': '#24036B',
+  'dark-primary-3': '#35088A',
+  'dark-primary-4': '#4A0FA9',
+  'dark-primary-5': '#6218C8',
+  'dark-primary-6': '#7120D3',
+  'dark-primary-7': '#924BDE',
+
   'border-radius-small': '5px',
 }
 
