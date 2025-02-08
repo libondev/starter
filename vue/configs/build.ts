@@ -1,12 +1,16 @@
 import type { UserConfig } from 'vite'
 
+const i18nPathRegex = /locales\/.*\.yaml/
+
 export const buildConfig: UserConfig['build'] = {
   cssMinify: 'lightningcss',
   reportCompressedSize: false,
   rollupOptions: {
     output: {
       manualChunks(id: string) {
-        if (id.includes('node_modules/lodash')) {
+        if (
+          id.includes('node_modules/lodash')
+        ) {
           return 'lodash'
         }
 
@@ -24,12 +28,20 @@ export const buildConfig: UserConfig['build'] = {
           return 'icons'
         }
 
-        if (id.includes('@arco-design')) {
+        if (
+          id.includes('@arco-design')
+        ) {
           return 'ui'
         }
 
-        if (id.includes('node_modules/')) {
+        if (
+          id.includes('node_modules/')
+        ) {
           return 'vendors'
+        }
+
+        if (i18nPathRegex.test(id)) {
+          return 'intl'
         }
 
         return 'chunk'
