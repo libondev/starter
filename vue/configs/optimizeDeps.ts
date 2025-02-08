@@ -6,7 +6,6 @@ const include = [
   'vue-router',
   'lodash-es',
   'nprogress',
-  'date-fns',
   'axios',
   '@vueuse/core',
   '@arco-design/web-vue',
