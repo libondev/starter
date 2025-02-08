@@ -16,6 +16,7 @@ export const LANGUAGES_NAME_MAP = {
 
 const i18n = createI18n({
   legacy: false,
+  // locale 必须为空，才能确保首次被正常设置
   locale: '',
   messages: {},
   // 忽略控制台提示: `Not found 'xxx' key in 'xxx' locale messages.`
@@ -44,21 +45,22 @@ function setI18nLanguage(lang: Locale) {
   return lang
 }
 
-async function loadLanguageAsync(lang: string): Promise<Locale> {
-  // 如果语言并没有切换或者已经加载过
-  if (
-    i18n.global.locale.value === lang ||
-    loadedLanguages.includes(lang)
-  ) {
-    return setI18nLanguage(lang)
+async function loadLanguageAsync(lang: string) {
+  if (i18n.global.locale.value === lang) {
+    return
   }
 
-  // 如果还没加载这个语言
+  // loaded
+  if (loadedLanguages.includes(lang)) {
+    setI18nLanguage(lang)
+    return
+  }
+
   const messages = await localesMap[lang]!()
   i18n.global.setLocaleMessage(lang, messages.default)
   loadedLanguages.push(lang)
 
-  return setI18nLanguage(lang)
+  setI18nLanguage(lang)
 }
 
 let curLangIdx = availableLocales.indexOf(DEFAULT_LANGUAGE)
