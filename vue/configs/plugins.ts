@@ -8,7 +8,6 @@ import Vue from '@vitejs/plugin-vue'
 import JSX from '@vitejs/plugin-vue-jsx'
 import GdsiResolver from 'gdsi/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
-import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -18,13 +17,11 @@ import Router from 'unplugin-vue-router/vite'
 import { transformLazyShow } from 'v-lazy-show'
 import Layouts from 'vite-plugin-vue-meta-layouts'
 
+import { iconCollections } from './icons'
+
 const __dirname = fileURLToPath(new URL('../', import.meta.url))
 
 const extensions = ['vue', 'tsx']
-
-const autoImportIcons = {
-  'local-heart': FileSystemIconLoader('./src/icons/heart'),
-}
 
 export const pluginsConfig = [
   // router must be before vue
@@ -94,7 +91,7 @@ export const pluginsConfig = [
       IconsResolver({
         // 如果图标组比较长可以设置得简短点
         alias: {},
-        customCollections: Object.keys(autoImportIcons),
+        customCollections: Object.keys(iconCollections),
       }),
       GdsiResolver({ type: 'vue', prefix: 'IGds' }),
     ],
@@ -107,7 +104,7 @@ export const pluginsConfig = [
     autoInstall: true,
     defaultClass: 'inline-block svg-icon',
     // defaultStyle: '',
-    customCollections: autoImportIcons,
+    customCollections: iconCollections,
     // 仅修改自定义svg图标
     // transform(svg, _collection, _icon) {
     //   return svg
