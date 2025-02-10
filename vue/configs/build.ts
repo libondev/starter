@@ -9,9 +9,9 @@ export const buildConfig: UserConfig['build'] = {
     output: {
       manualChunks(id: string) {
         if (
-          id.includes('node_modules/lodash')
+          id.includes('node_modules/es-toolkit')
         ) {
-          return 'lodash'
+          return 'utils'
         }
 
         if (
