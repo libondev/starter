@@ -1,79 +1,68 @@
 import axios from 'axios'
-import jsCookie from 'js-cookie'
-import { USER_TOKEN_KEY, getRedirectLoginPage } from './utils'
-
-export interface APIResponse<Data = any> {
-  code: number
-
-  // 成功
-  data: Data
-
-  // 失败
-  detail: Data
-  msg?: string
-}
+import cookie from 'js-cookie'
+import { downloadBlobFile } from '../parsers/file.ts'
+import { HEADER_TOKEN_KEYS, STORAGE_TOKEN_KEYS } from './consts.ts'
+import refreshAccessTokenHandler from './refresh.ts'
+import { getRedirectLoginPage } from './utils.ts'
 
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-  // baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_BASE,
+  headers: {
+    [HEADER_TOKEN_KEYS.ACCESS]: cookie.get(STORAGE_TOKEN_KEYS.ACCESS),
+    [HEADER_TOKEN_KEYS.REFRESH]: cookie.get(STORAGE_TOKEN_KEYS.REFRESH),
+  },
 })
 
-const refreshing = false
-
-const configsMap = new Map()
-
 instance.interceptors.request.use((config) => {
-  const token = jsCookie.get(USER_TOKEN_KEY)
-  config.headers.Authorization = `Bearer ${token}`
-
-  // 如果正在刷新 token 则将后续的请求全部放入暂存区
-  if (refreshing) {
-    return new Promise((resolve) => {
-      configsMap.set(config, resolve)
-    })
+  // 如果是 FormData 自动覆写请求头类型
+  if (config.data instanceof FormData) {
+    config.headers['Content-Type'] = 'multipart/form-data'
   }
-
-  // if (!token) {
-  //   refreshing = true
-
-  //   // 刷新 token, 刷新后重新请求 configsMap 里的所有请求
-  //   axios.post('/refresh-token').then((res) => {
-  //     jsCookie.set(USER_TOKEN_KEY, res.data.data.token)
-
-  //     configsMap.forEach((resolve, conf) => resolve(conf))
-  //   })
-  // }
 
   return config
 })
 
-instance.interceptors.response.use((response) => {
-  if (response.data?.code === 200)
-    return Promise.resolve(response.data)
+instance.interceptors.response.use(({ data, headers }) => {
+  return new Promise<any>((resolve, reject) => {
+    // 如果是 blob 则当做文件下载
+    if (data instanceof Blob) {
+      const filename = headers['Content-disposition'].replace(/\w+;\s?filename=(.*)/, '$1')
+      downloadBlobFile(data, decodeURIComponent(filename))
+      return resolve({ code: 200, msg: 'Success' })
+    }
 
-  // token 过期跳转到登录页
-  if (response.data?.code === 1026)
-    location.href = getRedirectLoginPage()
+    if (data?.code === 200) {
+      return resolve(data)
+    }
 
-  return Promise.reject(response.data)
-})
+    // token 过期跳转到登录页
+    if (data?.code === 1026) {
+      location.href = getRedirectLoginPage()
+      return reject(data)
+    }
 
+    return reject(data)
+  })
+}, refreshAccessTokenHandler)
 
-
-export function useGet<Detail>(...args: Parameters<typeof instance['get']>) {
-  return instance.get<unknown, APIResponse<Detail>>(...args)
+export interface APIResponse<Data = any> {
+  code: number
+  data: Data // 成功时的数据
+  detail?: Data // 失败时的数据
+  msg?: string
 }
 
-export function usePost<Detail>(...args: Parameters<typeof instance['post']>) {
-  return instance.post<unknown, APIResponse<Detail>>(...args)
-}
+type APIGetMethod<D = any, P = any> = <Data = D, Params = P>(
+  ...args: Parameters<typeof instance.get<any, APIResponse<Data>, Params>>
+) => Promise<APIResponse<Data>>
 
-export function usePut<Detail>(...args: Parameters<typeof instance['put']>) {
-  return instance.put<unknown, APIResponse<Detail>>(...args)
-}
+type APIPostMethod<D = any, B = any> = <Data = D, Body = B>(
+  ...args: Parameters<typeof instance.post<any, APIResponse<Data>, Body>>
+) => Promise<APIResponse<Data>>
 
-export function useDelete<Detail>(...args: Parameters<typeof instance['delete']>) {
-  return instance.delete<unknown, APIResponse<Detail>>(...args)
-}
+export const $get = instance.get.bind(instance) as APIGetMethod
+export const $post = instance.post.bind(instance) as APIPostMethod
+export const $put = instance.put.bind(instance) as APIPostMethod
+export const $delete = instance.delete.bind(instance) as APIGetMethod
 
 export default instance
