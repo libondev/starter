@@ -80,6 +80,26 @@
           "url": "https://tailwindcss.com/docs/functions-and-directives#theme-directive"
         }
       ]
+    },
+    {
+      "name": "@utility",
+      "description": "Use the @utility directive to add a custom utility to your project",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#theme-directive"
+        }
+      ]
+    },
+    {
+      "name": "@custom-variant",
+      "description": "add your own custom variants using the @custom-variant directive",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#theme-directive"
+        }
+      ]
     }
   ]
 }
