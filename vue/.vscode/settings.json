@@ -17,21 +17,15 @@
   "tailwindCSS.classAttributes": [
     "class",
     "className",
-    "ngClass",
-    "ui"
+    "ngClass"
   ],
-  "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["classnames\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["classNames\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
-    "(?:enter|leave)(?:From|To)?=\\s*(?:\"|')([^(?:\"|')]*)",
-    "(?:enter|leave)(?:From|To)?=\\s*(?:\"|'|{`)([^(?:\"|'|`})]*)",
-    ":\\s*?[\"'`]([^\"'`]*).*?,",
-    ["(?:twMerge|twJoin)\\(([^;]*)[\\);]", "[`'\"`]([^'\"`;]*)[`'\"`]"],
-    "tailwind\\('([^)]*)\\')", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)",
-    "(?:const|let|var)\\s+[\\w$_][_\\w\\d]*\\s*=\\s*['\\\"](.*?)['\\\"]"
-  ],
+  "tailwindCSS.classFunctions": ["tw", "clsx", "twMerge"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
 
   // Enable eslint for all supported languages
   "eslint.validate": [

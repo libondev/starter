@@ -6,21 +6,15 @@
   "editor.formatOnSave": false,
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
   },
   "tailwindCSS.classAttributes": [
     "class",
     "className",
-    "ngClass",
-    "ui"
+    "ngClass"
   ],
-  "tailwindCSS.experimental.configFile": "tailwind.config.ts",
-  "tailwindCSS.experimental.classRegex": [
-    ["ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["/\\*ui\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"]
-  ],
-
+  "tailwindCSS.classFunctions": ["tw", "clsx", "twMerge"],
   "files.associations": {
     "*.css": "tailwindcss"
   },
