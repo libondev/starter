@@ -12,7 +12,7 @@ import {
 } from './configs/index.ts'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   const {
     VITE_BASE_PATH,
   } = loadEnv(mode, process.cwd())
@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
 
     optimizeDeps: optimizeDepsConfig,
 
-    plugins: pluginsConfig,
+    plugins: pluginsConfig(command),
 
     resolve: resolveConfig,
 

@@ -23,7 +23,7 @@ const __dirname = fileURLToPath(new URL('../', import.meta.url))
 
 const extensions = ['vue', 'tsx']
 
-export const pluginsConfig = [
+export const pluginsConfig = (command: string) => [
   // router must be before vue
   Router({
     routesFolder: [
@@ -33,7 +33,7 @@ export const pluginsConfig = [
       },
     ],
     routeBlockLang: 'yaml',
-    dts: 'src/types/typed-router.d.ts',
+    dts: command === 'build' ? false : 'src/types/typed-router.d.ts',
     extensions: extensions.map(ext => `.${ext}`),
     exclude: [
       '**/*/apis/**/*',
@@ -79,12 +79,12 @@ export const pluginsConfig = [
       VueRouterAutoImports,
     ],
     // resolvers: [],
-    dts: './src/types/auto-imports.d.ts',
+    dts: command === 'build' ? false : './src/types/auto-imports.d.ts',
     // include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/],
   }),
 
   Components({
-    dts: './src/types/components.d.ts',
+    dts: command === 'build' ? false : './src/types/components.d.ts',
     extensions,
     resolvers: [
       // 图标自动导入(依赖或者本地)
