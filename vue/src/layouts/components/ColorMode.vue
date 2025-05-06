@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { MoonIcon } from 'gdsi/vue/moon'
-import { SunIcon } from 'gdsi/vue/sun'
+import MoonIcon from 'gdsi/vue/moon'
+import SunIcon from 'gdsi/vue/sun'
 import { customRef } from 'vue'
 
 const colorModes = {

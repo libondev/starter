@@ -12,7 +12,9 @@ const exclude = [
   'vue-demi',
 ]
 
-export const optimizeDepsConfig: UserConfig['optimizeDeps'] = {
-  include,
-  exclude,
+export function optimizeDepsConfig(): UserConfig['optimizeDeps'] {
+  return {
+    include,
+    exclude,
+  }
 }

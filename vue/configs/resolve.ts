@@ -1,8 +1,10 @@
 import type { UserConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
-export const resolveConfig: UserConfig['resolve'] = {
-  alias: {
-    '@': fileURLToPath(new URL('../src', import.meta.url)),
-  },
+export function resolveConfig(): UserConfig['resolve'] {
+  return {
+    alias: {
+      '@': fileURLToPath(new URL('../src', import.meta.url)),
+    },
+  }
 }

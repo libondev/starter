@@ -27,12 +27,14 @@ const arcoDesignVars = {
   'border-radius-small': '5px',
 }
 
-export const cssConfig: UserConfig['css'] = {
-  devSourcemap: true,
-  preprocessorOptions: {
-    less: {
-      javascriptEnabled: true,
-      modifyVars: arcoDesignVars,
+export function cssConfig(): UserConfig['css'] {
+  return {
+    devSourcemap: true,
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        modifyVars: arcoDesignVars,
+      },
     },
-  },
+  }
 }

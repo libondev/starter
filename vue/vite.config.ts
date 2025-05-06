@@ -1,5 +1,5 @@
-import process from 'node:process'
 
+import process from 'node:process'
 import { defineConfig, loadEnv } from 'vite'
 
 import {
@@ -12,29 +12,29 @@ import {
 } from './configs/index.ts'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode, command }) => {
+export default defineConfig((configEnv) => {
   const {
     VITE_BASE_PATH,
-  } = loadEnv(mode, process.cwd())
+  } = loadEnv(configEnv.mode, process.cwd())
 
   return {
     base: VITE_BASE_PATH,
 
-    build: buildConfig,
+    build: buildConfig(),
 
-    css: cssConfig,
+    css: cssConfig(),
 
     esbuild: {
       target: 'esnext',
-      drop: mode === 'production' ? ['console', 'debugger'] : [],
+      drop: configEnv.mode === 'production' ? ['console', 'debugger'] : [],
     },
 
-    optimizeDeps: optimizeDepsConfig,
+    optimizeDeps: optimizeDepsConfig(),
 
-    plugins: pluginsConfig(command),
+    plugins: pluginsConfig(configEnv),
 
-    resolve: resolveConfig,
+    resolve: resolveConfig(),
 
-    // server: serverConfig,
+    // server: serverConfig(),
   }
 })
