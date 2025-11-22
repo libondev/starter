@@ -1,6 +1,6 @@
-import { ModeToggle } from '@/components/layout/mode-toggle'
-import { Button } from 'antd'
+import { Button, Layout, Nav } from '@douyinfe/semi-ui-19'
 import { useState } from 'react'
+import { ThemeSwitcher } from '../components/theme-switcher'
 
 function Header() {
   return (
@@ -11,26 +11,47 @@ function Header() {
   )
 }
 
+function Navbar() {
+  return (
+    <Nav
+      mode="horizontal"
+      selectedKeys={[]}
+      header={{
+        text: 'React Theme Demo',
+      }}
+      footer={(
+        <div className="flex items-center">
+          <ThemeSwitcher />
+        </div>
+      )}
+    />
+  )
+}
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
-      <Header />
+    <Layout className="h-full">
+      <Navbar />
+      <Layout.Content className="w-full h-full flex flex-col items-center justify-center">
+        <Header />
 
-      <div className="flex items-center mt-5 mb-4">
-        { count }
-      </div>
+        <div className="flex items-center mt-5 mb-4">{count}</div>
 
-      <div className="flex items-center justify-center gap-2">
-        <ModeToggle />
+        <div className="flex items-center justify-center gap-2">
+          <Button onClick={() => setCount(count + 1)}>+1</Button>
+          <Button onClick={() => setCount(count - 1)}>-1</Button>
+        </div>
 
-        <Button onClick={() => setCount(count + 1)}>+1</Button>
-        <Button onClick={() => setCount(count - 1)}>-1</Button>
-      </div>
-
-      <Link to="/about" className="mt-5 underline">About Page</Link>
-    </div>
+        <Link to="/about" className="mt-5 underline mr-4">
+          About Page
+        </Link>
+        <Link to="/theme-demo" className="mt-5 underline">
+          Theme Demo
+        </Link>
+      </Layout.Content>
+    </Layout>
   )
 }
 

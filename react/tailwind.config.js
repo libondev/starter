@@ -1,19 +1,15 @@
-import Animate from 'tailwindcss-animate'
-
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: ['class'],
-  safelist: ['dark', 'inline-block'],
-
   content: [
     './index.html',
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
-
-  plugins: [
-    Animate,
-  ],
+  darkMode: 'selector', // 使用选择器模式
+  darkModeSelector: '[theme-mode="dark"]', // 指定我们的自定义属性作为暗色模式选择器
+  theme: {
+    extend: {
+      // 这里可以添加自定义主题扩展
+    },
+  },
+  plugins: [],
 }

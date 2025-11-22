@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
+import GdsiResolver from '@gdsicon/react/resolver'
+import TailwindCSS from '@tailwindcss/vite'
 import React from '@vitejs/plugin-react'
-import GdsiResolver from 'gdsi/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -8,35 +9,17 @@ import Icons from 'unplugin-icons/vite'
 import { defineConfig } from 'vite'
 import Pages from 'vite-plugin-pages'
 
-const ReactCompilerConfig = {
-  target: '18',
-  runtimeModule: 'react-compiler-runtime',
-}
-
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   base: './',
 
   build: {
     // 是否输出 gzip 压缩大小的报告，设置 false 可以提高构建速度
     reportCompressedSize: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          ui: ['antd'],
-          react: ['react', 'react-dom', 'react-router-dom'],
-        },
-      },
-    },
   },
 
   css: {
     devSourcemap: true,
-  },
-
-  esbuild: {
-    target: 'esnext',
-    drop: mode === 'production' ? ['console', 'debugger'] : [],
   },
 
   optimizeDeps: {
@@ -44,11 +27,11 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [
+    TailwindCSS(),
+
     React({
       babel: {
-        plugins: [
-          ['babel-plugin-react-compiler', ReactCompilerConfig],
-        ],
+        plugins: ['babel-plugin-react-compiler'],
       },
     }),
 
@@ -78,7 +61,7 @@ export default defineConfig(({ mode }) => ({
           extension: 'jsx',
           customCollections: ['local'],
         }),
-        GdsiResolver({ type: 'react', prefix: 'IGds' }),
+        GdsiResolver({ prefix: 'IGds' }),
       ],
     }),
 
