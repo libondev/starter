@@ -1,39 +1,37 @@
-import { Button, Layout, Nav } from '@douyinfe/semi-ui-19'
+import { Button, Layout } from 'antd'
 import { useState } from 'react'
-import { ThemeSwitcher } from '../components/theme-switcher'
+import { ThemeSwitcher } from '@/components/theme-switcher'
+import { LogoReactIcon } from '@gdsicon/react'
+import { Link } from 'react-router-dom'
+import { getTodoList, type TodoItem } from '@/apis/todo'
 
 function Header() {
   return (
     <header className="font-medium flex items-center text-2xl">
-      <IGdsLogoReact className="mr-2" width="1em" height="1em" />
+      <LogoReactIcon className="mr-2" width="1em" height="1em" />
       React Counter
     </header>
   )
 }
 
-function Navbar() {
-  return (
-    <Nav
-      mode="horizontal"
-      selectedKeys={[]}
-      header={{
-        text: 'React Theme Demo',
-      }}
-      footer={(
-        <div className="flex items-center">
-          <ThemeSwitcher />
-        </div>
-      )}
-    />
-  )
-}
-
 function App() {
   const [count, setCount] = useState(0)
+  const [data, setData] = useState<TodoItem[]>([])
+
+  useEffect(() => {
+    getTodoList().then(res => {
+      console.info('🍻index.tsx:22/(res):\n', res)
+      setData(res.todos)
+    })
+  }, [])
 
   return (
-    <Layout className="h-full">
-      <Navbar />
+    <>
+
+      <div className="flex items-center justify-between">
+        <ThemeSwitcher />
+      </div>
+
       <Layout.Content className="w-full h-full flex flex-col items-center justify-center">
         <Header />
 
@@ -44,14 +42,19 @@ function App() {
           <Button onClick={() => setCount(count - 1)}>-1</Button>
         </div>
 
-        <Link to="/about" className="mt-5 underline mr-4">
+        <ul className="my-2">
+          {
+            data.map(item => (
+              <li key={ item.id }>{ item.todo }</li>
+            ))
+          }
+        </ul>
+
+        <Link to="/about" className="mt-5 underline">
           About Page
         </Link>
-        <Link to="/theme-demo" className="mt-5 underline">
-          Theme Demo
-        </Link>
       </Layout.Content>
-    </Layout>
+    </>
   )
 }
 

@@ -1,12 +1,17 @@
 import { Suspense } from 'react'
-
 import { useRoutes } from 'react-router-dom'
-import routes from '~react-pages'
+import { ThemeProvider } from './components/theme-switcher'
+import { routes } from './routes'
+import { PageLoading } from './components/data-status/page-loading'
 
 export default function App() {
+  const element = useRoutes(routes)
+
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      {useRoutes(routes)}
+    <Suspense fallback={ <PageLoading /> }>
+      <ThemeProvider>
+        { element }
+      </ThemeProvider>
     </Suspense>
   )
 }

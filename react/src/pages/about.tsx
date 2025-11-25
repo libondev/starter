@@ -1,4 +1,5 @@
 import { useDeferredValue, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const SearchList = memo(({ items }: { items: string[] }) => {
   const [search, setSearch] = useState('')

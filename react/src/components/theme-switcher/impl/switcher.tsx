@@ -1,60 +1,26 @@
-import type { ThemeOption } from '../types'
-import { Dropdown } from '@douyinfe/semi-ui-19'
+
 import {
-  DeviceAlternateIcon,
   MoonIcon,
   SunIcon,
 } from '@gdsicon/react'
-import { useTheme } from '../hooks/useTheme'
+import { useTheme } from '../hooks/use-theme'
 
-export default function ThemeSwitcher() {
-  const { currentTheme, changeTheme } = useTheme()
+import { Button } from 'antd'
 
-  const themeOptions: ThemeOption[] = [
-    {
-      value: 'light',
-      label: 'Light',
-      icon: <SunIcon />,
-    },
-    {
-      value: 'dark',
-      label: 'Dark',
-      icon: <MoonIcon />,
-    },
-    {
-      value: 'system',
-      label: 'System',
-      icon: <DeviceAlternateIcon />,
-    },
-  ]
-
-  // 获取当前选中项
-  const currentOption = themeOptions.find(option => option.value === currentTheme)
+export function ThemeSwitcher({ className }: { className?: string }) {
+  const { theme, setTheme } = useTheme()
 
   return (
-    <Dropdown
-      trigger="click"
-      clickToHide
-      stopPropagation
-      render={(
-        <Dropdown.Menu>
-          {themeOptions.map(option => (
-            <Dropdown.Item
-              key={option.value}
-              onClick={() => changeTheme(option.value)}
-              className="space-x-1"
-            >
-              {option.icon}
-              <span className="hidden sm:inline">{option.label}</span>
-            </Dropdown.Item>
-          ))}
-        </Dropdown.Menu>
+    <Button
+      className={className}
+      icon={(
+        <>
+          <SunIcon className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        </>
       )}
-    >
-      <button type="button" className="semi-button semi-button-primary semi-button-light" aria-label="Theme switcher">
-        {currentOption?.icon}
-        <span className="hidden sm:inline ml-1">{currentOption?.label}</span>
-      </button>
-    </Dropdown>
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+    />
+
   )
 }

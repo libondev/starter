@@ -21,16 +21,18 @@ export default class LRUCache<K, V> {
   }
 
   set(key: K, value: V): void {
-    // 如果 key 已经存在，先删除旧的
+    // 设置数据时先删除再添加，确保顺序在最后
     if (this.items.has(key)) {
       this.items.delete(key)
     } else if (this.items.size >= this.capacity) {
       // 如果当前缓存已满，删除最不常用的项
       const firstKey = this.items.keys().next().value
 
-      this.items.delete(firstKey)
+      if (firstKey) {
+        this.items.delete(firstKey)
+      }
     }
-    // 将新的 key-value 对添加到最后
+
     this.items.set(key, value)
   }
 }

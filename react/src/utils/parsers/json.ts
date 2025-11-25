@@ -1,7 +1,7 @@
 export function parseJson<T>(
   json: string | undefined | null,
   defaultValueOrParser?: T,
-): T {
+): T | undefined {
   try {
     if (json == null || json === 'null')
       throw new Error('json is empty')

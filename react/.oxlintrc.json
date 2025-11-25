@@ -1,0 +1,11 @@
+{
+  "rules": {},
+  "plugins": [
+    "oxc",
+    "react",
+    "import",
+    "unicorn",
+    "typescript"
+  ],
+  "ignorePatterns": ["dist/", "node_modules/"]
+}

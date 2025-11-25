@@ -7,7 +7,6 @@ import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import { defineConfig } from 'vite'
-import Pages from 'vite-plugin-pages'
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
@@ -33,12 +32,6 @@ export default defineConfig(() => ({
       babel: {
         plugins: ['babel-plugin-react-compiler'],
       },
-    }),
-
-    Pages({
-      dirs: ['src/pages'],
-      extensions: ['tsx'],
-      exclude: ['**/components/**/*'],
     }),
 
     // https://github.com/antfu/unplugin-auto-import
@@ -70,7 +63,7 @@ export default defineConfig(() => ({
       jsx: 'react',
       compiler: 'jsx',
       autoInstall: true,
-      defaultClass: 'inline-block svg-icon',
+      defaultClass: 'block svg-icon',
       // defaultStyle: '',
       customCollections: {
         local: FileSystemIconLoader('./src/icons'),
