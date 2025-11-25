@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ThemeSwitcher } from '@/components/theme-switcher'
 import { LogoReactIcon } from '@gdsicon/react'
 import { Link } from 'react-router-dom'
-import { getTodoList, type TodoItem } from '@/apis/todo'
+import { useTodoStore } from '@/stores/use-todo-store'
 
 function Header() {
   return (
@@ -16,14 +16,12 @@ function Header() {
 
 function App() {
   const [count, setCount] = useState(0)
-  const [data, setData] = useState<TodoItem[]>([])
+
+  const { todos, fetchTodos } = useTodoStore()
 
   useEffect(() => {
-    getTodoList().then(res => {
-      console.info('🍻index.tsx:22/(res):\n', res)
-      setData(res.todos)
-    })
-  }, [])
+    fetchTodos()
+  }, [fetchTodos])
 
   return (
     <>
@@ -44,7 +42,7 @@ function App() {
 
         <ul className="my-2">
           {
-            data.map(item => (
+            todos.map(item => (
               <li key={ item.id }>{ item.todo }</li>
             ))
           }
