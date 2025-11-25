@@ -21,7 +21,7 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-
+  "oxc.enable": true,
   "css.customData": [".vscode/tailwind.json"],
 
   // Enable eslint for all supported languages

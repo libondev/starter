@@ -3,9 +3,12 @@
   "plugins": [
     "oxc",
     "react",
+    "regex",
     "import",
+    "promise",
     "unicorn",
-    "typescript"
+    "react-perf",
+    "typescript",
   ],
   "ignorePatterns": ["dist/", "node_modules/"]
 }
