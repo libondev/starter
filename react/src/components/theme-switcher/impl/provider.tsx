@@ -1,6 +1,6 @@
 import { prefersDarkColorScheme } from '@/utils/shared'
 import { theme as antdTheme, ConfigProvider } from 'antd'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useMemo, useState } from 'react'
 
 type Theme = 'dark' | 'light' | 'auto'
 

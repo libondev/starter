@@ -7,6 +7,9 @@
     "dev": "vite",
     "preview": "vite preview",
     "build": "tsc && vite build",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest --watch",
     "lint": "oxlint",
     "lint:fix": "oxlint src --fix",
     "format": "oxfmt",
@@ -37,13 +40,18 @@
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
     "@tailwindcss/vite": "^4.1.17",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.19.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "@vitest/ui": "4.0.14",
     "autoprefixer": "^10.4.22",
     "babel-plugin-react-compiler": "^1.0.0",
+    "happy-dom": "^20.0.11",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "oxfmt": "^0.15.0",
@@ -56,7 +64,8 @@
     "typescript": "^5.9.3",
     "unplugin-auto-import": "^20.2.0",
     "unplugin-icons": "^22.5.0",
-    "vite": "npm:rolldown-vite@latest"
+    "vite": "npm:rolldown-vite@latest",
+    "vitest": "^4.0.14"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

@@ -8,6 +8,10 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import { defineConfig } from 'vite'
 
+export const resolveAlias = {
+  '@': fileURLToPath(new URL('./src', import.meta.url)),
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
   base: './',
@@ -80,9 +84,7 @@ export default defineConfig(() => ({
   ],
 
   resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
+    alias: resolveAlias,
   },
 
   // server: {
