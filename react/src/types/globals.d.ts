@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 /// <reference types="unplugin-icons/types/react" />
 
-export { }
+export {}
 
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string

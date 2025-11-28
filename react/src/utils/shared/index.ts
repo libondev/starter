@@ -21,8 +21,11 @@ export function getBaseUrl(fullUrl: string) {
  * ```
  */
 export function getUUID() {
-  return (`${1e7}${-1e3}${-4e3}${-8e3}${-1e11}`).replace(/[018]/g, (c) => {
-    return (Number(c) ^ (crypto.getRandomValues(new Uint8Array(1))[0]! & (15 >> (Number(c) / 4)))).toString(16)
+  return `${1e7}${-1e3}${-4e3}${-8e3}${-1e11}`.replace(/[018]/g, (c) => {
+    return (
+      Number(c) ^
+      (crypto.getRandomValues(new Uint8Array(1))[0]! & (15 >> (Number(c) / 4)))
+    ).toString(16)
   })
 }
 
@@ -39,8 +42,9 @@ export const getSelectedText = () => globalThis.getSelection?.()?.toString()
  * 复制文本到剪贴板
  */
 export function copyToClipboard(string: string) {
-  if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+  if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
     return navigator.clipboard.writeText(string)
+  }
 
   return Promise.reject(new Error('The Clipboard API is not available.'))
 }
@@ -69,7 +73,8 @@ export function toggleFullscreen(open = true, element = document.body) {
  * isDateValid({}) // false
  * ```
  */
-export const isDateValid = (...val: Array<string | number>) => !Number.isNaN(new Date(...val as []).valueOf())
+export const isDateValid = (...val: Array<string | number>) =>
+  !Number.isNaN(new Date(...(val as [])).valueOf())
 
 /**
  * 获取指定时间的 24 小时制时间
@@ -87,7 +92,8 @@ export const getDateTimeFromDate = (date: Date = new Date()) => date.toTimeStrin
  * prefersDarkColorScheme() // true
  * ```
  */
-export const prefersDarkColorScheme = () => globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches
+export const prefersDarkColorScheme = () =>
+  globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches
 
 /**
  * 判断是否为移动端设备

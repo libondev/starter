@@ -43,23 +43,25 @@ export function ThemeProvider({
     }
   }, [theme, isPrefersDark])
 
-  const provideValue = useMemo(() => ({
-    theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
-    },
-  }), [theme, storageKey])
+  const provideValue = useMemo(
+    () => ({
+      theme,
+      setTheme: (theme: Theme) => {
+        localStorage.setItem(storageKey, theme)
+        setTheme(theme)
+      },
+    }),
+    [theme, storageKey],
+  )
 
-  const algorithm = theme === 'dark' || (theme === 'auto' && isPrefersDark)
-    ? antdTheme.darkAlgorithm
-    : antdTheme.defaultAlgorithm
+  const algorithm =
+    theme === 'dark' || (theme === 'auto' && isPrefersDark)
+      ? antdTheme.darkAlgorithm
+      : antdTheme.defaultAlgorithm
 
   return (
     <ThemeProviderContext.Provider {...props} value={provideValue}>
-      <ConfigProvider theme={{ algorithm }}>
-        { children }
-      </ConfigProvider>
+      <ConfigProvider theme={{ algorithm }}>{children}</ConfigProvider>
     </ThemeProviderContext.Provider>
   )
 }

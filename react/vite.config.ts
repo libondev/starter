@@ -22,7 +22,7 @@ export default defineConfig(() => ({
   },
 
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'react-dom/client', 'use-immer'],
+    include: ['react', 'react-router', 'react-dom/client', 'use-immer'],
   },
 
   plugins: [
@@ -41,9 +41,8 @@ export default defineConfig(() => ({
       dts: './src/types/imports.d.ts',
       imports: [
         'react',
-        'react-router-dom',
         {
-          'clsx': [['default', 'cls']],
+          clsx: [['default', 'cls']],
           // react: ['createContext'],
           'use-immer': ['useImmer', 'useImmerReducer'],
         },

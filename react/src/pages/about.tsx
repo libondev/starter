@@ -1,5 +1,5 @@
-import { useDeferredValue, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { memo, useDeferredValue, useMemo, useState } from 'react'
+import { Link } from 'react-router'
 
 const SearchList = memo(({ items }: { items: string[] }) => {
   const [search, setSearch] = useState('')
@@ -9,9 +9,7 @@ const SearchList = memo(({ items }: { items: string[] }) => {
 
   // 基于延迟值进行过滤
   const filteredItems = useMemo(() => {
-    return items.filter(item =>
-      item.toLowerCase().includes(deferredSearch.toLowerCase()),
-    )
+    return items.filter((item) => item.toLowerCase().includes(deferredSearch.toLowerCase()))
   }, [deferredSearch, items])
 
   const isDeferred = search !== deferredSearch
@@ -22,16 +20,14 @@ const SearchList = memo(({ items }: { items: string[] }) => {
         type="text"
         value={search}
         className="px-2 py-1 border rounded-md mb-1"
-        onChange={e => setSearch(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
         placeholder="搜索..."
       />
 
       <ul className={`px-2${isDeferred ? ' opacity-50' : ''}`}>
-        {
-          filteredItems.map(item => (
-            <li key={item}>{ item }</li>
-          ))
-        }
+        {filteredItems.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
       </ul>
     </div>
   )
@@ -44,7 +40,9 @@ export default function App() {
     <div className="w-full h-full flex flex-col items-center justify-center">
       <SearchList items={items} />
 
-      <Link to="/" className="mt-5 underline">Back to Home</Link>
+      <Link to="/" className="mt-5 underline">
+        Back to Home
+      </Link>
     </div>
   )
 }

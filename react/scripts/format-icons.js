@@ -13,7 +13,7 @@ import glob from 'fast-glob'
  *  - node scripts/cleanup-icons.js file1 file2 file3 ... fileN
  */
 const [, , ...files] = process.argv
-let icons = files.map(f => `src/icons/${f}.svg`)
+let icons = files.map((f) => `src/icons/${f}.svg`)
 
 if (!files.length) {
   icons = glob.sync('src/icons/**/*.svg')
@@ -28,8 +28,7 @@ for (const iconPath of icons) {
     const svg = new SVG(raw)
     cleanupSVG(svg)
 
-    const svgString = svg.toMinifiedString()
-      .replace(/(\s(width|height)=".*?")?/g, '')
+    const svgString = svg.toMinifiedString().replace(/(\s(width|height)=".*?")?/g, '')
 
     fs.writeFileSync(iconPath, svgString)
   } catch (err) {
@@ -43,5 +42,4 @@ console.log(`  \u001B[32;1m✓\u001B[0m ${icons.length - failed} files processed
   \u001B[31;1m✗\u001B[0m ${failed} files failed.
 
   \u001B[32;4mDone.\u001B[0m
- `,
-)
+ `)

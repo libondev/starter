@@ -1,20 +1,19 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { RouterProvider } from 'react-router/dom'
+import { ThemeProvider } from '@/components/theme-switcher'
+import { PageLoading } from '@/components/data-status/page-loading'
 
-import App from './App'
+import { router } from './routes/index'
 
 import './styles'
 
-const routerFuture = {
-  v7_startTransition: true,
-  v7_relativeSplatPath: true,
-}
-
 createRoot(document.getElementById('app') as HTMLElement).render(
-  <StrictMode>
-    <BrowserRouter future={routerFuture}>
-      <App />
-    </BrowserRouter>
-  </StrictMode>,
+  <Suspense fallback={<PageLoading />}>
+    <ThemeProvider>
+      <StrictMode>
+        <RouterProvider router={router} />
+      </StrictMode>
+    </ThemeProvider>
+  </Suspense>,
 )

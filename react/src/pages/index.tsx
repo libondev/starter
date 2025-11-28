@@ -1,20 +1,25 @@
 import { Button, Layout } from 'antd'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ThemeSwitcher } from '@/components/theme-switcher'
 import { LogoReactIcon } from '@gdsicon/react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useTodoStore } from '@/stores/use-todo-store'
 
 function Header() {
   return (
-    <header className="font-medium flex items-center text-2xl">
-      <LogoReactIcon className="mr-2" width="1em" height="1em" />
-      React Counter
+    <header className="font-medium flex items-center justify-between w-full text-2xl py-2 px-2">
+      <h1 className="flex items-center text-xl">
+        <LogoReactIcon className="mr-2 text-lg" />
+
+        <span>React Counter!</span>
+      </h1>
+
+      <ThemeSwitcher />
     </header>
   )
 }
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
 
   const { todos, fetchTodos } = useTodoStore()
@@ -25,14 +30,9 @@ function App() {
 
   return (
     <>
-
-      <div className="flex items-center justify-between">
-        <ThemeSwitcher />
-      </div>
+      <Header />
 
       <Layout.Content className="w-full h-full flex flex-col items-center justify-center">
-        <Header />
-
         <div className="flex items-center mt-5 mb-4">{count}</div>
 
         <div className="flex items-center justify-center gap-2">
@@ -41,11 +41,9 @@ function App() {
         </div>
 
         <ul className="my-2">
-          {
-            todos.map(item => (
-              <li key={ item.id }>{ item.todo }</li>
-            ))
-          }
+          {todos.map((item) => (
+            <li key={item.id}>{item.todo}</li>
+          ))}
         </ul>
 
         <Link to="/about" className="mt-5 underline">
@@ -55,5 +53,3 @@ function App() {
     </>
   )
 }
-
-export default App

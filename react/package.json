@@ -9,6 +9,7 @@
     "build": "tsc && vite build",
     "lint": "oxlint",
     "lint:fix": "oxlint src --fix",
+    "format": "oxfmt",
     "format:icons": "node ./scripts/format-icons.js",
     "prepare": "husky"
   },
@@ -24,6 +25,7 @@
     "immer": "^11.0.0",
     "js-cookie": "^3.0.5",
     "react": "^19.2.0",
+    "react-router": "^7.9.6",
     "sonner": "^2.0.7",
     "use-immer": "^0.11.0",
     "vaul": "^1.1.2",
@@ -44,10 +46,10 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "oxfmt": "^0.15.0",
     "oxlint": "^1.30.0",
     "react-compiler-runtime": "^1.0.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^6.30.2",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
     "tailwindcss-animate": "^1.0.7",
@@ -57,6 +59,9 @@
     "vite": "npm:rolldown-vite@latest"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "oxlint"
+    "*.{js,jsx,ts,tsx}": [
+      "oxlint",
+      "oxfmt"
+    ]
   }
 }

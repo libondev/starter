@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'selector', // 使用选择器模式
   darkModeSelector: '[theme-mode="dark"]', // 指定我们的自定义属性作为暗色模式选择器
   theme: {

@@ -1,12 +1,10 @@
 {
-  // Enable the ESlint flat config support
-  "eslint.useFlatConfig": true,
-  // Disable the default formatter, use eslint instead
+  "oxc.enable": true,
+  "eslint.enable": false,
   "prettier.enable": false,
   "editor.formatOnSave": true,
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
   "tailwindCSS.classAttributes": [
@@ -21,22 +19,9 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "oxc.enable": true,
+
   "css.customData": [".vscode/tailwind.json"],
 
-  // Enable eslint for all supported languages
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "html",
-    "markdown",
-    "json",
-    "jsonc",
-    "yaml"
-  ],
   "cSpell.customDictionaries": {
     "custom-dictionary-workspace": {
       "name": "custom-dictionary-workspace",

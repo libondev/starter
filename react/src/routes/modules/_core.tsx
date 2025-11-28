@@ -1,9 +1,9 @@
-import type { RouteObject } from 'react-router-dom'
-import { NotFound } from '@/components/data-status/not-found'
+import type { RouteObject } from 'react-router'
+import { lazy } from 'react'
 
 export const coreRoutes: RouteObject[] = [
   {
     path: '*',
-    element: <NotFound />,
-  }
+    Component: lazy(() => import('@/components/data-status/not-found')),
+  },
 ]

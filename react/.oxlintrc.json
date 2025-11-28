@@ -1,5 +1,8 @@
 {
-  "rules": {},
+  "rules": {
+    "curly": "error",
+    "brace-style": ["error", "1tbs", { "allowSingleLine": false }]
+  },
   "plugins": [
     "oxc",
     "react",
@@ -8,7 +11,7 @@
     "promise",
     "unicorn",
     "react-perf",
-    "typescript",
+    "typescript"
   ],
   "ignorePatterns": ["dist/", "node_modules/"]
 }
