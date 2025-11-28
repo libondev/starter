@@ -38,7 +38,7 @@ export default defineConfig(() => ({
     AutoImport({
       include: [/\.[tj]sx?$/],
       dirs: ['./src/hooks/**/*'],
-      dts: './src/types/imports.d.ts',
+      dts: './types/imports.d.ts',
       imports: [
         'react',
         {
