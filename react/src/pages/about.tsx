@@ -40,8 +40,10 @@ export default function App() {
   const navigate = useNavigate()
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
-      <SearchList items={items} />
+    <div className="w-full h-full flex flex-col items-center justify-center gap-8 p-8">
+      <div className="w-full max-w-md">
+        <SearchList items={ items } />
+      </div>
 
       <Button className="mt-5" onClick={ () => navigate('/', { viewTransition: true }) }>
         Back to Home

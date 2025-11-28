@@ -1,9 +1,9 @@
 import { MoonIcon, SunIcon } from '@gdsicon/react'
-import { useTheme } from '../hooks/use-theme'
+import useTheme from '../hooks/use-theme'
 
 import { Button } from 'antd'
 
-export function ThemeSwitcher({ className }: { className?: string }) {
+export default function ThemeSwitcher({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme()
 
   return (

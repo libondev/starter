@@ -1,12 +1,19 @@
 import { Outlet } from 'react-router'
-import Header from './components/header'
+import { ErrorBoundary, ErrorFallback } from '@/components/error-boundary'
+import LayoutHeader from './components/header'
 
 export default function DefaultsLayout() {
+  const fallbackRender = (error: Error, resetError: () => void) => {
+    return <ErrorFallback error={ error } resetError={ resetError } />
+  }
+
   return (
     <div className="defaults-layout h-full">
-      <Header />
+      <LayoutHeader />
 
-      <Outlet />
+      <ErrorBoundary fallback={ fallbackRender }>
+        <Outlet />
+      </ErrorBoundary>
     </div>
   )
 }

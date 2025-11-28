@@ -22,7 +22,7 @@ const initialState: ThemeProviderState = {
 
 export const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
-export function ThemeProvider({
+export default function ThemeProvider({
   children,
   storageKey = 'fe.system.color-mode',
   ...props
