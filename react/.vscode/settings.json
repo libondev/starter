@@ -2,7 +2,7 @@
   "oxc.enable": true,
   "eslint.enable": false,
   "prettier.enable": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   // Auto fix
   "editor.codeActionsOnSave": {
     "source.organizeImports": "never"
@@ -20,6 +20,7 @@
     "strings": true
   },
 
+  "oxc.lint.run": "onSave",
   "css.customData": [".vscode/tailwind.json"],
 
   "cSpell.customDictionaries": {

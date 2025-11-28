@@ -4,14 +4,14 @@ import LayoutHeader from './components/header'
 
 export default function DefaultsLayout() {
   const fallbackRender = (error: Error, resetError: () => void) => {
-    return <ErrorFallback error={ error } resetError={ resetError } />
+    return <ErrorFallback error={error} resetError={resetError} />
   }
 
   return (
     <div className="defaults-layout h-full">
       <LayoutHeader />
 
-      <ErrorBoundary fallback={ fallbackRender }>
+      <ErrorBoundary fallback={fallbackRender}>
         <Outlet />
       </ErrorBoundary>
     </div>

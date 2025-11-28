@@ -10,7 +10,7 @@ import './styles'
 createRoot(document.getElementById('app') as HTMLElement).render(
   <ThemeProvider>
     <StrictMode>
-      <RouterProvider router={ router } />
+      <RouterProvider router={router} />
     </StrictMode>
-  </ThemeProvider>
+  </ThemeProvider>,
 )

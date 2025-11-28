@@ -42,10 +42,10 @@ export default function App() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-8 p-8">
       <div className="w-full max-w-md">
-        <SearchList items={ items } />
+        <SearchList items={items} />
       </div>
 
-      <Button className="mt-5" onClick={ () => navigate('/', { viewTransition: true }) }>
+      <Button className="mt-5" onClick={() => navigate('/', { viewTransition: true })}>
         Back to Home
       </Button>
     </div>
