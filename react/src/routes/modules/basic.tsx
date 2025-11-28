@@ -5,7 +5,7 @@ import { lazy } from 'react'
 export const basicRoutes: RouteObject[] = [
   {
     path: '/',
-    Component: lazy(() => import('@/layouts/defaults')),
+    Component: lazy(() => import('@/layouts/default')),
     children: [
       {
         index: true,
