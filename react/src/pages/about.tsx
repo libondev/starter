@@ -1,7 +1,8 @@
-import { memo, useDeferredValue, useMemo, useState } from 'react'
-import { Link } from 'react-router'
+import { useDeferredValue, useMemo, useState } from 'react'
+import { Button } from 'antd'
+import { useNavigate } from 'react-router'
 
-const SearchList = memo(({ items }: { items: string[] }) => {
+const SearchList = ({ items }: { items: string[] }) => {
   const [search, setSearch] = useState('')
 
   // 创建延迟的 search 值
@@ -31,18 +32,20 @@ const SearchList = memo(({ items }: { items: string[] }) => {
       </ul>
     </div>
   )
-})
+}
 
 export default function App() {
   const items = ['apple', 'banana', 'cherry', 'date', 'elderberry']
+
+  const navigate = useNavigate()
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <SearchList items={items} />
 
-      <Link to="/" className="mt-5 underline">
+      <Button className="mt-5" onClick={ () => navigate('/', { viewTransition: true }) }>
         Back to Home
-      </Link>
+      </Button>
     </div>
   )
 }

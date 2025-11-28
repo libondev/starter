@@ -46,7 +46,7 @@ export default function App() {
           ))}
         </ul>
 
-        <Link to="/about" className="mt-5 underline">
+        <Link to="/about" className="mt-5 underline" viewTransition>
           About Page
         </Link>
       </Layout.Content>
