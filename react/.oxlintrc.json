@@ -1,7 +1,19 @@
 {
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "jsPlugins": [
+    "eslint-plugin-better-tailwindcss"
+  ],
   "rules": {
     "curly": "error",
-    "brace-style": ["error", "1tbs", { "allowSingleLine": false }]
+    "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
+    "better-tailwindcss/no-duplicate-classes": "error",
+    "better-tailwindcss/no-deprecated-classes": "error",
+    "better-tailwindcss/no-conflicting-classes": "error",
+    "better-tailwindcss/enforce-shorthand-classes": "error",
+    "better-tailwindcss/no-unnecessary-whitespace": "error",
+    "better-tailwindcss/enforce-consistent-class-order": ["error", { "order": "improved" }],
+    "better-tailwindcss/enforce-consistent-variable-syntax": ["error", { "syntax": "shorthand" }],
+    "better-tailwindcss/enforce-consistent-important-position": ["error", { "position": "legacy" }],
   },
   "plugins": [
     "oxc",
@@ -17,4 +29,38 @@
     "dist/",
     "node_modules/"
   ],
+  "settings": {
+    "better-tailwindcss": {
+      "entryPoint": "src/styles/tailwind.css"
+    },
+    "jsx-a11y": {
+      "polymorphicPropName": null,
+      "components": {},
+      "attributes": {}
+    },
+    "next": {
+      "rootDir": []
+    },
+    "react": {
+      "formComponents": [],
+      "linkComponents": []
+    },
+    "jsdoc": {
+      "ignorePrivate": false,
+      "ignoreInternal": false,
+      "ignoreReplacesDocs": true,
+      "overrideReplacesDocs": true,
+      "augmentsExtendsReplacesDocs": false,
+      "implementsReplacesDocs": false,
+      "exemptDestructuredRootsFromChecks": false,
+      "tagNamePreference": {}
+    },
+    "vitest": {
+      "typecheck": false
+    }
+  },
+  "env": {
+    "builtin": true
+  },
+  "globals": {},
 }
