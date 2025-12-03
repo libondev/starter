@@ -3,7 +3,7 @@ import { ThemeSwitcher } from '@/components/theme-switcher'
 
 export default function Header() {
   return (
-    <header className="font-medium flex items-center justify-between w-full text-2xl py-2 px-2">
+    <header className="flex w-full items-center justify-between p-2 text-2xl font-medium">
       <h1 className="flex items-center text-xl">
         <LogoReactIcon className="mr-2 text-lg" />
 

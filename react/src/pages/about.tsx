@@ -20,12 +20,12 @@ const SearchList = ({ items }: { items: string[] }) => {
       <input
         type="text"
         value={search}
-        className="px-2 py-1 border rounded-md mb-1"
+        className="mb-1 rounded-md border px-2 py-1"
         onChange={(e) => setSearch(e.target.value)}
         placeholder="搜索..."
       />
 
-      <ul className={`px-2${isDeferred ? ' opacity-50' : ''}`}>
+      <ul className={`px-2${isDeferred ? 'opacity-50' : ''}`}>
         {filteredItems.map((item) => (
           <li key={item}>{item}</li>
         ))}
@@ -40,7 +40,7 @@ export default function App() {
   const navigate = useNavigate()
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center gap-8 p-8">
+    <div className="flex size-full flex-col items-center justify-center gap-8 p-8">
       <div className="w-full max-w-md">
         <SearchList items={items} />
       </div>

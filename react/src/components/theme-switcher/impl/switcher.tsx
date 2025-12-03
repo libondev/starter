@@ -12,8 +12,8 @@ export default function ThemeSwitcher({ className }: { className?: string }) {
       type="text"
       icon={
         <>
-          <SunIcon className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <MoonIcon className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <SunIcon className="absolute top-1/2 left-1/2 -translate-1/2 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+          <MoonIcon className="absolute top-1/2 left-1/2 -translate-1/2 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
         </>
       }
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}

@@ -14,8 +14,8 @@ export default function App() {
 
   return (
     <>
-      <Layout.Content className="w-full h-full flex flex-col items-center justify-center">
-        <div className="flex items-center mt-5 mb-4">{count}</div>
+      <Layout.Content className="flex size-full flex-col items-center justify-center">
+        <div className="mt-5 mb-4 flex items-center">{count}</div>
 
         <div className="flex items-center justify-center gap-2">
           <Button onClick={() => setCount(count + 1)}>+1</Button>

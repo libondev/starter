@@ -13,11 +13,11 @@ export default function ErrorFallback({ error, showReset = true, resetError }: E
       <p>We're sorry but an unexpected error occurred. Please try again later.</p>
 
       {import.meta.env.DEV && (
-        <details className="mt-4 max-w-2xl w-full text-left">
-          <summary className="cursor-pointer text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+        <details className="mt-4 w-full max-w-2xl text-left">
+          <summary className="cursor-pointer text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
             Error Details
           </summary>
-          <pre className="mt-2 p-4 bg-gray-100 dark:bg-gray-800 rounded-md overflow-auto text-xs">
+          <pre className="mt-2 overflow-auto rounded-md bg-gray-100 p-4 text-xs dark:bg-gray-800">
             <code>{error.message}</code>
             {error.stack && (
               <>
@@ -29,7 +29,7 @@ export default function ErrorFallback({ error, showReset = true, resetError }: E
         </details>
       )}
 
-      <div className="flex items-center gap-2 mt-4">
+      <div className="mt-4 flex items-center gap-2">
         {showReset && (
           <Button type="primary" onClick={resetError}>
             重试
