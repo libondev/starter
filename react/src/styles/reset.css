@@ -45,7 +45,8 @@ html {
   color: var(--foreground-color);
 }
 
-.dark, [theme-mode='dark'] {
+.dark,
+[theme-mode='dark'] {
   --scrollbar-color: #555;
   --scrollbar-hover: #444;
   --background-color: #121212;
@@ -86,14 +87,21 @@ html {
   appearance: none;
 } */
 
-p, h1, h2, h3, h4 {
+p,
+h1,
+h2,
+h3,
+h4 {
   overflow-wrap: break-word;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   line-height: 1.1;
   width: fit-content;
-  text-wrap: balance
+  text-wrap: balance;
 }
 
 img {
@@ -109,8 +117,8 @@ img {
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
   /* 裁剪掉图片未能加载时的边框 */
-  img[loading="lazy"] {
-    clip-path: inset(0.6px)
+  img[loading='lazy'] {
+    clip-path: inset(0.6px);
   }
 }
 
@@ -186,7 +194,7 @@ hr {
 @supports (-webkit-tap-highlight-color: transparent) {
   a,
   button,
-  [role="button"] {
+  [role='button'] {
     -webkit-tap-highlight-color: transparent;
   }
 }

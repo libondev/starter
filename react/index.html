@@ -1,23 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-env="development" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#00c488" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-navbutton-color" content="#00c488" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black or black-translucent" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual"
+    />
+    <title>react-vite-project</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.ico">
-  <meta name="theme-color" content="#00c488">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="msapplication-navbutton-color" content="#00c488">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black or black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual" />
-  <title>react-vite-project</title>
-</head>
-
-<!-- https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari/33681490#33681490 -->
-<body class="h-full">
-  <div id="app" class="h-full"></div>
-  <script type="module" src="/src/main.tsx"></script>
-  <script>if(typeof window!=='undefined'&&'virtualKeyboard'in window.navigator){window.navigator.virtualKeyboard.overlaysContent=true}</script>
-</body>
-
+  <!-- https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari/33681490#33681490 -->
+  <body class="h-full">
+    <div id="app" class="h-full"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if(typeof window!=='undefined'&&'virtualKeyboard'in window.navigator){window.navigator.virtualKeyboard.overlaysContent=true}
+    </script>
+  </body>
 </html>

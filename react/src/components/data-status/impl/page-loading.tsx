@@ -2,7 +2,7 @@ import { LoaderCircleIcon } from '@gdsicon/react'
 import { useRef } from 'react'
 
 export default function PageLoading() {
-  const renderTimer = useRef(0)
+  const renderTimer = useRef(1)
 
   useEffect(() => {
     let timer = setTimeout(() => {

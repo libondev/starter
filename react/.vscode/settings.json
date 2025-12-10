@@ -7,11 +7,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": "never"
   },
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass"
-  ],
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
   "tailwindCSS.classFunctions": ["tw", "clsx", "twMerge"],
   "files.associations": {
     "*.css": "tailwindcss"
@@ -30,5 +26,5 @@
       "addWords": true,
       "scope": "workspace"
     }
-  },
+  }
 }
