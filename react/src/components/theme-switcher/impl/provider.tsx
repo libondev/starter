@@ -1,67 +1,80 @@
-import { prefersDarkColorScheme } from '@/utils/shared'
-import { theme as antdTheme, ConfigProvider } from 'antd'
-import { createContext, useEffect, useMemo, useState } from 'react'
+import { createContext, use, useEffect, useState } from 'react'
 
-type Theme = 'dark' | 'light' | 'auto'
+type Theme = 'dark' | 'light' | 'system'
 
-interface ThemeProviderProps {
+type ThemeProviderProps = {
   children: React.ReactNode
   defaultTheme?: Theme
   storageKey?: string
 }
 
-export interface ThemeProviderState {
+type ThemeProviderState = {
   theme: Theme
-  setTheme: (_theme: Theme) => void
+  setTheme: (theme: Theme) => void
 }
 
 const initialState: ThemeProviderState = {
-  theme: 'auto',
+  theme: 'system',
   setTheme: () => null,
 }
 
-export const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
+const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
-export default function ThemeProvider({
+function ThemeProvider({
   children,
-  storageKey = 'fe.system.color-mode',
+  defaultTheme = 'system',
+  storageKey = 'iut',
   ...props
 }: ThemeProviderProps) {
-  const isPrefersDark = prefersDarkColorScheme()
   const [theme, setTheme] = useState<Theme>(() => {
-    const _cache = (localStorage.getItem(storageKey) as Theme) || 'auto'
-    return _cache === 'auto' ? (isPrefersDark ? 'dark' : 'light') : _cache
+    if (typeof window !== 'undefined') {
+      return (localStorage?.getItem(storageKey) as Theme) || defaultTheme
+    }
+    return defaultTheme
   })
 
   useEffect(() => {
-    const root = window.document.documentElement
+    if (typeof window !== 'undefined') {
+      const root = window.document.documentElement
 
-    root.classList.remove('dark', 'light')
+      root.classList.remove('light', 'dark')
 
-    if (theme === 'dark' || (theme === 'auto' && isPrefersDark)) {
-      root.classList.add('dark')
+      if (theme === 'system') {
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+        root.classList.add(systemTheme)
+        return
+      }
+
+      root.classList.add(theme)
     }
-  }, [theme, isPrefersDark])
+  }, [theme])
 
-  const provideValue = useMemo(
-    () => ({
-      theme,
-      setTheme: (theme: Theme) => {
+  const value = {
+    theme,
+    setTheme: (theme: Theme) => {
+      if (typeof window !== 'undefined') {
         localStorage.setItem(storageKey, theme)
-        setTheme(theme)
-      },
-    }),
-    [theme, storageKey],
-  )
-
-  const algorithm =
-    theme === 'dark' || (theme === 'auto' && isPrefersDark)
-      ? antdTheme.darkAlgorithm
-      : antdTheme.defaultAlgorithm
+      }
+      setTheme(theme)
+    },
+  }
 
   return (
-    <ThemeProviderContext.Provider {...props} value={provideValue}>
-      <ConfigProvider theme={{ algorithm }}>{children}</ConfigProvider>
-    </ThemeProviderContext.Provider>
+    <ThemeProviderContext {...props} value={value}>
+      {children}
+    </ThemeProviderContext>
   )
 }
+
+const useTheme = () => {
+  const context = use(ThemeProviderContext)
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider')
+  }
+
+  return context
+}
+
+export { ThemeProvider, useTheme, type Theme, type ThemeProviderProps, type ThemeProviderState }

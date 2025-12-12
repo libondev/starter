@@ -5,10 +5,11 @@
   "editor.formatOnSave": false,
   // Auto fix
   "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "always",
     "source.organizeImports": "never"
   },
   "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
-  "tailwindCSS.classFunctions": ["tw", "clsx", "twMerge"],
+  "tailwindCSS.classFunctions": ["tw", "cx", "twMerge"],
   "files.associations": {
     "*.css": "tailwindcss"
   },

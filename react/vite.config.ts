@@ -46,7 +46,6 @@ export default defineConfig(() => ({
       imports: [
         'react',
         {
-          clsx: [['default', 'cls']],
           // react: ['createContext'],
           'use-immer': ['useImmer', 'useImmerReducer'],
         },

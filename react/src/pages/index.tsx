@@ -1,4 +1,4 @@
-import { Button, Layout } from 'antd'
+import { Button } from '@/components/ui/button'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import { useTodoStore } from '@/stores/use-todo-store'
@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <>
-      <Layout.Content className="flex size-full flex-col items-center justify-center">
+      <div className="flex size-full flex-col items-center justify-center">
         <div className="mt-5 mb-4 flex items-center">{count}</div>
 
         <div className="flex items-center justify-center gap-2">
@@ -31,7 +31,7 @@ export default function App() {
         <Link to="/about" className="mt-5 underline" viewTransition>
           About Page
         </Link>
-      </Layout.Content>
+      </div>
     </>
   )
 }

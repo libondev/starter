@@ -1,5 +1,5 @@
 import { useDeferredValue, useMemo, useState } from 'react'
-import { Button } from 'antd'
+import { Button } from '@/components/ui/button'
 import { useNavigate } from 'react-router'
 
 const SearchList = ({ items }: { items: string[] }) => {

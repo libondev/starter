@@ -1,4 +1,5 @@
-import { Button } from 'antd'
+import { Button } from '@/components/ui/button'
+import { Link } from '@/components/ui/link'
 
 interface ErrorFallbackProps {
   error: Error
@@ -31,14 +32,12 @@ export default function ErrorFallback({ error, showReset = true, resetError }: E
 
       <div className="mt-4 flex items-center gap-2">
         {showReset && (
-          <Button type="primary" onClick={resetError}>
+          <Button intent="primary" onClick={resetError}>
             重试
           </Button>
         )}
 
-        <Button type="link" href="/">
-          返回首页
-        </Button>
+        <Link href="/">返回首页</Link>
       </div>
     </main>
   )

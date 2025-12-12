@@ -1,22 +1,23 @@
 import { MoonIcon, SunIcon } from '@gdsicon/react'
-import useTheme from '../hooks/use-theme'
 
-import { Button } from 'antd'
+import { Button } from '@/components/ui/button'
+import { useTheme } from './provider'
 
-export default function ThemeSwitcher({ className }: { className?: string }) {
+interface Props {
+  appearance?: 'plain' | 'outline'
+}
+
+export function ThemeSwitcher({ appearance = 'plain' }: Props) {
   const { theme, setTheme } = useTheme()
-
   return (
     <Button
-      className={className}
-      type="text"
-      icon={
-        <>
-          <SunIcon className="absolute top-1/2 left-1/2 -translate-1/2 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <MoonIcon className="absolute top-1/2 left-1/2 -translate-1/2 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-        </>
-      }
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-    />
+      intent={appearance}
+      size="sq-sm"
+      aria-label="Switch theme"
+      onPress={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+    >
+      <SunIcon className="transition-all scale-100 rotate-0 dark:scale-0 dark:-rotate-90 h-[1.2rem] w-[1.2rem]" />
+      <MoonIcon className="absolute transition-all scale-0 rotate-90 dark:scale-100 dark:rotate-0 h-[1.2rem] w-[1.2rem]" />
+    </Button>
   )
 }
