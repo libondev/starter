@@ -2,24 +2,42 @@
   "oxc.enable": true,
   "eslint.enable": false,
   "prettier.enable": false,
-  "editor.formatOnSave": false,
+  "oxc.fmt.experimental": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.oxc": "always",
     "source.organizeImports": "never"
   },
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
-  "tailwindCSS.classFunctions": ["tw", "cx", "twMerge"],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass"
+  ],
+  "tailwindCSS.classFunctions": [
+    "tw",
+    "cx",
+    "twMerge"
+  ],
   "files.associations": {
     "*.css": "tailwindcss"
   },
   "editor.quickSuggestions": {
     "strings": true
   },
-
   "oxc.lint.run": "onSave",
-  "css.customData": [".vscode/tailwind.json"],
-
+  "css.customData": [
+    ".vscode/tailwind.json"
+  ],
   "cSpell.customDictionaries": {
     "custom-dictionary-workspace": {
       "name": "custom-dictionary-workspace",
