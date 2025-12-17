@@ -1,6 +1,7 @@
 import { useDeferredValue, useMemo, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { useNavigate } from 'react-router'
+import { Input } from '@/components/ui/input'
 
 const SearchList = ({ items }: { items: string[] }) => {
   const [search, setSearch] = useState('')
@@ -17,7 +18,7 @@ const SearchList = ({ items }: { items: string[] }) => {
 
   return (
     <div>
-      <input
+      <Input
         type="text"
         value={search}
         className="mb-1 rounded-md border px-2 py-1"

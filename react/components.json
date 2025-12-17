@@ -10,15 +10,15 @@
     "cssVariables": true,
     "prefix": ""
   },
-  "iconLibrary": "lucide",
+  "iconLibrary": "@gdsicon/react",
   "aliases": {
     "components": "@/components",
-    "utils": "@/lib/utils",
+    "utils": "@/utils/cn",
     "ui": "@/components/ui",
-    "lib": "@/lib",
+    "lib": "@/utils/cn",
     "hooks": "@/hooks"
   },
   "registries": {
-    "@intentui": "https://intentui.com/r/{name}"
+    "@coss": "https://coss.com/ui/r/{name}.json"
   }
 }

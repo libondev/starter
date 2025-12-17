@@ -1,52 +1,54 @@
-import { tv, type VariantProps } from 'tailwind-variants'
+import { mergeProps } from '@base-ui/react/merge-props'
+import { useRender } from '@base-ui/react/use-render'
+import { cva, type VariantProps } from 'class-variance-authority'
 
-const badgeStyles = tv({
-  base: [
-    'inline-flex items-center gap-x-1.5 py-0.5 font-medium text-xs/5 forced-colors:outline',
-    'inset-ring inset-ring-(--badge-ring) bg-(--badge-bg) text-(--badge-fg) [--badge-ring:transparent]',
-    'group-hover:bg-(--badge-overlay) group-focus:bg-(--badge-overlay)',
-    '*:data-[slot=icon]:size-3 *:data-[slot=icon]:shrink-0',
-    'duration-200',
-  ],
-  variants: {
-    intent: {
-      primary:
-        '[--badge-bg:var(--color-primary-subtle)] [--badge-fg:var(--color-primary-subtle-fg)] [--badge-overlay:var(--color-primary)]/20',
-      secondary:
-        '[--badge-bg:var(--color-secondary)] [--badge-fg:var(--color-secondary-fg)] [--badge-overlay:var(--color-muted-fg)]/25',
-      success:
-        '[--badge-bg:var(--color-success-subtle)] [--badge-fg:var(--color-success-subtle-fg)] [--badge-overlay:var(--color-success)]/20',
-      info: '[--badge-bg:var(--color-info-subtle)] [--badge-fg:var(--color-info-subtle-fg)] [--badge-overlay:var(--color-sky-500)]/20',
-      warning:
-        '[--badge-bg:var(--color-warning-subtle)] [--badge-fg:var(--color-warning-subtle-fg)] [--badge-overlay:var(--color-warning)]/20',
-      danger:
-        '[--badge-bg:var(--color-danger-subtle)] [--badge-fg:var(--color-danger-subtle-fg)] [--badge-overlay:var(--color-danger)]/20',
-      outline: '[--badge-overlay:var(--color-secondary)]/20 [--badge-ring:var(--color-border)]',
+import { cn } from '@/utils/cn'
+
+const badgeVariants = cva(
+  "relative inline-flex shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-sm border border-transparent font-medium outline-none transition-shadow focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-64 [&_svg:not([class*='opacity-'])]:opacity-80 [&_svg:not([class*='size-'])]:size-3.5 sm:[&_svg:not([class*='size-'])]:size-3 [&_svg]:pointer-events-none [&_svg]:shrink-0 [button,a&]:cursor-pointer [button,a&]:pointer-coarse:after:absolute [button,a&]:pointer-coarse:after:size-full [button,a&]:pointer-coarse:after:min-h-11 [button,a&]:pointer-coarse:after:min-w-11",
+  {
+    defaultVariants: {
+      size: 'default',
+      variant: 'default',
     },
-    isCircle: {
-      true: 'rounded-full px-2',
-      false: 'rounded-sm px-1.5',
+    variants: {
+      size: {
+        default:
+          'h-5.5 min-w-5.5 px-[calc(--spacing(1)-1px)] text-sm sm:h-4.5 sm:min-w-4.5 sm:text-xs',
+        lg: 'h-6.5 min-w-6.5 px-[calc(--spacing(1.5)-1px)] text-base sm:h-5.5 sm:min-w-5.5 sm:text-sm',
+        sm: 'h-5 min-w-5 rounded-[calc(var(--radius-sm)-2px)] px-[calc(--spacing(1)-1px)] text-xs sm:h-4 sm:min-w-4 sm:text-[.625rem]',
+      },
+      variant: {
+        default: 'bg-primary text-primary-foreground [button,a&]:hover:bg-primary/90',
+        destructive: 'bg-destructive text-white [button,a&]:hover:bg-destructive/90',
+        error: 'bg-destructive/8 text-destructive-foreground dark:bg-destructive/16',
+        info: 'bg-info/8 text-info-foreground dark:bg-info/16',
+        outline:
+          'border-border bg-transparent dark:bg-input/32 [button,a&]:hover:bg-accent/50 dark:[button,a&]:hover:bg-input/48',
+        secondary: 'bg-secondary text-secondary-foreground [button,a&]:hover:bg-secondary/90',
+        success: 'bg-success/8 text-success-foreground dark:bg-success/16',
+        warning: 'bg-warning/8 text-warning-foreground dark:bg-warning/16',
+      },
     },
   },
-  defaultVariants: {
-    intent: 'primary',
-    isCircle: true,
-  },
-})
+)
 
-interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeStyles> {
-  className?: string
-  children: React.ReactNode
+interface BadgeProps extends useRender.ComponentProps<'span'> {
+  variant?: VariantProps<typeof badgeVariants>['variant']
+  size?: VariantProps<typeof badgeVariants>['size']
 }
 
-const Badge = ({ children, intent, isCircle = true, className, ...props }: BadgeProps) => {
-  return (
-    <span {...props} className={badgeStyles({ intent, isCircle, className })}>
-      {children}
-    </span>
-  )
+function Badge({ className, variant, size, render, ...props }: BadgeProps) {
+  const defaultProps = {
+    className: cn(badgeVariants({ className, size, variant })),
+    'data-slot': 'badge',
+  }
+
+  return useRender({
+    defaultTagName: 'span',
+    props: mergeProps<'span'>(defaultProps, props),
+    render,
+  })
 }
 
-export type { BadgeProps }
-export { Badge, badgeStyles }
+export { Badge, badgeVariants }

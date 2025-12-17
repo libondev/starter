@@ -1,74 +1,45 @@
-import {
-  Group,
-  type GroupProps,
-  Input as InputPrimitive,
-  type InputProps as PrimitiveInputProps,
-} from 'react-aria-components'
-import { cx } from '@/lib/primitive'
+'use client'
 
-interface InputProps extends PrimitiveInputProps {
-  ref?: React.RefObject<HTMLInputElement>
+import { Input as InputPrimitive } from '@base-ui/react/input'
+import type * as React from 'react'
+
+import { cn } from '@/utils/cn'
+
+type InputProps = Omit<InputPrimitive.Props & React.RefAttributes<HTMLInputElement>, 'size'> & {
+  size?: 'sm' | 'default' | 'lg' | number
+  unstyled?: boolean
 }
 
-export function Input({ className, ref, ...props }: InputProps) {
+function Input({ className, size = 'default', unstyled = false, ...props }: InputProps) {
   return (
-    <span data-slot="control" className="relative block w-full">
-      <InputPrimitive
-        ref={ref}
-        className={cx(
-          'relative block w-full appearance-none rounded-lg px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
-          'text-base/6 text-fg placeholder:text-muted-fg sm:text-sm/6',
-          'border border-input enabled:hover:border-muted-fg/30',
-          'outline-hidden focus:border-ring/70 focus:ring-3 focus:ring-ring/20 focus:enabled:hover:border-ring/80',
-          'invalid:border-danger-subtle-fg/70 focus:invalid:border-danger-subtle-fg/70 focus:invalid:ring-danger-subtle-fg/20 invalid:enabled:hover:border-danger-subtle-fg/80 focus:invalid:enabled:hover:border-danger-subtle-fg/80',
-          '[&::-ms-reveal]:hidden [&::-webkit-search-cancel-button]:hidden',
-          'disabled:bg-muted forced-colors:in-disabled:text-[GrayText]',
-          'in-disabled:bg-muted forced-colors:in-disabled:text-[GrayText]',
-          'dark:scheme-dark',
+    <span
+      className={
+        cn(
+          !unstyled &&
+            'relative inline-flex w-full rounded-lg border border-input bg-background bg-clip-padding text-base shadow-xs ring-ring/24 transition-shadow before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] not-has-disabled:not-has-focus-visible:not-has-aria-invalid:before:shadow-[0_1px_--theme(--color-black/4%)] has-focus-visible:has-aria-invalid:border-destructive/64 has-focus-visible:has-aria-invalid:ring-destructive/16 has-aria-invalid:border-destructive/36 has-focus-visible:border-ring has-disabled:opacity-64 has-[:disabled,:focus-visible,[aria-invalid]]:shadow-none has-focus-visible:ring-[3px] sm:text-sm dark:bg-input/32 dark:not-in-data-[slot=group]:bg-clip-border dark:has-aria-invalid:ring-destructive/24 dark:not-has-disabled:not-has-focus-visible:not-has-aria-invalid:before:shadow-[0_-1px_--theme(--color-white/8%)]',
           className,
+        ) || undefined
+      }
+      data-size={size}
+      data-slot="input-control"
+    >
+      <InputPrimitive
+        className={cn(
+          'h-8.5 w-full min-w-0 rounded-[inherit] px-[calc(--spacing(3)-1px)] leading-8.5 outline-none placeholder:text-muted-foreground/72 sm:h-7.5 sm:leading-7.5',
+          size === 'sm' &&
+            'h-7.5 px-[calc(--spacing(2.5)-1px)] leading-7.5 sm:h-6.5 sm:leading-6.5',
+          size === 'lg' && 'h-9.5 leading-9.5 sm:h-8.5 sm:leading-8.5',
+          props.type === 'search' &&
+            '[&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none [&::-webkit-search-results-button]:appearance-none [&::-webkit-search-results-decoration]:appearance-none',
+          props.type === 'file' &&
+            'text-muted-foreground file:me-3 file:bg-transparent file:font-medium file:text-foreground file:text-sm',
         )}
+        data-slot="input"
+        size={typeof size === 'number' ? size : undefined}
         {...props}
       />
     </span>
   )
 }
 
-export function InputGroup({ className, ...props }: GroupProps) {
-  return (
-    <Group
-      data-slot="control"
-      className={cx(
-        'relative isolate block',
-        // icon
-        'has-[>[data-slot=icon]:last-child]:[&_input]:pr-10 has-[>[data-slot=icon]:first-child]:[&_input]:pl-10 sm:has-[>[data-slot=icon]:last-child]:[&_input]:pr-8 sm:has-[>[data-slot=icon]:first-child]:[&_input]:pl-8',
-        '*:data-[slot=icon]:pointer-events-none *:data-[slot=icon]:absolute *:data-[slot=icon]:top-3 *:data-[slot=icon]:z-10 *:data-[slot=icon]:size-5 sm:*:data-[slot=icon]:top-2.5 sm:*:data-[slot=icon]:size-4',
-        '[&>[data-slot=icon]:first-child]:left-3 sm:[&>[data-slot=icon]:first-child]:left-2.5 [&>[data-slot=icon]:last-child]:right-3 sm:[&>[data-slot=icon]:last-child]:right-2.5',
-
-        // loader
-        'has-[[data-slot=loader]:last-child]:[&_input]:pr-10 has-[[data-slot=loader]:first-child]:[&_input]:pl-10 sm:has-[[data-slot=loader]:last-child]:[&_input]:pr-8 sm:has-[[data-slot=loader]:first-child]:[&_input]:pl-8',
-        '*:data-[slot=loader]:pointer-events-none *:data-[slot=loader]:absolute *:data-[slot=loader]:top-3 *:data-[slot=loader]:z-10 *:data-[slot=loader]:size-5 sm:*:data-[slot=loader]:top-2.5 sm:*:data-[slot=loader]:size-4',
-        '[&>[data-slot=loader]:first-child]:left-3 sm:[&>[data-slot=loader]:first-child]:left-2.5 [&>[data-slot=loader]:last-child]:right-3 sm:[&>[data-slot=loader]:last-child]:right-2.5',
-
-        // text
-        'has-[[data-slot=text]:last-child]:[&_input]:pr-[calc(var(--input-gutter-end)+--spacing(2))] has-[[data-slot=text]:first-child]:[&_input]:pl-[calc(var(--input-gutter-start)+--spacing(2))] sm:has-[[data-slot=text]:last-child]:[&_input]:pr-(--input-gutter-end,--spacing(10)) sm:has-[[data-slot=text]:first-child]:[&_input]:pl-(--input-gutter-start,--spacing(10))',
-        "*:data-[slot=text]:absolute *:data-[slot=text]:top-0 *:data-[slot=text]:z-10 *:data-[slot=text]:h-full *:data-[slot=text]:max-w-fit *:data-[slot=text]:grow *:data-[slot=text]:content-center [&>[data-slot='text']:not([class*='pointer-events'])]:pointer-events-none",
-        "[&>[data-slot=text]:first-child:not([class*='left-'])]:left-3 sm:[&>[data-slot=text]:first-child:not([class*='left-'])]:left-2.5 [&>[data-slot=text]:last-child:not([class*='right-'])]:right-3 sm:[&>[data-slot=text]:last-child:not([class*='right-'])]:right-2.5",
-
-        // keyboard
-        'has-[[data-slot=keyboard]:last-child]:[&_input]:pr-[calc(var(--input-gutter-end)+--spacing(2))] has-[[data-slot=keyboard]:first-child]:[&_input]:pl-[calc(var(--input-gutter-start)+--spacing(2))] sm:has-[[data-slot=keyboard]:last-child]:[&_input]:pr-(--input-gutter-end,--spacing(10)) sm:has-[[data-slot=keyboard]:first-child]:[&_input]:pl-(--input-gutter-start,--spacing(10))',
-        "*:data-[slot=keyboard]:absolute *:data-[slot=keyboard]:top-0 *:data-[slot=keyboard]:z-10 *:data-[slot=keyboard]:h-full *:data-[slot=keyboard]:max-w-fit *:data-[slot=keyboard]:grow *:data-[slot=keyboard]:content-center [&>[data-slot='keyboard']:not([class*='pointer-events'])]:pointer-events-none",
-        "[&>[data-slot=keyboard]:first-child:not([class*='left-'])]:left-3 sm:[&>[data-slot=keyboard]:first-child:not([class*='left-'])]:left-2.5 [&>[data-slot=keyboard]:last-child:not([class*='right-'])]:right-3 sm:[&>[data-slot=keyboard]:last-child:not([class*='right-'])]:right-2.5",
-
-        // button
-        'has-[>button:last-child]:[&_input]:pr-(--input-gutter-end,--spacing(16)) has-[>button:first-child]:[&_input]:pl-(--input-gutter-start,--spacing(16)) sm:has-[>button:last-child]:[&_input]:pr-(--input-gutter-end,--spacing(14)) sm:has-[>button:first-child]:[&_input]:pl-(--input-gutter-start,--spacing(14))',
-        '[&>button:first-child]:rounded-r-none [&>button:last-child]:rounded-l-none',
-        '[&>button[data-intent=outline]]:border-input *:[button]:absolute *:[button]:top-0 *:[button]:z-10 *:[button]:min-h-11 sm:*:[button]:min-h-9',
-        '[&>button:first-child]:left-0 [&>button:last-child]:right-0',
-
-        "[&>[data-slot='icon']:not([class*='text-'])]:text-muted-fg [&>[data-slot='loader']:not([class*='text-'])]:text-muted-fg [&>[data-slot='text']:not([class*='text-'])]:text-muted-fg",
-        className,
-      )}
-      {...props}
-    />
-  )
-}
+export { Input, type InputProps }

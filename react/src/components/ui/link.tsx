@@ -1,29 +1,17 @@
-'use client'
+import type { PropsWithChildren } from 'react'
+import { Button } from './button'
+import { useNavigate } from 'react-router'
 
-import { Link as LinkPrimitive, type LinkProps as LinkPrimitiveProps } from 'react-aria-components'
-import { cx } from '@/lib/primitive'
-
-interface LinkProps extends LinkPrimitiveProps {
-  ref?: React.RefObject<HTMLAnchorElement>
+interface LinkProps {
+  href: string
 }
 
-const Link = ({ className, ref, ...props }: LinkProps) => {
+export function Link({ href, children }: PropsWithChildren<LinkProps>) {
+  const navigate = useNavigate()
+
   return (
-    <LinkPrimitive
-      ref={ref}
-      className={cx(
-        [
-          'font-medium text-(--text)',
-          'outline-0 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring forced-colors:outline-[Highlight]',
-          'disabled:cursor-default disabled:text-muted-fg forced-colors:disabled:text-[GrayText]',
-          'href' in props && 'cursor-pointer',
-        ],
-        className,
-      )}
-      {...props}
-    />
+    <Button variant="link" onClick={() => navigate(href, { viewTransition: true })}>
+      {children}
+    </Button>
   )
 }
-
-export type { LinkProps }
-export { Link }

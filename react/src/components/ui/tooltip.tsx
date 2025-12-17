@@ -1,92 +1,65 @@
-import type { TooltipProps as TooltipPrimitiveProps } from 'react-aria-components'
-import {
-  Button,
-  composeRenderProps,
-  OverlayArrow,
-  Tooltip as TooltipPrimitive,
-  TooltipTrigger as TooltipTriggerPrimitive,
-} from 'react-aria-components'
-import { twJoin } from 'tailwind-merge'
-import type { VariantProps } from 'tailwind-variants'
-import { tv } from 'tailwind-variants'
+'use client'
 
-const tooltipStyles = tv({
-  base: [
-    'group origin-(--trigger-anchor-point) rounded-lg border border-(--tooltip-border) px-2.5 py-1.5 text-sm/6 will-change-transform [--tooltip-border:var(--color-muted-fg)]/30 dark:shadow-none *:[strong]:font-medium',
-  ],
-  variants: {
-    inverse: {
-      true: ['border-transparent bg-fg text-bg', '**:[.text-muted-fg]:text-bg/60'],
-      false: 'bg-overlay text-overlay-fg',
-    },
-    isEntering: {
-      true: [
-        'fade-in animate-in',
-        'placement-left:slide-in-from-right-1 placement-right:slide-in-from-left-1 placement-top:slide-in-from-bottom-1 placement-bottom:slide-in-from-top-1',
-      ],
-    },
-    isExiting: {
-      true: [
-        'fade-in direction-reverse animate-in',
-        'placement-left:slide-out-to-right-1 placement-right:slide-out-to-left-1 placement-top:slide-out-to-bottom-1 placement-bottom:slide-out-to-top-1',
-      ],
-    },
-  },
-  defaultVariants: {
-    inverse: false,
-  },
-})
+import { Tooltip as TooltipPrimitive } from '@base-ui/react/tooltip'
 
-type TooltipProps = React.ComponentProps<typeof TooltipTriggerPrimitive>
-const Tooltip = (props: TooltipProps) => <TooltipTriggerPrimitive {...props} />
+import { cn } from '@/utils/cn'
 
-interface TooltipContentProps
-  extends Omit<TooltipPrimitiveProps, 'children'>, VariantProps<typeof tooltipStyles> {
-  arrow?: boolean
-  children?: React.ReactNode
+const TooltipCreateHandle = TooltipPrimitive.createHandle
+
+const TooltipProvider = TooltipPrimitive.Provider
+
+const Tooltip = TooltipPrimitive.Root
+
+function TooltipTrigger(props: TooltipPrimitive.Trigger.Props) {
+  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
 }
 
-const TooltipContent = ({
-  offset = 10,
-  arrow = true,
-  inverse,
+function TooltipPopup({
+  className,
+  align = 'center',
+  sideOffset = 4,
+  side = 'top',
   children,
   ...props
-}: TooltipContentProps) => {
+}: TooltipPrimitive.Popup.Props & {
+  align?: TooltipPrimitive.Positioner.Props['align']
+  side?: TooltipPrimitive.Positioner.Props['side']
+  sideOffset?: TooltipPrimitive.Positioner.Props['sideOffset']
+}) {
   return (
-    <TooltipPrimitive
-      {...props}
-      offset={offset}
-      className={composeRenderProps(props.className, (className, renderProps) =>
-        tooltipStyles({
-          ...renderProps,
-          inverse,
-          className,
-        }),
-      )}
-    >
-      {arrow && (
-        <OverlayArrow className="group">
-          <svg
-            width={12}
-            height={12}
-            viewBox="0 0 12 12"
-            // inverse
-            className={twJoin(
-              'group-placement-left:-rotate-90 block group-placement-bottom:rotate-180 group-placement-right:rotate-90 forced-colors:fill-[Canvas] forced-colors:stroke-[ButtonBorder]',
-              inverse ? 'fill-fg stroke-transparent' : 'fill-overlay stroke-(--tooltip-border)',
-            )}
+    <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Positioner
+        align={align}
+        className="z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom,transform] data-instant:transition-none"
+        data-slot="tooltip-positioner"
+        side={side}
+        sideOffset={sideOffset}
+      >
+        <TooltipPrimitive.Popup
+          className={cn(
+            'relative flex h-(--popup-height,auto) w-(--popup-width,auto) origin-(--transform-origin) text-balance rounded-md border bg-popover bg-clip-padding text-popover-foreground text-xs shadow-black/5 shadow-md transition-[width,height,scale,opacity] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-md)-1px)] before:shadow-[0_1px_--theme(--color-black/4%)] data-ending-style:scale-98 data-starting-style:scale-98 data-ending-style:opacity-0 data-starting-style:opacity-0 data-instant:duration-0 dark:bg-clip-border dark:before:shadow-[0_-1px_--theme(--color-white/8%)]',
+            className,
+          )}
+          data-slot="tooltip-popup"
+          {...props}
+        >
+          <TooltipPrimitive.Viewport
+            className="relative size-full overflow-clip px-(--viewport-inline-padding) py-1 [--viewport-inline-padding:--spacing(2)] data-instant:transition-none **:data-current:data-ending-style:opacity-0 **:data-current:data-starting-style:opacity-0 **:data-previous:data-ending-style:opacity-0 **:data-previous:data-starting-style:opacity-0 **:data-current:w-[calc(var(--popup-width)-2*var(--viewport-inline-padding)-2px)] **:data-previous:w-[calc(var(--popup-width)-2*var(--viewport-inline-padding)-2px)] **:data-previous:truncate **:data-current:opacity-100 **:data-previous:opacity-100 **:data-current:transition-opacity **:data-previous:transition-opacity"
+            data-slot="tooltip-viewport"
           >
-            <path d="M0 0 L6 6 L12 0" />
-          </svg>
-        </OverlayArrow>
-      )}
-      {children}
-    </TooltipPrimitive>
+            {children}
+          </TooltipPrimitive.Viewport>
+        </TooltipPrimitive.Popup>
+      </TooltipPrimitive.Positioner>
+    </TooltipPrimitive.Portal>
   )
 }
 
-const TooltipTrigger = Button
-
-export type { TooltipProps, TooltipContentProps }
-export { Tooltip, TooltipTrigger, TooltipContent }
+export {
+  TooltipCreateHandle,
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipPopup,
+  TooltipPopup as TooltipContent,
+}

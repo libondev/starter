@@ -1,110 +1,71 @@
-'use client'
+import { mergeProps } from '@base-ui/react/merge-props'
+import { useRender } from '@base-ui/react/use-render'
+import { cva, type VariantProps } from 'class-variance-authority'
+import type * as React from 'react'
 
-import {
-  Button as ButtonPrimitive,
-  type ButtonProps as ButtonPrimitiveProps,
-} from 'react-aria-components'
-import { tv, type VariantProps } from 'tailwind-variants'
-import { cx } from '@/lib/primitive'
+import { cn } from '@/utils/cn'
 
-export const buttonStyles = tv({
-  base: [
-    '[--btn-border:var(--color-fg)]/15 [--btn-icon-active:var(--btn-fg)] [--btn-outline:var(--btn-bg)] [--btn-radius:calc(var(--radius-lg)-1px)] [--btn-ring:var(--btn-bg)]/20',
-    'bg-(--btn-bg) text-(--btn-fg) outline-(--btn-outline) ring-(--btn-ring) hover:bg-(--btn-overlay)',
-    'relative isolate inline-flex items-center justify-center border border-(--btn-border) font-medium hover:no-underline',
-    'focus:outline-0 focus-visible:outline focus-visible:outline-offset-2 focus-visible:ring-2 focus-visible:ring-offset-3 focus-visible:ring-offset-bg',
-    '*:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center *:data-[slot=icon]:text-(--btn-icon) focus-visible:*:data-[slot=icon]:text-(--btn-icon-active)/80 hover:*:data-[slot=icon]:text-(--btn-icon-active)/90 forced-colors:[--btn-icon:ButtonText] forced-colors:hover:[--btn-icon:ButtonText]',
-    '*:data-[slot=loader]:-mx-0.5 *:data-[slot=loader]:shrink-0 *:data-[slot=loader]:self-center *:data-[slot=loader]:text-(--btn-icon)',
-    'pending:opacity-50 disabled:opacity-50 disabled:forced-colors:text-[GrayText]',
-    '*:data-[slot=color-swatch]:-mx-0.5 *:data-[slot=color-swatch]:shrink-0 *:data-[slot=color-swatch]:self-center *:data-[slot=color-swatch]:[--color-swatch-size:--spacing(5)]',
-  ],
-  variants: {
-    intent: {
-      primary:
-        '[--btn-bg:var(--color-primary)] [--btn-fg:var(--color-primary-fg)] [--btn-icon-active:var(--primary-fg)]/80 [--btn-icon:var(--primary-fg)]/60 [--btn-overlay:color-mix(in_oklab,var(--color-primary-fg)_10%,var(--color-primary)_90%)]',
-      secondary:
-        '[--btn-bg:var(--color-secondary)] [--btn-fg:var(--color-secondary-fg)] [--btn-icon:var(--color-muted-fg)] [--btn-outline:var(--color-secondary-fg)] [--btn-overlay:var(--color-muted-fg)]/25 [--btn-ring:var(--color-muted-fg)]/20',
-      warning:
-        '[--btn-bg:var(--color-warning)] [--btn-fg:var(--color-warning-fg)] [--btn-icon:var(--color-warning-fg)]/60 [--btn-overlay:var(--color-warning)]/85',
-      danger:
-        '[--btn-bg:var(--color-danger)] [--btn-fg:var(--color-danger-fg)] [--btn-icon:color-mix(in_oklab,var(--color-danger-fg)_60%,var(--danger)_40%)] [--btn-overlay:var(--color-danger)]/85',
-      outline:
-        'border-border [--btn-bg:transparent] [--btn-icon:var(--color-muted-fg)] [--btn-outline:var(--color-ring)] [--btn-overlay:var(--color-muted-fg)]/10 [--btn-ring:var(--color-ring)]/20',
-      plain:
-        'border-transparent [--btn-bg:transparent] [--btn-icon:var(--color-muted-fg)] [--btn-outline:var(--color-ring)] [--btn-overlay:var(--color-muted-fg)]/10 [--btn-ring:var(--color-ring)]/20',
+const buttonVariants = cva(
+  "[&_svg]:-mx-0.5 relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-shadow before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] pointer-coarse:after:absolute pointer-coarse:after:size-full pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-64 sm:text-sm [&_svg:not([class*='opacity-'])]:opacity-80 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  {
+    defaultVariants: {
+      size: 'default',
+      variant: 'default',
     },
-    size: {
-      xs: [
-        'min-h-8 gap-x-1.5 px-[calc(--spacing(3)-1px)] py-[calc(--spacing(1.5)-1px)] text-sm sm:min-h-7 sm:px-2 sm:py-[calc(--spacing(1.5)-1px)] sm:text-xs/4',
-        '*:data-[slot=icon]:-mx-px *:data-[slot=icon]:size-3.5 sm:*:data-[slot=icon]:size-3',
-        '*:data-[slot=loader]:-mx-px *:data-[slot=loader]:size-3.5 sm:*:data-[slot=loader]:size-3',
-      ],
-      sm: [
-        'min-h-9 gap-x-1.5 px-3 py-[calc(--spacing(2)-1px)] sm:min-h-8 sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/5',
-        '*:data-[slot=icon]:size-4.5 sm:*:data-[slot=icon]:size-4',
-        '*:data-[slot=loader]:size-4.5 sm:*:data-[slot=loader]:size-4',
-      ],
-      md: [
-        'min-h-10 gap-x-2 px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:min-h-9 sm:px-3 sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/6',
-        '*:data-[slot=icon]:size-5 sm:*:data-[slot=icon]:size-4',
-        '*:data-[slot=loader]:size-5 sm:*:data-[slot=loader]:size-4',
-      ],
-      lg: [
-        'min-h-10 gap-x-2 px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(3)-1px)] sm:min-h-9 sm:px-3 sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/7',
-        '*:data-[slot=icon]:size-5 sm:*:data-[slot=icon]:size-4.5',
-        '*:data-[slot=loader]:size-5 sm:*:data-[slot=loader]:size-4.5',
-      ],
-      'sq-xs': [
-        'touch-target size-8 sm:size-7',
-        '*:data-[slot=icon]:size-3.5 sm:*:data-[slot=icon]:size-3',
-        '*:data-[slot=loader]:size-3.5 sm:*:data-[slot=loader]:size-3',
-      ],
-      'sq-sm': [
-        'touch-target size-10 sm:size-8',
-        '*:data-[slot=icon]:size-4.5 sm:*:data-[slot=icon]:size-4',
-        '*:data-[slot=loader]:size-4.5 sm:*:data-[slot=loader]:size-4',
-      ],
-      'sq-md': [
-        'touch-target size-11 sm:size-9',
-        '*:data-[slot=icon]:size-5 sm:*:data-[slot=icon]:size-4.5',
-        '*:data-[slot=loader]:size-5 sm:*:data-[slot=loader]:size-4.5',
-      ],
-      'sq-lg': [
-        'touch-target size-12 sm:size-10',
-        '*:data-[slot=icon]:size-6 sm:*:data-[slot=icon]:size-5',
-        '*:data-[slot=loader]:size-6 sm:*:data-[slot=loader]:size-5',
-      ],
-    },
-
-    isCircle: {
-      true: 'rounded-full',
-      false: 'rounded-lg',
+    variants: {
+      size: {
+        default: 'h-9 px-[calc(--spacing(3)-1px)] sm:h-8',
+        icon: 'size-9 sm:size-8',
+        'icon-lg': 'size-10 sm:size-9',
+        'icon-sm': 'size-8 sm:size-7',
+        'icon-xl':
+          "size-11 sm:size-10 [&_svg:not([class*='size-'])]:size-5 sm:[&_svg:not([class*='size-'])]:size-4.5",
+        'icon-xs':
+          "size-7 rounded-md before:rounded-[calc(var(--radius-md)-1px)] sm:size-6 not-in-data-[slot=input-group]:[&_svg:not([class*='size-'])]:size-4 sm:not-in-data-[slot=input-group]:[&_svg:not([class*='size-'])]:size-3.5",
+        lg: 'h-10 px-[calc(--spacing(3.5)-1px)] sm:h-9',
+        sm: 'h-8 gap-1.5 px-[calc(--spacing(2.5)-1px)] sm:h-7',
+        xl: "h-11 px-[calc(--spacing(4)-1px)] text-lg sm:h-10 sm:text-base [&_svg:not([class*='size-'])]:size-5 sm:[&_svg:not([class*='size-'])]:size-4.5",
+        xs: "h-7 gap-1 rounded-md px-[calc(--spacing(2)-1px)] text-sm before:rounded-[calc(var(--radius-md)-1px)] sm:h-6 sm:text-xs [&_svg:not([class*='size-'])]:size-4 sm:[&_svg:not([class*='size-'])]:size-3.5",
+      },
+      variant: {
+        default:
+          'not-disabled:inset-shadow-[0_1px_--theme(--color-white/16%)] border-primary bg-primary text-primary-foreground shadow-primary/24 shadow-xs hover:bg-primary/90 [:active,[data-pressed]]:inset-shadow-[0_1px_--theme(--color-black/8%)] [:disabled,:active,[data-pressed]]:shadow-none',
+        destructive:
+          'not-disabled:inset-shadow-[0_1px_--theme(--color-white/16%)] border-destructive bg-destructive text-white shadow-destructive/24 shadow-xs hover:bg-destructive/90 [:active,[data-pressed]]:inset-shadow-[0_1px_--theme(--color-black/8%)] [:disabled,:active,[data-pressed]]:shadow-none',
+        'destructive-outline':
+          'border-border bg-transparent bg-clip-padding text-destructive-foreground shadow-xs not-disabled:not-active:not-data-pressed:before:shadow-[0_1px_--theme(--color-black/4%)] dark:bg-input/32 dark:not-in-data-[slot=group]:bg-clip-border dark:not-disabled:before:shadow-[0_-1px_--theme(--color-white/4%)] dark:not-disabled:not-active:not-data-pressed:before:shadow-[0_-1px_--theme(--color-white/8%)] [:disabled,:active,[data-pressed]]:shadow-none [:hover,[data-pressed]]:bg-destructive/4',
+        ghost: 'border-transparent hover:bg-accent data-pressed:bg-accent',
+        link: 'border-transparent underline-offset-4 hover:underline',
+        outline:
+          'border-border bg-background bg-clip-padding shadow-xs not-disabled:not-active:not-data-pressed:before:shadow-[0_1px_--theme(--color-black/4%)] dark:bg-input/32 dark:not-in-data-[slot=group]:bg-clip-border dark:not-disabled:before:shadow-[0_-1px_--theme(--color-white/4%)] dark:not-disabled:not-active:not-data-pressed:before:shadow-[0_-1px_--theme(--color-white/8%)] [:disabled,:active,[data-pressed]]:shadow-none [:hover,[data-pressed]]:bg-accent/50 dark:[:hover,[data-pressed]]:bg-input/64',
+        secondary:
+          'border-secondary bg-secondary text-secondary-foreground hover:bg-secondary/90 data-pressed:bg-secondary/90',
+      },
     },
   },
-  defaultVariants: {
-    intent: 'primary',
-    size: 'md',
-    isCircle: false,
-  },
-})
+)
 
-export interface ButtonProps extends ButtonPrimitiveProps, VariantProps<typeof buttonStyles> {
-  ref?: React.Ref<HTMLButtonElement>
+interface ButtonProps extends useRender.ComponentProps<'button'> {
+  variant?: VariantProps<typeof buttonVariants>['variant']
+  size?: VariantProps<typeof buttonVariants>['size']
 }
 
-export function Button({ className, intent, size, isCircle, ref, ...props }: ButtonProps) {
-  return (
-    <ButtonPrimitive
-      ref={ref}
-      {...props}
-      className={cx(
-        buttonStyles({
-          intent,
-          size,
-          isCircle,
-        }),
-        className,
-      )}
-    />
-  )
+function Button({ className, variant, size, render, ...props }: ButtonProps) {
+  const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>['type'] = render
+    ? undefined
+    : 'button'
+
+  const defaultProps = {
+    className: cn(buttonVariants({ className, size, variant })),
+    'data-slot': 'button',
+    type: typeValue,
+  }
+
+  return useRender({
+    defaultTagName: 'button',
+    props: mergeProps<'button'>(defaultProps, props),
+    render,
+  })
 }
+
+export { Button, buttonVariants }

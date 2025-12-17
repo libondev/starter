@@ -1,122 +1,80 @@
-import type {
-  TabListProps as TabListPrimitiveProps,
-  TabPanelProps as TabPanelPrimitiveProps,
-  TabProps as TabPrimitiveProps,
-  TabsProps as TabsPrimitiveProps,
-} from 'react-aria-components'
+'use client'
 
-import {
-  composeRenderProps,
-  SelectionIndicator,
-  TabList as TabListPrimitive,
-  TabPanel as TabPanelPrimitive,
-  Tab as TabPrimitive,
-  TabsContext,
-  Tabs as TabsPrimitive,
-  useSlottedContext,
-} from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
-import { cx } from '@/lib/primitive'
+import { Tabs as TabsPrimitive } from '@base-ui/react/tabs'
 
-interface TabsProps extends TabsPrimitiveProps {
-  ref?: React.RefObject<HTMLDivElement>
-}
-const Tabs = ({ className, ref, orientation = 'horizontal', ...props }: TabsProps) => {
+import { cn } from '@/utils/cn'
+
+type TabsVariant = 'default' | 'underline'
+
+function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {
   return (
-    <TabsContext value={{ orientation: orientation }}>
-      <TabsPrimitive
-        orientation={orientation}
-        className={cx(
-          orientation === 'vertical' ? 'w-full flex-row' : 'flex-col',
-          'group/tabs flex gap-4 forced-color-adjust-none',
-          className,
-        )}
-        ref={ref}
-        {...props}
-      />
-    </TabsContext>
-  )
-}
-
-interface TabListProps<T extends object> extends TabListPrimitiveProps<T> {
-  ref?: React.RefObject<HTMLDivElement>
-}
-const TabList = <T extends object>({ className, ref, ...props }: TabListProps<T>) => {
-  return (
-    <TabListPrimitive
-      ref={ref}
-      data-slot="tab-list"
+    <TabsPrimitive.Root
+      className={cn('flex flex-col gap-2 data-[orientation=vertical]:flex-row', className)}
+      data-slot="tabs"
       {...props}
-      className={composeRenderProps(className, (className, { orientation }) =>
-        twMerge([
-          '[--tab-list-gutter:--spacing(1)]',
-          'relative flex forced-color-adjust-none',
-          orientation === 'horizontal' &&
-            'flex-row gap-x-(--tab-list-gutter) rounded-(--tab-list-rounded) border-b py-(--tab-list-gutter)',
-          orientation === 'vertical' &&
-            'min-w-56 shrink-0 flex-col items-start gap-y-(--tab-list-gutter) border-l px-(--tab-list-gutter) [--tab-list-gutter:--spacing(2)]',
-          className,
-        ]),
-      )}
     />
   )
 }
 
-interface TabProps extends TabPrimitiveProps {
-  ref?: React.RefObject<HTMLDivElement>
-}
-const Tab = ({ children, className, ref, ...props }: TabProps) => {
-  const { orientation } = useSlottedContext(TabsContext)!
+function TabsList({
+  variant = 'default',
+  className,
+  children,
+  ...props
+}: TabsPrimitive.List.Props & {
+  variant?: TabsVariant
+}) {
   return (
-    <TabPrimitive
-      {...props}
-      data-slot="tab"
-      ref={ref}
-      className={cx(
-        'group/tab rounded-lg [--tab-gutter:var(--tab-gutter-x)]',
-        orientation === 'horizontal'
-          ? 'first:-ml-(--tab-gutter) last:-mr-(--tab-gutter) [--tab-gutter-x:--spacing(2.5)] [--tab-gutter-y:--spacing(1)]'
-          : 'w-full justify-start [--tab-gutter-x:--spacing(4)] [--tab-gutter-y:--spacing(1.5)]',
-        'relative isolate flex cursor-default items-center whitespace-nowrap font-medium text-sm/6 outline-hidden transition',
-        'px-(--tab-gutter-x) py-(--tab-gutter-y)',
-        '*:data-[slot=icon]:-ml-0.5 *:data-[slot=icon]:mr-2 *:data-[slot=icon]:size-4 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center *:data-[slot=icon]:text-muted-fg selected:*:data-[slot=icon]:text-primary-subtle-fg',
-        'selected:text-primary-subtle-fg text-muted-fg hover:bg-secondary selected:hover:bg-primary-subtle hover:text-fg selected:hover:text-primary-subtle-fg focus:ring-0',
-        'disabled:opacity-50',
-        'href' in props ? 'cursor-pointer' : 'cursor-default',
+    <TabsPrimitive.List
+      className={cn(
+        'relative z-0 flex w-fit items-center justify-center gap-x-0.5 text-muted-foreground',
+        'data-[orientation=vertical]:flex-col',
+        variant === 'default'
+          ? 'rounded-lg bg-muted p-0.5 text-muted-foreground/72'
+          : 'data-[orientation=vertical]:px-1 data-[orientation=horizontal]:py-1 *:data-[slot=tabs-trigger]:hover:bg-accent',
         className,
       )}
+      data-slot="tabs-list"
+      {...props}
     >
-      {(values) => (
-        <>
-          {typeof children === 'function' ? children(values) : children}
-          <SelectionIndicator
-            data-slot="selected-indicator"
-            className={twMerge(
-              'absolute bg-primary-subtle-fg transition-[translate,width,height] duration-200',
-              orientation === 'horizontal'
-                ? '-bottom-[calc(var(--tab-gutter-y)+1px)] right-(--tab-gutter-x) left-(--tab-gutter-x) h-[2px]'
-                : '-left-[calc(var(--tab-gutter-x)-var(--tab-list-gutter)+1px)] top-(--tab-gutter-y) bottom-(--tab-gutter-y) w-[2px]',
-            )}
-          />
-        </>
-      )}
-    </TabPrimitive>
+      {children}
+      <TabsPrimitive.Indicator
+        className={cn(
+          '-translate-y-(--active-tab-bottom) absolute bottom-0 left-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) transition-[width,translate] duration-200 ease-in-out',
+          variant === 'underline'
+            ? 'data-[orientation=vertical]:-translate-x-px z-10 bg-primary data-[orientation=horizontal]:h-0.5 data-[orientation=vertical]:w-0.5 data-[orientation=horizontal]:translate-y-px'
+            : '-z-1 rounded-md bg-background shadow-sm dark:bg-accent',
+        )}
+        data-slot="tab-indicator"
+      />
+    </TabsPrimitive.List>
   )
 }
 
-interface TabPanelProps extends TabPanelPrimitiveProps {
-  ref?: React.RefObject<HTMLDivElement>
-}
-const TabPanel = ({ className, ref, ...props }: TabPanelProps) => {
+function TabsTab({ className, ...props }: TabsPrimitive.Tab.Props) {
   return (
-    <TabPanelPrimitive
+    <TabsPrimitive.Tab
+      className={cn(
+        "[&_svg]:-mx-0.5 flex shrink-0 grow cursor-pointer items-center justify-center whitespace-nowrap rounded-md border border-transparent font-medium text-base outline-none transition-[color,background-color,box-shadow] focus-visible:ring-2 focus-visible:ring-ring data-disabled:pointer-events-none data-disabled:opacity-64 sm:text-sm [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        'hover:text-muted-foreground data-active:text-foreground',
+        'h-9 gap-1.5 px-[calc(--spacing(2.5)-1px)] sm:h-8',
+        'data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start',
+        className,
+      )}
+      data-slot="tabs-trigger"
       {...props}
-      ref={ref}
-      data-slot="tab-panel"
-      className={cx('flex-1 text-fg text-sm/6 focus-visible:outline-hidden', className)}
     />
   )
 }
 
-export type { TabsProps, TabListProps, TabProps, TabPanelProps }
-export { Tabs, TabList, Tab, TabPanel }
+function TabsPanel({ className, ...props }: TabsPrimitive.Panel.Props) {
+  return (
+    <TabsPrimitive.Panel
+      className={cn('flex-1 outline-none', className)}
+      data-slot="tabs-content"
+      {...props}
+    />
+  )
+}
+
+export { Tabs, TabsList, TabsTab, TabsTab as TabsTrigger, TabsPanel, TabsPanel as TabsContent }

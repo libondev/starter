@@ -1,95 +1,61 @@
-import { createContext, use } from 'react'
-import {
-  Meter as PrimitiveMeter,
-  type MeterProps as PrimitiveMeterProps,
-  type MeterRenderProps as PrimitiveMeterRenderProps,
-} from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
-import { cx } from '@/lib/primitive'
+'use client'
 
-interface MeterRenderProps extends PrimitiveMeterRenderProps {
-  color?: string
-}
+import { Meter as MeterPrimitive } from '@base-ui/react/meter'
 
-const MeterContext = createContext<MeterRenderProps | null>(null)
+import { cn } from '@/utils/cn'
 
-interface MeterProps extends PrimitiveMeterProps, Pick<MeterRenderProps, 'color'> {}
-
-export function Meter({ className, children, color, ...props }: MeterProps) {
+function Meter({ className, children, ...props }: MeterPrimitive.Root.Props) {
   return (
-    <PrimitiveMeter
-      data-slot="meter"
-      {...props}
-      className={cx(
-        'w-full',
-        '[&>[data-slot=meter-header]+[data-slot=meter-track]]:mt-2',
-        '[&>[data-slot=meter-header]+[data-slot=meter-track]]:mt-2',
-        "[&>[data-slot=meter-header]+[slot='description']]:mt-1",
-        "[&>[slot='description']+[data-slot=meter-track]]:mt-2",
-        '[&>[data-slot=meter-track]+[slot=description]]:mt-2',
-        '[&>[data-slot=meter-track]+[slot=errorMessage]]:mt-2',
-        '*:data-[slot=meter-header]:font-medium',
-        className,
+    <MeterPrimitive.Root className={cn('flex w-full flex-col gap-2', className)} {...props}>
+      {children ? (
+        children
+      ) : (
+        <MeterTrack>
+          <MeterIndicator />
+        </MeterTrack>
       )}
-    >
-      {(values) => (
-        <MeterContext value={{ ...values, color }}>
-          {typeof children === 'function' ? children(values) : children}
-        </MeterContext>
-      )}
-    </PrimitiveMeter>
+    </MeterPrimitive.Root>
   )
 }
 
-export function MeterTrack({ className, ...props }: React.ComponentProps<'div'>) {
-  const { percentage, color } = use(MeterContext)!
+function MeterLabel({ className, ...props }: MeterPrimitive.Label.Props) {
   return (
-    <div
-      data-slot="meter-track"
-      className={twMerge(
-        '[--meter-height:--spacing(1.5)]',
-        '-outline-offset-1 relative h-(--meter-height) w-full overflow-hidden rounded-full bg-secondary outline outline-transparent',
-        className,
-      )}
-      {...props}
-    >
-      <div
-        data-slot="meter-fill"
-        className="absolute top-0 left-0 h-full rounded-full transition-[width] duration-200 ease-linear will-change-[width] motion-reduce:transition-none forced-colors:bg-[Highlight]"
-        style={{ width: `${percentage}%`, backgroundColor: color ?? getMeterColor(percentage) }}
-      />
-    </div>
-  )
-}
-
-export function MeterValue({
-  className,
-  ...props
-}: Omit<React.ComponentProps<'span'>, 'children'>) {
-  const { valueText } = use(MeterContext)!
-  return (
-    <span
-      data-slot="meter-value"
-      className={twMerge('text-base/6 sm:text-sm/6', className)}
-      {...props}
-    >
-      {valueText}
-    </span>
-  )
-}
-
-export function MeterHeader({ className, ...props }: React.ComponentProps<'div'>) {
-  return (
-    <div
-      data-slot="meter-header"
-      className={twMerge('flex items-center justify-between', className)}
+    <MeterPrimitive.Label
+      className={cn('font-medium text-sm', className)}
+      data-slot="meter-label"
       {...props}
     />
   )
 }
 
-function getMeterColor(value: number): string {
-  if (value < 50) return 'var(--color-success)'
-  if (value < 80) return 'var(--color-warning)'
-  return 'var(--color-danger)'
+function MeterTrack({ className, ...props }: MeterPrimitive.Track.Props) {
+  return (
+    <MeterPrimitive.Track
+      className={cn('block h-2 w-full overflow-hidden bg-input', className)}
+      data-slot="meter-track"
+      {...props}
+    />
+  )
 }
+
+function MeterIndicator({ className, ...props }: MeterPrimitive.Indicator.Props) {
+  return (
+    <MeterPrimitive.Indicator
+      className={cn('bg-primary transition-all duration-500', className)}
+      data-slot="meter-indicator"
+      {...props}
+    />
+  )
+}
+
+function MeterValue({ className, ...props }: MeterPrimitive.Value.Props) {
+  return (
+    <MeterPrimitive.Value
+      className={cn('text-sm tabular-nums', className)}
+      data-slot="meter-value"
+      {...props}
+    />
+  )
+}
+
+export { Meter, MeterLabel, MeterTrack, MeterIndicator, MeterValue }

@@ -1,53 +1,60 @@
-import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
-import * as React from 'react'
-import { twMerge } from 'tailwind-merge'
+'use client'
 
-const ScrollArea = React.forwardRef<
-  React.ComponentRef<typeof ScrollAreaPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
->(({ className, children, ...props }, ref) => (
-  <ScrollAreaPrimitive.Root ref={ref} className={twMerge('overflow-hidden', className)} {...props}>
-    {children}
-    <ScrollAreaPrimitive.Corner />
-    <ScrollBar orientation="vertical" />
-  </ScrollAreaPrimitive.Root>
-))
+import { ScrollArea as ScrollAreaPrimitive } from '@base-ui/react/scroll-area'
 
-ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
+import { cn } from '@/utils/cn'
 
-const ScrollViewport = React.forwardRef<
-  React.ComponentRef<typeof ScrollAreaPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Viewport>
->(({ className, children, ...props }, ref) => (
-  <ScrollAreaPrimitive.Viewport
-    ref={ref}
-    className={twMerge('size-full rounded-[inherit]', className)}
-    {...props}
-  >
-    {children}
-  </ScrollAreaPrimitive.Viewport>
-))
+function ScrollArea({
+  className,
+  children,
+  scrollFade = false,
+  scrollbarGutter = false,
+  ...props
+}: ScrollAreaPrimitive.Root.Props & {
+  scrollFade?: boolean
+  scrollbarGutter?: boolean
+}) {
+  return (
+    <ScrollAreaPrimitive.Root className={cn('size-full min-h-0', className)} {...props}>
+      <ScrollAreaPrimitive.Viewport
+        className={cn(
+          'h-full overscroll-contain rounded-[inherit] outline-none transition-shadows focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background',
+          scrollFade &&
+            'mask-t-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-y-start)))] mask-b-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-y-end)))] mask-l-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-x-start)))] mask-r-from-[calc(100%-min(var(--fade-size),var(--scroll-area-overflow-x-end)))] [--fade-size:1.5rem]',
+          scrollbarGutter && 'data-has-overflow-y:pe-2.5 data-has-overflow-x:pb-2.5',
+        )}
+        data-slot="scroll-area-viewport"
+      >
+        {children}
+      </ScrollAreaPrimitive.Viewport>
+      <ScrollBar orientation="vertical" />
+      <ScrollBar orientation="horizontal" />
+      <ScrollAreaPrimitive.Corner data-slot="scroll-area-corner" />
+    </ScrollAreaPrimitive.Root>
+  )
+}
 
-ScrollViewport.displayName = ScrollAreaPrimitive.Viewport.displayName
+function ScrollBar({
+  className,
+  orientation = 'vertical',
+  ...props
+}: ScrollAreaPrimitive.Scrollbar.Props) {
+  return (
+    <ScrollAreaPrimitive.Scrollbar
+      className={cn(
+        'm-1 flex opacity-0 transition-opacity delay-300 data-[orientation=horizontal]:h-1.5 data-[orientation=vertical]:w-1.5 data-[orientation=horizontal]:flex-col data-hovering:opacity-100 data-scrolling:opacity-100 data-hovering:delay-0 data-scrolling:delay-0 data-hovering:duration-100 data-scrolling:duration-100',
+        className,
+      )}
+      data-slot="scroll-area-scrollbar"
+      orientation={orientation}
+      {...props}
+    >
+      <ScrollAreaPrimitive.Thumb
+        className="relative flex-1 rounded-full bg-foreground/20"
+        data-slot="scroll-area-thumb"
+      />
+    </ScrollAreaPrimitive.Scrollbar>
+  )
+}
 
-const ScrollBar = React.forwardRef<
-  React.ComponentRef<typeof ScrollAreaPrimitive.Scrollbar>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Scrollbar>
->(({ className, orientation = 'vertical', ...props }, ref) => (
-  <ScrollAreaPrimitive.Scrollbar
-    ref={ref}
-    orientation={orientation}
-    className={twMerge(
-      'flex select-none data-[state=hidden]:animate-fd-fade-out',
-      orientation === 'vertical' && 'h-full w-1.5',
-      orientation === 'horizontal' && 'h-1.5 flex-col',
-      className,
-    )}
-    {...props}
-  >
-    <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-fd-border" />
-  </ScrollAreaPrimitive.Scrollbar>
-))
-ScrollBar.displayName = ScrollAreaPrimitive.Scrollbar.displayName
-
-export { ScrollArea, ScrollBar, ScrollViewport }
+export { ScrollArea, ScrollBar }

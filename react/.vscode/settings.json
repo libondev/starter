@@ -16,9 +16,7 @@
       "scope": "workspace"
     }
   },
-  "css.customData": [
-    ".vscode/tailwind.json"
-  ],
+  "css.customData": [".vscode/tailwind.json"],
   // Auto fix
   "editor.codeActionsOnSave": {
     "source.organizeImports": "never"
@@ -37,14 +35,6 @@
   "oxc.typeAware": true,
   "eslint.enable": false,
   "prettier.enable": false,
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass"
-  ],
-  "tailwindCSS.classFunctions": [
-    "tw",
-    "cx",
-    "twMerge"
-  ]
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
+  "tailwindCSS.classFunctions": ["tw", "cx", "twMerge"]
 }

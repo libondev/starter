@@ -1,26 +1,45 @@
-import { TextArea, type TextAreaProps } from 'react-aria-components'
-import { twJoin } from 'tailwind-merge'
-import { cx } from '@/lib/primitive'
+'use client'
 
-export function Textarea({ className, ...props }: TextAreaProps) {
+import { Field as FieldPrimitive } from '@base-ui/react/field'
+import { mergeProps } from '@base-ui/react/merge-props'
+import type * as React from 'react'
+
+import { cn } from '@/utils/cn'
+
+type TextareaProps = React.ComponentProps<'textarea'> & {
+  size?: 'sm' | 'default' | 'lg' | number
+  unstyled?: boolean
+}
+
+function Textarea({ className, size = 'default', unstyled = false, ...props }: TextareaProps) {
   return (
-    <span data-slot="control" className="relative block w-full">
-      <TextArea
-        {...props}
-        className={cx(
-          twJoin([
-            'field-sizing-content relative block min-h-16 w-full appearance-none rounded-lg px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)]',
-            'text-base/6 text-fg placeholder:text-muted-fg sm:text-sm/6',
-            'border border-input enabled:hover:border-muted-fg/30',
-            'outline-hidden focus:border-ring/70 focus:ring-3 focus:ring-ring/20 focus:enabled:hover:border-ring/80',
-            'invalid:border-danger-subtle-fg/70 focus:invalid:border-danger-subtle-fg/70 focus:invalid:ring-danger-subtle-fg/20 invalid:enabled:hover:border-danger-subtle-fg/80 invalid:focus:enabled:hover:border-danger-subtle-fg/80',
-            'disabled:bg-muted forced-colors:in-disabled:text-[GrayText]',
-            'in-disabled:bg-muted forced-colors:in-disabled:text-[GrayText]',
-            'dark:scheme-dark',
-          ]),
+    <span
+      className={
+        cn(
+          !unstyled &&
+            'relative inline-flex w-full rounded-lg border border-input bg-background bg-clip-padding text-base shadow-xs ring-ring/24 transition-shadow before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] has-focus-visible:has-aria-invalid:border-destructive/64 has-focus-visible:has-aria-invalid:ring-destructive/16 has-aria-invalid:border-destructive/36 has-focus-visible:border-ring has-disabled:opacity-64 has-[:disabled,:focus-visible,[aria-invalid]]:shadow-none has-focus-visible:ring-[3px] not-has-disabled:has-not-focus-visible:not-has-aria-invalid:before:shadow-[0_1px_--theme(--color-black/4%)] sm:text-sm dark:bg-input/32 dark:bg-clip-border dark:has-aria-invalid:ring-destructive/24 dark:not-has-disabled:has-not-focus-visible:not-has-aria-invalid:before:shadow-[0_-1px_--theme(--color-white/8%)]',
           className,
+        ) || undefined
+      }
+      data-size={size}
+      data-slot="textarea-control"
+    >
+      <FieldPrimitive.Control
+        render={(defaultProps) => (
+          <textarea
+            className={cn(
+              'field-sizing-content min-h-17.5 w-full rounded-[inherit] px-[calc(--spacing(3)-1px)] py-[calc(--spacing(1.5)-1px)] outline-none max-sm:min-h-20.5',
+              size === 'sm' &&
+                'min-h-16.5 px-[calc(--spacing(2.5)-1px)] py-[calc(--spacing(1)-1px)] max-sm:min-h-19.5',
+              size === 'lg' && 'min-h-18.5 py-[calc(--spacing(2)-1px)] max-sm:min-h-21.5',
+            )}
+            data-slot="textarea"
+            {...mergeProps(defaultProps, props)}
+          />
         )}
       />
     </span>
   )
 }
+
+export { Textarea, type TextareaProps }

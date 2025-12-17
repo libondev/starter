@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router'
+import { Link } from '@/components/ui/link'
 import { useTodoStore } from '@/stores/use-todo-store'
 
 export default function App() {
@@ -28,9 +28,7 @@ export default function App() {
           ))}
         </ul>
 
-        <Link to="/about" className="mt-5 underline" viewTransition>
-          About Page
-        </Link>
+        <Link href="/about">About Page</Link>
       </div>
     </>
   )

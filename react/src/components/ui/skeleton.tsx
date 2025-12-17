@@ -1,23 +1,16 @@
-import { twMerge } from 'tailwind-merge'
+import { cn } from '@/utils/cn'
 
-interface SkeletonProps extends React.ComponentProps<'div'> {
-  soft?: boolean
-}
-
-const Skeleton = ({ ref, soft = false, className, ...props }: SkeletonProps) => {
+function Skeleton({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
-      data-slot="skeleton"
-      ref={ref}
-      className={twMerge(
-        'shrink-0 animate-pulse rounded-lg',
-        soft ? 'bg-muted-fg/20' : 'bg-muted-fg/40',
+      className={cn(
+        'animate-skeleton rounded-sm [--skeleton-highlight:--alpha(var(--color-white)/64%)] [background:linear-gradient(120deg,transparent_40%,var(--skeleton-highlight),transparent_60%)_var(--color-muted)_0_0/200%_100%_fixed] dark:[--skeleton-highlight:--alpha(var(--color-white)/4%)]',
         className,
       )}
+      data-slot="skeleton"
       {...props}
     />
   )
 }
 
-export type { SkeletonProps }
 export { Skeleton }

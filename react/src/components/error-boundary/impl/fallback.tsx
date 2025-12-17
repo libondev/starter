@@ -31,11 +31,7 @@ export default function ErrorFallback({ error, showReset = true, resetError }: E
       )}
 
       <div className="mt-4 flex items-center gap-2">
-        {showReset && (
-          <Button intent="primary" onClick={resetError}>
-            重试
-          </Button>
-        )}
+        {showReset && <Button onClick={resetError}>重试</Button>}
 
         <Link href="/">返回首页</Link>
       </div>

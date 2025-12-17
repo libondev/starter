@@ -1,72 +1,53 @@
 'use client'
 
-import type { FieldErrorProps, LabelProps, TextProps } from 'react-aria-components'
-import {
-  FieldError as FieldErrorPrimitive,
-  Label as LabelPrimitive,
-  Text,
-} from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
-import { tv } from 'tailwind-variants'
-import { cx } from '@/lib/primitive'
+import { Field as FieldPrimitive } from '@base-ui/react/field'
 
-export const labelStyles = tv({
-  base: 'select-none text-base/6 text-fg in-disabled:opacity-50 group-disabled:opacity-50 sm:text-sm/6',
-})
+import { cn } from '@/utils/cn'
 
-export const descriptionStyles = tv({
-  base: 'block text-muted-fg text-sm/6 in-disabled:opacity-50 group-disabled:opacity-50',
-})
-
-export const fieldErrorStyles = tv({
-  base: 'block text-danger-subtle-fg text-sm/6 in-disabled:opacity-50 group-disabled:opacity-50 forced-colors:text-[Mark]',
-})
-
-export const fieldStyles = tv({
-  base: [
-    'w-full',
-    '[&>[data-slot=label]+[data-slot=control]]:mt-2',
-    '[&>[data-slot=label]+[data-slot=control]]:mt-2',
-    "[&>[data-slot=label]+[slot='description']]:mt-1",
-    "[&>[slot='description']+[data-slot=control]]:mt-2",
-    '[&>[data-slot=control]+[slot=description]]:mt-2',
-    '[&>[data-slot=control]+[slot=errorMessage]]:mt-2',
-    '*:data-[slot=label]:font-medium',
-    'in-disabled:opacity-50 disabled:opacity-50',
-  ],
-})
-
-export function Label({ className, ...props }: LabelProps) {
-  return <LabelPrimitive data-slot="label" {...props} className={labelStyles({ className })} />
-}
-
-export function Description({ className, ...props }: TextProps) {
-  return <Text {...props} slot="description" className={descriptionStyles({ className })} />
-}
-
-export function Fieldset({ className, ...props }: React.ComponentProps<'fieldset'>) {
+function Field({ className, ...props }: FieldPrimitive.Root.Props) {
   return (
-    <fieldset
-      className={twMerge('*:data-[slot=text]:mt-1 [&>*+[data-slot=control]]:mt-6', className)}
+    <FieldPrimitive.Root
+      className={cn('flex flex-col items-start gap-2', className)}
+      data-slot="field"
       {...props}
     />
   )
 }
 
-export function FieldGroup({ className, ...props }: React.ComponentPropsWithoutRef<'div'>) {
-  return <div data-slot="control" className={twMerge('space-y-6', className)} {...props} />
-}
-
-export function FieldError({ className, ...props }: FieldErrorProps) {
-  return <FieldErrorPrimitive {...props} className={cx(fieldErrorStyles(), className)} />
-}
-
-export function Legend({ className, ...props }: React.ComponentProps<'legend'>) {
+function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
   return (
-    <legend
-      data-slot="legend"
+    <FieldPrimitive.Label
+      className={cn(
+        'inline-flex items-center gap-2 font-medium text-base/4.5 sm:text-sm/4',
+        className,
+      )}
+      data-slot="field-label"
       {...props}
-      className={twMerge('font-semibold text-base/6 data-disabled:opacity-50', className)}
     />
   )
 }
+
+function FieldDescription({ className, ...props }: FieldPrimitive.Description.Props) {
+  return (
+    <FieldPrimitive.Description
+      className={cn('text-muted-foreground text-xs', className)}
+      data-slot="field-description"
+      {...props}
+    />
+  )
+}
+
+function FieldError({ className, ...props }: FieldPrimitive.Error.Props) {
+  return (
+    <FieldPrimitive.Error
+      className={cn('text-destructive-foreground text-xs', className)}
+      data-slot="field-error"
+      {...props}
+    />
+  )
+}
+
+const FieldControl = FieldPrimitive.Control
+const FieldValidity = FieldPrimitive.Validity
+
+export { Field, FieldLabel, FieldDescription, FieldError, FieldControl, FieldValidity }
