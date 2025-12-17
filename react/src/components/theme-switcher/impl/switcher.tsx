@@ -4,14 +4,16 @@ import { Button } from '@/components/ui/button'
 import { useTheme } from './provider'
 
 interface Props {
+  className?: string
   appearance?: 'ghost' | 'outline'
 }
 
-export function ThemeSwitcher({ appearance = 'ghost' }: Props) {
+export function ThemeSwitcher({ className, appearance = 'ghost' }: Props) {
   const { theme, setTheme } = useTheme()
   return (
     <Button
       variant={appearance}
+      className={className}
       size="icon"
       aria-label="Switch theme"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
