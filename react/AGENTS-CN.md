@@ -5,6 +5,7 @@
 ## 项目概览
 
 ### 技术栈
+
 - React 19 + TypeScript + Vite
 - Zustand + Immer (状态管理)
 - React Router v7 (路由)
@@ -15,6 +16,7 @@
 - pnpm (包管理器)
 
 ### 目录结构
+
 ```
 src/
 ├── apis/           # API 接口定义
@@ -30,6 +32,7 @@ src/
 ```
 
 ### 命名规范
+
 - 文件: kebab-case (use-mobile.ts)
 - 组件: PascalCase (TodoList.tsx)
 - Hooks: usecamelCase (useTodoStore)
@@ -39,6 +42,7 @@ src/
 ## Git 提交规范
 
 ### 格式
+
 <类型>(<范围>): <主题>
 
 <正文>
@@ -46,6 +50,7 @@ src/
 <页脚>
 
 ### 类型
+
 - feat: 新功能
 - fix: 修复 bug
 - docs: 文档变更
@@ -57,11 +62,13 @@ src/
 - revert: 回退提交
 
 ### 规则
+
 - 主题: 最大 50 字符, 祈使语气, 不以句号结尾
 - 正文: 可选, 每行 72 字符
 - 页脚: Fixes #123, BREAKING CHANGE: ...
 
 ### 示例
+
 feat(api): 添加用户认证
 使用 Alova 实现 JWT。
 Fixes #45
@@ -70,19 +77,23 @@ fix(modal): 修复背景点击问题
 BREAKING CHANGE: onClose 现在接收事件对象
 
 ## 开发命令
+
 pnpm dev, pnpm build, pnpm test, pnpm lint, pnpm lint:fix, pnpm format
 
 ## 核心模块
+
 - **use-fetch.ts**: Alova 封装, useGet/usePost 等
 - **use-todo-store.ts**: Zustand 模式, Immer 更新
 
 ## 安全与性能
+
 - ❌ 无硬编码凭证
 - ❌ 无敏感客户端数据
 - ✅ 使用 useCallback/useMemo
 - ✅ 组件纯净, 副作用在 hooks 中
 
 ## AI 助手规范
+
 1. 读取前使用 find_path 确认路径
 2. 优先使用 edit_file 而非重写
 3. 先规划架构, 先定义类型
@@ -91,6 +102,7 @@ pnpm dev, pnpm build, pnpm test, pnpm lint, pnpm lint:fix, pnpm format
 6. 复杂任务分步骤执行
 
 ## 常见场景
+
 **添加页面**: 创建 src/pages → routes → store (如需) → API → 类型 → lint → 测试
 **更新状态**: 打开 store → 用 Immer → 严格类型 → 更新测试
 **API 变更**: 更新 apis → 类型 → store → 组件 → 测试

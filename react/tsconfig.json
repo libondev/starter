@@ -22,7 +22,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "rewriteRelativeImportExtensions": true,
@@ -30,7 +30,7 @@
     "strict": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true
   },
   "exclude": ["e2e", "dist", "cypress", "**/node_modules", "**/.*/"],
   "include": [
@@ -41,6 +41,6 @@
     "tests/**/*.tsx",
     "vite.config.*",
     "vitest.config.*",
-    "playwright.config.*",
-  ],
+    "playwright.config.*"
+  ]
 }

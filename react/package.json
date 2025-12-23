@@ -1,8 +1,8 @@
 {
   "name": "react-vite-project",
-  "type": "module",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
@@ -16,9 +16,6 @@
     "format:icons": "node ./scripts/format-icons.js",
     "prepare": "husky"
   },
-  "paths": {
-    "@/components/*": "./src/components/*"
-  },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "@gdsicon/react": "^1.0.7",
@@ -26,7 +23,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "immer": "^11.0.1",
+    "immer": "^11.1.0",
     "js-cookie": "^3.0.5",
     "react": "^19.2.3",
     "react-router": "^7.11.0",
@@ -57,15 +54,15 @@
     "happy-dom": "^20.0.11",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "oxfmt": "^0.19.0",
-    "oxlint": "^1.34.0",
+    "oxfmt": "^0.20.0",
+    "oxlint": "^1.35.0",
     "react-compiler-runtime": "^1.0.0",
     "react-dom": "^19.2.3",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "unplugin-auto-import": "^20.3.0",
     "unplugin-icons": "^22.5.0",
-    "vite": "^8.0.0-beta.3",
+    "vite": "^8.0.0-beta.4",
     "vitest": "^4.0.16"
   },
   "lint-staged": {
@@ -73,5 +70,8 @@
       "oxlint",
       "oxfmt"
     ]
+  },
+  "paths": {
+    "@/components/*": "./src/components/*"
   }
 }
