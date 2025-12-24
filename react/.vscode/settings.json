@@ -30,11 +30,11 @@
     "*.css": "tailwindcss"
   },
   "oxc.enable": true,
-  "oxc.fmt.experimental": true,
   "oxc.lint.run": "onSave",
   "oxc.typeAware": true,
   "eslint.enable": false,
   "prettier.enable": false,
   "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
-  "tailwindCSS.classFunctions": ["tw", "cx", "twMerge"]
+  "tailwindCSS.classFunctions": ["tw", "cx", "twMerge"],
+  "typescript.experimental.useTsgo": true
 }
