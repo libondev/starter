@@ -1,10 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
-import GdsiResolver from '@gdsicon/react/resolver'
 import TailwindCSS from '@tailwindcss/vite'
 import React from '@vitejs/plugin-react'
-import AutoImport from 'unplugin-auto-import/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
-import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import { defineConfig } from 'vite'
 
@@ -36,28 +33,6 @@ export default defineConfig(() => ({
       babel: {
         plugins: ['babel-plugin-react-compiler'],
       },
-    }),
-
-    // https://github.com/antfu/unplugin-auto-import
-    AutoImport({
-      include: [/\.[tj]sx?$/],
-      dirs: ['./src/hooks/**/*'],
-      dts: './types/imports.d.ts',
-      imports: [
-        'react',
-        {
-          // react: ['createContext'],
-          'use-immer': ['useImmer', 'useImmerReducer'],
-        },
-      ],
-      resolvers: [
-        IconsResolver({
-          alias: {},
-          extension: 'jsx',
-          customCollections: ['local'],
-        }),
-        GdsiResolver({ prefix: 'IGds' }),
-      ],
     }),
 
     Icons({

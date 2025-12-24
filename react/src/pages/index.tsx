@@ -9,7 +9,7 @@ export default function App() {
   const { todos, fetchTodos } = useTodoStore()
 
   useEffect(() => {
-    fetchTodos()
+    void fetchTodos()
   }, [fetchTodos])
 
   return (

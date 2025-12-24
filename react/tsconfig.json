@@ -3,13 +3,16 @@
     "allowArbitraryExtensions": true,
     "allowImportingTsExtensions": true,
     "allowJs": false,
-    "baseUrl": "./",
     "composite": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "bundler",
@@ -22,7 +25,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "resolveJsonModule": true,
     "rewriteRelativeImportExtensions": true,
@@ -32,7 +37,13 @@
     "useDefineForClassFields": true,
     "verbatimModuleSyntax": true
   },
-  "exclude": ["e2e", "dist", "cypress", "**/node_modules", "**/.*/"],
+  "exclude": [
+    "e2e",
+    "dist",
+    "cypress",
+    "**/node_modules",
+    "**/.*/"
+  ],
   "include": [
     "types/**/*.d.ts",
     "src/**/*.ts",

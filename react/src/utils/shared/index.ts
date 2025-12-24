@@ -52,11 +52,11 @@ export function copyToClipboard(string: string) {
 /**
  * 切换指定元素或是 body 为全屏
  */
-export function toggleFullscreen(open = true, element = document.body) {
+export async function toggleFullscreen(open = true, element = document.body) {
   if (open) {
-    element.requestFullscreen()
+    await element.requestFullscreen()
   } else {
-    document.exitFullscreen()
+    await document.exitFullscreen()
   }
 }
 
