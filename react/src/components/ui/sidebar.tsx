@@ -395,7 +395,7 @@ function SidebarGroupLabel({ className, render, ...props }: useRender.ComponentP
 function SidebarGroupAction({ className, render, ...props }: useRender.ComponentProps<'button'>) {
   const defaultProps = {
     className: cn(
-      "text-sidebar-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-lg p-0 ring-sidebar-ring outline-hidden transition-transform hover:text-sidebar-accent-foreground hover:bg-sidebar-accent focus-visible:ring-2 [&>svg]:shrink-0 [&>svg:not([class*='size-'])]:size-4",
+      "text-sidebar-foreground hover:text-sidebar-accent-foreground absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-lg p-0 ring-sidebar-ring outline-hidden transition-transform hover:bg-sidebar-accent focus-visible:ring-2 [&>svg]:shrink-0 [&>svg:not([class*='size-'])]:size-4",
       // Increases the hit area of the button on mobile.
       'after:absolute after:-inset-2 md:after:hidden',
       'group-data-[collapsible=icon]:hidden',
@@ -446,7 +446,7 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<'li'>) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-lg p-2 text-left text-sm ring-sidebar-ring outline-hidden transition-[width,height,padding] hover:text-sidebar-accent-foreground hover:bg-sidebar-accent active:text-sidebar-accent-foreground active:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[state=open]:hover:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent group-has-data-[sidebar=menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:shrink-0 [&>svg:not([class*='size-'])]:size-4",
+  "peer/menu-button hover:text-sidebar-accent-foreground active:text-sidebar-accent-foreground data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:text-sidebar-accent-foreground flex w-full items-center gap-2 overflow-hidden rounded-lg p-2 text-left text-sm ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! hover:bg-sidebar-accent focus-visible:ring-2 active:bg-sidebar-accent disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[state=open]:hover:bg-sidebar-accent [&>span:last-child]:truncate [&>svg]:shrink-0 [&>svg:not([class*='size-'])]:size-4",
   {
     defaultVariants: {
       size: 'default',
@@ -461,7 +461,7 @@ const sidebarMenuButtonVariants = cva(
       variant: {
         default: 'hover:text-sidebar-accent-foreground hover:bg-sidebar-accent',
         outline:
-          'hover:text-sidebar-accent-foreground hover:bg-sidebar-accent hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))] bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))]',
+          'hover:text-sidebar-accent-foreground bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]',
       },
     },
   },
@@ -530,7 +530,7 @@ function SidebarMenuAction({
 }) {
   const defaultProps = {
     className: cn(
-      "text-sidebar-foreground absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-lg p-0 ring-sidebar-ring outline-hidden transition-transform hover:text-sidebar-accent-foreground hover:bg-sidebar-accent peer-hover/menu-button:text-sidebar-accent-foreground focus-visible:ring-2 [&>svg]:shrink-0 [&>svg:not([class*='size-'])]:size-4",
+      "text-sidebar-foreground hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-lg p-0 ring-sidebar-ring outline-hidden transition-transform hover:bg-sidebar-accent focus-visible:ring-2 [&>svg]:shrink-0 [&>svg:not([class*='size-'])]:size-4",
       // Increases the hit area of the button on mobile.
       'after:absolute after:-inset-2 md:after:hidden',
       'peer-data-[size=sm]/menu-button:top-1',
@@ -642,7 +642,7 @@ function SidebarMenuSubButton({
 }) {
   const defaultProps = {
     className: cn(
-      "text-sidebar-foreground flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-lg px-2 ring-sidebar-ring outline-hidden hover:text-sidebar-accent-foreground hover:bg-sidebar-accent active:text-sidebar-accent-foreground active:bg-sidebar-accent [&>svg]:text-sidebar-accent-foreground [&>svg]:shrink-0 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg:not([class*='size-'])]:size-4",
+      "text-sidebar-foreground hover:text-sidebar-accent-foreground active:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-lg px-2 ring-sidebar-ring outline-hidden hover:bg-sidebar-accent focus-visible:ring-2 active:bg-sidebar-accent disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:shrink-0 [&>svg:not([class*='size-'])]:size-4",
       'data-[active=true]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent',
       size === 'sm' && 'text-xs',
       size === 'md' && 'text-sm',
