@@ -1,6 +1,6 @@
-import { fileURLToPath, URL } from 'node:url'
 import TailwindCSS from '@tailwindcss/vite'
 import React from '@vitejs/plugin-react'
+import { fileURLToPath, URL } from 'node:url'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import Icons from 'unplugin-icons/vite'
 import { defineConfig } from 'vite'

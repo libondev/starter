@@ -3,9 +3,9 @@
 import { Autocomplete as AutocompletePrimitive } from '@base-ui/react/autocomplete'
 import { ArrowUpDownIcon, CrossIcon } from '@gdsicon/react'
 
-import { cn } from '@/utils/cn'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { cn } from '@/utils/cn'
 
 const Autocomplete = AutocompletePrimitive.Root
 

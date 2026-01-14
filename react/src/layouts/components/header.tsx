@@ -1,4 +1,5 @@
 import { LogoReactIcon } from '@gdsicon/react'
+
 import { ThemeSwitcher } from '@/components/theme-switcher'
 
 export default function Header() {

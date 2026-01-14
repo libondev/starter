@@ -4,17 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "preview": "vite preview",
     "build": "tsc && vite build",
-    "test": "vitest run",
-    "test:ui": "vitest --ui",
-    "test:watch": "vitest --watch",
-    "lint": "oxlint --type-aware",
-    "lint:fix": "oxlint src --type-aware --fix",
+    "dev": "vite",
     "format": "oxfmt",
     "format:icons": "node ./scripts/format-icons.js",
-    "prepare": "husky"
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint src --type-aware --fix",
+    "prepare": "husky",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest --watch"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",

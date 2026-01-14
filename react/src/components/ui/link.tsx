@@ -1,6 +1,8 @@
 import type { PropsWithChildren } from 'react'
-import { Button } from './button'
+
 import { useNavigate } from 'react-router'
+
+import { Button } from './button'
 
 interface LinkProps {
   href: string

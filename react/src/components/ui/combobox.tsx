@@ -4,9 +4,9 @@ import { Combobox as ComboboxPrimitive } from '@base-ui/react/combobox'
 import { ArrowUpDownIcon, CrossIcon } from '@gdsicon/react'
 import * as React from 'react'
 
-import { cn } from '@/utils/cn'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { cn } from '@/utils/cn'
 
 const ComboboxContext = React.createContext<{
   chipsRef: React.RefObject<HTMLDivElement | null> | null

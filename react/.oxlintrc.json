@@ -4,7 +4,7 @@
   "rules": {
     "curly": "error",
     "end-of-line": "off",
-    "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
+    "brace-style": ["error", "1tbs"],
     "better-tailwindcss/no-duplicate-classes": "error",
     "better-tailwindcss/no-deprecated-classes": "error",
     "better-tailwindcss/no-conflicting-classes": "error",
@@ -17,7 +17,7 @@
       { "position": "recommended" }
     ]
   },
-  "plugins": ["oxc", "react", "import", "promise", "unicorn", "react-perf", "typescript"],
+  "plugins": ["oxc", "react", "import", "promise", "unicorn", "react-perf", "typescript", "vitest"],
   "ignorePatterns": ["dist/", "node_modules/"],
   "settings": {
     "better-tailwindcss": {

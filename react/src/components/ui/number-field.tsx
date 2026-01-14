@@ -4,8 +4,8 @@ import { NumberField as NumberFieldPrimitive } from '@base-ui/react/number-field
 import { MinusIcon, PlusIcon } from '@gdsicon/react'
 import * as React from 'react'
 
-import { cn } from '@/utils/cn'
 import { Label } from '@/components/ui/label'
+import { cn } from '@/utils/cn'
 
 const NumberFieldContext = React.createContext<{
   fieldId: string

@@ -1,8 +1,10 @@
 'use client'
 
+import type * as React from 'react'
+
 import { Menu as MenuPrimitive } from '@base-ui/react/menu'
 import { ChevronRightIcon } from '@gdsicon/react'
-import type * as React from 'react'
+
 import { cn } from '@/utils/cn'
 
 const Menu = MenuPrimitive.Root

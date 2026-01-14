@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+
 import { getTodoList, type TodoItem } from '@/apis/todo'
 
 interface TodoStore {

@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 // 这个脚本做的工作为删除 svg 不保留它们也能正常展示的代码, 以减少图标大小, 并删除多余的属性(width/height)
 
-import fs from 'node:fs'
-import process from 'node:process'
 import { cleanupSVG, SVG } from '@iconify/tools'
 import glob from 'fast-glob'
+import fs from 'node:fs'
+import process from 'node:process'
 
 /**
  * 读取参数, 如果没有参数则读取所有 svg 文件

@@ -1,7 +1,8 @@
+import type * as React from 'react'
+
 import { mergeProps } from '@base-ui/react/merge-props'
 import { useRender } from '@base-ui/react/use-render'
 import { ChevronRightIcon, MoreHorizontalIcon } from '@gdsicon/react'
-import type * as React from 'react'
 
 import { cn } from '@/utils/cn'
 

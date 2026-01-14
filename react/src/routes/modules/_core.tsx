@@ -1,4 +1,5 @@
 import type { RouteObject } from 'react-router'
+
 import { lazy } from 'react'
 
 export const coreRoutes: RouteObject[] = [
