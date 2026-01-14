@@ -6,9 +6,9 @@
 export function downloadBlobFile(blob: Blob, filename = 'download-file') {
   const url = window.URL.createObjectURL(blob)
   const a = Object.assign(document.createElement('a'), {
-    style: { display: 'none' },
-    href: url,
     download: filename,
+    href: url,
+    style: { display: 'none' },
   })
 
   document.body.appendChild(a)

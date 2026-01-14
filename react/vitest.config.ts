@@ -5,17 +5,10 @@ import { resolveAlias } from './vite.config'
 
 export default defineConfig({
   plugins: [react() as any],
+  resolve: {
+    alias: resolveAlias,
+  },
   test: {
-    globals: true,
-    fileParallelism: true,
-    environment: 'happy-dom',
-    setupFiles: './tests/setup.ts',
-    dir: './tests',
-    pool: 'vmThreads',
-    isolate: false,
-    sequence: {
-      shuffle: false,
-    },
     deps: {
       optimizer: {
         web: {
@@ -23,8 +16,15 @@ export default defineConfig({
         },
       },
     },
-  },
-  resolve: {
-    alias: resolveAlias,
+    dir: './tests',
+    environment: 'happy-dom',
+    fileParallelism: true,
+    globals: true,
+    isolate: false,
+    pool: 'vmThreads',
+    sequence: {
+      shuffle: false,
+    },
+    setupFiles: './tests/setup.ts',
   },
 })

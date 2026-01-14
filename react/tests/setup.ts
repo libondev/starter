@@ -12,15 +12,15 @@ const localStorageMock = (() => {
   let store: Record<string, string> = {}
 
   return {
-    getItem: (key: string) => store[key] || null,
-    setItem: (key: string, value: string) => {
-      store[key] = value.toString()
+    clear: () => {
+      store = {}
     },
+    getItem: (key: string) => store[key] || null,
     removeItem: (key: string) => {
       delete store[key]
     },
-    clear: () => {
-      store = {}
+    setItem: (key: string, value: string) => {
+      store[key] = value.toString()
     },
   }
 })()
@@ -31,15 +31,15 @@ Object.defineProperty(window, 'localStorage', {
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
-  writable: true,
   value: vi.fn().mockImplementation((query) => ({
+    addEventListener: vi.fn(),
+    addListener: vi.fn(), // deprecated
+    dispatchEvent: vi.fn(),
     matches: false,
     media: query,
     onchange: null,
-    addListener: vi.fn(),
-    removeListener: vi.fn(),
-    addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
+    removeListener: vi.fn(), // deprecated
   })),
+  writable: true,
 })

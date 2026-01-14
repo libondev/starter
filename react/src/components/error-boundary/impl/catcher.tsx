@@ -28,15 +28,15 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
   constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = {
-      hasError: false,
       error: null,
+      hasError: false,
     }
   }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return {
-      hasError: true,
       error,
+      hasError: true,
     }
   }
 
@@ -54,8 +54,8 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
 
   private resetError = () => {
     this.setState({
-      hasError: false,
       error: null,
+      hasError: false,
     })
   }
 

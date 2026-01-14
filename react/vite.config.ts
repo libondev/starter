@@ -36,23 +36,23 @@ export default defineConfig(() => ({
     }),
 
     Icons({
-      scale: 1,
-      jsx: 'react',
-      compiler: 'jsx',
       autoInstall: true,
-      defaultClass: 'block svg-icon',
-      // defaultStyle: '',
+      compiler: 'jsx',
       customCollections: {
         local: FileSystemIconLoader('./src/icons'),
       },
-      // 仅修改自定义svg图标
-      // transform(svg, _collection, _icon) {
-      //   return svg
-      // },
+      defaultClass: 'block svg-icon',
+      // defaultStyle: '',
+      jsx: 'react',
       // 修改所有修改图标的属性
       // iconCustomizer(_collection, _icon, props) {
       //   props.width ??= '1em'
       //   props.height ??= '1em'
+      // },
+      scale: 1,
+      // 仅修改自定义svg图标
+      // transform(svg, _collection, _icon) {
+      //   return svg
       // },
     }),
   ],

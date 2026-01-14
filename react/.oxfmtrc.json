@@ -12,6 +12,8 @@
   },
   "experimentalSortPackageJson": true,
   "experimentalTailwindcss": {
+    "preserveDuplicates": false,
+    "preserveWhitespace": false,
     "functions": ["clsx", "cn", "cva", "tw"],
     "stylesheet": "./src/styles/tailwind.css"
   },
