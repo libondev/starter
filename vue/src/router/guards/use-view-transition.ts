@@ -1,8 +1,7 @@
 import type { Router } from 'vue-router'
 
 export function useViewTransition(router: Router) {
-  if (!document.startViewTransition)
-    return
+  if (!document.startViewTransition) {return}
 
   let finishTransition: undefined | (() => void)
   let abortTransition: undefined | (() => void)
@@ -14,7 +13,7 @@ export function useViewTransition(router: Router) {
     })
 
     let changeRoute: () => void
-    const ready = new Promise<void>(resolve => (changeRoute = resolve))
+    const ready = new Promise<void>((resolve) => (changeRoute = resolve))
 
     const transition = document.startViewTransition!(() => {
       changeRoute()

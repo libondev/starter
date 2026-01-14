@@ -21,7 +21,9 @@
   width: 100px;
   height: 100%;
   opacity: 1;
-  box-shadow: 0 0 10px var(--color), 0 0 5px var(--color);
+  box-shadow:
+    0 0 10px var(--color),
+    0 0 5px var(--color);
   transform: rotate(3deg) translate(0, -4px);
 }
 
@@ -55,6 +57,10 @@
 }
 
 @keyframes Spinner {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

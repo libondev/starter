@@ -1,8 +1,9 @@
 import type { App } from 'vue'
 import type { Locale } from 'vue-i18n'
-import { getClientLang } from '@/utils/shared/index.ts'
 
 import { createI18n } from 'vue-i18n'
+
+import { getClientLang } from '@/utils/shared/index.ts'
 
 const DEFAULT_LANGUAGE_KEY = 'fe.system.intl.lang'
 
@@ -26,8 +27,10 @@ const i18n = createI18n({
 })
 
 const localesMap = Object.fromEntries(
-  Object.entries(import.meta.glob('../../locales/*.yaml'))
-    .map(([path, loadLocale]) => [path.match(/([\w-]*)\.yaml/)?.[1], loadLocale]),
+  Object.entries(import.meta.glob('../../locales/*.yaml')).map(([path, loadLocale]) => [
+    path.match(/([\w-]*)\.yaml/)?.[1],
+    loadLocale,
+  ]),
 ) as Record<Locale, () => Promise<{ default: Record<string, string> }>>
 
 const availableLocales = Object.keys(localesMap)

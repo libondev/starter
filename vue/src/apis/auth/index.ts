@@ -1,1 +1,1 @@
-export function getCurrentUserMetaData() { }
+export function getCurrentUserMetaData() {}

@@ -1,5 +1,7 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
+
 import cookie from 'js-cookie'
+
 import { STORAGE_TOKEN_KEYS, USER_REFRESH_API_PATH } from './consts.ts'
 import instance, { type APIResponse } from './index.ts'
 import { setRequestHeaderTokens, setRequestTokensToStorage } from './utils.ts'

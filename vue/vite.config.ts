@@ -1,7 +1,3 @@
-
-import process from 'node:process'
-import { defineConfig, loadEnv } from 'vite'
-
 import {
   buildConfig,
   cssConfig,
@@ -10,12 +6,12 @@ import {
   resolveConfig,
   // serverConfig,
 } from './configs/index.ts'
+import process from 'node:process'
+import { defineConfig, loadEnv } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig((configEnv) => {
-  const {
-    VITE_BASE_PATH,
-  } = loadEnv(configEnv.mode, process.cwd())
+  const { VITE_BASE_PATH } = loadEnv(configEnv.mode, process.cwd())
 
   return {
     base: VITE_BASE_PATH,

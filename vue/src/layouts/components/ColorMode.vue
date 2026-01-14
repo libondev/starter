@@ -27,8 +27,7 @@ const colorMode = customRef<ColorMode>((track, trigger) => {
       return curMode
     },
     set(newMode) {
-      if (newMode === curMode)
-        return
+      if (newMode === curMode) {return}
 
       root.classList.remove(curMode)
       root.classList.add(newMode)

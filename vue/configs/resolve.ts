@@ -1,4 +1,5 @@
 import type { UserConfig } from 'vite'
+
 import { fileURLToPath, URL } from 'node:url'
 
 export function resolveConfig(): UserConfig['resolve'] {

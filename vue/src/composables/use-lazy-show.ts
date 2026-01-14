@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+
 import { shallowRef } from 'vue'
 
 interface Options {
@@ -38,12 +39,8 @@ interface ReturnType {
 export function useLazyShow(valueOrOptions?: boolean): ReturnType
 export function useLazyShow(valueOrOptions?: Options): ReturnType
 export function useLazyShow(valueOrOptions: boolean | Options = {}): ReturnType {
-  const {
-    delay = 300,
-    default: value = false,
-  } = typeof valueOrOptions === 'boolean'
-    ? { default: valueOrOptions, delay: 300 }
-    : valueOrOptions
+  const { delay = 300, default: value = false } =
+    typeof valueOrOptions === 'boolean' ? { default: valueOrOptions, delay: 300 } : valueOrOptions
 
   const render = shallowRef(value)
   const visible = shallowRef(value)

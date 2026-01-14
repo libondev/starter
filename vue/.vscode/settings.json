@@ -14,11 +14,7 @@
 
   "css.customData": [".vscode/tailwind.json"],
 
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass"
-  ],
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
   "tailwindCSS.classFunctions": ["tw", "clsx", "twMerge"],
   "files.associations": {
     "*.css": "tailwindcss"

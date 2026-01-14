@@ -9,35 +9,23 @@ export function buildConfig(): UserConfig['build'] {
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          if (
-            id.includes('node_modules/es-toolkit')
-          ) {
+          if (id.includes('node_modules/es-toolkit')) {
             return 'utils'
           }
 
-          if (
-            id.includes('node_modules/vue') ||
-            id.includes('node_modules/pinia')
-          ) {
+          if (id.includes('node_modules/vue') || id.includes('node_modules/pinia')) {
             return 'vue'
           }
 
-          if (
-            id.includes('~icons') ||
-            id.includes('node_modules/gdsi')
-          ) {
+          if (id.includes('~icons') || id.includes('node_modules/gdsi')) {
             return 'icons'
           }
 
-          if (
-            id.includes('@arco-design')
-          ) {
+          if (id.includes('@arco-design')) {
             return 'ui'
           }
 
-          if (
-            id.includes('node_modules/')
-          ) {
+          if (id.includes('node_modules/')) {
             return 'vendors'
           }
 

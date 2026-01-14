@@ -3,7 +3,7 @@
 /// <reference types="unplugin-vue-router/client" />
 /// <reference types="vite-plugin-vue-meta-layouts/client" />
 
-export { }
+export {}
 
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string

@@ -13,7 +13,7 @@ function onEnter() {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 w-full h-full justify-center items-center">
+  <div class="flex h-full w-full flex-col items-center justify-center gap-2">
     <div class="flex items-center text-2xl font-medium">
       <IGdsLogoVue class="mx-2" width="1em" height="1em" />
       Vue App

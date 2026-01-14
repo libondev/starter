@@ -24,8 +24,11 @@ export const isAbsoluteURL = (url: string) => /^[a-z][a-z0-9+.-]*:/.test(url)
 export function getURLParameters(url: string) {
   const entries = new URL(url).searchParams.entries()
 
-  return Array.from(entries).reduce((acc, [key, value]) => {
-    acc[key] = value
-    return acc
-  }, {} as Record<string, string>)
+  return Array.from(entries).reduce(
+    (acc, [key, value]) => {
+      acc[key] = value
+      return acc
+    },
+    {} as Record<string, string>,
+  )
 }

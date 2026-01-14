@@ -1,6 +1,0 @@
-
-sharedWorkspaceLockfile: true
-strictPeerDependencies: true
-preferFrozenLockfile: true
-shamefullyHoist: true
-preferOffline: true
