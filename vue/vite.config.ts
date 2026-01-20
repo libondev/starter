@@ -1,6 +1,5 @@
 import {
   buildConfig,
-  cssConfig,
   optimizeDepsConfig,
   pluginsConfig,
   resolveConfig,
@@ -17,13 +16,6 @@ export default defineConfig((configEnv) => {
     base: VITE_BASE_PATH,
 
     build: buildConfig(),
-
-    css: cssConfig(),
-
-    esbuild: {
-      target: 'esnext',
-      drop: configEnv.mode === 'production' ? ['console', 'debugger'] : [],
-    },
 
     optimizeDeps: optimizeDepsConfig(),
 

@@ -10,7 +10,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "bundler",
@@ -23,7 +27,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "resolveJsonModule": true,
     // "rewriteRelativeImportExtensions": true,
@@ -31,13 +37,27 @@
     "strict": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "types": [
+      "pxd/volar",
+      "vite/client",
+      "unplugin-icons/types/vue",
+      "unplugin-vue-router/client",
+      "vite-plugin-vue-meta-layouts/client",
+    ]
   },
-  "exclude": ["e2e", "dist", "cypress", "**/node_modules", "**/.*/"],
+  "exclude": [
+    "e2e",
+    "dist",
+    "cypress",
+    "**/node_modules",
+    "**/.*/"
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "src/**/*.d.ts",
     "configs/**/*.ts",
     "vite.config.*",
     "vitest.config.*",

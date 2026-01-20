@@ -1,4 +1,6 @@
 @import 'tailwindcss';
 @source '../../index.html';
 @source '../../src/**/*.{ts,tsx,vue}';
+@import '../../node_modules/pxd/dist/styles/tw.css';
+@source '../../node_modules/pxd';
 /* @source "../../node_modules/@my-company/ui-lib"; */

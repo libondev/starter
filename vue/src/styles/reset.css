@@ -32,10 +32,6 @@ html {
   --c5: #f74e63;
   --c6: #f8b85c;
   --cp: #42b883; */
-  --scrollbar-color: #ccc;
-  --scrollbar-hover: #999;
-  --background-color: #ffffff;
-  --foreground-color: #171717;
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
@@ -50,15 +46,6 @@ html {
   font-synthesis: none;
   background-color: var(--background-color);
   color: var(--foreground-color);
-}
-
-.dark,
-[arco-theme='dark'] {
-  --scrollbar-color: #555;
-  --scrollbar-hover: #444;
-  --background-color: #121212;
-  --foreground-color: #ededed;
-  color-scheme: dark;
 }
 
 .scrollbar-stable {

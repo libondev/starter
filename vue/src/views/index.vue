@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { switchLanguage } from '@/app/i18n.ts'
-import ColorMode from '@/layouts/components/ColorMode.vue'
 
 // 如果是 SFC 文件中设置的局部国际化文件, 则必须使用 useI18n() 返回的 t 来调用翻译
 // 因为只有 useI18n 才能拿到当前文件的上下文, 而如果是全局的翻译, 那么 t 或者 $t 都可以使用
 const { t } = useI18n()
 const router = useRouter()
 
+const userName = ref('')
+
 function onEnter() {
-  router.push('/about')
+  router.push({
+    path: '/about',
+    query: {
+      name: userName.value,
+    },
+  })
 }
 </script>
 
@@ -20,23 +26,23 @@ function onEnter() {
     </div>
 
     <div class="flex items-center gap-2">
-      <ColorMode />
+      <PThemeSwitcher />
 
-      <AButton class="w-36" @click="switchLanguage()">
+      <PButton class="w-36" @click="switchLanguage()">
         {{ $t('button.toggle') }}{{ t('sfc.language') }}
-      </AButton>
+      </PButton>
     </div>
 
     <div class="flex items-center gap-2">
-      <AInput :placeholder="$t('input.placeholder')" @keydown.enter="onEnter">
+      <PInput v-model="userName" :placeholder="$t('input.placeholder')" @keydown.enter="onEnter">
         <template #prefix>
           <IGdsMagnifyingGlass />
         </template>
-      </AInput>
+      </PInput>
 
-      <AButton type="primary" class="w-20" @click="onEnter">
+      <PButton variant="primary" class="w-20" :disabled="!userName" @click="onEnter">
         {{ t('button.enter') }}
-      </AButton>
+      </PButton>
     </div>
   </div>
 </template>

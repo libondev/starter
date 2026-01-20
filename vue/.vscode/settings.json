@@ -35,5 +35,5 @@
     "cx",
     "twMerge"
   ],
-  "typescript.experimental.useTsgo": true
+  // "typescript.experimental.useTsgo": true
 }

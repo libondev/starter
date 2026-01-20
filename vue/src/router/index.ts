@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 import { useHeadTitle } from './guards/use-head-title.ts'
-import { useProgressBar } from './guards/use-progress-bar.ts'
+import { usePageLoading } from './guards/use-page-loading.ts'
 // import { useUserAuth } from './guards/use-user-auth.ts'
 import { useViewTransition } from './guards/use-view-transition.ts'
 
@@ -18,7 +18,7 @@ if (import.meta.hot) {
 
 // useUserAuth(router)
 useHeadTitle(router)
-useProgressBar(router)
+usePageLoading(router)
 useViewTransition(router)
 
 export default router

@@ -1,45 +1,34 @@
 <!doctype html>
 <html lang="en-US" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#00c488" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="msapplication-TileColor" content="#00c488" />
-    <meta name="msapplication-navbutton-color" content="#00c488" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black or black-translucent" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual"
-    />
-    <script>
-      ;(function () {
-        const p = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-        const s = localStorage.getItem('fe.system.color-mode') || 'auto'
-        if (s === 'dark' || (p && s === 'auto')) {
-          document.documentElement.classList.toggle('dark', true)
-          setTimeout(() => {
-            document.body.setAttribute('arco-theme', 'dark')
-          }, 0)
-        }
-      })()
-    </script>
-    <title>vue-project</title>
-  </head>
 
-  <!-- https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari/33681490#33681490 -->
-  <!-- ontouchstart="" -->
-  <body class="h-full">
-    <div id="app" class="h-full"></div>
-    <script type="module" src="/src/main.ts"></script>
-    <script>
-      if (typeof window !== 'undefined' && 'virtualKeyboard' in window.navigator) {
-        window.navigator.virtualKeyboard.overlaysContent = true
-      }
-    </script>
-    <noscript>
-      This website requires JavaScript to function properly. Please enable JavaScript to continue.
-    </noscript>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="theme-color" content="#00c488" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="msapplication-TileColor" content="#00c488" />
+  <meta name="msapplication-navbutton-color" content="#00c488" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black or black-translucent" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, viewport-fit=cover, interactive-widget=resizes-visual" />
+  <title>vue-project</title>
+</head>
+
+<!-- https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari/33681490#33681490 -->
+<!-- ontouchstart="" -->
+
+<body class="h-full">
+  <div id="app" class="h-full"></div>
+  <script type="module" src="/src/main.ts"></script>
+  <script>
+    if (typeof window !== 'undefined' && 'virtualKeyboard' in window.navigator) {
+      window.navigator.virtualKeyboard.overlaysContent = true
+    }
+  </script>
+  <noscript>
+    This website requires JavaScript to function properly. Please enable JavaScript to continue.
+  </noscript>
+</body>
+
 </html>

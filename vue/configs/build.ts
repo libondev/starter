@@ -17,11 +17,11 @@ export function buildConfig(): UserConfig['build'] {
             return 'vue'
           }
 
-          if (id.includes('~icons') || id.includes('node_modules/gdsi')) {
+          if (id.includes('~icons') || id.includes('node_modules/@gdsicon/vue')) {
             return 'icons'
           }
 
-          if (id.includes('@arco-design')) {
+          if (id.includes('pxd')) {
             return 'ui'
           }
 

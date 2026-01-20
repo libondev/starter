@@ -1,6 +1,6 @@
 import type { UserConfig } from 'vite'
 
-const include = ['pinia', 'vue-router', 'nprogress', '@vueuse/core', '@arco-design/web-vue']
+const include = ['pinia', 'vue-router', '@vueuse/core']
 
 const exclude = ['vue-demi']
 

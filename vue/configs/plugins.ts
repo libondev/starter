@@ -1,11 +1,10 @@
 import type { ConfigEnv } from 'vite'
 
-import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Tailwind from '@tailwindcss/vite'
 import Vue from '@vitejs/plugin-vue'
 import JSX from '@vitejs/plugin-vue-jsx'
-import GdsiResolver from 'gdsi/resolver'
+import GdsiResolver from '@gdsicon/vue/resolver'
 import { resolve } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -17,6 +16,7 @@ import Router from 'unplugin-vue-router/vite'
 // z-lazy-show/v-show.lazy
 import { transformLazyShow } from 'v-lazy-show'
 import Layouts from 'vite-plugin-vue-meta-layouts'
+import PxdResolver from 'pxd/resolver'
 
 import { iconCollections } from './icons'
 
@@ -81,13 +81,14 @@ export function pluginsConfig({ command }: ConfigEnv) {
       dts: command === 'build' ? false : './src/types/components.d.ts',
       extensions,
       resolvers: [
+        PxdResolver(),
         // 图标自动导入(依赖或者本地)
         IconsResolver({
           // 如果图标组比较长可以设置得简短点
           alias: {},
           customCollections: Object.keys(iconCollections),
         }),
-        GdsiResolver({ type: 'vue', prefix: 'IGds' }),
+        GdsiResolver({ prefix: 'IGds' }),
       ],
       // globs: ['src/components/**/index.{vue,tsx,ts}']
     }),
@@ -111,10 +112,6 @@ export function pluginsConfig({ command }: ConfigEnv) {
       compositionOnly: true,
       defaultSFCLang: 'yaml',
       include: [resolve(__dirname, 'locales/*.yaml')],
-    }),
-
-    vitePluginForArco({
-      style: true,
     }),
   ]
 }
