@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-// import { Toaster } from '@/components/ui/toast'
+
+console.log('default layout')
 </script>
 
 <template>
   <RouterView />
-
-  <!-- <Toaster /> -->
 </template>

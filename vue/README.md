@@ -39,7 +39,3 @@ https://vercel.com/geist/icons
 ## CSS
 
 https://tailwindcss.com/
-
-## data validator
-
-https://arktype.io/docs/primitives

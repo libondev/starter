@@ -31,6 +31,8 @@ function onEnter() {
       <PButton class="w-36" @click="switchLanguage()">
         {{ $t('button.toggle') }}{{ t('sfc.language') }}
       </PButton>
+
+      <PTimePicker />
     </div>
 
     <div class="flex items-center gap-2">

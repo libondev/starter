@@ -1,4 +1,3 @@
-import { setupLayouts } from 'virtual:meta-layouts'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
@@ -9,7 +8,7 @@ import { useViewTransition } from './guards/use-view-transition.ts'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.VITE_BASE_PATH),
-  routes: setupLayouts(routes),
+  routes,
 })
 
 if (import.meta.hot) {

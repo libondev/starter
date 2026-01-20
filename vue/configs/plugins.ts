@@ -15,7 +15,6 @@ import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Router from 'unplugin-vue-router/vite'
 // z-lazy-show/v-show.lazy
 import { transformLazyShow } from 'v-lazy-show'
-import Layouts from 'vite-plugin-vue-meta-layouts'
 import PxdResolver from 'pxd/resolver'
 
 import { iconCollections } from './icons'
@@ -60,13 +59,6 @@ export function pluginsConfig({ command }: ConfigEnv) {
           nodeTransforms: [transformLazyShow],
         },
       },
-    }),
-
-    Layouts({
-      target: 'src/layouts',
-      defaultLayout: 'default',
-      skipTopLevelRouteLayout: true,
-      excludes: ['/components/**/*'],
     }),
 
     AutoImport({

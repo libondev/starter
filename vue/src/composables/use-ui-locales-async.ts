@@ -1,13 +1,13 @@
-import type { ConfigProvider } from '@arco-design/web-vue'
+import type { ConfigProvider } from 'pxd'
 
 import { onScopeDispose, shallowRef, watch } from 'vue'
 
 import i18n from '@/app/i18n.ts'
 
-type ArcoLang = InstanceType<typeof ConfigProvider>['$props']['locale']
+type UILocale = InstanceType<typeof ConfigProvider>['$props']['locale']
 
-export function useArcoLocaleAsync() {
-  const locale = shallowRef<ArcoLang>()
+export function useUiLocalesAsync() {
+  const locale = shallowRef<UILocale>()
 
   const localeAlias = {
     'en-US': 'en-us',
@@ -19,11 +19,11 @@ export function useArcoLocaleAsync() {
   const unwatch = watch(
     () => i18n.global.locale.value,
     async (newLocale) => {
-      if (!newLocale) {return}
+      if (!newLocale) { return }
 
       const aliasedLocale = localeAlias[newLocale as AliasLocale] || newLocale
       const module = await import(
-        `@/../node_modules/@arco-design/web-vue/es/locale/lang/${aliasedLocale}.js`
+        `@/../node_modules/pxd/dist/locales/${aliasedLocale}.js`
       )
 
       locale.value = module.default
