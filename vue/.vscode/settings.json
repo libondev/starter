@@ -1,55 +1,39 @@
 {
-  // Enable the ESlint flat config support
-  "eslint.useFlatConfig": true,
-
-  // Disable the default formatter, use eslint instead
-  "prettier.enable": false,
-  "editor.formatOnSave": false,
-
-  // Auto fix
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never"
+  "cSpell.customDictionaries": {
+    "custom-dictionary-workspace": {
+      "addWords": true,
+      "name": "custom-dictionary-workspace",
+      "path": "${workspaceFolder:react}/.cspell/custom-dictionary-workspace.txt",
+      "scope": "workspace"
+    }
   },
-
-  "css.customData": [".vscode/tailwind.json"],
-
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
-  "tailwindCSS.classFunctions": ["tw", "clsx", "twMerge"],
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
+  "css.customData": [
+    ".vscode/tailwind.json"
+  ],
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "editor.quickSuggestions": {
     "strings": true
   },
-
-  // Enable eslint for all supported languages
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "html",
-    "markdown",
-    "json",
-    "jsonc",
-    "yaml"
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "oxc.typeAware": true,
+  "oxc.configPath": ".oxlintrc.json",
+  "oxc.unusedDisableDirectives": "deny",
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "eslint.enable": false,
+  "prettier.enable": false,
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass"
   ],
-  "cSpell.words": [
-    "antfu",
-    "clsx",
-    "composables",
-    "demi",
-    "gdsi",
-    "iconify",
-    "lightningcss",
-    "pinia",
-    "sonner",
-    "tailwindcss",
-    "tanstack",
-    "unplugin",
-    "vaul",
-    "vite"
-  ]
+  "tailwindCSS.classFunctions": [
+    "tw",
+    "cx",
+    "twMerge"
+  ],
+  "typescript.experimental.useTsgo": true
 }

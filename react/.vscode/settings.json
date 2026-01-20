@@ -1,13 +1,4 @@
 {
-  "[javascript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
   "cSpell.customDictionaries": {
     "custom-dictionary-workspace": {
       "addWords": true,
@@ -16,11 +7,9 @@
       "scope": "workspace"
     }
   },
-  "css.customData": [".vscode/tailwind.json"],
-  // Auto fix
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "never"
-  },
+  "css.customData": [
+    ".vscode/tailwind.json"
+  ],
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
   "editor.quickSuggestions": {
@@ -29,12 +18,22 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "oxc.enable": true,
-  "oxc.lint.run": "onSave",
   "oxc.typeAware": true,
+  "oxc.configPath": ".oxlintrc.json",
+  "oxc.unusedDisableDirectives": "deny",
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "eslint.enable": false,
   "prettier.enable": false,
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
-  "tailwindCSS.classFunctions": ["tw", "cx", "twMerge"],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass"
+  ],
+  "tailwindCSS.classFunctions": [
+    "tw",
+    "cx",
+    "twMerge"
+  ],
   "typescript.experimental.useTsgo": true
 }

@@ -33,7 +33,10 @@
           }
         }
       ],
-      "language_servers": ["tailwindcss-intellisense-css", "!vscode-css-language-server"]
+      "language_servers": [
+        "tailwindcss-intellisense-css",
+        "!vscode-css-language-server"
+      ]
     },
     "HTML": {
       "format_on_save": "on",

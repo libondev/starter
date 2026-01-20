@@ -14,8 +14,25 @@
   "experimentalTailwindcss": {
     "preserveDuplicates": false,
     "preserveWhitespace": false,
-    "functions": ["clsx", "cn", "cva", "tw"],
+    "functions": [
+      "clsx",
+      "cn",
+      "cva",
+      "tw"
+    ],
     "stylesheet": "./src/styles/tailwind.css"
   },
-  "ignorePatterns": ["dist", "node_modules"]
+  "patterns": [],
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    ".vscode",
+    ".zed",
+    ".agent",
+    ".claude",
+    ".codex",
+    ".cursor",
+    ".gemini",
+    ".opencode"
+  ]
 }

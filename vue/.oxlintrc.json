@@ -1,21 +1,53 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "jsPlugins": ["eslint-plugin-better-tailwindcss"],
+  "jsPlugins": [
+    "eslint-plugin-better-tailwindcss"
+  ],
   "rules": {
     "curly": "error",
     "end-of-line": "off",
-    "brace-style": ["error", "1tbs"],
+    "brace-style": [
+      "error",
+      "1tbs"
+    ],
     "better-tailwindcss/no-deprecated-classes": "error",
     "better-tailwindcss/enforce-shorthand-classes": "error",
     "better-tailwindcss/no-unnecessary-whitespace": "error",
-    "better-tailwindcss/enforce-consistent-variable-syntax": ["error", { "syntax": "shorthand" }],
+    "better-tailwindcss/enforce-consistent-variable-syntax": [
+      "error",
+      {
+        "syntax": "shorthand"
+      }
+    ],
     "better-tailwindcss/enforce-consistent-important-position": [
       "error",
-      { "position": "recommended" }
+      {
+        "position": "recommended"
+      }
     ]
   },
-  "plugins": ["oxc", "eslint", "import", "vitest", "promise", "unicorn", "typescript"],
-  "ignorePatterns": ["dist/", "node_modules/"],
+  "plugins": [
+    "oxc",
+    "react",
+    "eslint",
+    "import",
+    "vitest",
+    "promise",
+    "unicorn",
+    "typescript"
+  ],
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    ".vscode",
+    ".zed",
+    ".agent",
+    ".claude",
+    ".codex",
+    ".cursor",
+    ".gemini",
+    ".opencode"
+  ],
   "settings": {
     "better-tailwindcss": {
       "entryPoint": "src/styles/tailwind.css"
