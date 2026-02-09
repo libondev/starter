@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import type { Locale } from 'vue-i18n'
 
 import { createI18n } from 'vue-i18n'
-
+import { router } from '@/router'
 import { getClientLang } from '@/utils/shared/index.ts'
 
 const DEFAULT_LANGUAGE_KEY = 'fe.system.intl.lang'
@@ -18,6 +18,10 @@ export const i18n = createI18n({
   legacy: false,
   locale: '',
   messages: {},
+  // ignore console warning: `Not found 'xxx' key in 'xxx' locale messages.`
+  missingWarn: false,
+  // ignore console warning: `Fall back to translate 'xxx' with root locale.`
+  fallbackWarn: false,
 })
 
 const localesMap = Object.fromEntries(
@@ -37,6 +41,12 @@ function setI18nLanguage(lang: Locale) {
   if (typeof document !== 'undefined') {
     localStorage.setItem(DEFAULT_LANGUAGE_KEY, lang)
     document.documentElement.setAttribute('lang', lang)
+
+    const routeMetaTitle = router.currentRoute.value.meta?.title as string
+
+    if (routeMetaTitle) {
+      document.title = i18n.global.t(routeMetaTitle)
+    }
   }
 
   return lang
