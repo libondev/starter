@@ -14,7 +14,7 @@ export const LANGUAGES_NAME_MAP = {
   'en-US': 'English(US)',
 }
 
-const i18n = createI18n({
+export const i18n = createI18n({
   legacy: false,
   locale: '',
   messages: {},
@@ -79,9 +79,7 @@ export function switchLanguage(lang?: string) {
   loadLanguageAsync(_lang)
 }
 
-export function setupI18n(app: App) {
+export async function setupI18n(app: App) {
   app.use(i18n)
-  loadLanguageAsync(DEFAULT_LANGUAGE)
+  await loadLanguageAsync(DEFAULT_LANGUAGE)
 }
-
-export default i18n

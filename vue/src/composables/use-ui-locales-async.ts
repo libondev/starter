@@ -2,7 +2,7 @@ import type { ConfigProvider } from 'pxd'
 
 import { onScopeDispose, shallowRef, watch } from 'vue'
 
-import i18n from '@/app/i18n.ts'
+import { i18n } from '@/app/i18n.ts'
 
 type UILocale = InstanceType<typeof ConfigProvider>['$props']['locale']
 

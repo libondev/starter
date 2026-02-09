@@ -6,11 +6,15 @@ import { setupI18n } from './app/i18n.ts'
 import router from './router/index.ts'
 import './styles'
 
-const app = createApp(App)
+async function bootstrap() {
+  const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
+  app.use(createPinia())
+  app.use(router)
 
-setupI18n(app)
+  setupI18n(app)
 
-app.mount('#app')
+  app.mount('#app')
+}
+
+bootstrap()
