@@ -6,7 +6,7 @@ export function useHeadTitle(router: Router) {
   const websiteName = import.meta.env.VITE_WEBSITE_NAME
 
   router.afterEach((to) => {
-    let title = i18n.global.t(to.meta.title as string) || ''
+    let title = to.meta.title ? i18n.global.t(to.meta.title as string) : ''
 
     title &&= `${title} - `
 
