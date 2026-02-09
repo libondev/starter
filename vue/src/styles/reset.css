@@ -77,20 +77,6 @@ html {
   }
 }
 
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-ul,
-figure,
-blockquote,
-dl,
-dd {
-  margin: 0;
-}
-
 /* ul,
 ol, */
 ul[role='list'],
@@ -120,13 +106,7 @@ h4 {
   text-wrap: balance;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 img {
-  /* display: block; */
   max-width: 100%;
   height: auto;
   font-style: italic;

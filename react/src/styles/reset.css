@@ -25,10 +25,13 @@
 }
 
 html {
-  --scrollbar-color: #ccc;
-  --scrollbar-hover: #999;
-  --background-color: #ffffff;
-  --foreground-color: #171717;
+  /* --c1: #4997f0;
+  --c2: #8e9eec;
+  --c3: #7f4eea;
+  --c4: #ec8ebf;
+  --c5: #f74e63;
+  --c6: #f8b85c;
+  --cp: #42b883; */
 
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
@@ -43,15 +46,6 @@ html {
   font-synthesis: none;
   background-color: var(--background-color);
   color: var(--foreground-color);
-}
-
-.dark,
-[theme-mode='dark'] {
-  --scrollbar-color: #555;
-  --scrollbar-hover: #444;
-  --background-color: #121212;
-  --foreground-color: #ededed;
-  color-scheme: dark;
 }
 
 .scrollbar-stable {
@@ -81,6 +75,14 @@ html {
     overflow-y: auto;
     scrollbar-gutter: stable;
   }
+}
+
+/* ul,
+ol, */
+ul[role='list'],
+ol[role='list'] {
+  padding-left: 0;
+  list-style: none;
 }
 
 /* input, button {
@@ -207,9 +209,9 @@ hr {
 
 /* 可以等有需要适配的项目再打开 */
 /* 苹果全面屏的底部安全区域, 因为这两个属性的声明是必要的, 所以可以忽略属性重复的错误 */
-@supports (bottom: env(safe-area-inset-bottom)) {
+/* @supports (bottom: env(safe-area-inset-bottom)) {
   body {
     padding-bottom: constant(safe-area-inset-bottom);
     padding-bottom: env(safe-area-inset-bottom);
   }
-}
+} */

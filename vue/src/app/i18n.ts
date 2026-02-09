@@ -7,7 +7,6 @@ import { getClientLang } from '@/utils/shared/index.ts'
 
 const DEFAULT_LANGUAGE_KEY = 'fe.system.intl.lang'
 
-// 优先获取本地已经保存好的语言选项，否则获取用户系统/浏览器界面中配置的语言选项
 export const DEFAULT_LANGUAGE = `${localStorage.getItem(DEFAULT_LANGUAGE_KEY) || getClientLang()}`
 
 export const LANGUAGES_NAME_MAP = {
@@ -17,13 +16,8 @@ export const LANGUAGES_NAME_MAP = {
 
 const i18n = createI18n({
   legacy: false,
-  // locale 必须为空，才能确保首次被正常设置
   locale: '',
   messages: {},
-  // 忽略控制台提示: `Not found 'xxx' key in 'xxx' locale messages.`
-  missingWarn: false,
-  // 忽略控制台提示: `Fall back to translate 'xxx' with root locale.`
-  fallbackWarn: false,
 })
 
 const localesMap = Object.fromEntries(
