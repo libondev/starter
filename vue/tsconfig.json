@@ -41,8 +41,7 @@
     "types": [
       "pxd/volar",
       "vite/client",
-      "unplugin-icons/types/vue",
-      "unplugin-vue-router/client"
+      "unplugin-icons/types/vue"
     ]
   },
   "exclude": [
