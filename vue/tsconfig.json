@@ -44,6 +44,12 @@
       "unplugin-icons/types/vue"
     ]
   },
+  "vueCompilerOptions": {
+    "plugins": [
+      "vue-router/volar/sfc-typed-router",
+      "vue-router/volar/sfc-route-blocks",
+    ],
+  },
   "exclude": [
     "e2e",
     "dist",
