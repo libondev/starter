@@ -193,6 +193,10 @@ hr {
   text-indent: 0;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 @supports (-webkit-tap-highlight-color: transparent) {
   a,
   button,
