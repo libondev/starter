@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#00c488" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-TileColor" content="#00c488" />
     <meta name="msapplication-navbutton-color" content="#00c488" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black or black-translucent" />
     <meta
@@ -16,7 +17,7 @@
   </head>
 
   <!-- https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari/33681490#33681490 -->
-  <body class="h-full">
+  <body class="h-full" ontouchstart="">
     <div id="app" class="h-full"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
