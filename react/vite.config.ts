@@ -19,9 +19,6 @@ export default defineConfig(() => ({
     output: {
       assetFileNames: 'assets/[name]-[hash].[ext]',
       chunkFileNames: 'js/[name]-[hash].js',
-      comments: {
-        legal: 'none',
-      },
       minify: {
         compress: {
           dropDebugger: true,
