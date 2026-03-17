@@ -16,6 +16,19 @@ export default defineConfig(() => ({
   build: {
     // 是否输出 gzip 压缩大小的报告，设置 false 可以提高构建速度
     reportCompressedSize: false,
+    output: {
+      assetFileNames: 'assets/[name]-[hash].[ext]',
+      chunkFileNames: 'js/[name]-[hash].js',
+      comments: {
+        legal: 'none',
+      },
+      minify: {
+        compress: {
+          dropDebugger: true,
+          // dropConsole: true,
+        },
+      },
+    }
   },
 
   css: {

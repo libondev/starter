@@ -8,6 +8,17 @@ export function buildConfig(): UserConfig['build'] {
     reportCompressedSize: false,
     rollupOptions: {
       output: {
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+        chunkFileNames: 'js/[name]-[hash].js',
+        comments: {
+          legal: 'none',
+        },
+        minify: {
+          compress: {
+            dropDebugger: true,
+            // dropConsole: true,
+          },
+        },
         manualChunks(id: string) {
           if (id.includes('node_modules/es-toolkit')) {
             return 'utils'

@@ -50,7 +50,7 @@
     "unplugin-icons": "^23.0.1",
     "unplugin-vue-components": "^31.0.0",
     "v-lazy-show": "^0.3.0",
-    "vite": "^8.0.0-beta.13",
+    "vite": "^8.0.0",
     "vue-tsc": "^3.2.4"
   }
 }
