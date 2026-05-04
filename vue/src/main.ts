@@ -1,4 +1,5 @@
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createApp } from 'vue'
 
 import App from './App.vue'
@@ -8,13 +9,15 @@ import './styles'
 
 async function bootstrap() {
   const app = createApp(App)
+  const pinia = createPinia()
+  pinia.use(piniaPluginPersistedstate)
 
-  app.use(createPinia())
+  app.use(pinia)
   app.use(router)
 
-  setupI18n(app)
+  await setupI18n(app)
 
   app.mount('#app')
 }
 
-bootstrap()
+void bootstrap()
