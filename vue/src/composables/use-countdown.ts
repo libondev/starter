@@ -34,7 +34,9 @@ export function useCountdown(
   }
 
   function start(manual = true) {
-    if (manual && !remainder.value) {remainder.value = times}
+    if (manual && !remainder.value) {
+      remainder.value = times
+    }
 
     timeoutId = window.setTimeout(() => {
       remainder.value -= interval
@@ -52,7 +54,9 @@ export function useCountdown(
     remainder.value = times
   }
 
-  if (immediate) {start()}
+  if (immediate) {
+    start()
+  }
 
   onBeforeUnmount(() => {
     pause()

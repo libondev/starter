@@ -1,39 +1,42 @@
 {
-  "cSpell.customDictionaries": {
-    "custom-dictionary-workspace": {
-      "addWords": true,
-      "name": "custom-dictionary-workspace",
-      "path": "${workspaceFolder:react}/.cspell/custom-dictionary-workspace.txt",
-      "scope": "workspace"
-    }
+  "npm.scriptRunner": "vp",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
-  "css.customData": [
-    ".vscode/tailwind.json"
-  ],
-  "editor.formatOnSave": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "oxc.fmt.configPath": "./vite.config.ts",
+  // Disable the default formatter, use eslint instead
+  "editor.formatOnSave": false,
+
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
+
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "css.customData": [".vscode/tailwind.json"],
   "editor.formatOnSaveMode": "file",
   "editor.quickSuggestions": {
     "strings": true
   },
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
   "oxc.typeAware": true,
   "oxc.configPath": ".oxlintrc.json",
   "oxc.unusedDisableDirectives": "deny",
-  "oxc.fmt.configPath": ".oxfmtrc.json",
-  "editor.defaultFormatter": "oxc.oxc-vscode",
   "eslint.enable": false,
   "prettier.enable": false,
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "ngClass"
-  ],
-  "tailwindCSS.classFunctions": [
-    "tw",
-    "cx",
-    "twMerge"
-  ],
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass"],
+  "tailwindCSS.classFunctions": ["tw", "cx", "twMerge"]
   // "typescript.experimental.useTsgo": true
 }

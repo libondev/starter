@@ -3,18 +3,13 @@
     "allowArbitraryExtensions": true,
     "allowImportingTsExtensions": true,
     "allowJs": false,
-    "baseUrl": "./",
     "composite": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "bundler",
@@ -27,36 +22,20 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
-    // "rewriteRelativeImportExtensions": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
     "verbatimModuleSyntax": true,
-    "types": [
-      "pxd/volar",
-      "vite/client",
-      "unplugin-icons/types/vue"
-    ]
+    "types": ["pxd/volar", "vite/client", "unplugin-icons/types/vue"]
   },
   "vueCompilerOptions": {
-    "plugins": [
-      "vue-router/volar/sfc-typed-router",
-      "vue-router/volar/sfc-route-blocks",
-    ],
+    "plugins": ["vue-router/volar/sfc-typed-router", "vue-router/volar/sfc-route-blocks"]
   },
-  "exclude": [
-    "e2e",
-    "dist",
-    "cypress",
-    "**/node_modules",
-    "**/.*/"
-  ],
+  "exclude": ["e2e", "dist", "cypress", "**/node_modules", "**/.*/"],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",

@@ -1,5 +1,4 @@
 import type { AxiosError, InternalAxiosRequestConfig } from 'axios'
-
 import cookie from 'js-cookie'
 
 import { STORAGE_TOKEN_KEYS, USER_REFRESH_API_PATH } from './consts.ts'

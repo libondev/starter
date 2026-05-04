@@ -3,9 +3,7 @@
     "oxlint": {
       "initialization_options": {
         "settings": {
-          "configPath": "./.oxlintrc.json",
           "run": "onType",
-          "disableNestedConfig": false,
           "fixKind": "safe_fix",
           "typeAware": true,
           "unusedDisableDirectives": "deny"
@@ -15,7 +13,8 @@
     "oxfmt": {
       "initialization_options": {
         "settings": {
-          "configPath": "./.oxfmtrc.json"
+          "configPath": "./vite.config.ts",
+          "run": "onSave"
         }
       }
     }
@@ -32,10 +31,32 @@
             "name": "oxfmt"
           }
         }
-      ],
-      "language_servers": [
-        "tailwindcss-intellisense-css",
-        "!vscode-css-language-server"
+      ]
+    },
+    "GraphQL": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "Handlebars": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
       ]
     },
     "HTML": {
@@ -61,13 +82,11 @@
           "language_server": {
             "name": "oxfmt"
           }
-        },
-        {
-          "code_action": "source.fixAll.oxc"
         }
-      ]
+      ],
+      "code_action": "source.fixAll.oxc"
     },
-    "TSX": {
+    "JSX": {
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -93,6 +112,19 @@
         }
       ]
     },
+    "JSON5": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
     "JSONC": {
       "format_on_save": "on",
       "prettier": {
@@ -106,7 +138,33 @@
         }
       ]
     },
+    "Less": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
     "Markdown": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "MDX": {
       "format_on_save": "on",
       "prettier": {
         "allowed": false
@@ -133,6 +191,19 @@
       ]
     },
     "TypeScript": {
+      "format_on_save": "on",
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "TSX": {
       "format_on_save": "on",
       "prettier": {
         "allowed": false

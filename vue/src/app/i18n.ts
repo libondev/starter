@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import type { Locale } from 'vue-i18n'
-
 import { createI18n } from 'vue-i18n'
+
 import { router } from '@/router'
 import { getClientLang } from '@/utils/shared/index.ts'
 

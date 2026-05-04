@@ -1,5 +1,4 @@
 import type { ConfigProvider } from 'pxd'
-
 import { onScopeDispose, shallowRef, watch } from 'vue'
 
 import { i18n } from '@/app/i18n.ts'
@@ -19,12 +18,12 @@ export function useUiLocalesAsync() {
   const unwatch = watch(
     () => i18n.global.locale.value,
     async (newLocale) => {
-      if (!newLocale) { return }
+      if (!newLocale) {
+        return
+      }
 
       const aliasedLocale = localeAlias[newLocale as AliasLocale] || newLocale
-      const module = await import(
-        `@/../node_modules/pxd/dist/locales/${aliasedLocale}.js`
-      )
+      const module = await import(`@/../node_modules/pxd/dist/locales/${aliasedLocale}.js`)
 
       locale.value = module.default
     },

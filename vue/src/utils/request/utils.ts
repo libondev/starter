@@ -1,5 +1,4 @@
 import type { AxiosInstance, InternalAxiosRequestConfig } from 'axios'
-
 import cookie from 'js-cookie'
 
 import { HEADER_TOKEN_KEYS, STORAGE_TOKEN_KEYS } from './consts.ts'

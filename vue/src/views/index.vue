@@ -31,18 +31,16 @@ function onEnter() {
       <PButton class="w-36" @click="switchLanguage()">
         {{ $t('button.toggle') }}{{ t('sfc.language') }}
       </PButton>
-
-      <PTimePicker />
     </div>
 
     <div class="flex items-center gap-2">
-      <PInput v-model="userName" :placeholder="$t('input.placeholder')" @keydown.enter="onEnter">
+      <PInput :placeholder="$t('input.placeholder')" @keydown.enter="onEnter">
         <template #prefix>
           <IGdsMagnifyingGlass />
         </template>
       </PInput>
 
-      <PButton variant="primary" class="w-20" :disabled="!userName" @click="onEnter">
+      <PButton type="primary" class="w-20" @click="onEnter">
         {{ t('button.enter') }}
       </PButton>
     </div>
@@ -50,8 +48,11 @@ function onEnter() {
 </template>
 
 <route>
-  meta:
-    title: Index
+{
+  "meta": {
+    "title": "Index"
+  }
+}
 </route>
 
 <i18n>

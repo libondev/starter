@@ -1,9 +1,15 @@
 export function toArray(value: any) {
-  if (!value) {return []}
+  if (!value) {
+    return []
+  }
 
-  if (Array.isArray(value)) {return value}
+  if (Array.isArray(value)) {
+    return value
+  }
 
-  if (value instanceof Set) {return Array.from(value)}
+  if (value instanceof Set) {
+    return Array.from(value)
+  }
 
   return [value]
 }
