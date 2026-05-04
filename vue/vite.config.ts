@@ -26,8 +26,6 @@ const iconCollections = {
 
 const extensions = ['vue', 'tsx']
 
-const i18nPathRegex = /locales\/.*\.yaml/
-
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -64,6 +62,10 @@ export default defineConfig({
             {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
+            },
+            {
+              test: /locales[\\/].*\.yaml/,
+              name: 'intl',
             },
           ],
         },

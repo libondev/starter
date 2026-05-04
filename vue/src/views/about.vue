@@ -9,6 +9,9 @@ const route = useRoute('/about')
 </template>
 
 <route>
-  meta:
-    title: About page
+{
+  "meta": {
+    "title": "About page"
+  }
+}
 </route>
