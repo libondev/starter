@@ -32,14 +32,6 @@ export default defineConfig({
     cssMinify: 'lightningcss',
     reportCompressedSize: false,
     rolldownOptions: {
-      onLog(level, log, defaultHandler) {
-        console.log({ log, level })
-        if (log.code === 'SOURCEMAP_ERROR' && log.message?.includes('outside its package')) {
-          return
-        }
-
-        defaultHandler(level, log)
-      },
       output: {
         codeSplitting: {
           groups: [
@@ -62,6 +54,8 @@ export default defineConfig({
             {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
+              entriesAware: true,
+              entriesAwareMergeThreshold: 2000,
             },
             {
               test: /locales[\\/].*\.yaml/,
