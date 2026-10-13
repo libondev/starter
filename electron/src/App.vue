@@ -3,9 +3,11 @@ import AppHeader from './components/AppHeader.vue'
 </script>
 
 <template>
-  <AppHeader title="Pilot" />
+  <PConfigProvider class="h-full">
+    <AppHeader title="electron" />
 
-  <main class="app-main border-t">
-    <RouterView />
-  </main>
+    <main class="app-main border-t">
+      <RouterView />
+    </main>
+  </PConfigProvider>
 </template>

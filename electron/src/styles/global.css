@@ -1,2 +1,8 @@
 @import 'tailwindcss';
 @import 'pxd/tw.css';
+
+html,
+body,
+#app {
+  height: 100%;
+}
