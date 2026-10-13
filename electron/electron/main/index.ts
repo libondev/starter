@@ -88,10 +88,10 @@ async function createWindow() {
   })
 
   if (VITE_DEV_SERVER_URL) {
-    mainWindow.loadURL(VITE_DEV_SERVER_URL)
+    void mainWindow.loadURL(VITE_DEV_SERVER_URL)
     mainWindow.webContents.openDevTools()
   } else {
-    mainWindow.loadFile(indexHtml)
+    void mainWindow.loadFile(indexHtml)
   }
 
   // Test actively push message to the Electron-Renderer
@@ -115,7 +115,7 @@ ipcMain.on('window:toggle-maximize', ({ sender }) => {
 ipcMain.on('window:close', ({ sender }) => senderWindow(sender)?.close())
 ipcMain.handle('window:is-maximized', ({ sender }) => senderWindow(sender)?.isMaximized() ?? false)
 
-app.whenReady().then(createWindow)
+void app.whenReady().then(createWindow)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -138,6 +138,6 @@ app.on('activate', () => {
   if (allWindows.length) {
     allWindows[0].focus()
   } else {
-    createWindow()
+    void createWindow()
   }
 })

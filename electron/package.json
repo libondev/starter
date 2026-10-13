@@ -9,14 +9,23 @@
     "vue",
     "vue3"
   ],
+  "homepage": "https://github.com/libondev/electron#readme",
   "license": "MIT",
+  "author": "Libon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/libondev/electron.git"
+  },
   "type": "module",
   "main": "dist-electron/main/index.js",
   "scripts": {
     "dev": "vp dev",
     "build": "vue-tsc --noEmit && vp build && electron-builder",
     "preview": "vp preview",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "check": "vp check --fix",
+    "lint": "vp lint --fix",
+    "fmt": "vp fmt"
   },
   "dependencies": {
     "@gdsicon/vue": "^1.0.9",
@@ -43,5 +52,6 @@
   "volta": {
     "node": "24.19.0",
     "pnpm": "10.15.0"
-  }
+  },
+  "packageManager": "pnpm@10.15.0"
 }

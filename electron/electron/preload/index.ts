@@ -118,7 +118,7 @@ function installLoadingOverlay() {
     }
   }
 
-  domReady().then(() => {
+  void domReady().then(() => {
     if (!removing) {
       safeDOM.append(document.head, styles)
       safeDOM.append(document.body, overlay)

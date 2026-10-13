@@ -39,7 +39,6 @@ jobs:
           cache: true
         env:
           VP_GIT_HOOKS: '0'
-          PNPM_CONFIG_MINIMUMRELEASEAGE: '0'
 
       - name: Check
         run: vp check

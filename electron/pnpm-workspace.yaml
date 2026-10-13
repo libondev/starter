@@ -1,14 +1,20 @@
 allowBuilds:
   electron-winstaller: false
+
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@1.1.0
   vite-plus: 1.1.0
+
+shamefullyHoist: true
 minimumReleaseAgeExclude:
-  - pxd@0.1.1
+  - pxd
+
 overrides:
   vite@*: 'catalog:'
+
 peerDependencyRules:
   allowAny:
     - vite
+
   allowedVersions:
     vite: '*'
