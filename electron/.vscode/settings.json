@@ -1,0 +1,37 @@
+{
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.tsc.autoDetect": "off",
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/*electron-builder.json5",
+        "/*electron-builder.json"
+      ],
+      "url": "https://json.schemastore.org/electron-builder"
+    }
+  ],
+  "oxc.typeAware": true,
+  "oxc.configPath": "./vite.config.ts",
+  "oxc.unusedDisableDirectives": "deny",
+  "oxc.fmt.configPath": "./vite.config.ts",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit",
+    "source.fixAll.eslint": "never",
+    // "source.removeUnusedImports": "explicit"
+  },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+  ],
+  "tailwindCSS.classFunctions": [
+    "tv",
+    "twMerge",
+    "computed"
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+}
