@@ -10,11 +10,7 @@ declare module '*.vue' {
 interface Window {
   // expose in the `electron/preload/index.ts`
   electronAPI: {
-    minimize: () => void
-    toggleMaximize: () => void
-    close: () => void
-    isMaximized: () => Promise<boolean>
-    onMaximizedChange: (callback: (maximized: boolean) => void) => () => void
+    setTitleBarOverlay: (palette: { color: string; symbolColor: string }) => void
     onMainProcessMessage: (callback: (message: string) => void) => () => void
   }
 }

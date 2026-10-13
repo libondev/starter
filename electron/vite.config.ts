@@ -66,7 +66,9 @@ export default defineConfig(({ command }) => {
       Tailwindcss(),
       Components({
         resolvers: [
-          IconsResolver({ customCollections: ['window-controls'] }),
+          IconsResolver({ 
+            customCollections: ['app']
+          }),
           PxdResolver(),
           GdsiResolver({ prefix: 'IGds' }),
         ],
@@ -75,8 +77,7 @@ export default defineConfig(({ command }) => {
       Icons({
         compiler: 'vue3',
         customCollections: {
-          ...FileSystemHMRIconLoader('src/icons/window-controls', 'window-controls'),
-          // ...FileSystemHMRIconLoader('src/icons', 'app')
+          ...FileSystemHMRIconLoader('src/icons', 'app')
         },
       }),
       electronSimple({

@@ -1,79 +1,55 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted } from 'vue'
 
 defineProps<{ title: string }>()
 
 const controls = window.electronAPI
-const maximized = ref(false)
+const canvas = document.createElement('canvas').getContext('2d')
 
-let unmounted = false
-let unsubscribe: (() => void) | undefined
-
-onMounted(async () => {
-  maximized.value = await controls.isMaximized()
-
-  if (unmounted) {
-    return
+const toHex = (cssColor: string) => {
+  if (!canvas) {
+    return cssColor
   }
 
-  unsubscribe = controls.onMaximizedChange((value) => {
-    maximized.value = value
+  canvas.fillStyle = cssColor
+  return canvas.fillStyle as string
+}
+
+const syncTitleBarOverlay = () => {
+  const tokens = getComputedStyle(document.documentElement)
+  controls.setTitleBarOverlay({
+    color: toHex(tokens.getPropertyValue('--color-background-200')),
+    symbolColor: toHex(tokens.getPropertyValue('--color-foreground')),
   })
+}
+
+let observer: MutationObserver | undefined
+
+onMounted(() => {
+  syncTitleBarOverlay()
+
+  observer = new MutationObserver(syncTitleBarOverlay)
+  observer.observe(document.documentElement, { attributeFilter: ['class'] })
 })
 
-onBeforeUnmount(() => {
-  unmounted = true
-  unsubscribe?.()
-})
+onBeforeUnmount(() => observer?.disconnect())
 </script>
 
 <template>
-  <header
-    class="app-header h-10 flex items-center ps-3 gap-2 select-none bg-background-200 border-b"
-    @dblclick="controls.toggleMaximize()"
-  >
+  <header class="app-header flex items-center ps-3 gap-2 select-none bg-background-200">
     <span class="text-sm font-medium truncate flex-1 text-foreground">{{ title }}</span>
 
-    <div class="app-header--actions flex h-full items-stretch" @dblclick.stop>
+    <div class="app-header--actions flex h-full items-stretch">
       <PThemeSwitcher shape="square" variant="ghost" />
-
-      <PButton
-        icon
-        shape="square"
-        variant="ghost"
-        aria-label="Minimize"
-        @click="controls.minimize()"
-      >
-        <i-window-controls-minimize class="size-4" />
-      </PButton>
-
-      <PButton
-        icon
-        shape="square"
-        variant="ghost"
-        :aria-label="maximized ? 'Restore' : 'Maximize'"
-        @click="controls.toggleMaximize()"
-      >
-        <i-window-controls-restore v-if="maximized" class="size-3.5" />
-        <i-window-controls-maximize v-else class="size-3.5" />
-      </PButton>
-
-      <PButton
-        icon
-        shape="square"
-        variant="ghost"
-        class="hover:bg-red-700 hover:text-white"
-        aria-label="Close"
-        @click="controls.close()"
-      >
-        <i-window-controls-close class="size-4" />
-      </PButton>
     </div>
   </header>
 </template>
 
 <style>
 .app-header {
+  margin-inline-start: env(titlebar-area-x, 5rem);
+  inline-size: env(titlebar-area-width, calc(100% - 5rem));
+  block-size: env(titlebar-area-height, 2.5rem);
   -webkit-app-region: drag;
 }
 

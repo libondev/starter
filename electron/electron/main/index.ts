@@ -1,4 +1,12 @@
-import { app, BrowserWindow, Menu, shell, ipcMain, type WebContents } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  shell,
+  ipcMain,
+  type BrowserWindowConstructorOptions,
+  type WebContents,
+} from 'electron'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
@@ -68,19 +76,33 @@ app.on('web-contents-created', (_event, contents) => {
   })
 })
 
+const TITLE_BAR_HEIGHT = 40
+
+// Initial overlay colors, mirroring pxd's light theme; the renderer re-syncs them on theme change
+const initialTitleBarOverlay = {
+  color: '#f7f7f7',
+  symbolColor: '#171717',
+  height: TITLE_BAR_HEIGHT,
+}
+
 async function createWindow() {
-  const mainWindow = new BrowserWindow({
+  const options: BrowserWindowConstructorOptions = {
     title: 'Main window',
-    frame: false,
+    titleBarStyle: 'hidden',
     minWidth: 375,
     minHeight: 667,
     // icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
     webPreferences,
-  })
+  }
+
+  // macOS keeps traffic lights under 'hidden'; Windows/Linux need the overlay for any controls
+  if (process.platform !== 'darwin') {
+    options.titleBarOverlay = initialTitleBarOverlay
+  }
+
+  const mainWindow = new BrowserWindow(options)
   win = mainWindow
 
-  mainWindow.on('maximize', () => mainWindow.webContents.send('window:maximized', true))
-  mainWindow.on('unmaximize', () => mainWindow.webContents.send('window:maximized', false))
   mainWindow.on('closed', () => {
     if (win === mainWindow) {
       win = null
@@ -103,17 +125,13 @@ async function createWindow() {
 // Window controls for the renderer's own header
 const senderWindow = (sender: WebContents) => BrowserWindow.fromWebContents(sender)
 
-ipcMain.on('window:minimize', ({ sender }) => senderWindow(sender)?.minimize())
-ipcMain.on('window:toggle-maximize', ({ sender }) => {
-  const target = senderWindow(sender)
-  if (target?.isMaximized()) {
-    target.unmaximize()
-  } else {
-    target?.maximize()
-  }
-})
-ipcMain.on('window:close', ({ sender }) => senderWindow(sender)?.close())
-ipcMain.handle('window:is-maximized', ({ sender }) => senderWindow(sender)?.isMaximized() ?? false)
+// The overlay buttons are painted by the OS, so they only follow the app theme when told to
+ipcMain.on(
+  'window:set-title-bar-overlay',
+  ({ sender }, palette: { color: string; symbolColor: string }) => {
+    senderWindow(sender)?.setTitleBarOverlay({ ...palette, height: TITLE_BAR_HEIGHT })
+  },
+)
 
 void app.whenReady().then(createWindow)
 

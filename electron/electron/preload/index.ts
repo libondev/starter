@@ -10,12 +10,8 @@ const subscribe = <T>(channel: string, callback: (payload: T) => void) => {
 }
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  minimize: () => ipcRenderer.send('window:minimize'),
-  toggleMaximize: () => ipcRenderer.send('window:toggle-maximize'),
-  close: () => ipcRenderer.send('window:close'),
-  isMaximized: () => ipcRenderer.invoke('window:is-maximized') as Promise<boolean>,
-  onMaximizedChange: (callback: (maximized: boolean) => void) =>
-    subscribe('window:maximized', callback),
+  setTitleBarOverlay: (palette: { color: string; symbolColor: string }) =>
+    ipcRenderer.send('window:set-title-bar-overlay', palette),
   onMainProcessMessage: (callback: (message: string) => void) =>
     subscribe('main-process-message', callback),
 })
